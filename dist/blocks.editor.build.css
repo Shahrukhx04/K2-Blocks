@@ -42,9 +42,6 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.time-widget {
-  cellspacing: 0; }
-
 .tw-digit {
   color: black;
   font-size: 50px;

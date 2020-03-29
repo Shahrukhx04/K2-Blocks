@@ -1,5 +1,7 @@
 import './style.scss';
 import './editor.scss';
+import { DateTimePicker } from '@wordpress/components';
+
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
@@ -16,25 +18,62 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  * @return {?WPBlock}          The block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/timer-block', {
-	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: 'Timer',
-	icon: 'clock',
-	category: 'magik-blocks',
-	attributes: {
-		content: {type: 'string'},
-		color: {type: 'string'}
-	},
 
-	/* This configures how the content and color fields will work, and sets up the necessary elements */
 
-	edit: function(props) {
-		function updateContent(event) {
-			props.setAttributes({content: event.target.value})
-		}
-		function updateColor(value) {
-			props.setAttributes({color: value.hex})
-		}
+class Timer extends React.Component {
+	constructor(props) {
+	  super(props);
+	  this.state = {
+		target:new Date(2020, 0, 20, 12, 30, 0, 0) ,
+		seconds: 4,
+		minutes: 3,
+		hours: 2,
+		days: 1
+	  };
+	}
+
+	setTarget(_target) {
+		this.setState({target:_target});
+	}
+	componentDidMount() {
+		this.intervalID = setInterval(
+		  () => this.tick(),
+		  1000
+		);
+	}
+	
+	componentWillUnmount() {
+		clearInterval(this.intervalID);
+	}
+
+	tick() {
+		var variable1 = new Date();
+		var variable2 = this.state.target;
+		console.log(variable1.toLocaleString());
+		console.log(variable2.toLocaleString());
+		// Create a third variable by adding both variables:
+		var delta = Math.abs((variable2-variable1)/1000);
+		// calculate (and subtract) whole days
+		var days_ = Math.floor(delta / 86400);
+		delta -= days_ * 86400;
+		// calculate (and subtract) whole hours
+		var hours_ = Math.floor(delta / 3600) % 24;
+		delta -= hours_ * 3600;
+		// calculate (and subtract) whole minutes
+		var minutes_ = Math.floor(delta / 60) % 60;
+		delta -= minutes_ * 60;
+		// what's left is seconds
+		var seconds_ = Math.floor(delta % 60);  // in theory the modulus is not required
+		this.setState({
+			target: new Date(2020, 5, 20, 12, 30, 0, 0),
+			seconds: seconds_,
+			minutes: minutes_,
+			hours: hours_,
+			days:days_
+		});
+	}
+
+	render() {
 		return React.createElement("table", {
 			class: "time-widget",
 			cellspacing: "0"
@@ -43,19 +82,19 @@ registerBlockType( 'cgb/timer-block', {
 				React.createElement("td", {
 					class: "tw-digit",
 					align: "center"
-				}, "10"),
+				}, this.state.days),
 				React.createElement("td", {
 					class: "tw-digit",
 					align: "center"
-				}, "10"),
+				}, this.state.hours),
 				React.createElement("td", {
 					class: "tw-digit",
 					align: "center"
-				}, "10"),
+				}, this.state.minutes),
 				React.createElement("td", {
 					class: "tw-digit",
 					align: "center"
-				}, "10")),
+				}, this.state.seconds)),
 			React.createElement("tr", null,
 				React.createElement("td", {
 					class: "tw-title",
@@ -73,12 +112,36 @@ registerBlockType( 'cgb/timer-block', {
 					class: "tw-title",
 					align: "center"
 				}, "seconds"))));
+	}
+  } 
+
+
+registerBlockType( 'cgb/timer-block', {
+	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
+	title: 'Timer',
+	icon: 'clock',
+	category: 'magik-blocks',
+	attributes: {
 	},
+
+	/* This configures how the content and color fields will work, and sets up the necessary elements */
+
+	edit: function(props) {
+			
+			props.setAttributes({target: new Date(2020, 0, 20, 12, 30, 0, 0)});
+			var timer = new Timer();
+			timer.setTarget(new Date(2020, 0, 20, 12, 30, 0, 0));
+			return props.isSelected ? //if selected
+			//display backend controls  (
+			timer
+			:
+			//display as frontend 
+			//new Timer(props)
+
+			timer;
+		}
+		,
 	save: function(props) {
-		return wp.element.createElement(
-			"h3",
-			{style: { border: "3px solid " + props.attributes.color } },
-			props.attributes.content
-		);
+		return new Timer(props);
 	}
 })

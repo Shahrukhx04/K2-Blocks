@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: MagikBuilder - Creative Gutenberg Blocks
- * Plugin URI: https://github.com/ahmadawais/create-guten-block/
+ * Plugin URI: https://pookidevs.com/
  * Description: Blocks for gutenberg editor
  * Author: PookiDevs
  * Author URI: https://pookidevs.com/

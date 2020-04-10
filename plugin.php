@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: progressbar — CGB Gutenberg Block Plugin
- * Plugin URI: https://github.com/ahmadawais/create-guten-block/
- * Description: progressbar — is a Gutenberg plugin created via create-guten-block.
- * Author: mrahmadawais, maedahbatool
- * Author URI: https://AhmadAwais.com/
+ * Plugin Name: MagikBuilder - Creative Gutenberg Blocks
+ * Plugin URI: https://pookidevs.com/
+ * Description: Blocks for gutenberg editor
+ * Author: PookiDevs
+ * Author URI: https://pookidevs.com/
  * Version: 1.0.0
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
@@ -16,6 +16,8 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+
 
 /**
  * Block Initializer.

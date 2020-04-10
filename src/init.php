@@ -77,6 +77,8 @@ function progressbar_cgb_block_assets() { // phpcs:ignore
 		]
 	);
 
+	
+
 	/**
 	 * Register Gutenberg block on server-side.
 	 *
@@ -103,3 +105,10 @@ function progressbar_cgb_block_assets() { // phpcs:ignore
 add_action( 'init', 'progressbar_cgb_block_assets' );
 
 add_filter( 'block_categories', 'Magik_Builder_Category', 10, 2);
+
+//register custom frontend scripts
+function register_custom_scripts(){
+	wp_enqueue_script( 'timer_frontend', plugins_url( 'src/Timer_Block/Frontend/TimerFe.js', dirname( __FILE__ ) ), array('jquery'),
+            true );
+}
+add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );

@@ -1,6 +1,5 @@
 import './style.scss';
 import './editor.scss';
-import { DateTimePicker } from '@wordpress/components';
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -20,11 +19,11 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
  */
 
 
-class Timer extends React.Component {
+class Timer extends wp.element.Component {
 	constructor(props) {
 	  super(props);
+	  this.target = new Date(2019, 2, 31, 12, 30, 0, 0);
 	  this.state = {
-		target:new Date(2020, 0, 20, 12, 30, 0, 0) ,
 		seconds: 4,
 		minutes: 3,
 		hours: 2,
@@ -32,9 +31,21 @@ class Timer extends React.Component {
 	  };
 	}
 
-	setTarget(_target) {
-		this.setState({target:_target});
+	setTarget(t_date) {
+		console.log("Before update");
+		console.log(this.target.toLocaleString());
+		this.setState({
+			seconds: 4,
+			minutes: 3,
+			hours: 2,
+			days: 1,
+		  });
+		this.target=t_date;
+		console.log("After update");
+		console.log(this.target.toLocaleString());
+		console.log(t_date.toLocaleString());
 	}
+
 	componentDidMount() {
 		this.intervalID = setInterval(
 		  () => this.tick(),
@@ -48,9 +59,7 @@ class Timer extends React.Component {
 
 	tick() {
 		var variable1 = new Date();
-		var variable2 = this.state.target;
-		console.log(variable1.toLocaleString());
-		console.log(variable2.toLocaleString());
+		var variable2 = this.target;
 		// Create a third variable by adding both variables:
 		var delta = Math.abs((variable2-variable1)/1000);
 		// calculate (and subtract) whole days
@@ -65,7 +74,6 @@ class Timer extends React.Component {
 		// what's left is seconds
 		var seconds_ = Math.floor(delta % 60);  // in theory the modulus is not required
 		this.setState({
-			target: new Date(2020, 5, 20, 12, 30, 0, 0),
 			seconds: seconds_,
 			minutes: minutes_,
 			hours: hours_,
@@ -74,41 +82,45 @@ class Timer extends React.Component {
 	}
 
 	render() {
-		return React.createElement("table", {
+		return wp.element.createElement("table", {
 			class: "time-widget",
 			cellspacing: "0"
-		}, React.createElement("tbody", null,
-			React.createElement("tr", null,
-				React.createElement("td", {
+		}, wp.element.createElement("tbody", null,
+			wp.element.createElement("tr", null,
+				wp.element.createElement("td", {
 					class: "tw-digit",
+					id: "tw-digit-days",
 					align: "center"
 				}, this.state.days),
-				React.createElement("td", {
+				wp.element.createElement("td", {
 					class: "tw-digit",
+					id: "tw-digit-hours",
 					align: "center"
 				}, this.state.hours),
-				React.createElement("td", {
+				wp.element.createElement("td", {
 					class: "tw-digit",
+					id: "tw-digit-minutes",
 					align: "center"
 				}, this.state.minutes),
-				React.createElement("td", {
+				wp.element.createElement("td", {
 					class: "tw-digit",
+					id: "tw-digit-seconds",
 					align: "center"
 				}, this.state.seconds)),
-			React.createElement("tr", null,
-				React.createElement("td", {
+			wp.element.createElement("tr", null,
+				wp.element.createElement("td", {
 					class: "tw-title",
 					align: "center"
 				}, "days"),
-				React.createElement("td", {
+				wp.element.createElement("td", {
 					class: "tw-title",
 					align: "center"
 				}, "hours"),
-				React.createElement("td", {
+				wp.element.createElement("td", {
 					class: "tw-title",
 					align: "center"
 				}, "minutes"),
-				React.createElement("td", {
+				wp.element.createElement("td", {
 					class: "tw-title",
 					align: "center"
 				}, "seconds"))));
@@ -122,15 +134,17 @@ registerBlockType( 'cgb/timer-block', {
 	icon: 'clock',
 	category: 'magik-blocks',
 	attributes: {
+		target: {type: 'Date'}
 	},
 
 	/* This configures how the content and color fields will work, and sets up the necessary elements */
 
 	edit: function(props) {
 			
-			props.setAttributes({target: new Date(2020, 0, 20, 12, 30, 0, 0)});
+			props.attributes.target = new Date();
 			var timer = new Timer();
-			timer.setTarget(new Date(2020, 0, 20, 12, 30, 0, 0));
+			console.log(props.attributes.target)
+			timer.setTarget(props.attributes.target);
 			return props.isSelected ? //if selected
 			//display backend controls  (
 			timer
@@ -140,8 +154,17 @@ registerBlockType( 'cgb/timer-block', {
 
 			timer;
 		}
-		,
+	,
 	save: function(props) {
-		return new Timer(props);
-	}
+		var timer = new Timer();
+		console.log(timer.toString());
+		console.log(props.attributes.target);
+		timer.setTarget(props.attributes.target);
+	return (
+		<div className="tw-holder">
+		  <p className="tw-data">{props.attributes.target.toLocaleString()}</p>
+		  {timer.render()}
+		</div>
+	  );
+	},
 })

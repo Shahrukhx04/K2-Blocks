@@ -22,7 +22,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 class Timer extends wp.element.Component {
 	constructor(props) {
 	  super(props);
-	  this.target = new Date(2019, 2, 31, 12, 30, 0, 0);
+	  this.target = new Date(2020, 5, 20, 12, 30, 0, 0);
 	  this.state = {
 		seconds: 4,
 		minutes: 3,
@@ -32,15 +32,11 @@ class Timer extends wp.element.Component {
 	}
 
 	setTarget(t_date) {
-		console.log("Before update");
-		console.log(this.target.toLocaleString());
-		this.setState({
-			seconds: 4,
-			minutes: 3,
-			hours: 2,
-			days: 1,
-		  });
-		this.target=t_date;
+		this.target.setFullYear(t_date.year);
+		this.target.setMonth(t_date.month);
+		this.target.setDate(t_date.date);
+		this.target.setHours(t_date.hours);
+		this.target.setMinutes(t_date.minutes);
 		console.log("After update");
 		console.log(this.target.toLocaleString());
 		console.log(t_date.toLocaleString());
@@ -134,35 +130,42 @@ registerBlockType( 'cgb/timer-block', {
 	icon: 'clock',
 	category: 'magik-blocks',
 	attributes: {
-		target: {type: 'Date'}
+		minutes: {type:'integer'},
+		hours: {type:'integer'},
+		date: {type:'integer'},
+		month:{type:'integer'},
+		year:{type:'integer'},
 	},
 
 	/* This configures how the content and color fields will work, and sets up the necessary elements */
 
 	edit: function(props) {
-			
-			props.attributes.target = new Date();
+			//TODO: get Date from interface somehow
+			var target_date = new Date(/*year*/2020, 5/*month*/,5 /*day*/, 5/*hours*/,5 /*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
+			props.attributes.year = target_date.getFullYear();
+			props.attributes.month = target_date.getMonth();
+			props.attributes.date = target_date.getDate();
+			props.attributes.hours = target_date.getHours();
+			props.attributes.minutes = target_date.getMinutes();
 			var timer = new Timer();
-			console.log(props.attributes.target)
-			timer.setTarget(props.attributes.target);
+			console.log("Hello"+target_date.getFullYear())
+			timer.setTarget(props.attributes);
 			return props.isSelected ? //if selected
 			//display backend controls  (
 			timer
 			:
 			//display as frontend 
-			//new Timer(props)
 
 			timer;
 		}
 	,
 	save: function(props) {
 		var timer = new Timer();
-		console.log(timer.toString());
-		console.log(props.attributes.target);
-		timer.setTarget(props.attributes.target);
+		timer.setTarget(props.attributes);
 	return (
 		<div className="tw-holder">
-		  <p className="tw-data">{props.attributes.target.toLocaleString()}</p>
+		  {/*<p className="tw-data">{props.attributes.target.getFullYear()},{props.attributes.target.getMonth()},{props.attributes.target.getDate()},{props.attributes.target.getHours()},{props.attributes.target.getMinutes()},{props.attributes.target.getSeconds()}</p>*/}
+		  <p className="tw-data">{props.attributes.year},{props.attributes.month},{props.attributes.date},{props.attributes.hours},{props.attributes.minutes}</p>
 		  {timer.render()}
 		</div>
 	  );

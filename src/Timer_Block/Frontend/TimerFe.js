@@ -3,8 +3,9 @@ jQuery(document).ready(function( $ ) {
     function updateTW(){
         $('.tw-holder').each(function () {
             var timeString = $(this).children("p").text();
-            var targetDate = Date(timeString);
-            //console.log(timeString);
+            timeString=timerString.split(",");
+            var targetDate = Date();
+            console.log(timeString);
             console.log(targetDate);
             var variable1 = new Date();
             console.log(variable1);
@@ -26,6 +27,5 @@ jQuery(document).ready(function( $ ) {
         });    
         console.log("Hello");
     }
-
     var myVar = setInterval(updateTW, 1000);
 });

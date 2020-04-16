@@ -141,6 +141,9 @@ registerBlockType( 'cgb/timer-block', {
 
 	edit: function(props) {
 			//TODO: get Date from interface somehow
+			function updateContent(event) {
+				event.target.value
+			}
 			var target_date = new Date(/*year*/2020, 5/*month*/,5 /*day*/, 5/*hours*/,5 /*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
 			props.attributes.year = target_date.getFullYear();
 			props.attributes.month = target_date.getMonth();
@@ -151,9 +154,15 @@ registerBlockType( 'cgb/timer-block', {
 			console.log("Hello"+target_date.getFullYear())
 			timer.setTarget(props.attributes);
 			return props.isSelected ? //if selected
-			//display backend controls  (
-			timer
-			:
+			//display backend controls 
+			(<div>
+
+				{React.createElement("input", { type: "text", value: props.attributes.content, onChange: updateContent })}
+				<label>Select time:</label>
+				<input type="time" id="birthdaytime" name="birthdaytime"></input>
+			</div>
+			)
+				:
 			//display as frontend 
 
 			timer;
@@ -164,8 +173,7 @@ registerBlockType( 'cgb/timer-block', {
 		timer.setTarget(props.attributes);
 	return (
 		<div className="tw-holder">
-		  {/*<p className="tw-data">{props.attributes.target.getFullYear()},{props.attributes.target.getMonth()},{props.attributes.target.getDate()},{props.attributes.target.getHours()},{props.attributes.target.getMinutes()},{props.attributes.target.getSeconds()}</p>*/}
-		  <p className="tw-data">{props.attributes.year},{props.attributes.month},{props.attributes.date},{props.attributes.hours},{props.attributes.minutes}</p>
+		  <p className="tw-data">{props.attributes.year},{props.attributes.month},{props.attributes.date},{props.attributes.hours},{props.attributes.minutes},0,0</p>
 		  {timer.render()}
 		</div>
 	  );

@@ -112,3 +112,13 @@ function register_custom_scripts(){
             true );
 }
 add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );
+
+//register custom backend jquery scripts
+function register_custom_backend_scripts($hook){
+	wp_register_script( 'timer_backend_jquery', plugins_url( 'src/Timer_Block/TimerBe.js', dirname( __FILE__ ) ), array('jquery'),
+			true );
+	wp_enqueue_script('timer_backend_jquery');
+}
+
+//add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );
+add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );

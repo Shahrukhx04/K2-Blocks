@@ -22,7 +22,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 class Timer extends wp.element.Component {
 	constructor(props) {
 	  super(props);
-	  this.target = new Date(2020, 5, 20, 12, 30, 0, 0);
+	  this.target = new Date();
 	  this.state = {
 		seconds: 4,
 		minutes: 3,
@@ -130,42 +130,59 @@ registerBlockType( 'cgb/timer-block', {
 	icon: 'clock',
 	category: 'magik-blocks',
 	attributes: {
-		minutes: {type:'integer'},
-		hours: {type:'integer'},
-		date: {type:'integer'},
-		month:{type:'integer'},
-		year:{type:'integer'},
+		minutes: {type:'integer',default:45},
+		hours: {type:'integer',default:23},
+		date: {type:'integer',default:24},
+		month:{type:'integer',default:12},
+		year:{type:'integer',default:2020},
 	},
 
-	/* This configures how the content and color fields will work, and sets up the necessary elements */
-
 	edit: function(props) {
-			//TODO: get Date from interface somehow
-			function updateContent(event) {
-				event.target.value
-			}
-			var target_date = new Date(/*year*/2020, 5/*month*/,5 /*day*/, 5/*hours*/,5 /*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
-			props.attributes.year = target_date.getFullYear();
-			props.attributes.month = target_date.getMonth();
-			props.attributes.date = target_date.getDate();
-			props.attributes.hours = target_date.getHours();
-			props.attributes.minutes = target_date.getMinutes();
 			var timer = new Timer();
-			console.log("Hello"+target_date.getFullYear())
-			timer.setTarget(props.attributes);
-			return props.isSelected ? //if selected
-			//display backend controls 
-			(<div>
-
-				{React.createElement("input", { type: "text", value: props.attributes.content, onChange: updateContent })}
-				<label>Select time:</label>
-				<input type="time" id="birthdaytime" name="birthdaytime"></input>
-			</div>
-			)
-				:
-			//display as frontend 
-
-			timer;
+			console.log("Called here")
+			function updateContent(event) {
+				console.log("update content called");
+				if (event.target.name === 'timer_date_input'){
+					//create new date with new date and same time
+					var temp = event.target.value.split("/");
+					console.log(temp);
+					//target_date = new Date(/*year*/parseInt(temp[2]), parseInt(temp[0])-1/*month*/,parseInt(temp[1]) /*day*/, props.attributes.hours/*hours*/,props.attributes.minutes /*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
+					if(temp.length == 3){
+						props.setAttributes({
+							minutes: props.attributes.minutes,
+							hours: props.attributes.hours,
+							date: parseInt(temp[1]),
+							month:parseInt(temp[0])-1,
+							year:parseInt(temp[2]),
+						})
+					}
+				}
+				else if (event.target.name === 'timer_time_input'){
+					//create new date with new time and old date
+					var temp = event.target.value.split(":");
+					//target_date = new Date(/*year*/props.attributes.year, props.attributes.month/*month*/,props.attributes.date /*day*/, parseInt(temp[0])/*hours*/, parseInt(temp[1])/*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
+					if(temp.length == 2){
+						props.setAttributes({
+							minutes: parseInt(temp[1]),
+							hours: parseInt(temp[0]),
+							date: props.attributes.date,
+							month:props.attributes.month,
+							year:props.attributes.year,
+						})
+					}
+				}
+				timer.setTarget(props.attributes);
+			}
+			
+			return (<div id="timer-be">
+				<label>Select date:</label><br></br>
+				{React.createElement("input", { type: "text",id: "timer_date_input",name:"timer_date_input",placeholder:"MM/DD/YYYY",
+						defaultValue:props.attributes.month+"/"+props.attributes.date+"/"+props.attributes.year,  onChange: updateContent })}
+				<br></br>
+				<label>Select time:</label><br></br>
+				<input type="input" id="timer_time_input" name="timer_time_input" placeholder="HH-MM" defaultValue={props.attributes.hours+":"+props.attributes.minutes} onChange={updateContent}></input>
+				{timer.render()}  
+			</div>)
 		}
 	,
 	save: function(props) {

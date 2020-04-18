@@ -118,6 +118,9 @@ registerBlockType( 'cgb/alert-block', {
 			},
 			{
 				color: 'yellow'
+			},
+			{
+				color: 'pink'
 			}
 		];
 

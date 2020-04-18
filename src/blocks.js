@@ -11,3 +11,4 @@
 
 import './Progress_Bar_Block/block.js';
 import './Timer_Block/Timer.js';
+import './Alert/Alert.js';

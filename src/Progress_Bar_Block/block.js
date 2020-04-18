@@ -230,7 +230,7 @@ registerBlockType( 'cgb/progressbar-block', {
 				</InspectorControls>,
 
 
-				<p style={{color: titleColor, align: 'left'}}>
+				<p style={{color: titleColor, align: 'right'}}>
 					{attributes.title}  {attributes.progressBarPercentage}%
 				</p>,
 				<div className="meter" style={BarOutlineStyling}>

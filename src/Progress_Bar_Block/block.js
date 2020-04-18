@@ -9,8 +9,28 @@
 import './editor.scss';
 import './style.scss';
 
+
+
 const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
+const { registerBlockType,
+      // For attribute sources
+} = wp.blocks;
+const {
+	RichText,
+	InspectorControls,
+	ColorPalette
+} = wp.editor;
+
+const {
+	PanelBody,
+	PanelRow,
+	TextControl,
+	RangeControl,
+	ColorPicker
+
+} = wp.components;
+
+
 
 /**
  * Register: aa Gutenberg Block.
@@ -36,10 +56,35 @@ registerBlockType( 'cgb/progressbar-block', {
 		__( 'create-guten-Progress_Bar_Block' ),
 	],
 	attributes: {
-		content: {type: 'string'},
-		color: {type: 'string'},
-		PercentageOfProgressBar: {type: 'string'},
+
+		progressBarColor: {
+			type: 'string',
+			default: 'yellow'
+		},
+		progressBorderColor: {
+			type: 'string',
+			default: 'red'
+		},
+		progressBarHeight: {
+			type: 'number',
+			default: 1.5
+		},
+		title: {
+			type: 'string',
+			default: 'Progressing'
+		},
+		titleColor: {
+			type: 'string',
+			default: 'Green'
+		},
+		progressBarPercentage:{
+			type: 'number',
+			default: 20
+		}
 	},
+
+
+
 
 
 	/**
@@ -53,33 +98,147 @@ registerBlockType( 'cgb/progressbar-block', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-	edit: ( props ) => {
-		// Creates a <p class='wp-Progress_Bar_Block-cgb-Progress_Bar_Block-progressbar'></p>.
+	edit ({attributes, setAttributes}) {
 
-			{props.attributes.content= "Loading"}
-			{props.attributes.PercentageOfProgressBar="100%"}
+		const {titleColor,title,borderColor,progressBarColor} = attributes
 
-
-
-
-			function IncreaseProgressBar(){
-				for (const i of [1,2,3,4]) {
-					document.getElementById('Bar').style.cssText = "width:" + i*25+"%"
-					//
-					// props.attributes.PercentageOfProgressBar=i*25 + "%"
-				}
+		const ToolBarColors = [
+			{
+				color: 'red'
+			},
+			{
+				color: 'green'
+			},
+			{
+				color: 'blue'
+			},
+			{
+				color: 'orange'
+			},
+			{
+				color: 'yellow'
 			}
+		];
+		const AnimatedBarStyling = {
+			backgroundColor: progressBarColor,
+			animation: 'AnimateProgressBar 5s ease-in-out'
+		}
 
 
-			return <div className="progress-bar">
+		const BarOutlineStyling = {
+			borderColor: attributes.progressBorderColor,
+			height: attributes.progressBarHeight + 'em'
+		}
 
-				<div id = "Bar" className="IncreaseBar" style={{width:props.attributes.PercentageOfProgressBar} }>
-					Loading
+		function onTitleColorChange(NewColor) {
+
+			setAttributes(
+				{
+					titleColor: NewColor
+				}
+			)
+		}
+
+		function onTitleChange(NewText) {
+			setAttributes({
+				title: NewText
+			})
+		}
+
+		function onBorderColorChange(NewColor) {
+			setAttributes({
+				progressBorderColor: NewColor
+			})
+		}
+
+		function onBarColorChange(NewColor) {
+
+			setAttributes({
+				progressBarColor: NewColor
+			})
+		}
+
+		function onBarHeightChange(NewHeight) {
+			setAttributes({
+				progressBarHeight: NewHeight
+			})
+		}
+
+		function OnBarPercentageChange(NewPercentage) {
+			setAttributes({
+				progressBarPercentage: NewPercentage
+			})
+		}
+
+		return ([
+
+				<InspectorControls>
+					<PanelBody title={"Colors"}>
+
+						<p><strong>Title Color</strong></p>
+							<ColorPalette
+								value = { titleColor }
+								onChange={onTitleColorChange}
+								colors = {ToolBarColors}
+							/>
+							<p><strong>Progress Bar Color</strong></p>
+							<ColorPalette
+								value = {progressBarColor}
+								onChange = {onBarColorChange}
+								colors = {ToolBarColors} />
+
+							<p><strong>Border Color</strong></p>
+							<ColorPalette
+								value={attributes.progressBorderColor}
+								onChange={onBorderColorChange}
+								colors = {ToolBarColors} />
+
+					</PanelBody>
+
+					<PanelBody title={'Text'}>
+							<TextControl
+								label={<strong>Title</strong>}
+								onChange={onTitleChange}
+							/>
+
+
+
+					</PanelBody>
+
+					<PanelBody title={'Other'}>
+
+							<RangeControl
+								label={<strong> Progress Bar Height </strong>}
+								value={ attributes.progressBarHeight }
+								onChange={ onBarHeightChange }
+								min={ 1 }
+								max={ 6 }
+								step ={0.1}
+							/>
+
+
+							<RangeControl
+								label={<strong>Progress</strong>}
+								value={ attributes.progressBarPercentage }
+								onChange={ OnBarPercentageChange }
+								min={ 0 }
+								max={ 100 }
+							/>
+					</PanelBody>
+
+				</InspectorControls>,
+
+
+				<p style={{color: titleColor, align: 'left'}}>
+					{attributes.title}  {attributes.progressBarPercentage}%
+				</p>,
+				<div className="meter" style={BarOutlineStyling}>
+					<span style={ { width: attributes.progressBarPercentage + "%"} }><span className="progress" style={AnimatedBarStyling}></span></span>
 				</div>
-			</div>
 
-
-	 },
+			]
+		)
+	},
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
@@ -92,15 +251,30 @@ registerBlockType( 'cgb/progressbar-block', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save: ( props ) => {
+	save ({attributes}) {
+
+		const AnimatedBarStyling = {
+			backgroundColor: attributes.progressBarColor,
+			animation: 'AnimateProgressBar 5s ease-in-out'
+		}
 
 
-		return <div className="progress-bar">
+		const BarOutlineStyling = {
+			borderColor: attributes.progressBorderColor,
+			height: attributes.progressBarHeight + 'em'
+		}
 
-			<div className="IncreaseBar" style={{width:props.attributes.PercentageOfProgressBar}}>
-				Loading
+
+		return <div>
+			<p style={{color: 'Green'}}>
+				{attributes.title} {attributes.progressBarPercentage}%
+			</p>
+			<div className="meter" style={BarOutlineStyling}>
+				<span style={ { width: attributes.progressBarPercentage + '%'} }><span className="progress" style={AnimatedBarStyling}></span></span>
 			</div>
 		</div>
+
+
 	},
 
 

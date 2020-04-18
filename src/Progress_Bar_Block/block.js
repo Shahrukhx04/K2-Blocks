@@ -199,6 +199,7 @@ registerBlockType( 'cgb/progressbar-block', {
 							<TextControl
 								label={<strong>Title</strong>}
 								onChange={onTitleChange}
+								value = {attributes.title}
 							/>
 
 

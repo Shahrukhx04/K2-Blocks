@@ -5,38 +5,6 @@
  * that are used across the project.
 */
 /**
- * #.# Editor Styles
- *
- * CSS for just Backend enqueued after style.scss
- * which makes it higher in priority.
- */
-.progress-bar {
-  position: relative;
-  width: 500px;
-  height: 3em;
-  background-color: black;
-  border-radius: 1.5em;
-  color: white; }
-
-.IncreaseBar {
-  content: attr(data-label);
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  position: absolute;
-  left: .5em;
-  top: .5em;
-  bottom: .5em;
-  min-width: 2rem;
-  max-width: calc(100% - 1em);
-  background-color: #069;
-  border-radius: 1em;
-  padding: 1em; }
-
-.ButtonClick {
-  padding-bottom: 50px; }
-/**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
@@ -54,3 +22,18 @@
 .tw-title {
   font-family: "Arial", Gadget, sans-serif;
   background-color: #F1F1F1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.alert {
+  border-width: 0.3em;
+  border-radius: 1em;
+  opacity: 1;
+  -webkit-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+  margin-bottom: 2em;
+  border-style: solid; }

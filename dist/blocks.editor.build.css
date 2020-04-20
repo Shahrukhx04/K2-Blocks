@@ -5,6 +5,7 @@
  * that are used across the project.
 */
 /**
+<<<<<<< HEAD
  * #.# Editor Styles
  *
  * CSS for just Backend enqueued after style.scss
@@ -37,6 +38,8 @@
 .ButtonClick {
   padding-bottom: 50px; }
 /**
+=======
+>>>>>>> 916ae7fb591172d31eeb3f94ef13c40450312ec9
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
@@ -54,3 +57,21 @@
 .tw-title {
   font-family: "Arial", Gadget, sans-serif;
   background-color: #F1F1F1; }
+<<<<<<< HEAD
+=======
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.alert {
+  border-width: 0.3em;
+  border-radius: 1em;
+  opacity: 1;
+  -webkit-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+  margin-bottom: 2em;
+  border-style: solid; }
+>>>>>>> 916ae7fb591172d31eeb3f94ef13c40450312ec9

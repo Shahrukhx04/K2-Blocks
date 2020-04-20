@@ -22,7 +22,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 class Timer extends wp.element.Component {
 	constructor(props) {
 	  super(props);
-	  this.target = new Date(2019, 2, 31, 12, 30, 0, 0);
+	  this.target = new Date();
 	  this.state = {
 		seconds: 4,
 		minutes: 3,
@@ -41,6 +41,11 @@ class Timer extends wp.element.Component {
 			days: 1,
 		  });
 		this.target=t_date;
+		this.target.setFullYear(t_date.year);
+		this.target.setMonth(t_date.month);
+		this.target.setDate(t_date.date);
+		this.target.setHours(t_date.hours);
+		this.target.setMinutes(t_date.minutes);
 		console.log("After update");
 		console.log(this.target.toLocaleString());
 		console.log(t_date.toLocaleString());
@@ -134,35 +139,67 @@ registerBlockType( 'cgb/timer-block', {
 	icon: 'clock',
 	category: 'magik-blocks',
 	attributes: {
-		target: {type: 'Date'}
+		minutes: {type:'integer',default:45},
+		hours: {type:'integer',default:23},
+		date: {type:'integer',default:24},
+		month:{type:'integer',default:12},
+		year:{type:'integer',default:2020},
 	},
 
-	/* This configures how the content and color fields will work, and sets up the necessary elements */
-
 	edit: function(props) {
-			
-			props.attributes.target = new Date();
 			var timer = new Timer();
-			console.log(props.attributes.target)
-			timer.setTarget(props.attributes.target);
-			return props.isSelected ? //if selected
-			//display backend controls  (
-			timer
-			:
-			//display as frontend 
-			//new Timer(props)
-
-			timer;
+			console.log("Called here")
+			function updateContent(event) {
+				console.log("update content called");
+				if (event.target.name === 'timer_date_input'){
+					//create new date with new date and same time
+					var temp = event.target.value.split("/");
+					console.log(temp);
+					//target_date = new Date(/*year*/parseInt(temp[2]), parseInt(temp[0])-1/*month*/,parseInt(temp[1]) /*day*/, props.attributes.hours/*hours*/,props.attributes.minutes /*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
+					if(temp.length == 3){
+						props.setAttributes({
+							minutes: props.attributes.minutes,
+							hours: props.attributes.hours,
+							date: parseInt(temp[1]),
+							month:parseInt(temp[0])-1,
+							year:parseInt(temp[2]),
+						})
+					}
+				}
+				else if (event.target.name === 'timer_time_input'){
+					//create new date with new time and old date
+					var temp = event.target.value.split(":");
+					//target_date = new Date(/*year*/props.attributes.year, props.attributes.month/*month*/,props.attributes.date /*day*/, parseInt(temp[0])/*hours*/, parseInt(temp[1])/*minutes*/, 0/*seconds*/, 0/*milliseconds*/);
+					if(temp.length == 2){
+						props.setAttributes({
+							minutes: parseInt(temp[1]),
+							hours: parseInt(temp[0]),
+							date: props.attributes.date,
+							month:props.attributes.month,
+							year:props.attributes.year,
+						})
+					}
+				}
+				timer.setTarget(props.attributes);
+			}
+			
+			return (<div id="timer-be">
+				<label>Select date:</label><br></br>
+				{React.createElement("input", { type: "text",id: "timer_date_input",name:"timer_date_input",placeholder:"MM/DD/YYYY",
+						defaultValue:props.attributes.month+"/"+props.attributes.date+"/"+props.attributes.year,  onChange: updateContent })}
+				<br></br>
+				<label>Select time:</label><br></br>
+				<input type="input" id="timer_time_input" name="timer_time_input" placeholder="HH-MM" defaultValue={props.attributes.hours+":"+props.attributes.minutes} onChange={updateContent}></input>
+				{timer.render()}  
+			</div>)
 		}
 	,
 	save: function(props) {
 		var timer = new Timer();
-		console.log(timer.toString());
-		console.log(props.attributes.target);
-		timer.setTarget(props.attributes.target);
+		timer.setTarget(props.attributes);
 	return (
 		<div className="tw-holder">
-		  <p className="tw-data">{props.attributes.target.toLocaleString()}</p>
+		  <p className="tw-data">{props.attributes.year},{props.attributes.month},{props.attributes.date},{props.attributes.hours},{props.attributes.minutes},0,0</p>
 		  {timer.render()}
 		</div>
 	  );

@@ -9,10 +9,6 @@
 import './editor.scss';
 import './style.scss';
 
-<<<<<<< HEAD
-const { __ } = wp.i18n; // Import __() from wp.i18n
-const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
-=======
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -35,7 +31,6 @@ const {
 } = wp.components;
 
 
->>>>>>> 916ae7fb591172d31eeb3f94ef13c40450312ec9
 
 /**
  * Register: aa Gutenberg Block.
@@ -61,14 +56,6 @@ registerBlockType( 'cgb/progressbar-block', {
 		__( 'create-guten-Progress_Bar_Block' ),
 	],
 	attributes: {
-<<<<<<< HEAD
-		content: {type: 'string'},
-		color: {type: 'string'},
-		PercentageOfProgressBar: {type: 'string'},
-	},
-
-
-=======
 
 		progressBarColor: {
 			type: 'string',
@@ -100,7 +87,6 @@ registerBlockType( 'cgb/progressbar-block', {
 
 
 
->>>>>>> 916ae7fb591172d31eeb3f94ef13c40450312ec9
 	/**
 	 * The edit function describes the structure of your Progress_Bar_Block in the context of the editor.
 	 * This represents what the editor will render when the Progress_Bar_Block is used.
@@ -112,35 +98,6 @@ registerBlockType( 'cgb/progressbar-block', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Component.
 	 */
-<<<<<<< HEAD
-	edit: ( props ) => {
-		// Creates a <p class='wp-Progress_Bar_Block-cgb-Progress_Bar_Block-progressbar'></p>.
-
-			{props.attributes.content= "Loading"}
-			{props.attributes.PercentageOfProgressBar="100%"}
-
-
-
-
-			function IncreaseProgressBar(){
-				for (const i of [1,2,3,4]) {
-					document.getElementById('Bar').style.cssText = "width:" + i*25+"%"
-					//
-					// props.attributes.PercentageOfProgressBar=i*25 + "%"
-				}
-			}
-
-
-			return <div className="progress-bar">
-
-				<div id = "Bar" className="IncreaseBar" style={{width:props.attributes.PercentageOfProgressBar} }>
-					Loading
-				</div>
-			</div>
-
-
-	 },
-=======
 	edit ({attributes, setAttributes}) {
 
 		const {titleColor,title,borderColor,progressBarColor} = attributes
@@ -283,7 +240,6 @@ registerBlockType( 'cgb/progressbar-block', {
 			]
 		)
 	},
->>>>>>> 916ae7fb591172d31eeb3f94ef13c40450312ec9
 
 	/**
 	 * The save function defines the way in which the different attributes should be combined
@@ -296,17 +252,6 @@ registerBlockType( 'cgb/progressbar-block', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-<<<<<<< HEAD
-	save: ( props ) => {
-
-
-		return <div className="progress-bar">
-
-			<div className="IncreaseBar" style={{width:props.attributes.PercentageOfProgressBar}}>
-				Loading
-			</div>
-		</div>
-=======
 	save ({attributes}) {
 
 		const AnimatedBarStyling = {
@@ -331,7 +276,6 @@ registerBlockType( 'cgb/progressbar-block', {
 		</div>
 
 
->>>>>>> 916ae7fb591172d31eeb3f94ef13c40450312ec9
 	},
 
 

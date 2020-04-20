@@ -4,6 +4,46 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.meter {
+  border-radius: 1.5em;
+  border-style: solid;
+  border-width: 0.2em;
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+  margin-bottom: 2em; }
+
+.meter span {
+  display: block;
+  height: 100%; }
+
+.progress {
+  background-color: #006699;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both; }
+
+@-webkit-keyframes AnimateProgressBar {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+
+@keyframes AnimateProgressBar {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 .tw-digit {
   color: black;
   font-size: 50px;

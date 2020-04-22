@@ -10,6 +10,6 @@
  */
 
 
-import './Progress_Bar_Block/block.js'
+import './Progress_Bar_Block/ProgressBar.js'
 import './Timer_Block/Timer.js'
 import './Alert/Alert.js'

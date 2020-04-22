@@ -1,0 +1,50 @@
+///**
+// * #.# Styles
+// *
+// * CSS for Backend.
+// */
+//
+//
+
+
+.ProgressBarOutsideContainer{
+  display: inline-block;
+  width: 100%;
+  border-radius: 30px;
+  box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2),
+  inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ProgressBarInsideAnimation {
+  display: inline-block;
+  background-color: green;
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  background-size: 100%;
+  box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2),
+  inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ProgressBarInsideAnimation span{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background-size: 100%;
+  background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+  opacity: 0.7;
+  animation: CandyEffect 0.5s infinite linear;
+}
+
+@keyframes CandyEffect {
+  from {
+	background-position: 0 100%;
+  }
+  to {
+	background-position: 30px 100%;
+  }
+}

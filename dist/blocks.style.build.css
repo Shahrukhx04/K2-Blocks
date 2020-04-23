@@ -69,3 +69,19 @@
 .tw-title {
   font-family: "Arial", Gadget, sans-serif;
   background-color: #F1F1F1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.alert {
+  padding: 2em;
+  border-width: 0.3em;
+  border-radius: 1em;
+  opacity: 1;
+  -webkit-transition: opacity 0.6s;
+  -o-transition: opacity 0.6s;
+  transition: opacity 0.6s;
+  margin-bottom: 2em;
+  border-style: solid; }

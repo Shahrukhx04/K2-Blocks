@@ -31,16 +31,6 @@ class Timer extends wp.element.Component {
 	  };
 	}
 
-	setTarget(t_date) {
-		this.target.setFullYear(t_date.year);
-		this.target.setMonth(t_date.month);
-		this.target.setDate(t_date.date);
-		this.target.setHours(t_date.hours);
-		this.target.setMinutes(t_date.minutes);
-		console.log("After update");
-		console.log(this.target.toLocaleString());
-		console.log(t_date.toLocaleString());
-	}
 
 	componentDidMount() {
 		this.intervalID = setInterval(
@@ -187,7 +177,6 @@ registerBlockType( 'cgb/timer-block', {
 	,
 	save: function(props) {
 		var timer = new Timer();
-		timer.setTarget(props.attributes);
 	return (
 		<div className="tw-holder">
 		  <p className="tw-data">{props.attributes.year},{props.attributes.month},{props.attributes.date},{props.attributes.hours},{props.attributes.minutes},0,0</p>

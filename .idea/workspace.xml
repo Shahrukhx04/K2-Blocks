@@ -22,12 +22,6 @@
     <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Timer_Block/Timer.js" root0="SKIP_INSPECTION" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="339" />
-    <option name="y" value="17" />
-    <option name="width" value="1346" />
-    <option name="height" value="688" />
-  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />

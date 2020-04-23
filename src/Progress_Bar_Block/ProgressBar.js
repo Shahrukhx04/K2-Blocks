@@ -463,15 +463,18 @@ registerBlockType( 'cgb/progressbar-block', {
 	save ({attributes}) {
 
 
+
 		const ProgressBarOutsideContainerStyling = {
 			backgroundColor: attributes.ProgressBarBackGroundColor,
 			height: attributes.progressBarHeight + "em",
+			borderRadius: attributes.ProgressBarBorderRadius + 'px'
 		}
 
 		const ProgressBarInsideAnimationStyling = {
 			width: attributes.progressBarPercentage + "%",
 			height: attributes.progressBarHeight + "em",
 			backgroundColor: attributes.progressBarColor,
+			borderRadius: attributes.ProgressBarBorderRadius + 'px'
 
 		}
 

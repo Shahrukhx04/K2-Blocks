@@ -4,10 +4,14 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+/**
+ * #.# Styles
+ *
+ * CSS for Backend.
+ */
 .ProgressBarOutsideContainer {
   display: inline-block;
   width: 100%;
-  border-radius: 30px;
   -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
           box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
 
@@ -15,7 +19,6 @@
   display: inline-block;
   background-color: green;
   position: relative;
-  border-radius: 30px;
   overflow: hidden;
   background-size: 100%;
   -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);

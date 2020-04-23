@@ -9,7 +9,6 @@
  * Webpack is compiling as the input file.
  */
 
-
-import './Progress_Bar_Block/ProgressBar.js'
-import './Timer_Block/Timer.js'
-import './Alert/Alert.js'
+import './Progress_Bar_Block/ProgressBar.js';
+import './Timer_Block/Timer.js';
+import './Alert/Alert.js';

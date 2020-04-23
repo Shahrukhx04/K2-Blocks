@@ -13,7 +13,7 @@ import './style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
-      // For attribute sources
+	// For attribute sources
 } = wp.blocks;
 const {
 	RichText,
@@ -320,67 +320,67 @@ registerBlockType( 'cgb/progressbar-block', {
 					<PanelBody title={"Colors"}>
 
 						<p><strong>Title Color</strong></p>
-							<ColorPalette
-								value = { titleColor }
-								onChange={onTitleColorChange}
-								colors = {ToolBarColors}
-							/>
-							<p><strong>Progress Bar Color</strong></p>
-							<ColorPalette
-								value = {attributes.progressBarColor}
-								onChange = {onBarColorChange}
-								colors = {ToolBarColors} />
+						<ColorPalette
+							value = { titleColor }
+							onChange={onTitleColorChange}
+							colors = {ToolBarColors}
+						/>
+						<p><strong>Progress Bar Color</strong></p>
+						<ColorPalette
+							value = {attributes.progressBarColor}
+							onChange = {onBarColorChange}
+							colors = {ToolBarColors} />
 
 
 					</PanelBody>
 
 					<PanelBody title={'Text'}>
-							<TextControl
-								label={<strong>Title</strong>}
-								onChange={onTitleChange}
-								value = {attributes.title}
+						<TextControl
+							label={<strong>Title</strong>}
+							onChange={onTitleChange}
+							value = {attributes.title}
+						/>
+
+						<PanelRow>
+
+							<p>
+								Show Percentage
+							</p>
+							<ToggleControl
+								checked = {attributes.ShowPercentage}
+								onChange = {onShowPercentageToggleChange}
 							/>
 
-							<PanelRow>
+						</PanelRow>
 
-								<p>
-									Show Percentage
-								</p>
-								<ToggleControl
-									checked = {attributes.ShowPercentage}
-									onChange = {onShowPercentageToggleChange}
-								/>
+						<RangeControl
+							label={<p> <strong> Font Size </strong> </p>}
+							value={ attributes.TextFontSize }
+							onChange={ onTextFontSizeChange }
+							min={ 1 }
+							max={ 10 }
+							step ={0.1}
+						/>
 
-							</PanelRow>
-
-							<RangeControl
-								label={<p> <strong> Font Size </strong> </p>}
-								value={ attributes.TextFontSize }
-								onChange={ onTextFontSizeChange }
-								min={ 1 }
-								max={ 10 }
-								step ={0.1}
+						<PanelRow>
+							<SelectControl
+								label="Font Family"
+								value={ attributes.TextFontFamily }
+								options={ FontsAvalaible }
+								onChange={ onTextFontChange}
 							/>
 
-							<PanelRow>
-								<SelectControl
-									label="Font Family"
-									value={ attributes.TextFontFamily }
-									options={ FontsAvalaible }
-									onChange={ onTextFontChange}
-								/>
+						</PanelRow>
 
-							</PanelRow>
+						<PanelRow>
+							<SelectControl
+								label="Weight"
+								value={ attributes.TextFontWeight }
+								options={ FontWeightAvaibles }
+								onChange={ onFontWeightChange}
+							/>
 
-							<PanelRow>
-								<SelectControl
-									label="Weight"
-									value={ attributes.TextFontWeight }
-									options={ FontWeightAvaibles }
-									onChange={ onFontWeightChange}
-								/>
-
-							</PanelRow>
+						</PanelRow>
 
 
 					</PanelBody>
@@ -389,7 +389,7 @@ registerBlockType( 'cgb/progressbar-block', {
 
 						<PanelRow>
 							<p>
-								 Animation
+								Animation
 							</p>
 							<ToggleControl
 								checked = {attributes.AnimateProgressBar}
@@ -461,7 +461,6 @@ registerBlockType( 'cgb/progressbar-block', {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save ({attributes}) {
-
 
 
 		const ProgressBarOutsideContainerStyling = {

@@ -28,7 +28,7 @@ const {
 	RangeControl,
 	ColorPicker,
 	ToggleControl,
-	SelectControl
+	SelectControl,
 
 } = wp.components;
 
@@ -110,6 +110,10 @@ registerBlockType( 'cgb/progressbar-block', {
 		ProgressBarBorderRadius: {
 			type: 'number',
 			default: 30
+		},
+		ProgressBarOpacity: {
+			type: 'number',
+			default: 0.5
 		}
 
 	},
@@ -168,12 +172,14 @@ registerBlockType( 'cgb/progressbar-block', {
 			width: attributes.progressBarPercentage + "%",
 			height: attributes.progressBarHeight + "em",
 			backgroundColor: attributes.progressBarColor,
-			borderRadius: attributes.ProgressBarBorderRadius + 'px'
+			borderRadius: attributes.ProgressBarBorderRadius + 'px',
+
 
 		}
 
 		const ProgressBarInsideAnimationSpanStyling = {
-			animationPlayState: attributes.AnimationState
+			animationPlayState: attributes.AnimationState,
+			opacity: attributes.ProgressBarOpacity
 		}
 
 		const BarOutlineStyling = {
@@ -292,6 +298,12 @@ registerBlockType( 'cgb/progressbar-block', {
 				ProgressBarBorderRadius: NewBorders
 			})
 		}
+
+		function onChangeProgressBarOpacity(NewValue) {
+			setAttributes({
+				ProgressBarOpacity: NewValue
+			})
+		}
 		return ([
 
 				<InspectorControls>
@@ -330,6 +342,7 @@ registerBlockType( 'cgb/progressbar-block', {
 							value = {attributes.progressBarColor}
 							onChange = {onBarColorChange}
 							colors = {ToolBarColors} />
+
 
 
 					</PanelBody>
@@ -399,6 +412,15 @@ registerBlockType( 'cgb/progressbar-block', {
 						</PanelRow>
 
 						<RangeControl
+							label={<p> <strong> Opacity </strong> </p>}
+							value={ attributes.ProgressBarOpacity }
+							onChange={ onChangeProgressBarOpacity }
+							min={ 0 }
+							max={ 1 }
+							step ={0.1}
+						/>
+
+						<RangeControl
 							label={<p> <strong> Border Raduis </strong> </p>}
 							value={ attributes.ProgressBarBorderRadius }
 							onChange={ onChangeProgressBarBorderRadius }
@@ -411,15 +433,12 @@ registerBlockType( 'cgb/progressbar-block', {
 
 					<PanelBody title={'Background'}>
 
-						<PanelRow>
-							<p><strong>Title Color</strong></p>
+							<p><strong>Backgorund</strong></p>
 							<ColorPalette
 								value = { attributes.ProgressBarBackGroundColor }
 								onChange={onChangeProgressBarBackgound}
 								colors = {ToolBarColors}
 							/>
-
-						</PanelRow>
 
 					</PanelBody>
 

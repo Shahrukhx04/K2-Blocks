@@ -57,18 +57,6 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.tw-digit {
-  color: black;
-  font-size: 50px;
-  font-family: "Arial Black", Gadget, sans-serif;
-  width: 25%;
-  padding: 10px 50px 0px 50px;
-  margin: 10px;
-  background-color: #F1F1F1; }
-
-.tw-title {
-  font-family: "Arial", Gadget, sans-serif;
-  background-color: #F1F1F1; }
 /**
  * #.# Common SCSS
  *

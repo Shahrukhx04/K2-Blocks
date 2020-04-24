@@ -57,18 +57,33 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+/* Create three equal columns that floats next to each other */
+.tw-column {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  float: left;
+  width: 25%;
+  padding: 0px;
+  height: 8em;
+  text-align: center;
+  background-color: #ddd;
+  border: solid;
+  border-color: white;
+  border-width: 0.1em; }
+
 .tw-digit {
   color: black;
   font-size: 50px;
   font-family: "Arial Black", Gadget, sans-serif;
-  width: 25%;
-  padding: 10px 50px 0px 50px;
-  margin: 10px;
-  background-color: #F1F1F1; }
+  margin: 10px; }
 
 .tw-title {
-  font-family: "Arial", Gadget, sans-serif;
-  background-color: #F1F1F1; }
+  font-family: "Arial", Gadget, sans-serif; }
+
+.tw-row:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%; }
 /**
  * #.# Common SCSS
  *

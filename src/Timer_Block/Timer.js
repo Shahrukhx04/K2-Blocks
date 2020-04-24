@@ -68,48 +68,28 @@ class Timer extends wp.element.Component {
 	}
 
 	render() {
-		return wp.element.createElement("table", {
-			class: "time-widget",
-			cellspacing: "0"
-		}, wp.element.createElement("tbody", null,
-			wp.element.createElement("tr", null,
-				wp.element.createElement("td", {
-					class: "tw-digit",
-					id: "tw-digit-days",
-					align: "center"
-				}, this.state.days),
-				wp.element.createElement("td", {
-					class: "tw-digit",
-					id: "tw-digit-hours",
-					align: "center"
-				}, this.state.hours),
-				wp.element.createElement("td", {
-					class: "tw-digit",
-					id: "tw-digit-minutes",
-					align: "center"
-				}, this.state.minutes),
-				wp.element.createElement("td", {
-					class: "tw-digit",
-					id: "tw-digit-seconds",
-					align: "center"
-				}, this.state.seconds)),
-			wp.element.createElement("tr", null,
-				wp.element.createElement("td", {
-					class: "tw-title",
-					align: "center"
-				}, "days"),
-				wp.element.createElement("td", {
-					class: "tw-title",
-					align: "center"
-				}, "hours"),
-				wp.element.createElement("td", {
-					class: "tw-title",
-					align: "center"
-				}, "minutes"),
-				wp.element.createElement("td", {
-					class: "tw-title",
-					align: "center"
-				}, "seconds"))));
+		return (
+		<div class= "time-widget" style={{height:"auto"}}>
+			<div class="tw-row">
+				<div class="tw-column">
+					<p class="tw-digit tw-digit-days">{this.state.days}</p>
+					<p class="tw-title">days</p>
+				</div>
+				<div class="tw-column">
+					<p class="tw-digit tw-digit-hours">{this.state.hours}</p>
+					<p class="tw-title">hours</p>
+				</div>
+				<div class="tw-column">
+					<p class="tw-digit tw-digit-minutes">{this.state.minutes}</p>
+					<p class="tw-title">minutes</p>
+				</div>
+				<div class="tw-column">
+					<p class="tw-digit tw-digit-seconds">{this.state.seconds}</p>
+					<p class="tw-title">seconds</p>
+				</div>
+			  </div>
+			  </div>
+			)
 	}
   } 
 
@@ -164,22 +144,23 @@ registerBlockType( 'cgb/timer-block', {
 				timer.setTarget(props.attributes);
 			}
 			
-			return (<div id="timer-be">
-				<label>Select date:</label><br></br>
-				{React.createElement("input", { type: "text",id: "timer_date_input",name:"timer_date_input",placeholder:"MM/DD/YYYY",
-						defaultValue:props.attributes.month+"/"+props.attributes.date+"/"+props.attributes.year,  onChange: updateContent })}
-				<br></br>
-				<label>Select time:</label><br></br>
-				<input type="input" id="timer_time_input" name="timer_time_input" placeholder="HH-MM" defaultValue={props.attributes.hours+":"+props.attributes.minutes} onChange={updateContent}></input>
-				{timer.render()}  
-			</div>)
+			return (
+				<div id="timer-be">
+					<label>Select date:</label><br></br>
+					{React.createElement("input", { type: "text",id: "timer_date_input",name:"timer_date_input",placeholder:"MM/DD/YYYY",
+							defaultValue:props.attributes.month+"/"+props.attributes.date+"/"+props.attributes.year,  onChange: updateContent })}
+					<br></br>
+					<label>Select time:</label><br></br>
+					<input type="input" id="timer_time_input" name="timer_time_input" placeholder="HH-MM" defaultValue={props.attributes.hours+":"+props.attributes.minutes} onChange={updateContent}></input>
+				</div>
+			)
 		}
 	,
 	save: function(props) {
 		var timer = new Timer();
+		var timer_str = props.attributes.year+","+props.attributes.month+","+props.attributes.date+","+props.attributes.hours+","+props.attributes.minutes+","+0+","+0;
 	return (
-		<div className="tw-holder">
-		  <p className="tw-data">{props.attributes.year},{props.attributes.month},{props.attributes.date},{props.attributes.hours},{props.attributes.minutes},0,0</p>
+		<div className="tw-holder" data-time={timer_str}>
 		  {timer.render()}
 		</div>
 	  );

@@ -77,7 +77,7 @@ function progressbar_cgb_block_assets() { // phpcs:ignore
 		]
 	);
 
-	
+
 
 	/**
 	 * Register Gutenberg block on server-side.
@@ -114,11 +114,16 @@ function register_custom_scripts(){
 add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );
 
 //register custom backend jquery scripts
-// function register_custom_backend_scripts($hook){
-// 	wp_register_script( 'timer_backend_jquery', plugins_url( 'src/Timer_Block/TimerBe.js', dirname( __FILE__ ) ), array('jquery'),
-// 			true );
-// 	wp_enqueue_script('timer_backend_jquery');
-// }
+function register_custom_backend_scripts($hook){
+	wp_register_script( 'timer_backend_jquery', plugins_url( 'src/Timer_Block/TimerBe.js', dirname( __FILE__ ) ), array('jquery'),
+			true );
+	wp_enqueue_script('timer_backend_jquery');
+}
+function custom_load_font_awesome() {
 
-// //add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );
-// add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );
+    wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v5.2.0/css/all.css' );
+
+}
+add_action( 'wp_enqueue_scripts', 'custom_load_font_awesome' );
+//add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );
+add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );

@@ -9,32 +9,35 @@
  *
  * CSS for both Frontend+Backend.
  */
-.progress-bar {
-  position: relative;
-  width: 500px;
-  height: 3em;
-  background-color: black;
+.meter {
   border-radius: 1.5em;
-  color: white; }
+  border-style: solid;
+  border-width: 0.2em;
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+  margin-bottom: 2em; }
 
-.IncreaseBar {
-  content: attr(data-label);
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  position: absolute;
-  left: .5em;
-  top: .5em;
-  bottom: .5em;
-  min-width: 2rem;
-  max-width: calc(100% - 1em);
-  background-color: #069;
-  border-radius: 1em;
-  padding: 1em; }
+.meter span {
+  display: block;
+  height: 100%; }
 
-.ButtonClick {
-  padding-bottom: 50px; }
+.progress {
+  background-color: #006699;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both; }
+
+@-webkit-keyframes AnimateProgressBar {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
+
+@keyframes AnimateProgressBar {
+  0% {
+    width: 0; }
+  100% {
+    width: 100%; } }
 /**
  * #.# Common SCSS
  *
@@ -53,3 +56,26 @@
 .tw-title {
   font-family: "Arial", Gadget, sans-serif;
   background-color: #F1F1F1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+div.container {
+  width: 100%;
+  border-style: solid;
+  border-width: 0.2em;
+  border-radius: 0em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.5em; }
+
+div.box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 1em; }

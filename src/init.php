@@ -77,7 +77,7 @@ function progressbar_cgb_block_assets() { // phpcs:ignore
 		]
 	);
 
-	
+
 
 	/**
 	 * Register Gutenberg block on server-side.
@@ -119,6 +119,11 @@ function register_custom_backend_scripts($hook){
 			true );
 	wp_enqueue_script('timer_backend_jquery');
 }
+function custom_load_font_awesome() {
 
+    wp_enqueue_style( 'font-awesome-free', '//use.fontawesome.com/releases/v5.2.0/css/all.css' );
+
+}
+add_action( 'wp_enqueue_scripts', 'custom_load_font_awesome' );
 //add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );
 add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );

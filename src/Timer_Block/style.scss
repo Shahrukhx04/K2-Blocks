@@ -1,15 +1,17 @@
-/* Create three equal columns that floats next to each other */
 .tw-column {
-	box-sizing: border-box;
-  float: left;
-  width: 25%;
+  box-sizing: border-box;
+  float:left;
   padding: 0px;
-  height: 8em;
+  width:24%;
   text-align:center;
   background-color:#ddd;
-  border:solid;
-  border-color:white;
-  border-width:0.1em;
+  margin:0.5%;
+}
+
+.tw-column.tw-round {
+  border-radius: 100px;
+  border-width: 3px;
+  border-color: white;
 }
 
 .tw-digit {
@@ -23,8 +25,21 @@
   font-family: "Arial", Gadget, sans-serif;
 }
 
-.tw-row:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%;
+.tw-row{
+  box-sizing: border-box;
+  max-width:600px;
+  margin: auto;
 }
+
+.tw-row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+div.wp-block-cgb-timer-block.tw-holder {
+  width:100%;
+  display: block;
+}
+
+

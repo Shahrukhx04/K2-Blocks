@@ -56,19 +56,20 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/* Create three equal columns that floats next to each other */
 .tw-column {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   float: left;
-  width: 25%;
   padding: 0px;
-  height: 8em;
+  width: 24%;
   text-align: center;
   background-color: #ddd;
-  border: solid;
-  border-color: white;
-  border-width: 0.1em; }
+  margin: 0.5%; }
+
+.tw-column.tw-round {
+  border-radius: 100px;
+  border-width: 3px;
+  border-color: white; }
 
 .tw-digit {
   color: black;
@@ -79,10 +80,20 @@
 .tw-title {
   font-family: "Arial", Gadget, sans-serif; }
 
-.tw-row:after {
+.tw-row {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  max-width: 600px;
+  margin: auto; }
+
+.tw-row::after {
   content: "";
-  display: block;
-  padding-bottom: 100%; }
+  clear: both;
+  display: table; }
+
+div.wp-block-cgb-timer-block.tw-holder {
+  width: 100%;
+  display: block; }
 /**
  * #.# Common SCSS
  *

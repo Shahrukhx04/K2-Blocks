@@ -62,3 +62,39 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.tw-digit {
+  color: black;
+  font-size: 50px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  width: 25%;
+  padding: 10px 50px 0px 50px;
+  margin: 10px;
+  background-color: #F1F1F1; }
+
+.tw-title {
+  font-family: "Arial", Gadget, sans-serif;
+  background-color: #F1F1F1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+div.container {
+  width: 100%;
+  border-style: solid;
+  border-width: 0.2em;
+  border-radius: 0em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.5em; }
+
+div.box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 1em; }
+

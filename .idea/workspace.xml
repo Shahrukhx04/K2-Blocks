@@ -6,12 +6,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
+
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Alert/Alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/Alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Alert/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Alert/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/init.php" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +38,7 @@
     <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Timer_Block/Timer.js" root0="SKIP_INSPECTION" />
   </component>
-  <component name="ProjectId" id="1azVGV6kte139ODlXo3BqkaXwOA" />
+  <component name="ProjectId" id="1aiOVni0bB203htycPEQ8aJPCWI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -88,5 +94,11 @@
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="277" y="57" key="SettingsEditor" timestamp="1587838934339">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587838934339" />
   </component>
 </project>

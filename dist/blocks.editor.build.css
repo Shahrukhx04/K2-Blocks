@@ -102,3 +102,32 @@
     background-position: 0 100%; }
   to {
     background-position: 30px 100%; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+div.container {
+  width: 100%;
+  border-style: solid;
+  border-width: 0.2em;
+  border-radius: 0em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.5em; }
+
+div.box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 1em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/

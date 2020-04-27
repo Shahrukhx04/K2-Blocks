@@ -57,25 +57,48 @@
  * that are used across the project.
 */
 /**
- * #.# Common SCSS
+ * #.# Styles
  *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-div.container {
+ * CSS for BackEnd.
+ */
+.ProgressBarOutsideContainer {
+  display: inline-block;
   width: 100%;
-  border-style: solid;
-  border-width: 0.2em;
-  border-radius: 0em;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  padding: 0.5em; }
+  -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
 
-div.box {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding-left: 1em; }
+.ProgressBarInsideAnimation {
+  display: inline-block;
+  background-color: green;
+  position: relative;
+  overflow: hidden;
+  background-size: 100%;
+  -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
+
+.ProgressBarInsideAnimation span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background-size: 100%;
+  background-image: -webkit-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+  -webkit-animation: CandyEffect 0.5s infinite linear;
+          animation: CandyEffect 0.5s infinite linear; }
+
+@-webkit-keyframes CandyEffect {
+  from {
+    background-position: 0 100%; }
+  to {
+    background-position: 30px 100%; } }
+
+@keyframes CandyEffect {
+  from {
+    background-position: 0 100%; }
+  to {
+    background-position: 30px 100%; } }

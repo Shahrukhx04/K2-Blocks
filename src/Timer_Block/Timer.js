@@ -13,15 +13,11 @@ const {
 
 const {
 	PanelBody,
-	PanelRow,
-	TextControl,
-	RangeControl,
-	ColorPicker,
-	ToggleControl,
 	SelectControl,
 	DateTimePicker
 
 } = wp.components;
+
 
 /**
  * Register: aa Gutenberg Block.
@@ -42,14 +38,23 @@ registerBlockType( 'cgb/timer-block', {
 	icon: 'clock',
 	category: 'magik-blocks',
 	attributes: {
-		minutes: {type:'integer',default:45},
+		minutes: {type:'integer',default:45},// for date
 		hours: {type:'integer',default:23},
 		date: {type:'integer',default:24},
 		month:{type:'integer',default:11},
 		year:{type:'integer',default:2020},
+
+		days_: {type:'integer',default:0}, //for showing on timer
+		hours_: {type:'integer',default:0},
+		minutes_: {type:'integer',default:0},
+		seconds_: {type:'integer',default:0},
 		backgroundColor: {
 			type: 'string',
 			default: '#ddd'
+		},
+		fontColor: {
+			type: 'string',
+			default: 'black'
 		},
 		timerShape: {
 			type: 'string',
@@ -59,7 +64,44 @@ registerBlockType( 'cgb/timer-block', {
 	},
 
 	edit: function(props) {
-			console.log("Called here")
+			function calculateDateDifference(){
+				var attr = props.attributes;
+				var targetDate = new Date(attr.year,attr.month,attr.date,attr.hours,attr.minutes,0,0);
+				var variable1 = new Date(); //todays date
+				var days_;
+				var hours_;
+				var minutes_;
+				var seconds_;
+				if(targetDate-variable1 <= 0) {
+					//display zeros
+					days_ = 0;
+					hours_ = 0;
+					minutes_ = 0;
+					seconds_ = 0;
+				}
+				else{
+					var delta = Math.abs((targetDate-variable1)/1000);
+					// calculate (and subtract) whole days
+					days_ = Math.floor(delta / 86400);
+					delta -= days_ * 86400;
+					// calculate (and subtract) whole hours
+					hours_ = Math.floor(delta / 3600) % 24;
+					delta -= hours_ * 3600;
+					// calculate (and subtract) whole minutes
+					minutes_ = Math.floor(delta / 60) % 60;
+					delta -= minutes_ * 60;
+					// what's left is seconds
+					seconds_ = Math.floor(delta % 60);  // in theory the modulus is not required
+				}
+				props.setAttributes({
+					days_: days_,
+					hours_: hours_,
+					minutes_ :minutes_,
+					seconds_ :seconds_
+				})
+				
+			}
+
 
 			function updateDateTime(newDateTime){
 				//"2020-12-24T22:45:00"
@@ -75,6 +117,7 @@ registerBlockType( 'cgb/timer-block', {
 					month: parseInt(date[1])-1,
 					year: parseInt(date[0]),
 				})
+				calculateDateDifference();
 			}
 
 			function onShapeChange(value){
@@ -84,13 +127,35 @@ registerBlockType( 'cgb/timer-block', {
 			}
 
 			function onBackgroundColorChange(value){
-
+				props.setAttributes({
+					backgroundColor: value
+				})
 			}
 
 			function onFontColorChange(value){
-				
+				props.setAttributes({
+					fontColor: value
+				})
 			}
 			
+			var styling = {
+				color: props.attributes.fontColor,
+				backgroundColor: props.attributes.backgroundColor
+			}
+
+			var backgroundDefaultColors = [
+				{ color: 'gray' },
+				{ color: '#ddd' },
+				{color: 'white'},
+				{color: 'black'}
+			];
+			var fontDefaultColors = [
+				{ color: 'white' },
+				{ color: 'black' },
+				{color: 'darkred'},
+				{color: 'whitesmoke'}
+			];
+
 			return ([
 				<InspectorControls>
 					<PanelBody title={"Date and Time"}>
@@ -110,17 +175,17 @@ registerBlockType( 'cgb/timer-block', {
 									]}
 									onChange={onShapeChange}
 						/>
+						<label class="components-base-control__label">Background color</label>
 						<ColorPalette
-							label="Background color"
 							value = { props.attributes.backgroundColor }
 							onChange={onBackgroundColorChange}
-							colors = {ToolBarColors}
+							colors = {backgroundDefaultColors}
 						/>
+						<label class="components-base-control__label">Text color</label>
 						<ColorPalette
-							label="Font color"
-							value = { titleColor }
+							value = { props.attributes.fontColor }
 							onChange={onFontColorChange}
-							colors = {ToolBarColors}
+							colors = {fontDefaultColors}
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -128,20 +193,20 @@ registerBlockType( 'cgb/timer-block', {
 				<div className="tw-holder">
 					<div class= "time-widget">
 						<div class="tw-row">
-							<div class={"tw-column"+" "+props.attributes.timerShape}>
-								<p class="tw-digit tw-digit-days">0</p>
+							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+								<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
 								<p class="tw-title">days</p>
 							</div>
-							<div class={"tw-column"+" "+props.attributes.timerShape}>
-								<p class="tw-digit tw-digit-hours">0</p>
+							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+								<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
 								<p class="tw-title">hours</p>
 							</div>
-							<div class={"tw-column"+" "+props.attributes.timerShape}>
-								<p class="tw-digit tw-digit-minutes">0</p>
+							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+								<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
 								<p class="tw-title">minutes</p>
 							</div>
-							<div class={"tw-column"+" "+props.attributes.timerShape}>
-								<p class="tw-digit tw-digit-seconds">0</p>
+							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+								<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
 								<p class="tw-title">seconds</p>
 							</div>
 						</div>
@@ -152,24 +217,28 @@ registerBlockType( 'cgb/timer-block', {
 	,
 	save: function(props) {
 	var timer_str = props.attributes.year+","+props.attributes.month+","+props.attributes.date+","+props.attributes.hours+","+props.attributes.minutes+","+0+","+0;
+	var styling = {
+		color: props.attributes.fontColor,
+		backgroundColor: props.attributes.backgroundColor
+	}
 	return (
 		<div className="tw-holder" data-time={timer_str}>
 		  <div class= "time-widget">
 			<div class="tw-row">
-				<div class={"tw-column"+" "+props.attributes.timerShape}>
-					<p class="tw-digit tw-digit-days">0</p>
+				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+					<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
 					<p class="tw-title">days</p>
 				</div>
-				<div class={"tw-column"+" "+props.attributes.timerShape}>
-					<p class="tw-digit tw-digit-hours">0</p>
+				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+					<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
 					<p class="tw-title">hours</p>
 				</div>
-				<div class={"tw-column"+" "+props.attributes.timerShape}>
-					<p class="tw-digit tw-digit-minutes">0</p>
+				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+					<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
 					<p class="tw-title">minutes</p>
 				</div>
-				<div class={"tw-column"+" "+props.attributes.timerShape}>
-					<p class="tw-digit tw-digit-seconds">0</p>
+				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+					<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
 					<p class="tw-title">seconds</p>
 				</div>
 			  </div>

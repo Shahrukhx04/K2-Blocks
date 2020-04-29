@@ -195,19 +195,19 @@ registerBlockType( 'cgb/timer-block', {
 						<div class="tw-row">
 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 								<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
-								<p class="tw-title">days</p>
+								<p class="tw-title">Days</p>
 							</div>
 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 								<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
-								<p class="tw-title">hours</p>
+								<p class="tw-title">Hours</p>
 							</div>
 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 								<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
-								<p class="tw-title">minutes</p>
+								<p class="tw-title">Minutes</p>
 							</div>
 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 								<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
-								<p class="tw-title">seconds</p>
+								<p class="tw-title">Seconds</p>
 							</div>
 						</div>
 					</div>
@@ -227,19 +227,19 @@ registerBlockType( 'cgb/timer-block', {
 			<div class="tw-row">
 				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 					<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
-					<p class="tw-title">days</p>
+					<p class="tw-title">Days</p>
 				</div>
 				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 					<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
-					<p class="tw-title">hours</p>
+					<p class="tw-title">Hours</p>
 				</div>
 				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 					<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
-					<p class="tw-title">minutes</p>
+					<p class="tw-title">Minutes</p>
 				</div>
 				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
 					<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
-					<p class="tw-title">seconds</p>
+					<p class="tw-title">Seconds</p>
 				</div>
 			  </div>
 			</div>

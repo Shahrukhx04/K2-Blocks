@@ -32,7 +32,7 @@ const {
  *                             registered; otherwise `undefined`.
  */
 
-registerBlockType( 'cgb/timer-block', {
+registerBlockType( 'k2/timer-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: 'Timer',
 	icon: 'clock',

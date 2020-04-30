@@ -1,0 +1,50 @@
+// .counter-widget {
+//     background-color: #ab47bc;
+//     max-width : 150px;
+//     height: 150px;
+//     text-align: center;
+//     margin:auto;
+// }
+
+
+// p.cw-number {
+//     font-size:50px !important;
+//     font-family: "Arial Black", Gadget, sans-serif; 
+//     color:white;
+// }
+
+// .counter-widget p {
+//     max-height:20px;
+// }
+
+// p.cw-title {
+//     font-family: Verdana,Geneva,sans-serif; 
+//     margin:10px;
+//     color:white;
+// }
+.counter-widget {
+    background-color: #ab47bc;
+    width: 10%;
+    min-width : 170px;
+    height: 150px;
+    text-align: center;
+    margin:auto;
+}
+
+.counter-widget .content {
+    padding:10%;
+}
+
+.counter-widget .content .cw-number {
+    font-size:50px;
+    font-family: "Arial Black", Gadget, sans-serif; 
+    margin:10px;
+    color:white;
+}
+
+.counter-widget .content .cw-title {
+    font-family: Verdana,Geneva,sans-serif; 
+    margin:10px;
+    color:white;
+}
+

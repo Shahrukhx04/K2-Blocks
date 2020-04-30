@@ -28,7 +28,7 @@ const {
 	RangeControl,
 	ColorPicker,
 	ToggleControl,
-	SelectControl,
+	SelectControl
 
 } = wp.components;
 

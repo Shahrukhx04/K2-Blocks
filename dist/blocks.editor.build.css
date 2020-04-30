@@ -105,3 +105,49 @@ div.box {
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.tw-column {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  float: left;
+  padding: 0px;
+  width: 24%;
+  text-align: center;
+  background-color: #ddd;
+  margin: 0.5%;
+  height: 150px; }
+
+.tw-column.tw-round {
+  border-radius: 100px;
+  border-width: 3px;
+  border-color: white; }
+
+.tw-digit {
+  font-size: 50px !important;
+  font-family: "Arial Black", Gadget, sans-serif; }
+
+p.tw-digit {
+  height: 15px !important; }
+
+.tw-title {
+  font-family: "Arial", Gadget, sans-serif; }
+
+.tw-row {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  max-width: 600px;
+  margin: auto; }
+
+.tw-row::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+div.wp-block-cgb-timer-block.tw-holder {
+  width: 100%;
+  display: block; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/

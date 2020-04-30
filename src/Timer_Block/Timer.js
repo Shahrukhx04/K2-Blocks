@@ -412,19 +412,30 @@ registerBlockType( 'cgb/timer-block', {
 		backgroundColor: props.attributes.backgroundColor
 	}
 
-	const TimerValueContainerStyling = {
-		backgroundColor: props.attributes.TimerValueBackgroundColor,
-		color: props.attributes.TimerValueColor
-	}
+		var styling = {
+			color: props.attributes.fontColor,
+			backgroundColor: props.attributes.backgroundColor
+		}
 
-	const TimerTextContainerStyling = {
-		color: props.attributes.TimerTextColor
-	}
-	return (
+		const TimerBlockStyling = {
+			backgroundColor: props.attributes.BlockBackgroundColor,
+			minWidth: props.attributes.BlockMinWidth + '%',
+			borderRadius: props.attributes.CircleBlockRadium + '%'
+		}
+		const TimerValueContainerStyling = {
+			backgroundColor: props.attributes.TimerValueBackgroundColor,
+			color: props.attributes.TimerValueColor
+		}
 
-		<div className={'TimerParentContainer'} data-time={timer_str}>
+		const TimerTextContainerStyling = {
+			color: props.attributes.TimerTextColor
+		}
 
-			<div className={'TimerBlockContainer'}>
+
+		return (
+			<div className={'TimerParentContainer'}>
+
+				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
 							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
 								{
@@ -435,10 +446,10 @@ registerBlockType( 'cgb/timer-block', {
 								Days
 							</div>
 						</span>
-			</div>
+				</div>
 
 
-			<div className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
 							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
 								{
@@ -449,10 +460,10 @@ registerBlockType( 'cgb/timer-block', {
 								Hours
 							</div>
 						</span>
-			</div>
+				</div>
 
 
-			<div className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
 							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
 								{
@@ -463,23 +474,23 @@ registerBlockType( 'cgb/timer-block', {
 								Minutes
 							</div>
 						</span>
-			</div>
+				</div>
 
 
-			<div className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
 							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
-									{
-										(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
-									}
+								{
+									(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
+								}
 							</div>
 							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
 								Seconds
 							</div>
 						</span>
-			</div>
+				</div>
 
-		</div>
+			</div>
 		//
 		// <div className="tw-holder" data-time={timer_str}>
 		//   <div class= "time-widget">

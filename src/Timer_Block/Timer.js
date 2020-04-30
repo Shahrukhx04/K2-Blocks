@@ -59,6 +59,39 @@ registerBlockType( 'cgb/timer-block', {
 		timerShape: {
 			type: 'string',
 			default: ''
+		},
+
+
+
+		// Latest Code Attributes
+
+		TimerValueBackgroundColor: {
+			type: 'string',
+			default: 'transparent'
+		},
+		TimerValueColor: {
+			type: 'string',
+			default: 'white'
+		},
+		TimerTextColor: {
+			type: 'string',
+			default: 'blue'
+		},
+		TimerLayout: {
+			type: 'string',
+			default: 'Classic'
+		},
+		BlockBackgroundColor: {
+			type: 'string',
+			default: 'white'
+		},
+		BlockMinWidth: {
+			type: 'numbner',
+			default: 5
+		},
+		CircleBlockRadium: {
+			type: 'number',
+			default: 0
 		}
 
 	},
@@ -99,7 +132,7 @@ registerBlockType( 'cgb/timer-block', {
 					minutes_ :minutes_,
 					seconds_ :seconds_
 				})
-				
+
 			}
 
 
@@ -137,17 +170,96 @@ registerBlockType( 'cgb/timer-block', {
 					fontColor: value
 				})
 			}
-			
+
+			//Latest Code
+			function onChangeTimerValueBackgroundColor(NewColor) {
+				props.setAttributes(
+					{
+						TimerValueBackgroundColor: NewColor
+					}
+				)
+			}
+
+			function onChangeTimerValueColor(NewColor) {
+				props.setAttributes({
+					TimerValueColor: NewColor
+				})
+			}
+
+			function onChangeTimerTextColor(NewColor) {
+				props.setAttributes({
+					TimerTextColor: NewColor
+				})
+			}
+
+			function onChangeTimerLayout(NewLayout) {
+				props.setAttributes({
+					TimerLayout: NewLayout
+				})
+
+				if (NewLayout == 'Classic'){
+					props.setAttributes({
+						BlockBackgroundColor: 'white',
+						TimerTextColor: 'orange',
+						TimerValueColor: 'white',
+						TimerValueBackgroundColor: 'orange',
+						BlockMinWidth: 5,
+						CircleBlockRadium: 0
+					})
+				} else if (NewLayout == 'Cover'){
+					props.setAttributes({
+						BlockBackgroundColor: 'grey',
+						TimerValueColor: 'white',
+						TimerTextColor: 'white',
+						TimerValueBackgroundColor: 'transparent',
+						BlockMinWidth: 15,
+						CircleBlockRadium: 0
+
+					})
+				} else if (NewLayout == 'Circle'){
+					props.setAttributes({
+						BlockBackgroundColor: 'grey',
+						TimerValueColor: 'white',
+						TimerTextColor: 'white',
+						TimerValueBackgroundColor: 'transparent',
+						BlockMinWidth: 15,
+						CircleBlockRadium: 100
+					})
+				}
+			}
+			function onChangeBlockBackgroundColor(NewColor) {
+				props.setAttributes({
+					BlockBackgroundColor: NewColor
+				})
+
+			}
+
 			var styling = {
 				color: props.attributes.fontColor,
 				backgroundColor: props.attributes.backgroundColor
 			}
 
+			const TimerBlockStyling = {
+				backgroundColor: props.attributes.BlockBackgroundColor,
+				minWidth: props.attributes.BlockMinWidth + '%',
+				borderRadius: props.attributes.CircleBlockRadium + '%'
+			}
+			const TimerValueContainerStyling = {
+				backgroundColor: props.attributes.TimerValueBackgroundColor,
+				color: props.attributes.TimerValueColor
+			}
+
+			const TimerTextContainerStyling = {
+				color: props.attributes.TimerTextColor
+			}
+
+
+
 			var backgroundDefaultColors = [
-				{ color: 'gray' },
-				{ color: '#ddd' },
-				{color: 'white'},
-				{color: 'black'}
+				{ color: 'blue' },
+				{ color: 'green' },
+				{color: 'red'},
+				{color: 'orange'}
 			];
 			var fontDefaultColors = [
 				{ color: 'white' },
@@ -163,55 +275,133 @@ registerBlockType( 'cgb/timer-block', {
 							currentDate = {new Date(props.attributes.year,props.attributes.month,props.attributes.date,props.attributes.hours,props.attributes.minutes,0,0)}
 							onChange={updateDateTime}
 						/>
-					
 					</PanelBody>
 					<PanelBody title={"Styling and color"}>
 						<SelectControl
-									label="Shape"
-									value={props.attributes.timerShape}
+									label="Skin"
+									value={props.attributes.TimerLayout}
 									options={[
-										{ label: 'Square', value: '' },
-										{ label: 'Round', value: 'tw-round' },
+										{ label: 'Classic', value: 'Classic' },
+										{ label: 'Cover', value: 'Cover'},
+										{ label: 'Circle', value: 'Circle' },
 									]}
-									onChange={onShapeChange}
+									onChange={onChangeTimerLayout}
 						/>
-						<label class="components-base-control__label">Background color</label>
+						<label class="components-base-control__label">Timer color</label>
 						<ColorPalette
-							value = { props.attributes.backgroundColor }
-							onChange={onBackgroundColorChange}
+							value = { props.attributes.TimerValueBackgroundColor }
+							onChange={onChangeTimerValueBackgroundColor}
 							colors = {backgroundDefaultColors}
 						/>
-						<label class="components-base-control__label">Text color</label>
+						<label class="components-base-control__label">Numbers color</label>
 						<ColorPalette
-							value = { props.attributes.fontColor }
-							onChange={onFontColorChange}
+							value = { props.attributes.TimerValueColor }
+							onChange={onChangeTimerValueColor}
 							colors = {fontDefaultColors}
 						/>
+						<label className="components-base-control__label">Text color</label>
+						<ColorPalette
+							value={ props.attributes.TimerTextColor}
+							onChange={ onChangeTimerTextColor }
+							colors={ backgroundDefaultColors }
+						/>
+						{
+							( props.attributes.TimerLayout == 'Classic')? '' :
+								<div>
+									<label className="components-base-control__label">Background color</label>
+									<ColorPalette
+										value={ props.attributes.BlockBackgroundColor}
+										onChange={ onChangeBlockBackgroundColor }
+										colors={ backgroundDefaultColors }
+									/>
+								</div>
+
+						}
 					</PanelBody>
 				</InspectorControls>
 				,
-				<div className="tw-holder">
-					<div class= "time-widget">
-						<div class="tw-row">
-							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-								<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
-								<p class="tw-title">Days</p>
+				<div className={'TimerParentContainer'}>
+
+					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.days_ < 10)? '0' + props.attributes.days_ : props.attributes.days_
+								}
 							</div>
-							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-								<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
-								<p class="tw-title">Hours</p>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Days
 							</div>
-							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-								<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
-								<p class="tw-title">Minutes</p>
-							</div>
-							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-								<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
-								<p class="tw-title">Seconds</p>
-							</div>
-						</div>
+						</span>
 					</div>
+
+
+					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.hours_ < 10)? '0' + props.attributes.hours_ : props.attributes.hours_
+								}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Hours
+							</div>
+						</span>
+					</div>
+
+
+					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.minutes_ < 10)? '0' + props.attributes.minutes_ : props.attributes.minutes_
+								}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Minutes
+							</div>
+						</span>
+					</div>
+
+
+					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
+								}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Seconds
+							</div>
+						</span>
+					</div>
+
 				</div>
+// ,
+//
+// 				<div className="tw-holder">
+// 					<div class= "time-widget">
+// 						<div class="tw-row">
+// 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+// 								<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
+// 								<p class="tw-title">Days</p>
+// 							</div>
+// 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+// 								<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
+// 								<p class="tw-title">Hours</p>
+// 							</div>
+// 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+// 								<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
+// 								<p class="tw-title">Minutes</p>
+// 							</div>
+// 							<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+// 								<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
+// 								<p class="tw-title">Seconds</p>
+// 							</div>
+// 						</div>
+// 					</div>
+// 				</div>
 			])
 		}
 	,
@@ -221,29 +411,98 @@ registerBlockType( 'cgb/timer-block', {
 		color: props.attributes.fontColor,
 		backgroundColor: props.attributes.backgroundColor
 	}
+
+	const TimerValueContainerStyling = {
+		backgroundColor: props.attributes.TimerValueBackgroundColor,
+		color: props.attributes.TimerValueColor
+	}
+
+	const TimerTextContainerStyling = {
+		color: props.attributes.TimerTextColor
+	}
 	return (
-		<div className="tw-holder" data-time={timer_str}>
-		  <div class= "time-widget">
-			<div class="tw-row">
-				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-					<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
-					<p class="tw-title">Days</p>
-				</div>
-				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-					<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
-					<p class="tw-title">Hours</p>
-				</div>
-				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-					<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
-					<p class="tw-title">Minutes</p>
-				</div>
-				<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
-					<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
-					<p class="tw-title">Seconds</p>
-				</div>
-			  </div>
+
+		<div className={'TimerParentContainer'} data-time={timer_str}>
+
+			<div className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.days_ < 10)? '0' + props.attributes.days_ : props.attributes.days_
+								}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Days
+							</div>
+						</span>
 			</div>
+
+
+			<div className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.hours_ < 10)? '0' + props.attributes.hours_ : props.attributes.hours_
+								}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Hours
+							</div>
+						</span>
+			</div>
+
+
+			<div className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+								{
+									(props.attributes.minutes_ < 10)? '0' + props.attributes.minutes_ : props.attributes.minutes_
+								}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Minutes
+							</div>
+						</span>
+			</div>
+
+
+			<div className={'TimerBlockContainer'}>
+						<span style={{display: 'block'}}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+									{
+										(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
+									}
+							</div>
+							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+								Seconds
+							</div>
+						</span>
+			</div>
+
 		</div>
+		//
+		// <div className="tw-holder" data-time={timer_str}>
+		//   <div class= "time-widget">
+		// 	<div class="tw-row">
+		// 		<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+		// 			<p class="tw-digit tw-digit-days">{props.attributes.days_}</p>
+		// 			<p class="tw-title">Days</p>
+		// 		</div>
+		// 		<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+		// 			<p class="tw-digit tw-digit-hours">{props.attributes.hours_}</p>
+		// 			<p class="tw-title">Hours</p>
+		// 		</div>
+		// 		<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+		// 			<p class="tw-digit tw-digit-minutes">{props.attributes.minutes_}</p>
+		// 			<p class="tw-title">Minutes</p>
+		// 		</div>
+		// 		<div class={"tw-column"+" "+props.attributes.timerShape} style={styling}>
+		// 			<p class="tw-digit tw-digit-seconds">{props.attributes.seconds_}</p>
+		// 			<p class="tw-title">Seconds</p>
+		// 		</div>
+		// 	  </div>
+		// 	</div>
+		// </div>
 	  );
 	},
 })

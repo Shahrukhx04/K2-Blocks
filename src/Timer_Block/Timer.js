@@ -324,7 +324,7 @@ registerBlockType( 'cgb/timer-block', {
 
 					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className='TimerValueContainer'>
 								{
 									(props.attributes.days_ < 10)? '0' + props.attributes.days_ : props.attributes.days_
 								}
@@ -433,11 +433,11 @@ registerBlockType( 'cgb/timer-block', {
 
 
 		return (
-			<div className={'TimerParentContainer'}>
+			<div className={'TimerParentContainer'} data-time={timer_str}>
 
-				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'TimerBlockContainer'} >
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-days'}>
 								{
 									(props.attributes.days_ < 10)? '0' + props.attributes.days_ : props.attributes.days_
 								}
@@ -451,7 +451,7 @@ registerBlockType( 'cgb/timer-block', {
 
 				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-hours'}>
 								{
 									(props.attributes.hours_ < 10)? '0' + props.attributes.hours_ : props.attributes.hours_
 								}
@@ -465,7 +465,7 @@ registerBlockType( 'cgb/timer-block', {
 
 				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-minutes'}>
 								{
 									(props.attributes.minutes_ < 10)? '0' + props.attributes.minutes_ : props.attributes.minutes_
 								}
@@ -479,7 +479,7 @@ registerBlockType( 'cgb/timer-block', {
 
 				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-seconds'}>
 								{
 									(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
 								}

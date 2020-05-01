@@ -60,7 +60,7 @@ registerBlockType( 'cgb/call-to-action-block', {
 	attributes: {
 		LayoutDesign: {
 			type: 'string',
-			default: 'Cover'
+			default: 'Classic'
 		},
 		CTA_Image: {
 			type: 'string',

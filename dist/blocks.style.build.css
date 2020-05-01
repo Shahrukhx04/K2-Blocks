@@ -235,30 +235,65 @@ div.box {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/* Create three equal columns that floats next to each other */
-.tw-column {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  float: left;
-  width: 25%;
-  padding: 0px;
-  height: 8em;
-  text-align: center;
-  background-color: #ddd;
-  border: solid;
-  border-color: white;
-  border-width: 0.1em; }
+.TimerParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-color: transparent; }
 
-.tw-digit {
-  color: black;
+.TimerBlockContainer {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  max-width: 100%;
+  margin: 0.5%;
+  padding: 1%; }
+
+.TimerValueContainer {
+  font-family: "Montserrat",Sans-serif;
+  font-size: 45px;
+  font-weight: 900;
+  line-height: 1.2em;
+  padding: 20px; }
+
+.TimerTextContainer {
+  font-size: 1.2vw;
+  text-align: center;
+  font-family: "Montserrat",Sans-serif;
+  font-weight: 500; }
+
+@media (max-width: 767px) {
+  .TimerValueContainer {
+    font-size: 7vw;
+    padding: 9px; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.counter-widget {
+  background-color: #ab47bc;
+  width: 10%;
+  min-width: 170px;
+  min-height: 150px;
+  text-align: center;
+  margin: auto; }
+
+.counter-widget .content {
+  padding: 10%; }
+
+.counter-widget .content .cw-number {
   font-size: 50px;
   font-family: "Arial Black", Gadget, sans-serif;
-  margin: 10px; }
+  margin: 10px;
+  color: white; }
 
-.tw-title {
-  font-family: "Arial", Gadget, sans-serif; }
-
-.tw-row:after {
-  content: "";
-  display: block;
-  padding-bottom: 100%; }
+.counter-widget .content .cw-title {
+  font-family: Verdana,Geneva,sans-serif;
+  margin: 10px;
+  color: white; }

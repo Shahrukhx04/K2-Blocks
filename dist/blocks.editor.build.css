@@ -108,3 +108,30 @@ div.box {
  * Can include things like variables and mixins
  * that are used across the project.
 */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.counter-widget {
+  background-color: #ab47bc;
+  width: 10%;
+  min-width: 170px;
+  min-height: 150px;
+  text-align: center;
+  margin: auto; }
+
+.counter-widget .content {
+  padding: 10%; }
+
+.counter-widget .content .cw-number {
+  font-size: 50px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin: 10px;
+  color: white; }
+
+.counter-widget .content .cw-title {
+  font-family: Verdana,Geneva,sans-serif;
+  margin: 10px;
+  color: white; }

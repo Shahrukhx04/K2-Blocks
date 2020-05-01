@@ -12,18 +12,18 @@ jQuery(document).ready(function( $ ) {
             timeString.push(temp);
         }
         )
-        console.log(timeString);
+        //console.log(timeString);
 
     }
 
     function updateTW(){
         $('.TimerParentContainer').each(function (index) {
-            console.log("In timer number:"+index)
+            //console.log("In timer number:"+index)
             var targetDate = new Date(timeString[index][0],timeString[index][1],timeString[index][2],timeString[index][3],timeString[index][4],timeString[index][5],timeString[index][6]);
-            console.log(timeString);
-            console.log(targetDate);
+            //console.log(timeString);
+            //console.log(targetDate);
             var variable1 = new Date(); //todays date
-            console.log(variable1);
+            //console.log(variable1);
             var days_;
             var hours_;
             var minutes_;

@@ -61,12 +61,19 @@
  *
  * CSS for FrontEnd + BackEnd.
  */
+.CoverParentContainerSpan {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: left;
+      justify-content: left;
+  width: 80%;
+  margin: 2em auto; }
+
 .CoverParentContainer {
   background-color: lightgray;
   background-position: center;
   background-size: cover;
-  min-height: 65vh;
-  width: 100%;
+  min-height: 90vh;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -99,9 +106,7 @@
 .CoverParagraphHeading {
   color: white;
   font-size: 1.1em !important;
-  font-family: "Poppins",Sans-serif;
-  padding-left: 5em;
-  padding-right: 5em; }
+  font-family: "Poppins",Sans-serif; }
 
 .CoverButtonStyling {
   background-color: #002147;
@@ -149,20 +154,6 @@
   height: 70vh;
   position: relative; }
 
-.ClassicOverlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  -webkit-transition-duration: 1500ms;
-       -o-transition-duration: 1500ms;
-          transition-duration: 1500ms;
-  background-color: black; }
-
 .ClassicTextContainer {
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
@@ -202,6 +193,10 @@
   border-color: #002147;
   color: white !important;
   cursor: pointer; }
+
+@media (max-width: 1000px) {
+  .CoverParentContainerSpan {
+    width: 100%; } }
 
 @media (max-width: 700px) {
   .ClassicImageContainer {

@@ -25,10 +25,11 @@ const {
 	PanelRow,
 	TextControl,
 	RangeControl,
-	ColorPicker,
 	ToggleControl,
 	SelectControl,
-	Button
+	Button,
+	ColorPicker,
+	ColorPalette
 
 } = wp.components;
 
@@ -72,6 +73,30 @@ registerBlockType( 'cgb/call-to-action-block', {
 		CTAParagraphText: {
 			type: 'string',
 			default: ''
+		},
+		CTAButtonText: {
+			type: 'string',
+			default: 'Read More'
+		},
+		CTAOverlayColorRed: {
+			type: 'number',
+			default: 68
+		},
+		CTAOverlayColorGreen: {
+			type: 'number',
+			default: 68
+		},
+		CTAOverlayColorBlue: {
+			type: 'number',
+			default: 68
+		},
+		CTAOverlayColorAlpha: {
+			type: 'number',
+			default: 0.3
+		},
+		CTAOverlayEnableDisable: {
+			type: 'boolean',
+			default: true
 		}
 	},
 
@@ -96,6 +121,16 @@ registerBlockType( 'cgb/call-to-action-block', {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
 
+		const colors = [
+			{ name: 'red', color: '#f00' },
+			{ name: 'white', color: '#fff' },
+			{ name: 'blue', color: '#00f' },
+		];
+
+		const CoverParentAndClassicImageStyling = {
+			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+		}
 
 		function onChangeCTAParagraph(NewText) {
 			setAttributes({
@@ -118,6 +153,30 @@ registerBlockType( 'cgb/call-to-action-block', {
 		function onChangeCTAImageSelection(NewImage) {
 			setAttributes({
 				CTA_Image: NewImage.url
+			})
+		}
+
+		function onChangeCTAButtonText(NewText) {
+			setAttributes({
+				CTAButtonText: NewText
+			})
+		}
+
+		function onChangeCTAOverlayColor(NewColor) {
+			setAttributes({
+				CTAOverlayColorRed: NewColor['rgb'].r,
+
+				CTAOverlayColorGreen: NewColor['rgb'].g,
+
+				CTAOverlayColorBlue: NewColor['rgb'].b,
+
+				CTAOverlayColorAlpha: NewColor['rgb'].a
+			})
+		}
+
+		function onChangeCTAOverlayEnableDisable(NewSetting) {
+			setAttributes({
+				CTAOverlayEnableDisable: NewSetting
 			})
 		}
 
@@ -151,10 +210,40 @@ registerBlockType( 'cgb/call-to-action-block', {
 						}}
 						 >
 					</MediaUpload>
+
+
+				</PanelBody>
+
+				<PanelBody title={'Overlay'}>
+					<PanelRow>
+						<p>
+							Overlay
+						</p>
+						<ToggleControl
+							checked = {attributes.CTAOverlayEnableDisable}
+							onChange = {onChangeCTAOverlayEnableDisable}
+						/>
+
+					</PanelRow>
+
+					<label > Fill Color </label>
+					<ColorPicker
+						color={ colors }
+						value = {attributes.CTAOverlayColor}
+						onChangeComplete={ onChangeCTAOverlayColor }
+					/>
+				</PanelBody>
+				<PanelBody title={'Button'}>
+					<TextControl
+						label="Button Text"
+						value={ attributes.CTAButtonText }
+						onChange={ onChangeCTAButtonText}
+					/>
+
 				</PanelBody>
 
 			</InspectorControls>,
-			<div>
+			<div className={'CoverParentContainerSpan'}>
 				{
 					(attributes.LayoutDesign == 'Classic')? <div className={'ClassicParentContainer'}>
 							<div className={'ClassicTextContainer'}>
@@ -177,17 +266,17 @@ registerBlockType( 'cgb/call-to-action-block', {
 								/>
 
 								<button className={'ClassicButtonStyling'}>
-									Read More
+									{attributes.CTAButtonText}
 								</button>
 							</div>
-							<div style={CTAIMAGE} className={'ClassicImageContainer'}>
+							<div style={CoverParentAndClassicImageStyling} className={'ClassicImageContainer'}>
 
 							</div>
 						</div>
 
 						: <div>
 
-							<div style={CTAIMAGE} className={'CoverParentContainer'}>
+							<div style={CoverParentAndClassicImageStyling} className={'CoverParentContainer'}>
 
 								<div className={'CoverTextContainer'}>
 
@@ -210,7 +299,7 @@ registerBlockType( 'cgb/call-to-action-block', {
 
 
 									<button className={'CoverButtonStyling'}>
-										Read More
+										{attributes.CTAButtonText}
 									</button>
 								</div>
 							</div>
@@ -236,10 +325,15 @@ registerBlockType( 'cgb/call-to-action-block', {
 		const CTAIMAGE = {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
+		const CoverParentAndClassicImageStyling = {
+			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+		}
 
 
 
-		return 	<div>
+
+		return 	<div className={'CoverParentContainerSpan'}>
 			{
 				(attributes.LayoutDesign == 'Classic')? <div className={'ClassicParentContainer'}>
 						<div className={'ClassicTextContainer'}>
@@ -255,10 +349,10 @@ registerBlockType( 'cgb/call-to-action-block', {
 							/>
 
 							<button className={'ClassicButtonStyling'}>
-								Read More
+								{attributes.CTAButtonText}
 							</button>
 						</div>
-						<div style={CTAIMAGE}  className={'ClassicImageContainer'}>
+						<div style={CoverParentAndClassicImageStyling}  className={'ClassicImageContainer'}>
 
 						</div>
 
@@ -266,7 +360,7 @@ registerBlockType( 'cgb/call-to-action-block', {
 
 					: <div>
 
-						<div style={CTAIMAGE} className={'CoverParentContainer'}>
+						<div style={CoverParentAndClassicImageStyling} className={'CoverParentContainer'}>
 
 							<div className={'CoverTextContainer'}>
 								<RichText.Content
@@ -281,7 +375,7 @@ registerBlockType( 'cgb/call-to-action-block', {
 								/>
 
 								<button className={'CoverButtonStyling'}>
-									Read More
+									{attributes.CTAButtonText}
 								</button>
 							</div>
 						</div>

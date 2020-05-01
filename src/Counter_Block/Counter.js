@@ -63,6 +63,14 @@ registerBlockType( 'k2/counter-block', {
 		title: {
 			type: 'string',
 			default: 'Title'
+		},
+		date: {
+			type: 'object',
+			default:{
+				day: 1,
+				month: 0,
+				year: 2020
+			}
 		}
 		
 	},
@@ -106,6 +114,13 @@ registerBlockType( 'k2/counter-block', {
 				var day=parseInt(date[2])
 				var month= parseInt(date[1])-1
 				var year=parseInt(date[0])
+				props.setAttributes({
+					date:{
+						day:day,
+						month:month,
+						year:year
+					}
+				})
 				var targetDate = new Date(year,month,day,0,0,0,0);
 				var variable1 = new Date(); //todays date
 				var days_;
@@ -161,7 +176,7 @@ registerBlockType( 'k2/counter-block', {
 					<div>
 						<label>Date</label>
 						<DateTimePicker
-							currentDate = {new Date()}
+							currentDate = {new Date(props.attributes.date.year,props.attributes.date.month,props.attributes.date.day,0,0,0,0)}
 							onChange={onDateChange}
 						/>
 					</div>

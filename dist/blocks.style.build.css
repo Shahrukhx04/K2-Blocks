@@ -177,8 +177,8 @@ div.wp-block-cgb-timer-block.tw-holder {
 .counter-widget {
   background-color: #ab47bc;
   width: 10%;
-  max-width: 200px;
-  height: 150px;
+  min-width: 170px;
+  min-height: 150px;
   text-align: center;
   margin: auto; }
 

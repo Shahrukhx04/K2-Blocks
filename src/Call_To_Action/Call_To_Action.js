@@ -9,14 +9,28 @@
 import './editor.scss';
 import './style.scss';
 
-
-
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
 	// For attribute sources
 } = wp.blocks;
 
+const {
+	RichText,
+	InspectorControls,
+	MediaUpload
+} = wp.editor;
 
+const {
+	PanelBody,
+	PanelRow,
+	TextControl,
+	RangeControl,
+	ColorPicker,
+	ToggleControl,
+	SelectControl,
+	Button
+
+} = wp.components;
 
 
 /**
@@ -43,7 +57,22 @@ registerBlockType( 'cgb/call-to-action-block', {
 		__( 'Call_To_Action ' ),
 	],
 	attributes: {
-
+		LayoutDesign: {
+			type: 'string',
+			default: 'Classic'
+		},
+		CTA_Image: {
+			type: 'string',
+			default: null
+		},
+		CTAHeadingText: {
+			type: 'string',
+			default: ''
+		},
+		CTAParagraphText: {
+			type: 'string',
+			default: ''
+		}
 	},
 
 
@@ -63,8 +92,133 @@ registerBlockType( 'cgb/call-to-action-block', {
 	 */
 	edit ({attributes, setAttributes}) {
 
+		const CTAIMAGE = {
+			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+		}
 
-		return <div>Call To Action</div>
+
+		function onChangeCTAParagraph(NewText) {
+			setAttributes({
+				CTAParagraphText: NewText
+			})
+		}
+		function onChangeCTAHeading(NewHeadingText) {
+			setAttributes({
+				CTAHeadingText: NewHeadingText
+			})
+		}
+
+		function onChangeLayoutSelection(NewLayout) {
+			setAttributes({
+				LayoutDesign: NewLayout
+			})
+			console.log(attributes.LayoutDesign)
+		}
+
+		function onChangeCTAImageSelection(NewImage) {
+			setAttributes({
+				CTA_Image: NewImage.url
+			})
+		}
+
+		return ( [ <InspectorControls>
+				<PanelBody title={'Layout Select'}>
+
+					<SelectControl
+						label="Skin"
+						value={ attributes.LayoutDesign }
+						options={
+							[
+								{ label: 'Classic', value: 'Classic' },
+								{ label: 'Cover', value: 'Cover' }
+							]
+						}
+						onChange={ onChangeLayoutSelection}
+					/>
+
+				</PanelBody>
+
+
+				<PanelBody title={'Background Image'}>
+					<MediaUpload
+						onSelect = {onChangeCTAImageSelection}
+						type = {'images'}
+						value = {attributes.CTA_Image}
+						render={ ({open}) => {
+							return <div style={CTAIMAGE} className={'ImageSelectControl'}>
+									<i className="fa fa-plus-circle" onClick={open}></i>
+							</div>;
+						}}
+						 >
+					</MediaUpload>
+				</PanelBody>
+
+			</InspectorControls>,
+			<div>
+				{
+					(attributes.LayoutDesign == 'Classic')? <div className={'ClassicParentContainer'}>
+							<div className={'ClassicTextContainer'}>
+
+								<RichText
+									tagName="h1" // The tag here is the element output and editable in the admin
+									value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+									className = {'ClassicHeadingStyle'}
+									formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+									onChange={ onChangeCTAHeading } // Store updated content as a block attribute
+									placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
+								/>
+								<RichText
+									tagName="h1" // The tag here is the element output and editable in the admin
+									value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+									className = {'ClassicParagraphHeading'}
+									formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+									onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
+									placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
+								/>
+
+								<button className={'ClassicButtonStyling'}>
+									Read More
+								</button>
+							</div>
+							<div style={CTAIMAGE} className={'ClassicImageContainer'}>
+
+							</div>
+						</div>
+
+						: <div>
+
+							<div style={CTAIMAGE} className={'CoverParentContainer'}>
+
+								<div className={'CoverTextContainer'}>
+
+									<RichText
+										tagName="h1" // The tag here is the element output and editable in the admin
+										value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+										className = {'CoverHeadingStyle'}
+										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+										onChange={ onChangeCTAHeading } // Store updated content as a block attribute
+										placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
+									/>
+									<RichText
+										tagName="p" // The tag here is the element output and editable in the admin
+										value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+										className = {'CoverParagraphHeading'}
+										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+										onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
+										placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
+									/>
+
+
+									<button className={'CoverButtonStyling'}>
+										Read More
+									</button>
+								</div>
+							</div>
+
+						</div>
+				}
+			</div>
+		] )
 	},
 
 	/**
@@ -78,10 +232,62 @@ registerBlockType( 'cgb/call-to-action-block', {
 	 * @param {Object} props Props.
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
-	save ({attributes}) {
+	save ({attributes, setAttributes}) {
+		const CTAIMAGE = {
+			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+		}
 
-		return <div>Call To Action</div>
 
+
+		return 	<div>
+			{
+				(attributes.LayoutDesign == 'Classic')? <div className={'ClassicParentContainer'}>
+						<div className={'ClassicTextContainer'}>
+							<RichText.Content
+								tagName="h1" // The tag here is the element output and editable in the admin
+								value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+								className = {'ClassicHeadingStyle'}
+							/>
+							<RichText.Content
+								tagName="p" // The tag here is the element output and editable in the admin
+								value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+								className = {'ClassicParagraphHeading'}
+							/>
+
+							<button className={'ClassicButtonStyling'}>
+								Read More
+							</button>
+						</div>
+						<div style={CTAIMAGE}  className={'ClassicImageContainer'}>
+
+						</div>
+
+					</div>
+
+					: <div>
+
+						<div style={CTAIMAGE} className={'CoverParentContainer'}>
+
+							<div className={'CoverTextContainer'}>
+								<RichText.Content
+									tagName="h1" // The tag here is the element output and editable in the admin
+									value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+									className = {'CoverHeadingStyle'}
+								/>
+								<RichText.Content
+									tagName="p" // The tag here is the element output and editable in the admin
+									value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+									className = {'CoverParagraphHeading'}
+								/>
+
+								<button className={'CoverButtonStyling'}>
+									Read More
+								</button>
+							</div>
+						</div>
+					</div>
+			}
+		</div>
 	},
 
 

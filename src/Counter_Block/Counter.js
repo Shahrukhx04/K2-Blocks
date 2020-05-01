@@ -249,7 +249,7 @@ registerBlockType( 'k2/counter-block', {
 	 }
 	return (
 		<div className="cw-holder">
-			<div className="counter-widget" style={styling}>
+			<div className="counter-widget" style={styling} data-done={0}>
 				<div className="content">
 					<p className="cw-number" style={textStyling}> {props.attributes.number} </p>
 					<p className="cw-title" style={textStyling}> {props.attributes.title} </p>

@@ -85,6 +85,27 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.ImageSelectControl {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
+
+.ImageSelectControl i {
+  font-size: 48px;
+  color: #ddd; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 div.container {
   width: 100%;
   border-style: solid;

@@ -212,6 +212,32 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.ParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
+.SubParentContainer {
+  width: 70%;
+  max-height: 100vh; }
+
+.ImageParentContainer {
+  background-position: 0% 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px; }
+
+.ImageParentContainer:hover {
+  background-position: 0% 100%; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 div.container {
   width: 100%;
   border-style: solid;

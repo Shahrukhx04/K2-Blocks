@@ -43,7 +43,7 @@ const {
  * @return {?WPBlock}          The Progress_Bar_Block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/alert-block', {
+registerBlockType( 'k2/alert-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Alert Block' ), // Block title.
 	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
@@ -89,9 +89,6 @@ registerBlockType( 'cgb/alert-block', {
 	},
 
 
-
-
-
 	/**
 	 * The edit function describes the structure of your Progress_Bar_Block in the context of the editor.
 	 * This represents what the editor will render when the Progress_Bar_Block is used.
@@ -131,8 +128,6 @@ registerBlockType( 'cgb/alert-block', {
 			{label: 'aeroplane' ,value: 'fa fa-search'},
 			{label: 'aeroplane' ,value: 'fa fa-envelope-o'}
 		]
-
-
 
 		const ParentContainerStyling = {
 			backgroundColor: attributes.AlertBoxColor,

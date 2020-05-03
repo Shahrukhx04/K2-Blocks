@@ -10,8 +10,10 @@
       <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/init.php" afterDir="false" />
+
+      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +87,7 @@
       <workItem from="1588062017894" duration="902000" />
       <workItem from="1588063056944" duration="17064000" />
       <workItem from="1588160854658" duration="30877000" />
+      <workItem from="1588490634424" duration="290000" />
     </task>
     <servers />
   </component>

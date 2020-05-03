@@ -64,15 +64,15 @@ registerBlockType( 'cgb/call-to-action-block', {
 		},
 		CTA_Image: {
 			type: 'string',
-			default: null
+			default: 'http://localhost/wordpress/wp-content/uploads/2020/04/OXFORD-EXPLORE-1-e1581881277914.jpg'
 		},
 		CTAHeadingText: {
 			type: 'string',
-			default: ''
+			default: 'K2 Call To Action'
 		},
 		CTAParagraphText: {
 			type: 'string',
-			default: ''
+			default: 'K2 blocks are added to the Gutenberg editor as soon as you install the plugin. You can start using it as any other Gutenberg block.'
 		},
 		CTAButtonText: {
 			type: 'string',
@@ -97,6 +97,18 @@ registerBlockType( 'cgb/call-to-action-block', {
 		CTAOverlayEnableDisable: {
 			type: 'boolean',
 			default: true
+		},
+		CTAClassicPosition: {
+			type: 'string',
+			default: 'row'
+		},
+		CTACoverContainerHeight: {
+			type: 'number',
+			default: 70
+		},
+		CTAClassicBoxHeight: {
+			type: 'number',
+			default: 70
 		}
 	},
 
@@ -127,9 +139,22 @@ registerBlockType( 'cgb/call-to-action-block', {
 			{ name: 'blue', color: '#00f' },
 		];
 
-		const CoverParentAndClassicImageStyling = {
+		const ClassicParentContainer = {
+			flexDirection: attributes.CTAClassicPosition,
+			minHeight: attributes.CTAClassicBoxHeight + 'vh'
+		}
+
+		const ClassicImageContainerStyling = {
+			flexBasis: attributes.CTAClassicImageContainerWidth + '%',
 			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
-			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+			backgroundImage: 'url("' +attributes.CTA_Image + '")',
+			minHeight: attributes.CTACoverContainerHeight + 'vh'
+		}
+
+		const CoverParentStyling = {
+			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			backgroundImage: 'url("' +attributes.CTA_Image + '")',
+			minHeight: attributes.CTACoverContainerHeight + 'vh'
 		}
 
 		function onChangeCTAParagraph(NewText) {
@@ -180,9 +205,29 @@ registerBlockType( 'cgb/call-to-action-block', {
 			})
 		}
 
+		function onChangeCTAClassicPosition(NewPosition) {
+			setAttributes({
+				CTAClassicPosition: NewPosition,
+				CTAClassicImageContainerWidth: 50
+			})
+			console.log(NewPosition)
+		}
+
+
+
+		function onChangeCTACoverContainerHeight(NewHeight) {
+			setAttributes({
+				CTACoverContainerHeight: NewHeight
+			})
+		}
+
+		function onChnageCTAClassicBoxHeight(Newheight) {
+			setAttributes({
+				CTAClassicBoxHeight: Newheight
+			})
+		}
 		return ( [ <InspectorControls>
 				<PanelBody title={'Layout Select'}>
-
 					<SelectControl
 						label="Skin"
 						value={ attributes.LayoutDesign }
@@ -195,6 +240,61 @@ registerBlockType( 'cgb/call-to-action-block', {
 						onChange={ onChangeLayoutSelection}
 					/>
 
+
+						{
+							(attributes.LayoutDesign == 'Classic')
+								?
+										<div className={'InspectorControlClassicPosition'}>
+											<p> Position </p>
+											<div className={'InspectorControlClassicPositionEachElement'}  onClick={() => onChangeCTAClassicPosition('row')}>
+												<i className="fas fa-align-left" ></i>
+											</div>
+											<div className={'InspectorControlClassicPositionEachElement'} onClick={() => onChangeCTAClassicPosition('row-reverse')}>
+												<i className="fas fa-align-right"></i>
+											</div>
+										</div>
+
+
+								:
+								null
+						}
+
+
+				</PanelBody>
+
+				<PanelBody title={'Box'}>
+					{
+						(attributes.LayoutDesign == 'Classic')?
+							<div>
+								<RangeControl
+									label={<strong> Box Height </strong>}
+									value={ attributes.CTAClassicBoxHeight }
+									onChange={ onChnageCTAClassicBoxHeight }
+									min={ 10 }
+									max={ 100 }
+									step ={1}
+								/>
+								<RangeControl
+									label={<strong> Image Height </strong>}
+									value={ attributes.CTACoverContainerHeight }
+									onChange={ onChangeCTACoverContainerHeight }
+									min={ 10 }
+									max={ 100 }
+									step ={1}
+								/>
+							</div>
+
+							:
+							<RangeControl
+								label={<strong> Box Height </strong>}
+								value={ attributes.CTACoverContainerHeight }
+								onChange={ onChangeCTACoverContainerHeight }
+								min={ 10 }
+								max={ 100 }
+								step ={1}
+							/>
+
+					}
 				</PanelBody>
 
 
@@ -243,40 +343,44 @@ registerBlockType( 'cgb/call-to-action-block', {
 				</PanelBody>
 
 			</InspectorControls>,
-			<div className={'CoverParentContainerSpan'}>
+			<div>
 				{
-					(attributes.LayoutDesign == 'Classic')? <div className={'ClassicParentContainer'}>
-							<div className={'ClassicTextContainer'}>
+					(attributes.LayoutDesign == 'Classic')?
+						<div  className={'BoxedContainer'}>
 
-								<RichText
-									tagName="h1" // The tag here is the element output and editable in the admin
-									value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
-									className = {'ClassicHeadingStyle'}
-									formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
-									onChange={ onChangeCTAHeading } // Store updated content as a block attribute
-									placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
-								/>
-								<RichText
-									tagName="h1" // The tag here is the element output and editable in the admin
-									value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
-									className = {'ClassicParagraphHeading'}
-									formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
-									onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
-									placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
-								/>
+							<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
+								<div className={'ClassicTextContainer'}>
 
-								<button className={'ClassicButtonStyling'}>
-									{attributes.CTAButtonText}
-								</button>
-							</div>
-							<div style={CoverParentAndClassicImageStyling} className={'ClassicImageContainer'}>
+									<RichText
+										tagName="h1" // The tag here is the element output and editable in the admin
+										value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+										className = {'ClassicHeadingStyle'}
+										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+										onChange={ onChangeCTAHeading } // Store updated content as a block attribute
+										placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
+									/>
+									<RichText
+										tagName="h1" // The tag here is the element output and editable in the admin
+										value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+										className = {'ClassicParagraphHeading'}
+										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+										onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
+										placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
+									/>
 
+									<button className={'ClassicButtonStyling'}>
+										{attributes.CTAButtonText}
+									</button>
+								</div>
+								<div style={ClassicImageContainerStyling} className={'ClassicImageContainer'}>
+
+								</div>
 							</div>
 						</div>
 
-						: <div>
+						: <div  className={'BoxedContainer'}>
 
-							<div style={CoverParentAndClassicImageStyling} className={'CoverParentContainer'}>
+							<div style={CoverParentStyling} className={'CoverParentContainer'}>
 
 								<div className={'CoverTextContainer'}>
 
@@ -322,45 +426,62 @@ registerBlockType( 'cgb/call-to-action-block', {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save ({attributes, setAttributes}) {
+
 		const CTAIMAGE = {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
-		const CoverParentAndClassicImageStyling = {
+
+		const ClassicParentContainer = {
+			flexDirection: attributes.CTAClassicPosition
+		}
+
+		const ClassicImageContainerStyling = {
+			flexBasis: attributes.CTAClassicImageContainerWidth + '%',
 			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+
+		}
+
+		const CoverParentStyling = {
+			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			backgroundImage: 'url("' +attributes.CTA_Image + '")',
+			minHeight: attributes.CTACoverContainerHeight + 'vh'
 		}
 
 
 
 
-		return 	<div className={'CoverParentContainerSpan'}>
+		return 	<div>
 			{
-				(attributes.LayoutDesign == 'Classic')? <div className={'ClassicParentContainer'}>
-						<div className={'ClassicTextContainer'}>
-							<RichText.Content
-								tagName="h1" // The tag here is the element output and editable in the admin
-								value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
-								className = {'ClassicHeadingStyle'}
-							/>
-							<RichText.Content
-								tagName="p" // The tag here is the element output and editable in the admin
-								value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
-								className = {'ClassicParagraphHeading'}
-							/>
+				(attributes.LayoutDesign == 'Classic')?
+					<div className={'BoxedContainer'}>
+						<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
+							<div className={'ClassicTextContainer'}>
+								<RichText.Content
+									tagName="h1" // The tag here is the element output and editable in the admin
+									value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+									className = {'ClassicHeadingStyle'}
+								/>
+								<RichText.Content
+									tagName="p" // The tag here is the element output and editable in the admin
+									value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+									className = {'ClassicParagraphHeading'}
+								/>
 
-							<button className={'ClassicButtonStyling'}>
-								{attributes.CTAButtonText}
-							</button>
+								<button className={'ClassicButtonStyling'}>
+									{attributes.CTAButtonText}
+								</button>
+							</div>
+							<div style={ClassicImageContainerStyling}  className={'ClassicImageContainer'}>
+
+							</div>
+
 						</div>
-						<div style={CoverParentAndClassicImageStyling}  className={'ClassicImageContainer'}>
-
-						</div>
-
 					</div>
 
-					: <div>
+					: <div className={'BoxedContainer'}>
 
-						<div style={CoverParentAndClassicImageStyling} className={'CoverParentContainer'}>
+						<div style={CoverParentStyling} className={'CoverParentContainer'}>
 
 							<div className={'CoverTextContainer'}>
 								<RichText.Content

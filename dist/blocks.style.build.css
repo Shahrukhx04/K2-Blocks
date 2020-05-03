@@ -61,42 +61,26 @@
  *
  * CSS for FrontEnd + BackEnd.
  */
-.CoverParentContainerSpan {
+.BoxedContainer {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: left;
-      justify-content: left;
-  width: 80%;
-  margin: 2em auto; }
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center; }
 
 .CoverParentContainer {
+  width: 70%;
   background-color: lightgray;
   background-position: center;
   background-size: cover;
-  min-height: 90vh;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
       align-items: center;
   position: relative; }
 
-.CoverOverlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  -webkit-transition-duration: 1500ms;
-       -o-transition-duration: 1500ms;
-          transition-duration: 1500ms;
-  background-color: black; }
-
-.CoverParentContainer:hover .CoverOverlay {
-  opacity: 0.2; }
-
 .CoverTextContainer {
-  width: 100%;
   text-align: center;
   padding: 2em; }
 
@@ -134,16 +118,14 @@
   cursor: pointer; }
 
 .ClassicParentContainer {
+  width: 70%;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
   -ms-flex-align: center;
       align-items: center;
   -ms-flex-wrap: wrap-reverse;
       flex-wrap: wrap-reverse;
-  position: relative;
-  overflow: hidden; }
+  position: relative; }
 
 .ClassicImageContainer {
   background-color: lightgray;
@@ -151,12 +133,11 @@
       flex-basis: 50%;
   background-size: cover;
   background-position: 50%;
-  height: 70vh;
   position: relative; }
 
 .ClassicTextContainer {
-  -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
   text-align: justify;
   vertical-align: middle;
   padding: 2em; }

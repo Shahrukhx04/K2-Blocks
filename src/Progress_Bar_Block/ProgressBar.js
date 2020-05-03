@@ -47,16 +47,11 @@ const {
  * @return {?WPBlock}          The Progress_Bar_Block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/progressbar-block', {
+registerBlockType( 'k2/progressbar-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Progress Bar' ), // Block title.
 	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'magik-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-	keywords: [
-		__( 'progressbar — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'create-guten-Progress_Bar_Block' ),
-	],
 	attributes: {
 
 		progressBarColor: {

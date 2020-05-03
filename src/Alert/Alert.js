@@ -43,7 +43,7 @@ const {
  * @return {?WPBlock}          The Progress_Bar_Block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/alert-block', {
+registerBlockType( 'k2/alert-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Alert Block' ), // Block title.
 	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.

@@ -47,20 +47,15 @@ const {
  * @return {?WPBlock}          Call_To_Action , if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-registerBlockType( 'cgb/call-to-action-block', {
+registerBlockType( 'k2/call-to-action-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Call To Action' ), // Block title.
 	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'magik-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
-	keywords: [
-		__( 'Call_To_Action  — CGB Block' ),
-		__( 'CGB Example' ),
-		__( 'Call_To_Action ' ),
-	],
 	attributes: {
 		LayoutDesign: {
 			type: 'string',
-			default: 'Cover'
+			default: 'Classic'
 		},
 		CTA_Image: {
 			type: 'string',

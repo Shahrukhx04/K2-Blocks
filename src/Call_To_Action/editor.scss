@@ -22,3 +22,18 @@
 .components-color-picker__inputs-wrapper{
   display: none;
 }
+
+
+.InspectorControlClassicPosition{
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.InspectorControlClassicPositionEachElement{
+  flex-basis: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}

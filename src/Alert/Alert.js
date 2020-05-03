@@ -89,9 +89,6 @@ registerBlockType( 'k2/alert-block', {
 	},
 
 
-
-
-
 	/**
 	 * The edit function describes the structure of your Progress_Bar_Block in the context of the editor.
 	 * This represents what the editor will render when the Progress_Bar_Block is used.
@@ -131,8 +128,6 @@ registerBlockType( 'k2/alert-block', {
 			{label: 'aeroplane' ,value: 'fa fa-search'},
 			{label: 'aeroplane' ,value: 'fa fa-envelope-o'}
 		]
-
-
 
 		const ParentContainerStyling = {
 			backgroundColor: attributes.AlertBoxColor,

@@ -110,7 +110,6 @@ registerBlockType( 'k2/progressbar-block', {
 			type: 'number',
 			default: 0.5
 		}
-
 	},
 
 
@@ -492,7 +491,8 @@ registerBlockType( 'k2/progressbar-block', {
 		}
 
 		const ProgressBarInsideAnimationSpanStyling = {
-			animationPlayState: attributes.AnimationState
+			animationPlayState: attributes.AnimationState,
+			opacity: attributes.ProgressBarOpacity
 		}
 
 		const BarOutlineStyling = {

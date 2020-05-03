@@ -81,7 +81,7 @@ registerBlockType( 'k2/imagescroll-block', {
 		},
 		MagicImageScrollDirection: {
 			type: 'string',
-			default: 'vertical'
+			default: 'Vertical'
 		},
 		MagicImageScrollingDirectionOrder: {
 			type: 'boolean',
@@ -395,7 +395,12 @@ registerBlockType( 'k2/imagescroll-block', {
 
 		return 	<div className={'ParentContainer'}>
 			<div  style={SubParentStyling} className={'SubParentContainer'}>
-				<div  style={MagicImageStyling} className={'ImageParentContainer'}>
+				<div id="ImageScroll" style={MagicImageStyling} className={'ImageParentContainer'}
+					 data-PositionX = {attributes.MagicImageBackgroundPositionX }
+					 data-PositionY = {attributes.MagicImageBackgroundPositionY }
+					 data-PositionHoverX = {attributes.MagicImageBackgroundPositionXHover}
+					 data-PositionHoverY = {attributes.MagicImageBackgroundPositionYHover}
+				>
 
 				</div>
 			</div>

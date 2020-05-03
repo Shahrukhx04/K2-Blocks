@@ -112,6 +112,9 @@ function register_custom_scripts(){
 			true );
 	wp_enqueue_script( 'counter_frontend', plugins_url( 'src/Counter_Block/Frontend/CounterFe.js', dirname( __FILE__ ) ), array('jquery'),
             true );
+
+    wp_enqueue_script( 'ImageScroll_Frontend', plugins_url( 'src/Image_Scroll/Frontend/ImageScrollFrontEnd.js', dirname( __FILE__ ) ), array('jquery'),
+                        true );
 }
 add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );
 

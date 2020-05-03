@@ -62,7 +62,44 @@ registerBlockType( 'k2/imagescroll-block', {
 		MagicImageHeight: {
 			type: 'number',
 			default: 50
+		},
+		MagicImageBackgroundPositionX: {
+			type: 'number',
+			default: 0
+		},
+		MagicImageBackgroundPositionY: {
+			type: 'number',
+			default: 0
+		},
+		MagicImageBackgroundPositionXHover: {
+			type: 'number',
+			default: 0
+		},
+		MagicImageBackgroundPositionYHover: {
+			type: 'number',
+			default: 100
+		},
+		MagicImageScrollDirection: {
+			type: 'string',
+			default: 'vertical'
+		},
+		MagicImageScrollingDirectionOrder: {
+			type: 'boolean',
+			default: false
+		},
+		MagicImageBGDefaultX: {
+			type: 'number',
+			default: 0
+		},
+		MagicImageBGDefaultY: {
+			type: 'number',
+			default: 100
+		},
+		MagicImageWidth: {
+			type: 'number',
+			default: 50
 		}
+
 	},
 
 	edit( { attributes, setAttributes } ) {
@@ -77,6 +114,10 @@ registerBlockType( 'k2/imagescroll-block', {
 			backgroundImage: 'url("' +attributes.MagicImage + '")'
 		}
 
+		const SubParentStyling = {
+			width: attributes.MagicImageWidth + '%'
+		}
+
 		const MagicImageStyling = {
 			backgroundImage: 'url("' +attributes.MagicImage + '")',
 			boxShadow: 'inset 0 0 0 100vh rgba(' +
@@ -87,7 +128,11 @@ registerBlockType( 'k2/imagescroll-block', {
 
 			transition: 'background-position ' + attributes.MagicImageTransition + 's ease-in-out',
 			height: attributes.MagicImageHeight + 'vh',
+			backgroundPositionX: attributes.MagicImageBackgroundPositionX + '%',
+			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%'
+
 		}
+
 
 		function onChangeMagicImageTransition(NewTransition) {
 			setAttributes({
@@ -117,6 +162,111 @@ registerBlockType( 'k2/imagescroll-block', {
 				MagicImageHeight: Newheight
 			})
 		}
+
+		function onMagicImageMouseHover() {
+			setAttributes({
+				MagicImageBGDefaultX: attributes.MagicImageBackgroundPositionX,
+				MagicImageBGDefaultY: attributes.MagicImageBackgroundPositionY,
+				MagicImageBackgroundPositionX: attributes.MagicImageBackgroundPositionXHover,
+				MagicImageBackgroundPositionY: attributes.MagicImageBackgroundPositionYHover
+			})
+		}
+
+		function onMagicImageMouseLeave() {
+			setAttributes({
+				MagicImageBackgroundPositionX: attributes.MagicImageBGDefaultX,
+				MagicImageBackgroundPositionY: attributes.MagicImageBGDefaultY
+			})
+		}
+
+		function onChangeMagicImageScrollingDirection(NewDirection) {
+			setAttributes({
+				MagicImageScrollDirection: NewDirection
+			})
+			if (NewDirection=== 'Vertical') {
+				if (attributes.MagicImageScrollingDirectionOrder === false) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 0,
+						MagicImageBackgroundPositionY: 0,
+						MagicImageBackgroundPositionXHover: 0,
+						MagicImageBackgroundPositionYHover: 100,
+					})
+				} else if (attributes.MagicImageScrollingDirectionOrder  ===true) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 0,
+						MagicImageBackgroundPositionY: 100,
+						MagicImageBackgroundPositionXHover: 0,
+						MagicImageBackgroundPositionYHover: 0,
+					})
+				}
+			} else if (NewDirection === 'Horizontal'){
+				if (attributes.MagicImageScrollingDirectionOrder  === false) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 0,
+						MagicImageBackgroundPositionY: 0,
+						MagicImageBackgroundPositionXHover: 100,
+						MagicImageBackgroundPositionYHover: 0,
+					})
+				} else if (attributes.MagicImageScrollingDirectionOrder  === true) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 100,
+						MagicImageBackgroundPositionY: 0,
+						MagicImageBackgroundPositionXHover: 0,
+						MagicImageBackgroundPositionYHover: 0,
+					})
+				}
+			}
+		}
+
+		function onChangeMagicImageScrollingDirectionOrder(NewOrder) {
+
+
+			setAttributes({
+				MagicImageScrollingDirectionOrder: NewOrder,
+			})
+
+			if (attributes.MagicImageScrollDirection === 'Vertical') {
+				if (NewOrder === false) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 0,
+						MagicImageBackgroundPositionY: 0,
+						MagicImageBackgroundPositionXHover: 0,
+						MagicImageBackgroundPositionYHover: 100,
+					})
+				} else if (NewOrder ===true) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 0,
+						MagicImageBackgroundPositionY: 100,
+						MagicImageBackgroundPositionXHover: 0,
+						MagicImageBackgroundPositionYHover: 0,
+					})
+				}
+			} else if (attributes.MagicImageScrollDirection === 'Horizontal'){
+				if (NewOrder === false) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 0,
+						MagicImageBackgroundPositionY: 0,
+						MagicImageBackgroundPositionXHover: 100,
+						MagicImageBackgroundPositionYHover: 0,
+					})
+				} else if (NewOrder === true) {
+					setAttributes({
+						MagicImageBackgroundPositionX: 100,
+						MagicImageBackgroundPositionY: 0,
+						MagicImageBackgroundPositionXHover: 0,
+						MagicImageBackgroundPositionYHover: 0,
+					})
+				}
+			}
+
+		}
+
+		function onChangeMagicImageWidth(NewWidth) {
+			setAttributes({
+				MagicImageWidth: NewWidth
+			})
+		}
+
 		return (
 			[
 				<InspectorControls>
@@ -131,6 +281,14 @@ registerBlockType( 'k2/imagescroll-block', {
 							step ={1}
 						/>
 						<RangeControl
+							label={<strong> Image Width </strong>}
+							value={ attributes.MagicImageWidth}
+							onChange={ onChangeMagicImageWidth }
+							min={ 1 }
+							max={ 100 }
+							step ={1}
+						/>
+						<RangeControl
 							label={<strong> Image Height </strong>}
 							value={ attributes.MagicImageHeight }
 							onChange={ onChangeMagicImageHeight }
@@ -138,6 +296,8 @@ registerBlockType( 'k2/imagescroll-block', {
 							max={ 100 }
 							step ={1}
 						/>
+
+
 
 
 					</PanelBody>
@@ -167,25 +327,30 @@ registerBlockType( 'k2/imagescroll-block', {
 
 					<PanelBody title={'Advance Options'}>
 
-						{/*<SelectControl*/}
-						{/*	label="Font Family"*/}
-						{/*	value={ attributes.TextFontFamily }*/}
-						{/*	options={ FontsAvalaible }*/}
-						{/*	onChange={ onTextFontChange}*/}
-						{/*/>*/}
+						<SelectControl
+							label="Direction"
+							value={ attributes.MagicImageScrollDirection }
+							options={
+								[
+									{ label: 'Vertical', value: 'Vertical' },
+									{ label: 'Horizontal', value: 'Horizontal' }
+								]
+							}
+							onChange={ onChangeMagicImageScrollingDirection}
+						/>
 
 
-						{/*<PanelRow>*/}
+						<PanelRow>
 
-						{/*	<p>*/}
-						{/*		Show Percentage*/}
-						{/*	</p>*/}
-						{/*	<ToggleControl*/}
-						{/*		checked = {attributes.ShowPercentage}*/}
-						{/*		onChange = {onShowPercentageToggleChange}*/}
-						{/*	/>*/}
+							<p>
+								Reverse Direction
+							</p>
+							<ToggleControl
+								checked = {attributes.MagicImageScrollingDirectionOrder}
+								onChange = {onChangeMagicImageScrollingDirectionOrder}
+							/>
 
-						{/*</PanelRow>*/}
+						</PanelRow>
 					</PanelBody>
 
 
@@ -195,8 +360,8 @@ registerBlockType( 'k2/imagescroll-block', {
 
 				,
 				<div className={'ParentContainer'}>
-					<div className={'SubParentContainer'}>
-						<div  style={MagicImageStyling} className={'ImageParentContainer'}>
+					<div  style={SubParentStyling} className={'SubParentContainer'}>
+						<div  style={MagicImageStyling} className={'ImageParentContainer'} onMouseOver={onMagicImageMouseHover} onMouseLeave={onMagicImageMouseLeave}>
 
 						</div>
 					</div>
@@ -207,6 +372,11 @@ registerBlockType( 'k2/imagescroll-block', {
 	},
 
 	save( { attributes } ) {
+
+		const SubParentStyling = {
+			width: attributes.MagicImageWidth + '%'
+		}
+
 		const MagicImageStyling = {
 			backgroundImage: 'url("' +attributes.MagicImage + '")',
 			boxShadow: 'inset 0 0 0 100vh rgba(' +
@@ -217,10 +387,14 @@ registerBlockType( 'k2/imagescroll-block', {
 
 			transition: 'background-position ' + attributes.MagicImageTransition + 's ease-in-out',
 			height: attributes.MagicImageHeight + 'vh',
+			backgroundPositionX: attributes.MagicImageBackgroundPositionX + '%',
+			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%'
+
 		}
 
-		return 		<div className={'ParentContainer'}>
-			<div className={'SubParentContainer'}>
+
+		return 	<div className={'ParentContainer'}>
+			<div  style={SubParentStyling} className={'SubParentContainer'}>
 				<div  style={MagicImageStyling} className={'ImageParentContainer'}>
 
 				</div>

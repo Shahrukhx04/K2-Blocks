@@ -9,14 +9,24 @@
  *
  * CSS for FrontEnd + BackEnd.
  */
+.ProgressBarParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 2em 0.5em;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
 .ProgressBarOutsideContainer {
-  display: inline-block;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   width: 100%;
   -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
           box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
 
 .ProgressBarInsideAnimation {
-  display: inline-block;
+  display: block;
   background-color: green;
   position: relative;
   overflow: hidden;
@@ -31,7 +41,6 @@
   left: 0;
   right: 0;
   content: "";
-  background-size: 100%;
   background-image: -webkit-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);

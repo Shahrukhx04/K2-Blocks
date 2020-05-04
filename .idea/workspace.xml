@@ -13,6 +13,8 @@
 
       <change beforePath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" afterDir="false" />
 
+      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/Image_Scroll/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

@@ -53,7 +53,7 @@ registerBlockType( 'k2/imagescroll-block', {
 		},
 		MagicImageOverlayColorAlpha: {
 			type: 'number',
-			default: 0.3
+			default: 0.0
 		},
 		MagicImageTransition: {
 			type: 'number',
@@ -97,7 +97,27 @@ registerBlockType( 'k2/imagescroll-block', {
 		},
 		MagicImageWidth: {
 			type: 'number',
-			default: 50
+			default: 20
+		},
+		MagicImageBorderRadius: {
+			type: 'number',
+			default: 20
+		},
+		MagicImageOverlayOption: {
+			type: 'boolean',
+			default: false
+		},
+		MagicImageBorderStyle: {
+			type: 'string',
+			default: 'none'
+		},
+		MagicImageBorderWidth: {
+			type: 'number',
+			default: 10
+		},
+		MagicImageBorderColor: {
+			type: 'number',
+			default: 'blue'
 		}
 
 	},
@@ -106,8 +126,9 @@ registerBlockType( 'k2/imagescroll-block', {
 
 		const colors = [
 			{ name: 'red', color: '#f00' },
-			{ name: 'white', color: '#fff' },
+			{ name: 'orange', color: '#fff' },
 			{ name: 'blue', color: '#00f' },
+			{ name: 'green', color: '#32CD32' },
 		];
 
 		const InspectorControlUploadImagePlaceholder = {
@@ -115,7 +136,7 @@ registerBlockType( 'k2/imagescroll-block', {
 		}
 
 		const SubParentStyling = {
-			width: attributes.MagicImageWidth + '%'
+			 width: attributes.MagicImageWidth + 'rem'
 		}
 
 		const MagicImageStyling = {
@@ -129,7 +150,11 @@ registerBlockType( 'k2/imagescroll-block', {
 			transition: 'background-position ' + attributes.MagicImageTransition + 's ease-in-out',
 			height: attributes.MagicImageHeight + 'vh',
 			backgroundPositionX: attributes.MagicImageBackgroundPositionX + '%',
-			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%'
+			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%',
+			borderRadius: attributes.MagicImageBorderRadius + 'px',
+			borderStyle: attributes.MagicImageBorderStyle,
+			borderWidth: attributes.MagicImageBorderWidth + 'px',
+			borderColor: attributes.MagicImageBorderColor
 
 		}
 
@@ -267,6 +292,42 @@ registerBlockType( 'k2/imagescroll-block', {
 			})
 		}
 
+		function onChangeMagicImageBorderRadius(NewRadius) {
+			setAttributes({
+				MagicImageBorderRadius: NewRadius
+			})
+		}
+
+		function onChangeMagicImageOverlayOption(NewOption) {
+			setAttributes({
+				MagicImageOverlayOption: NewOption,
+			})
+			if (NewOption == false){
+				setAttributes({
+					MagicImageOverlayColorAlpha: 0.0
+				})
+			} else {
+				setAttributes({
+					MagicImageOverlayColorAlpha: 0.3
+				})
+			}
+		}
+
+		function onChangeMagicImageBorderStyle(NewStyle) {
+			setAttributes({
+				MagicImageBorderStyle: NewStyle
+			})
+		}
+		function onChangeMagicImageBorderWidth(NewWidth) {
+			setAttributes({
+				MagicImageBorderWidth: NewWidth
+			})
+		}
+		function onChangeMagicImageBorderColor(NewColor) {
+			setAttributes({
+				MagicImageBorderColor: NewColor
+			})
+		}
 		return (
 			[
 				<InspectorControls>
@@ -309,8 +370,8 @@ registerBlockType( 'k2/imagescroll-block', {
 							type = {'images'}
 							value = {attributes.MagicImage}
 							render={ ({open}) => {
-								return <div style={InspectorControlUploadImagePlaceholder} className={'ImageSelectControl'}>
-									<i className="fa fa-plus-circle" onClick={open}></i>
+								return <div style={InspectorControlUploadImagePlaceholder} className={'ImageSelectControl'} onClick={open}>
+									<i className="fa fa-plus" ></i>
 								</div>;
 							}}
 						>
@@ -318,11 +379,80 @@ registerBlockType( 'k2/imagescroll-block', {
 					</PanelBody>
 
 					<PanelBody title={'Overlay'}>
-						<label > Fill Color </label>
-						<ColorPicker
-							value = {"rgb(68,68,68,0.4)"}
-							onChangeComplete={ onChangeMagicImageOverlay }
+						<PanelRow>
+
+							<p>
+								Overlay
+							</p>
+							<ToggleControl
+								checked = {attributes.MagicImageOverlayOption}
+								onChange = {onChangeMagicImageOverlayOption}
+							/>
+
+						</PanelRow>
+
+						{
+							attributes.MagicImageOverlayOption == false ?
+								null :
+								<div>
+									<label > Fill Color </label>
+									<ColorPicker
+										value = {"rgb(68,68,68,0.4)"}
+										onChangeComplete={ onChangeMagicImageOverlay }
+									/>
+								</div>
+
+						}
+
+
+					</PanelBody>
+
+					<PanelBody title={'Style'}>
+						<RangeControl
+							label={<strong> Border Radius </strong>}
+							value={ attributes.MagicImageBorderRadius }
+							onChange={ onChangeMagicImageBorderRadius }
+							min={ 1 }
+							max={ 100 }
+							step ={1}
 						/>
+
+						<SelectControl
+							label="Border Type"
+							value={ attributes.MagicImageBorderStyle }
+							options={
+								[
+									{ label: 'None', value: 'None' },
+									{ label: 'Solid', value: 'Solid' },
+									{ label: 'Double', value: 'Double' },
+									{ label: 'Dotted', value: 'Dotted' },
+									{ label: 'Dashed', value: 'Dashed' },
+									{ label: 'groove', value: 'groove' }
+								]
+							}
+							onChange={ onChangeMagicImageBorderStyle}
+						/>
+
+						{
+							(attributes.MagicImageBorderStyle === 'None')?null:
+								<div>
+									<RangeControl
+										label={<strong> Border Width </strong>}
+										value={ attributes.MagicImageBorderWidth }
+										onChange={ onChangeMagicImageBorderWidth }
+										min={ 1 }
+										max={ 100 }
+										step ={1}
+									/>
+									<p><strong>Progress Bar Color</strong></p>
+									<ColorPalette
+										value = {attributes.MagicImageBorderColor}
+										onChange = {onChangeMagicImageBorderColor}
+										colors = {colors} />
+								</div>
+
+						}
+
 					</PanelBody>
 
 					<PanelBody title={'Advance Options'}>
@@ -374,7 +504,7 @@ registerBlockType( 'k2/imagescroll-block', {
 	save( { attributes } ) {
 
 		const SubParentStyling = {
-			width: attributes.MagicImageWidth + '%'
+			width: attributes.MagicImageWidth + 'rem'
 		}
 
 		const MagicImageStyling = {
@@ -388,7 +518,8 @@ registerBlockType( 'k2/imagescroll-block', {
 			transition: 'background-position ' + attributes.MagicImageTransition + 's ease-in-out',
 			height: attributes.MagicImageHeight + 'vh',
 			backgroundPositionX: attributes.MagicImageBackgroundPositionX + '%',
-			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%'
+			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%',
+			borderRadius: attributes.MagicImageBorderRadius + 'px'
 
 		}
 

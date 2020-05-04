@@ -4,41 +4,29 @@
  * CSS for FrontEnd + BackEnd.
  */
 
-.CoverParentContainerSpan{
-  display: flex;
-  justify-content: left;
-  width: 80%;
-  margin: 2em auto;
-}
 
 // Cover Design Elements
+
+.BoxedContainer{
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  justify-content: center;
+}
 .CoverParentContainer{
+
+  width: 70%;
   //background-image: url("https://oxfordsummerprogram.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-10-at-12.33.09-PM-1-1.jpeg");
   background-color: lightgray;
   background-position: center;
   background-size: cover;
-  min-height: 90vh;
   display: flex;
   align-items: center;
   position: relative;
+
 }
-
-.CoverOverlay {
-
-  position: absolute;
-  left: 0; top: 0; right: 0; bottom: 0;
-  opacity: 0;
-  transition-duration: 1500ms;
-  background-color: black;
-}
-.CoverParentContainer:hover .CoverOverlay {
-  opacity: 0.2;
-}
-
-
 
 .CoverTextContainer {
-  width: 100%;
   text-align: center;
   padding: 2em;
 }
@@ -99,13 +87,15 @@
 
 
 // Classic Design Elements
+
+
+
 .ClassicParentContainer{
+  width: 70%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   flex-wrap: wrap-reverse;
   position: relative;
-  overflow: hidden;
 }
 
 
@@ -119,7 +109,6 @@
 //  background-image: url("http://localhost/wordpress/wp-content/uploads/2020/04/Culture-and-Diversity-e1575982916249.jpg");
   background-size: cover;
   background-position: 50%;
-  height: 70vh;
   position: relative;
 
 }
@@ -127,7 +116,7 @@
 
 // Text Container
 .ClassicTextContainer {
-  flex-basis: 50%;
+  flex-basis: 33.33%;
   text-align: justify;
   vertical-align: middle;
   padding: 2em;

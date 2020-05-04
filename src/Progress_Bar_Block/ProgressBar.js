@@ -114,8 +114,23 @@ registerBlockType( 'cgb/progressbar-block', {
 		ProgressBarOpacity: {
 			type: 'number',
 			default: 0.5
+		},
+		ProgressBarStripedOrSolid: {
+			type: 'boolean',
+			default: true
+		},
+		ProgressBarWidth: {
+			type: 'number',
+			default: 30
+		},
+		ProgressBarTextStyle: {
+			type: 'number',
+			default: 'normal'
+		},
+		ProgressBarTextDecoration: {
+			type: 'string',
+			default: 'None'
 		}
-
 	},
 
 
@@ -162,10 +177,14 @@ registerBlockType( 'cgb/progressbar-block', {
 			{ label: '600'},
 		]
 
+		const ProgressBarSubParentContainerStyling = {
+			width: attributes.ProgressBarWidth + 'rem'
+		}
 		const ProgressBarOutsideContainerStyling = {
 			backgroundColor: attributes.ProgressBarBackGroundColor,
 			height: attributes.progressBarHeight + "em",
-			borderRadius: attributes.ProgressBarBorderRadius + 'px'
+			borderRadius: attributes.ProgressBarBorderRadius + 'px',
+
 		}
 
 		const ProgressBarInsideAnimationStyling = {
@@ -173,7 +192,6 @@ registerBlockType( 'cgb/progressbar-block', {
 			height: attributes.progressBarHeight + "em",
 			backgroundColor: attributes.progressBarColor,
 			borderRadius: attributes.ProgressBarBorderRadius + 'px',
-
 
 		}
 
@@ -192,7 +210,10 @@ registerBlockType( 'cgb/progressbar-block', {
 			color: attributes.titleColor,
 			align: 'left',
 			fontFamily: attributes.TextFontFamily,
-			fontWeight: attributes.TextFontWeight
+			fontWeight: attributes.TextFontWeight,
+			fontStyle: attributes.ProgressBarTextStyle,
+			textDecoration: attributes.ProgressBarTextDecoration,
+			wordWrap: 'break-word'
 		}
 		function onTitleColorChange(NewColor) {
 
@@ -304,17 +325,60 @@ registerBlockType( 'cgb/progressbar-block', {
 				ProgressBarOpacity: NewValue
 			})
 		}
+
+		function onChangeProgressBarStripedOrSolid(NewOption) {
+			setAttributes({
+				ProgressBarStripedOrSolid: NewOption
+			})
+			if (NewOption === true){
+				setAttributes({
+					ProgressBarOpacity: 0.5
+				})
+			} else {
+				setAttributes({
+					ProgressBarOpacity: 0.0
+				})
+			}
+		}
+
+		function onChangeProgressBarWidth(NewWidth) {
+			setAttributes({
+				ProgressBarWidth: NewWidth
+			})
+		}
+		function onChangeProgressBarTextStyle(Newstyle) {
+			setAttributes({
+				ProgressBarTextStyle: Newstyle
+			})
+		}
+
+		function onChangeProgressBarTextDecoration(NewDecoration) {
+			setAttributes({
+				ProgressBarTextDecoration: NewDecoration
+			})
+		}
+
+
 		return ([
 
 				<InspectorControls>
 					<PanelBody>
 
 						<RangeControl
+							label={<strong> Progress Bar Width </strong>}
+							value={ attributes.ProgressBarWidth }
+							onChange={ onChangeProgressBarWidth }
+							min={ 5 }
+							max={ 100 }
+							step ={1}
+						/>
+
+						<RangeControl
 							label={<strong> Progress Bar Height </strong>}
 							value={ attributes.progressBarHeight }
 							onChange={ onBarHeightChange }
-							min={ 1 }
-							max={ 6 }
+							min={ 0 }
+							max={ 10 }
 							step ={0.1}
 						/>
 
@@ -371,7 +435,7 @@ registerBlockType( 'cgb/progressbar-block', {
 							value={ attributes.TextFontSize }
 							onChange={ onTextFontSizeChange }
 							min={ 1 }
-							max={ 10 }
+							max={ 8 }
 							step ={0.1}
 						/>
 
@@ -392,33 +456,75 @@ registerBlockType( 'cgb/progressbar-block', {
 								options={ FontWeightAvaibles }
 								onChange={ onFontWeightChange}
 							/>
-
 						</PanelRow>
 
+						<SelectControl
+							label="Style"
+							value={ attributes.ProgressBarTextStyle }
+							options={
+								[
+									{ label: 'Normal', value: 'Normal' },
+									{ label: 'oblique', value: 'oblique' },
+									{ label: 'italic', value: 'italic' },
+								]
+							}
+							onChange={ onChangeProgressBarTextStyle}
+						/>
 
+						<SelectControl
+							label="Decoration"
+							value={ attributes.ProgressBarTextDecoration }
+							options={
+								[
+									{ label: 'None', value: 'None' },
+									{ label: 'underline', value: 'underline' },
+									{ label: 'overline', value: 'overline' },
+									{ label: 'line-through', value: 'line-through' },
+								]
+							}
+							onChange={ onChangeProgressBarTextDecoration}
+						/>
 					</PanelBody>
 
 					<PanelBody title={'Bar'}>
 
 						<PanelRow>
 							<p>
-								Animation
+								Striped
 							</p>
 							<ToggleControl
-								checked = {attributes.AnimateProgressBar}
-								onChange = {onAnimateProgressBar}
+								checked = {attributes.ProgressBarStripedOrSolid}
+								onChange = {onChangeProgressBarStripedOrSolid}
 							/>
 
 						</PanelRow>
 
-						<RangeControl
-							label={<p> <strong> Opacity </strong> </p>}
-							value={ attributes.ProgressBarOpacity }
-							onChange={ onChangeProgressBarOpacity }
-							min={ 0 }
-							max={ 1 }
-							step ={0.1}
-						/>
+						{
+							(attributes.ProgressBarStripedOrSolid === true)?<div>
+								<PanelRow>
+									<p>
+										Animation
+									</p>
+									<ToggleControl
+										checked = {attributes.AnimateProgressBar}
+										onChange = {onAnimateProgressBar}
+									/>
+
+								</PanelRow>
+								<RangeControl
+									label={<p> <strong> Opacity </strong> </p>}
+									value={ attributes.ProgressBarOpacity }
+									onChange={ onChangeProgressBarOpacity }
+									min={ 0.1 }
+									max={ 1 }
+									step ={0.1}
+								/>
+							</div>:null
+						}
+
+
+
+
 
 						<RangeControl
 							label={<p> <strong> Border Raduis </strong> </p>}
@@ -446,21 +552,28 @@ registerBlockType( 'cgb/progressbar-block', {
 
 				</InspectorControls>,
 
-				<div>
-					<p style={ TextStyling}>
-						{attributes.title}
-						{
-							(attributes.ShowPercentage == false) ?
-								''
-								: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
-						}
+				<div className={'ProgressBarParentContainer'}>
+					<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
 
-					</p>
+						<div>
+							<span style={ TextStyling}>
+								{attributes.title}
+								{
+									(attributes.ShowPercentage == false) ?
+										''
+										: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
+								}
 
-					<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
-						<div className="ProgressBarInsideAnimation" style={ProgressBarInsideAnimationStyling}>
-							<span style={ProgressBarInsideAnimationSpanStyling}></span>
+							</span>
 						</div>
+
+
+						<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
+							<div className="ProgressBarInsideAnimation" style={ProgressBarInsideAnimationStyling}>
+								<span style={ProgressBarInsideAnimationSpanStyling}></span>
+							</div>
+						</div>
+
 					</div>
 				</div>
 
@@ -481,23 +594,27 @@ registerBlockType( 'cgb/progressbar-block', {
 	 */
 	save ({attributes}) {
 
-
+		const ProgressBarSubParentContainerStyling = {
+			width: attributes.ProgressBarWidth + 'rem'
+		}
 		const ProgressBarOutsideContainerStyling = {
 			backgroundColor: attributes.ProgressBarBackGroundColor,
 			height: attributes.progressBarHeight + "em",
-			borderRadius: attributes.ProgressBarBorderRadius + 'px'
+			borderRadius: attributes.ProgressBarBorderRadius + 'px',
+
 		}
 
 		const ProgressBarInsideAnimationStyling = {
 			width: attributes.progressBarPercentage + "%",
 			height: attributes.progressBarHeight + "em",
 			backgroundColor: attributes.progressBarColor,
-			borderRadius: attributes.ProgressBarBorderRadius + 'px'
+			borderRadius: attributes.ProgressBarBorderRadius + 'px',
 
 		}
 
 		const ProgressBarInsideAnimationSpanStyling = {
-			animationPlayState: attributes.AnimationState
+			animationPlayState: attributes.AnimationState,
+			opacity: attributes.ProgressBarOpacity
 		}
 
 		const BarOutlineStyling = {
@@ -510,23 +627,33 @@ registerBlockType( 'cgb/progressbar-block', {
 			color: attributes.titleColor,
 			align: 'left',
 			fontFamily: attributes.TextFontFamily,
-			fontWeight: attributes.TextFontWeight
+			fontWeight: attributes.TextFontWeight,
+			fontStyle: attributes.ProgressBarTextStyle,
+			textDecoration: attributes.ProgressBarTextDecoration,
+			wordWrap: 'break-word'
 		}
-		return <div>
-			<p style={ TextStyling}>
-				{attributes.title}
-				{
-					(attributes.ShowPercentage == false) ?
-						''
-						: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
-				}
+		return 	<div className={'ProgressBarParentContainer'}>
+			<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
 
-			</p>
+				<div>
+							<span style={ TextStyling}>
+								{attributes.title}
+								{
+									(attributes.ShowPercentage == false) ?
+										''
+										: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
+								}
 
-			<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
-				<div className="ProgressBarInsideAnimation" style={ProgressBarInsideAnimationStyling}>
-					<span style={ProgressBarInsideAnimationSpanStyling}></span>
+							</span>
 				</div>
+
+
+				<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
+					<div className="ProgressBarInsideAnimation" style={ProgressBarInsideAnimationStyling}>
+						<span style={ProgressBarInsideAnimationSpanStyling}></span>
+					</div>
+				</div>
+
 			</div>
 		</div>
 

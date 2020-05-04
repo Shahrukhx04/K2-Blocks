@@ -10,21 +10,121 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.tw-digit {
-  color: black;
-  font-size: 50px;
-  font-family: "Arial Black", Gadget, sans-serif;
-  width: 25%;
-  padding: 10px 50px 0px 50px;
-  margin: 10px;
-  background-color: #F1F1F1; }
+/**
+ * #.# Styles
+ *
+ * CSS for BackEnd.
+ */
+.ImageSelectControl {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
 
-.tw-title {
-  font-family: "Arial", Gadget, sans-serif;
-  background-color: #F1F1F1; }
+.ImageSelectControl i {
+  font-size: 48px;
+  color: #ddd; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
+
+.InspectorControlClassicPosition {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlClassicPositionEachElement {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.ImageSelectControl {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
+
+.ImageSelectControl i {
+  font-size: 35px;
+  color: lightsalmon; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+div.container {
+  width: 100%;
+  border-style: solid;
+  border-width: 0.2em;
+  border-radius: 0em;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.5em; }
+
+div.box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 1em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.counter-widget {
+  background-color: #ab47bc;
+  width: 10%;
+  min-width: 170px;
+  min-height: 150px;
+  text-align: center;
+  margin: auto; }
+
+.counter-widget .content {
+  padding: 10%; }
+
+.counter-widget .content .cw-number {
+  font-size: 50px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin: 10px;
+  color: white; }
+
+.counter-widget .content .cw-title {
+  font-family: Verdana,Geneva,sans-serif;
+  margin: 10px;
+  color: white; }

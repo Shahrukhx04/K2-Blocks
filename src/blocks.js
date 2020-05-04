@@ -10,5 +10,8 @@
  */
 
 import './Progress_Bar_Block/ProgressBar.js';
-import './Timer_Block/Timer.js';
-import './Alert/Alert.js';
+import './Call_To_Action/Call_To_Action.js';
+import './Image_Scroll/ImageScroll.js'
+import './Alert/Alert.js'
+import './Timer_Block/Timer.js'
+import './Counter_Block/Counter.js'

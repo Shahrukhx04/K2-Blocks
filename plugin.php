@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: MagikBuilder - Creative Gutenberg Blocks
+ * Plugin Name: K2 Blocks - Creative Gutenberg Blocks
  * Plugin URI: https://pookidevs.com/
  * Description: Blocks for gutenberg editor
  * Author: PookiDevs

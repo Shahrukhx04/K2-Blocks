@@ -125,10 +125,10 @@ registerBlockType( 'k2/imagescroll-block', {
 	edit( { attributes, setAttributes } ) {
 
 		const colors = [
-			{ name: 'red', color: '#f00' },
-			{ name: 'orange', color: '#fff' },
-			{ name: 'blue', color: '#00f' },
-			{ name: 'green', color: '#32CD32' },
+			{ color: '#32897A' },
+			{  color: '#1995AD' },
+			{  color: '#011A27' },
+			{  color: '#F69454' },
 		];
 
 		const InspectorControlUploadImagePlaceholder = {

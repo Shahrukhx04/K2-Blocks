@@ -71,7 +71,9 @@
 
 .ImageSelectControl i {
   font-size: 35px;
-  color: lightsalmon; }
+  color: white;
+  padding: 5px;
+  opacity: 0.59; }
 /**
  * #.# Common SCSS
  *

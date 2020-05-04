@@ -444,7 +444,7 @@ registerBlockType( 'k2/imagescroll-block', {
 										max={ 100 }
 										step ={1}
 									/>
-									<p><strong>Progress Bar Color</strong></p>
+									<p><strong>Border Color</strong></p>
 									<ColorPalette
 										value = {attributes.MagicImageBorderColor}
 										onChange = {onChangeMagicImageBorderColor}
@@ -503,6 +503,7 @@ registerBlockType( 'k2/imagescroll-block', {
 
 	save( { attributes } ) {
 
+
 		const SubParentStyling = {
 			width: attributes.MagicImageWidth + 'rem'
 		}
@@ -519,7 +520,10 @@ registerBlockType( 'k2/imagescroll-block', {
 			height: attributes.MagicImageHeight + 'vh',
 			backgroundPositionX: attributes.MagicImageBackgroundPositionX + '%',
 			backgroundPositionY: attributes.MagicImageBackgroundPositionY + '%',
-			borderRadius: attributes.MagicImageBorderRadius + 'px'
+			borderRadius: attributes.MagicImageBorderRadius + 'px',
+			borderStyle: attributes.MagicImageBorderStyle,
+			borderWidth: attributes.MagicImageBorderWidth + 'px',
+			borderColor: attributes.MagicImageBorderColor
 
 		}
 

@@ -218,7 +218,9 @@
   margin-top: 2em;
   margin-bottom: 2em;
   -ms-flex-pack: center;
-      justify-content: center; }
+      justify-content: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; }
 
 .SubParentContainer {
   max-height: 100vh; }

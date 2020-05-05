@@ -1,5 +1,6 @@
 import './style.scss';
 import './editor.scss';
+import {FONTS} from './Fonts.js';
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -8,7 +9,7 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 const {
 	RichText,
 	InspectorControls,
-	ColorPalette
+	ColorPalette,
 } = wp.editor;
 
 const {
@@ -16,8 +17,12 @@ const {
 	SelectControl,
 	DateTimePicker,
 	NumberControl,
-	TextControl
-
+	TextControl,
+	RangeControl,
+	ColorPicker,
+	ColorIndicator,
+	Card,
+	CardBody
 } = wp.components;
 
 
@@ -40,15 +45,48 @@ registerBlockType( 'k2/counter-block', {
 	icon: 'arrow-up-alt2',
 	category: 'magik-blocks',
 	attributes: {
+		widgetSize: {
+			type: 'number',
+			default: 150
+		},
+		paddingTop: {
+			type: 'number',
+			default: 10
+		},
 		backgroundColor: {
 			type: 'string',
-			default: '#ab47bc'
+			default: '#26C6DA'
 		},
-		fontColor: {
+		haloColor: {
 			type: 'string',
-			default: 'white'
+			default: '#C5E1A5'
+				
 		},
-		counterShape: {
+		titleFontColor: {
+			type: 'string',
+			default: 'black'
+		},
+		numberFontColor: {
+			type: 'string',
+			default: 'black'
+		},
+		titleFontFamily: {
+			type: 'string',
+			default: 'Comic Sans, Comic Sans MS, cursive'
+		},
+		numberFontFamily: {
+			type: 'string',
+			default: 'Comic Sans, Comic Sans MS, cursive'
+		},
+		numberFontSize: {
+			type: 'number',
+			default: 3
+		},
+		titleFontSize: {
+			type: 'number',
+			deafult: 1
+		},
+		counterShapeClass: {
 			type: 'string',
 			default: ''
 		},
@@ -71,29 +109,26 @@ registerBlockType( 'k2/counter-block', {
 				month: 0,
 				year: 2020
 			}
+		},
+		prefix: {
+			type: 'string',
+			default: ''
+		},
+		postfix: {
+			type: 'string',
+			default: ''
 		}
 		
 	},
 
 	edit: function(props) {
 
-			function onShapeChange(value){
-				props.setAttributes({
-					counterShape:value
-				})
-			}
-
 			function onBackgroundColorChange(value){
-				props.setAttributes({
-					backgroundColor: value
-				})
+				props.setAttributes( {
+					backgroundColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} 
+				);
 			}
-
-			function onFontColorChange(value){
-				props.setAttributes({
-					fontColor: value
-				})
-			}
+			
 
 			function onNumberChange(value){
 				props.setAttributes({
@@ -147,11 +182,28 @@ registerBlockType( 'k2/counter-block', {
 				})
 			}
 			var styling = {
-				backgroundColor: props.attributes.backgroundColor
+				backgroundColor: (props.attributes.counterShapeClass == '')?'transparent':props.attributes.backgroundColor,
+				width: props.attributes.widgetSize+"px",
+				height: props.attributes.widgetSize+"px",
+				boxShadow: (props.attributes.counterShapeClass != 'cw-halo')?'none':"0 0 25px "+props.attributes.haloColor	
 			}
-			 var textStyling = {
-				color: props.attributes.fontColor,
-			 }
+	
+			var titleStyling = {
+				color: props.attributes.titleFontColor,
+				fontFamily: props.attributes.titleFontFamily,
+				fontSize: props.attributes.titleFontSize + 'em',
+			}
+	
+			var numberStyling = {
+				color: props.attributes.numberFontColor,
+				fontFamily: props.attributes.numberFontFamily,
+				fontSize: props.attributes.numberFontSize + 'em',
+			}
+
+			var contentStyling = {
+				paddingTop: props.attributes.paddingTop+'px'
+			}
+
 			var backgroundDefaultColors = [
 				{ color: 'gray' },
 				{ color: '#ddd' },
@@ -169,7 +221,7 @@ registerBlockType( 'k2/counter-block', {
 							label={<strong>Number</strong>}
 							onChange={onNumberChange}
 							value = {props.attributes.number}
-						/>
+				/>
 			);
 			if (props.attributes.type === 'days'){
 				contentControls = (
@@ -182,9 +234,60 @@ registerBlockType( 'k2/counter-block', {
 					</div>
 				);
 			}
+
+			var colorControls = (
+				<div>
+					<label class="components-base-control__label">Background color</label>
+					<ColorPicker
+						color={ props.attributes.backgroundColor }
+						onChangeComplete={onBackgroundColorChange}
+					/>
+				</div>
+			);
+			if(props.attributes.counterShapeClass==''){
+				colorControls = null;
+			}
+			if(props.attributes.counterShapeClass=='cw-halo'){
+				colorControls = (
+					<div>
+					<label class="components-base-control__label">Background color</label>
+					<ColorPicker
+						color={ props.attributes.backgroundColor }
+						onChangeComplete={onBackgroundColorChange}
+					/>
+					<label class="components-base-control__label">Halo color</label>
+					<ColorPicker
+						color={ props.attributes.haloColor }
+						onChangeComplete={ ( value ) => {props.setAttributes( {haloColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} ); console.log(props.attributes.haloColor)} }
+					/>
+					</div>
+					
+				)
+			}
+
+
 			return ([
 				<InspectorControls>
+					<div>
+						<p>Counts up to a certain Number or Days since a date</p>
+					</div>
 					<PanelBody title={"Content"}>
+						<RangeControl
+							label= "Widget Size"
+							value={ props.attributes.widgetSize }
+							onChange={ (value)=>{props.setAttributes({widgetSize:value})} }
+							min={ 150 }
+							max={ 1000 }
+							step ={1}
+						/>
+						<RangeControl
+							label= "Content Alignment"
+							value={ props.attributes.paddingTop }
+							onChange={ (value)=>{props.setAttributes({paddingTop:value})} }
+							min={ 0 }
+							max={ props.attributes.widgetSize }
+							step ={1}
+						/>
 						<SelectControl
 							label="Type"
 							value={props.attributes.type}
@@ -201,38 +304,92 @@ registerBlockType( 'k2/counter-block', {
 							onChange={onTitleChange}
 							value = {props.attributes.title}
 						/>
+						<TextControl
+								label={<strong>Prefix</strong>}
+								onChange={(value)=>{props.setAttributes({prefix:value})}}
+								value = {props.attributes.prefix}
+						/>
+						<TextControl
+									label={<strong>PostFix</strong>}
+									onChange={(value)=>{props.setAttributes({postfix:value})}}
+									value = {props.attributes.postfix}
+						/>
 				</div>
 					</PanelBody>
 					<PanelBody title={"Styling and color"}>
+
 						<SelectControl
-									label="Shape"
-									value={props.attributes.timerShape}
+									label="Background Shape"
+									value={props.attributes.counterShapeClass}
 									options={[
-										{ label: 'Square', value: '' },
-										{ label: 'Round', value: 'tw-round' },
+										{label: 'None', value: ''},
+										{ label: 'Square', value: 'cw-square' },
+										{ label: 'Round', value: 'cw-round' },
+										{label: 'Halo', value: 'cw-halo'}
 									]}
-									onChange={onShapeChange}
+									onChange={(value)=>{props.setAttributes({counterShapeClass:value})}}
 						/>
-						<label class="components-base-control__label">Background color</label>
+
+						{colorControls}
+
+						<label class="components-base-control__label">Number color</label>
 						<ColorPalette
-							value = { props.attributes.backgroundColor }
-							onChange={onBackgroundColorChange}
-							colors = {backgroundDefaultColors}
-						/>
-						<label class="components-base-control__label">Text color</label>
-						<ColorPalette
-							value = { props.attributes.fontColor }
-							onChange={onFontColorChange}
+							value = { props.attributes.numberFontColor }
+							onChange={(value)=>{props.setAttributes({numberFontColor:value})}}
 							colors = {fontDefaultColors}
 						/>
+						
+						<SelectControl
+									label="Number Font"
+									value={props.attributes.numberFontFamily}
+									options={FONTS}
+									onChange={(value)=>{props.setAttributes({numberFontFamily:value})}}
+						/>
+
+						<RangeControl
+							label= "Number Font Size"
+							value={ props.attributes.numberFontSize }
+							onChange={ (value)=>{props.setAttributes({numberFontSize:value})} }
+							min={ 1 }
+							max={ 8 }
+							step ={0.1}
+						/>
+
+						<label class="components-base-control__label">Title color</label>
+						<ColorPalette
+							value = { props.attributes.titleFontColor }
+							onChange={(value)=>{props.setAttributes({titleFontColor:value})}}
+							colors = {fontDefaultColors}
+						/>
+						<SelectControl
+									label="Title Font"
+									value={props.attributes.titleFontFamily}
+									options={FONTS}
+									onChange={(value)=>{props.setAttributes({titleFontFamily:value})}}
+						/>
+						<RangeControl
+							label= "Title Font Size"
+							value={ props.attributes.titleFontSize }
+							onChange={ (value)=>{props.setAttributes({titleFontSize:value})} }
+							min={ 1 }
+							max={ 8 }
+							step ={0.1}
+						/>
+						
+						
 					</PanelBody>
 				</InspectorControls>
 				,
 				<div className="cw-holder">
-					<div className="counter-widget" style={styling}>
-						<div className="content">
-							<p className="cw-number" style={textStyling}> {props.attributes.number} </p>
-							<p className="cw-title" style={textStyling}> {props.attributes.title} </p>
+					<div className={"counter-widget"+" "+props.attributes.counterShapeClass} style={styling}>
+						<div className="content" style={contentStyling}>
+							<div className="cw-number" style={numberStyling}>
+								<span className="cw-prefix">{props.attributes.prefix}</span>
+								<span className="cw-span-number">{props.attributes.number}</span>
+								<span className="cw-postfix">{props.attributes.postfix}</span>
+							</div>
+							<p className="cw-title" style={titleStyling}> {props.attributes.title} </p>
+	
 						</div>
 					</div>
 				</div>
@@ -240,22 +397,41 @@ registerBlockType( 'k2/counter-block', {
 		}
 	,
 	save: function(props) {
-	var styling = {
-		color: props.attributes.fontColor,
-		backgroundColor: props.attributes.backgroundColor
-	}
-	var textStyling = {
-		color: props.attributes.fontColor,
-	 }
-	return (
-		<div className="cw-holder">
-			<div className="counter-widget" style={styling} data-done={0}>
-				<div className="content">
-					<p className="cw-number" style={textStyling}> {props.attributes.number} </p>
-					<p className="cw-title" style={textStyling}> {props.attributes.title} </p>
+		var styling = {
+			backgroundColor: (props.attributes.counterShapeClass == '')?'transparent':props.attributes.backgroundColor,
+			width: props.attributes.widgetSize+"px",
+			height: props.attributes.widgetSize+"px",
+			boxShadow: (props.attributes.counterShapeClass != 'cw-halo')?'none':"0 0 25px "+props.attributes.haloColor	
+		}
+
+		var titleStyling = {
+			color: props.attributes.titleFontColor,
+			fontFamily: props.attributes.titleFontFamily,
+			fontSize: props.attributes.titleFontSize + 'em',
+		}
+
+		var numberStyling = {
+			color: props.attributes.numberFontColor,
+			fontFamily: props.attributes.numberFontFamily,
+			fontSize: props.attributes.numberFontSize + 'em',
+		}
+
+		var contentStyling = {
+			paddingTop: props.attributes.paddingTop+'px'
+		}
+		return (
+			<div className="cw-holder">
+				<div className={"counter-widget"+" "+props.attributes.counterShapeClass} style={styling} data-done={0}>
+					<div className="content" style={contentStyling}>
+						<div className="cw-number" style={numberStyling}>
+							<span className="cw-prefix">{props.attributes.prefix}</span>
+							<span className="cw-span-number">{props.attributes.number}</span>
+							<span className="cw-postfix">{props.attributes.postfix}</span>
+						</div>
+						<p className="cw-title" style={titleStyling}> {props.attributes.title} </p>
+					</div>
 				</div>
 			</div>
-		</div>
-	  );
-	},
+		);
+		},
 })

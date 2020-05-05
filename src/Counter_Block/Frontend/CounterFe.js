@@ -17,14 +17,14 @@ jQuery(document).ready(function( $ ) {
               if(elementScrolled(this) && $(this).attr('data-done') == 0){
                 $(this).attr('data-done',"1");
                 console.log("was true")
-                console.log($(this).children(".content").children(".cw-number").text())
+                console.log($(this).children(".content").children(".cw-number").children(".cw-span-number").text())
                 $(this).prop('Counter',0).animate({
-                Counter: $(this).children(".content").children(".cw-number").text()
+                Counter: $(this).children(".content").children(".cw-number").children(".cw-span-number").text()
                 }, {
                     duration: 3000,
                     easing: 'swing',
                     step: function (now) {
-                        $(this).children(".content").children(".cw-number").text(Math.ceil(now));
+                        $(this).children(".content").children(".cw-number").children(".cw-span-number").text(Math.ceil(now));
                     }
                     });
               }

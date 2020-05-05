@@ -80,7 +80,7 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		TextFontSize: {
 			type: 'number',
-			default: 1
+			default: 10
 		},
 		ProgressBarBackGroundColor: {
 			type: 'string',
@@ -125,6 +125,10 @@ registerBlockType( 'k2/progressbar-block', {
 		ProgressBarTextDecoration: {
 			type: 'string',
 			default: 'None'
+		},
+		ProgressBarTextDisplay: {
+			type: 'boolean',
+			default: true
 		}
 	},
 
@@ -184,7 +188,6 @@ registerBlockType( 'k2/progressbar-block', {
 
 		const ProgressBarInsideAnimationStyling = {
 			width: attributes.progressBarPercentage + "%",
-			height: attributes.progressBarHeight + "em",
 			backgroundColor: attributes.progressBarColor,
 			borderRadius: attributes.ProgressBarBorderRadius + 'px',
 
@@ -201,7 +204,7 @@ registerBlockType( 'k2/progressbar-block', {
 		}
 
 		const TextStyling = {
-			fontSize: attributes.TextFontSize + 'em',
+			fontSize: attributes.TextFontSize + 'px',
 			color: attributes.titleColor,
 			align: 'left',
 			fontFamily: attributes.TextFontFamily,
@@ -353,6 +356,11 @@ registerBlockType( 'k2/progressbar-block', {
 			})
 		}
 
+		function onChangeProgressBarTextDisplay(NewOption) {
+			setAttributes({
+				ProgressBarTextDisplay:NewOption
+			})
+		}
 
 		return ([
 
@@ -407,78 +415,98 @@ registerBlockType( 'k2/progressbar-block', {
 					</PanelBody>
 
 					<PanelBody title={'Text'}>
-						<TextControl
-							label={<strong>Title</strong>}
-							onChange={onTitleChange}
-							value = {attributes.title}
-						/>
 
 						<PanelRow>
-
 							<p>
-								Show Percentage
+								Show Text
 							</p>
 							<ToggleControl
-								checked = {attributes.ShowPercentage}
-								onChange = {onShowPercentageToggleChange}
-							/>
-
-						</PanelRow>
-
-						<RangeControl
-							label={<p> <strong> Font Size </strong> </p>}
-							value={ attributes.TextFontSize }
-							onChange={ onTextFontSizeChange }
-							min={ 1 }
-							max={ 8 }
-							step ={0.1}
-						/>
-
-						<PanelRow>
-							<SelectControl
-								label="Font Family"
-								value={ attributes.TextFontFamily }
-								options={ FontsAvalaible }
-								onChange={ onTextFontChange}
-							/>
-
-						</PanelRow>
-
-						<PanelRow>
-							<SelectControl
-								label="Weight"
-								value={ attributes.TextFontWeight }
-								options={ FontWeightAvaibles }
-								onChange={ onFontWeightChange}
+								checked = {attributes.ProgressBarTextDisplay}
+								onChange = {onChangeProgressBarTextDisplay}
 							/>
 						</PanelRow>
 
-						<SelectControl
-							label="Style"
-							value={ attributes.ProgressBarTextStyle }
-							options={
-								[
-									{ label: 'Normal', value: 'Normal' },
-									{ label: 'oblique', value: 'oblique' },
-									{ label: 'italic', value: 'italic' },
-								]
-							}
-							onChange={ onChangeProgressBarTextStyle}
-						/>
 
-						<SelectControl
-							label="Decoration"
-							value={ attributes.ProgressBarTextDecoration }
-							options={
-								[
-									{ label: 'None', value: 'None' },
-									{ label: 'underline', value: 'underline' },
-									{ label: 'overline', value: 'overline' },
-									{ label: 'line-through', value: 'line-through' },
-								]
-							}
-							onChange={ onChangeProgressBarTextDecoration}
-						/>
+						{
+							(attributes.ProgressBarTextDisplay === false)?null:
+								<div>
+									<TextControl
+										label={<strong>Title</strong>}
+										onChange={onTitleChange}
+										value = {attributes.title}
+									/>
+
+									<PanelRow>
+
+										<p>
+											Show Percentage
+										</p>
+										<ToggleControl
+											checked = {attributes.ShowPercentage}
+											onChange = {onShowPercentageToggleChange}
+										/>
+
+									</PanelRow>
+
+									<RangeControl
+										label={<p> <strong> Font Size </strong> </p>}
+										value={ attributes.TextFontSize }
+										onChange={ onTextFontSizeChange }
+										min={ 0 }
+										max={ 50 }
+										step ={1}
+									/>
+
+									<PanelRow>
+										<SelectControl
+											label="Font Family"
+											value={ attributes.TextFontFamily }
+											options={ FontsAvalaible }
+											onChange={ onTextFontChange}
+										/>
+
+									</PanelRow>
+
+									<PanelRow>
+										<SelectControl
+											label="Weight"
+											value={ attributes.TextFontWeight }
+											options={ FontWeightAvaibles }
+											onChange={ onFontWeightChange}
+										/>
+									</PanelRow>
+
+									<SelectControl
+										label="Style"
+										value={ attributes.ProgressBarTextStyle }
+										options={
+											[
+												{ label: 'Normal', value: 'Normal' },
+												{ label: 'oblique', value: 'oblique' },
+												{ label: 'italic', value: 'italic' },
+											]
+										}
+										onChange={ onChangeProgressBarTextStyle}
+									/>
+
+									<SelectControl
+										label="Decoration"
+										value={ attributes.ProgressBarTextDecoration }
+										options={
+											[
+												{ label: 'None', value: 'None' },
+												{ label: 'underline', value: 'underline' },
+												{ label: 'overline', value: 'overline' },
+												{ label: 'line-through', value: 'line-through' },
+											]
+										}
+										onChange={ onChangeProgressBarTextDecoration}
+									/>
+								</div>
+						}
+
+
+
 					</PanelBody>
 
 					<PanelBody title={'Bar'}>
@@ -550,17 +578,21 @@ registerBlockType( 'k2/progressbar-block', {
 				<div className={'ProgressBarParentContainer'}>
 					<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
 
-						<div>
-							<span style={ TextStyling}>
-								{attributes.title}
-								{
-									(attributes.ShowPercentage == false) ?
-										''
-										: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
-								}
+						{
+							(attributes.ProgressBarTextDisplay === false)?null:
+								<div>
+									<span style={ TextStyling}>
+										{attributes.title}
+										{
+											(attributes.ShowPercentage == false) ?
+												''
+												: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
+										}
 
-							</span>
-						</div>
+									</span>
+								</div>
+						}
+
 
 
 						<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
@@ -601,7 +633,6 @@ registerBlockType( 'k2/progressbar-block', {
 
 		const ProgressBarInsideAnimationStyling = {
 			width: attributes.progressBarPercentage + "%",
-			height: attributes.progressBarHeight + "em",
 			backgroundColor: attributes.progressBarColor,
 			borderRadius: attributes.ProgressBarBorderRadius + 'px',
 
@@ -618,7 +649,7 @@ registerBlockType( 'k2/progressbar-block', {
 		}
 
 		const TextStyling = {
-			fontSize: attributes.TextFontSize + 'em',
+			fontSize: attributes.TextFontSize + 'px',
 			color: attributes.titleColor,
 			align: 'left',
 			fontFamily: attributes.TextFontFamily,
@@ -630,17 +661,20 @@ registerBlockType( 'k2/progressbar-block', {
 		return 	<div className={'ProgressBarParentContainer'}>
 			<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
 
-				<div>
-							<span style={ TextStyling}>
-								{attributes.title}
-								{
-									(attributes.ShowPercentage == false) ?
-										''
-										: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
-								}
+				{
+					(attributes.ProgressBarTextDisplay === false)?null:
+						<div>
+									<span style={ TextStyling}>
+										{attributes.title}
+										{
+											(attributes.ShowPercentage == false) ?
+												''
+												: <span style={{float: 'right'}}> {attributes.progressBarPercentage} % </span>
+										}
 
-							</span>
-				</div>
+									</span>
+						</div>
+				}
 
 
 				<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">

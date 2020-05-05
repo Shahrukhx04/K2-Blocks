@@ -152,11 +152,10 @@ registerBlockType( 'k2/progressbar-block', {
 		const {titleColor,title,borderColor,progressBarColor} = attributes
 
 		const ToolBarColors = [
-			{ color: 'red' },
-			{ color: 'green' },
-			{ color: 'blue' },
-			{ color: 'orange' },
-			{ color: 'yellow' }
+			{ color: '#32897A' },
+			{  color: '#1995AD' },
+			{  color: '#011A27' },
+			{  color: '#F69454' },
 		];
 
 		const FontsAvalaible = [

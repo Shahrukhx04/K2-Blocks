@@ -11,8 +11,6 @@
       <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

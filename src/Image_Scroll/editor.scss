@@ -1,0 +1,18 @@
+// Style file used for backend
+
+.ImageSelectControl {
+
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.ImageSelectControl i {
+  font-size:35px;
+  color: white;
+  padding: 5px;
+  opacity: 0.59;
+}

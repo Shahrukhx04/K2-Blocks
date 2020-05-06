@@ -1,23 +1,29 @@
 jQuery(document).ready(function( $ ) {
 
-    var timeString = null;
-    
-    function updateTW(){
-        $('.tw-holder').each(function () {
-            if(timeString == null){
-                var t_String = $(this).children("p").text().split(",");
-                timeString = [];
-                var i;
-                for (i = 0; i < t_String.length; i++) {
-                    timeString.push(parseInt(t_String[i]));
-                }
-                $(this).children("p").remove();
+    var timeString = [];
+    function getTimes(){
+        $('.TimerParentContainer').each(function () {
+            var t_String = $(this).attr('data-time').split(",");
+            temp = [];
+            var i;
+            for (i = 0; i < t_String.length; i++) {
+                temp.push(parseInt(t_String[i]));
             }
-            var targetDate = new Date(timeString[0],timeString[1],timeString[2],timeString[3],timeString[4],timeString[5],timeString[6]);
-            console.log(timeString);
-            console.log(targetDate);
+            timeString.push(temp);
+        }
+        )
+        //console.log(timeString);
+
+    }
+
+    function updateTW(){
+        $('.TimerParentContainer').each(function (index) {
+            //console.log("In timer number:"+index)
+            var targetDate = new Date(timeString[index][0],timeString[index][1],timeString[index][2],timeString[index][3],timeString[index][4],timeString[index][5],timeString[index][6]);
+            //console.log(timeString);
+            //console.log(targetDate);
             var variable1 = new Date(); //todays date
-            console.log(variable1);
+            //console.log(variable1);
             var days_;
             var hours_;
             var minutes_;
@@ -43,13 +49,15 @@ jQuery(document).ready(function( $ ) {
                 // what's left is seconds
                 seconds_ = Math.floor(delta % 60);  // in theory the modulus is not required
             }
-            $(this).children("table").children("tbody").children("tr").children("#tw-digit-seconds").html(seconds_);
-            $(this).children("table").children("tbody").children("tr").children("#tw-digit-minutes").html(minutes_);
-            $(this).children("table").children("tbody").children("tr").children("#tw-digit-hours").html(hours_);
-            $(this).children("table").children("tbody").children("tr").children("#tw-digit-days").html(days_);
+            var temp = $(this).children(".TimerBlockContainer").children("span");
+            temp.children(".tw-digit-seconds").html((seconds_ < 10) ? '0' + seconds_ : seconds_);
+            temp.children(".tw-digit-minutes").html((minutes_ < 10) ? '0' + minutes_ : minutes_);
+            temp.children(".tw-digit-hours").html((hours_ < 10) ? '0' + hours_ : hours_);
+            temp.children(".tw-digit-days").html((days_ < 10) ? '0' + days_ : days_);
     
         });    
-        console.log("Hello");
+        //console.log("Hello");
     }
+    var var1 = getTimes();
     var myVar = setInterval(updateTW, 1000);
 });

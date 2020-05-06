@@ -1,35 +1,56 @@
 /**
  * #.# Styles
  *
- * CSS for both Frontend+Backend.
+ * CSS for FrontEnd + BackEnd.
  */
 
-
-.meter {
-  border-radius: 1.5em;
-  border-style:solid;
-  border-width: 0.2em ;
-  position: relative;
-  background: transparent;
-  overflow: hidden;
-  margin-bottom: 2em;
+.ProgressBarParentContainer{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em 0.5em;
+  justify-content: center;
 }
 
-.meter span {
+.ProgressBarSubContainer{
+
+}
+
+.ProgressBarOutsideContainer{
+  display: inline-flex;
+  width: 100%;
+  box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2),
+  inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.ProgressBarInsideAnimation {
   display: block;
-  height: 100%;
+  background-color: green;
+  position: relative;
+  overflow: hidden;
+  background-size: 100%;
+  box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2),
+  inset 0 -2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.progress {
-  background-color: #006699;
-//  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+.ProgressBarInsideAnimation span{
 
-  animation-fill-mode:both;
-
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+  animation: CandyEffect 0.5s infinite linear;
 }
 
 
-@keyframes AnimateProgressBar {
-  0% { width: 0; }
-  100% { width: 100%; }
+@keyframes CandyEffect {
+  from {
+	background-position: 0 100%;
+  }
+  to {
+	background-position: 30px 100%;
+  }
 }

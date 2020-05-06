@@ -1,0 +1,25 @@
+// Style File used for both frontend + Backend
+
+
+
+
+.ParentContainer{
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  justify-content: center;
+  box-sizing: content-box;
+}
+
+.SubParentContainer{
+  max-height: 100vh;
+}
+
+.ImageParentContainer{
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+}
+
+
+

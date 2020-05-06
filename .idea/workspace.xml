@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="" />
+
+    <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
+    </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,15 +30,20 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/block.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Timer_Block/Timer.js" root0="SKIP_INSPECTION" />
   </component>
-  <component name="ProjectId" id="1aiOVni0bB203htycPEQ8aJPCWI" />
+  <component name="ProjectId" id="1azVGV6kte139ODlXo3BqkaXwOA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -46,7 +63,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="53b6b8a1-b5d2-4acf-af7d-fea4d03415aa" name="Default Changelist" comment="" />
+      <changelist id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="" />
       <created>1585065419989</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -57,7 +74,7 @@
       <workItem from="1585284157846" duration="3015000" />
       <workItem from="1585287195235" duration="441000" />
       <workItem from="1585288105520" duration="2760000" />
-      <workItem from="1587214976321" duration="47000" />
+      <workItem from="1587738315296" duration="473000" />
     </task>
     <servers />
   </component>
@@ -75,11 +92,5 @@
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="277" y="57" key="SettingsEditor" timestamp="1587838934339">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587838934339" />
   </component>
 </project>

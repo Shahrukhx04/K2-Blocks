@@ -1,0 +1,34 @@
+.counter-widget {
+    background: none;
+    width : 150px;
+    height: 150px;
+    text-align: center;
+    margin:auto;
+}
+
+.counter-widget .content .cw-number {
+    padding: 0px;
+    margin:0;
+    font-size:50px;
+    font-family: "Arial Black", Gadget, sans-serif; 
+    color:black;
+}
+
+.counter-widget .content .cw-title {
+    font-family: Verdana,Geneva,sans-serif; 
+    color:black;
+}
+
+.counter-widget.cw-round {
+    width:150px;
+    height:150px;
+    border-radius: 50%; 
+}
+
+.counter-widget.cw-square {
+    background-color: white;
+}
+
+.counter-widget.cw-halo {
+    border-radius: 50%;
+}

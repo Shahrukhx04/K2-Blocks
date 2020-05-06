@@ -25,6 +25,18 @@ const {
 	CardBody
 } = wp.components;
 
+const counterBlockIcon =(
+
+<svg viewBox="0 0 320 320" width={10} height={10}>
+      <path
+        data-original="#000000"
+        className="prefix__active-path"
+        data-old_color="#000000"
+        fill="#470DD0"
+        d="M128 85.333H85.333v85.334H0v42.666h85.333v85.334H128v-85.334h85.333v-42.666H128zM224 44.373V83.2l53.333-10.667v226.134H320V21.333z"
+      />
+    </svg>
+);
 
 /**
  * Register: aa Gutenberg Block.
@@ -42,7 +54,9 @@ const {
 registerBlockType( 'k2/counter-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 	title: 'Counter',
-	icon: 'arrow-up-alt2',
+	icon: {
+		src: counterBlockIcon
+	},
 	category: 'magik-blocks',
 	attributes: {
 		widgetSize: {
@@ -204,12 +218,6 @@ registerBlockType( 'k2/counter-block', {
 				paddingTop: props.attributes.paddingTop+'px'
 			}
 
-			var backgroundDefaultColors = [
-				{ color: 'gray' },
-				{ color: '#ddd' },
-				{color: 'white'},
-				{color: 'black'}
-			];
 			var fontDefaultColors = [
 				{ color: 'white' },
 				{ color: 'black' },

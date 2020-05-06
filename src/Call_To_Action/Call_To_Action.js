@@ -221,7 +221,8 @@ registerBlockType( 'k2/call-to-action-block', {
 				CTAClassicBoxHeight: Newheight
 			})
 		}
-		return ( [ <InspectorControls>
+		return ( [
+			<InspectorControls>
 				<PanelBody title={'Layout Select'}>
 					<SelectControl
 						label="Skin"

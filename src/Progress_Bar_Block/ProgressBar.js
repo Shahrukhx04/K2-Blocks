@@ -8,8 +8,7 @@
 //  Import CSS.
 import './editor.scss';
 import './style.scss';
-
-
+import {GLOBAL_FONTS} from '../Global_Fonts';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
@@ -460,7 +459,7 @@ registerBlockType( 'k2/progressbar-block', {
 										<SelectControl
 											label="Font Family"
 											value={ attributes.TextFontFamily }
-											options={ FontsAvalaible }
+											options={ GLOBAL_FONTS }
 											onChange={ onTextFontChange}
 										/>
 

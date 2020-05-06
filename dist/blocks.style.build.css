@@ -4,23 +4,245 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-div.container {
-  width: 100%;
-  border-style: solid;
-  border-width: 0.2em;
-  border-radius: 0em;
+/**
+ * #.# Styles
+ *
+ * CSS for FrontEnd + BackEnd.
+ */
+.ProgressBarParentContainer {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 2em 0.5em;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
+.ProgressBarOutsideContainer {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
+
+.ProgressBarInsideAnimation {
+  display: block;
+  background-color: green;
+  position: relative;
+  overflow: hidden;
+  background-size: 100%;
+  -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
+
+.ProgressBarInsideAnimation span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background-image: -webkit-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+  -webkit-animation: CandyEffect 0.5s infinite linear;
+          animation: CandyEffect 0.5s infinite linear; }
+
+@-webkit-keyframes CandyEffect {
+  from {
+    background-position: 0 100%; }
+  to {
+    background-position: 30px 100%; } }
+
+@keyframes CandyEffect {
+  from {
+    background-position: 0 100%; }
+  to {
+    background-position: 30px 100%; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for FrontEnd + BackEnd.
+ */
+.BoxedContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center; }
+
+.CoverParentContainer {
+  width: 70%;
+  background-color: lightgray;
+  background-position: center;
+  background-size: cover;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-align: center;
       align-items: center;
+  position: relative; }
+
+.CoverTextContainer {
+  text-align: center;
+  padding: 2em; }
+
+.CoverHeadingStyle {
+  color: white !important; }
+
+.CoverParagraphHeading {
+  color: white;
+  font-size: 1.1em !important;
+  font-family: "Poppins",Sans-serif; }
+
+.CoverButtonStyling {
+  background-color: #002147;
+  padding: 0.5em 1em;
+  display: inline-block;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+  color: white !important;
+  font-family: 'poppins';
+  font-weight: 500;
+  font-size: 1.4em !important;
+  line-height: 1 !important;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+
+.CoverButtonStyling:hover {
+  background-color: white;
+  padding: 0.5em 1em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #002147;
+  color: #002147 !important;
+  cursor: pointer; }
+
+.ClassicParentContainer {
+  width: 70%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+  position: relative; }
+
+.ClassicImageContainer {
+  background-color: lightgray;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  background-size: cover;
+  background-position: 50%;
+  position: relative; }
+
+.ClassicTextContainer {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  text-align: justify;
+  vertical-align: middle;
+  padding: 2em; }
+
+.ClassicHeadingStyle {
+  color: #002147 !important; }
+
+.ClassicParagraphHeading {
+  color: #002147;
+  font-size: 1.1em !important;
+  font-family: "Poppins",Sans-serif; }
+
+.ClassicButtonStyling {
+  background-color: transparent;
+  padding: 0.5em 1em;
+  display: inline-block;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #002147;
+  color: #002147 !important;
+  font-family: 'poppins';
+  font-weight: 500;
+  font-size: 1.4em !important;
+  line-height: 1 !important;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+
+.ClassicButtonStyling:hover {
+  background-color: #002147;
+  padding: 0.5em 1em;
+  border-width: 0.1em;
+  border-style: solid;
+  border-color: #002147;
+  color: white !important;
+  cursor: pointer; }
+
+@media (max-width: 1000px) {
+  .CoverParentContainerSpan {
+    width: 100%; } }
+
+@media (max-width: 700px) {
+  .ClassicImageContainer {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    min-height: 65vh; }
+  .ClassicTextContainer {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.ParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; }
+
+.SubParentContainer {
+  max-height: 100vh; }
+
+.ImageParentContainer {
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.WidgetContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+div.container {
+  width: 100%;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   padding: 0.5em; }
 
 div.box {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding-left: 1em; }
+  display: block; }
 /**
  * #.# Common SCSS
  *
@@ -62,3 +284,37 @@ div.box {
   .TimerValueContainer {
     font-size: 7vw;
     padding: 9px; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.counter-widget {
+  background: none;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin: auto; }
+
+.counter-widget .content .cw-number {
+  padding: 0px;
+  margin: 0;
+  font-size: 50px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  color: black; }
+
+.counter-widget .content .cw-title {
+  font-family: Verdana,Geneva,sans-serif;
+  color: black; }
+
+.counter-widget.cw-round {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; }
+
+.counter-widget.cw-square {
+  background-color: white; }
+
+.counter-widget.cw-halo {
+  border-radius: 50%; }

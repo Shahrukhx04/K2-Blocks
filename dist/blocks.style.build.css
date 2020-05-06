@@ -225,23 +225,24 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-div.container {
-  width: 100%;
-  border-style: solid;
-  border-width: 0.2em;
-  border-radius: 0em;
+.WidgetContainer {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+div.container {
+  width: 100%;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   padding: 0.5em; }
 
 div.box {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding-left: 1em; }
+  display: block; }
 /**
  * #.# Common SCSS
  *

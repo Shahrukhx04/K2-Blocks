@@ -80,23 +80,58 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-div.container {
+.InspectorControlAlertBoxAlignment {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   width: 100%;
-  border-style: solid;
-  border-width: 0.2em;
-  border-radius: 0em;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlAlertBoxAlignmentEach {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.IconListWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 2em; }
+
+.IconListSubWrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
-  padding: 0.5em; }
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  max-height: 120px;
+  overflow: auto; }
 
-div.box {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding-left: 1em; }
+.IconListSubWrapper span {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.IconListSubWrapper span:hover {
+  color: orange;
+  background-color: #FED8B1;
+  cursor: pointer; }
+
+.active {
+  color: orange;
+  background-color: #FED8B1; }
 /**
  * #.# Common SCSS
  *

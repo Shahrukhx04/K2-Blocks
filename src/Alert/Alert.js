@@ -20,7 +20,7 @@ const { registerBlockType,
 const {
 	RichText,
 	InspectorControls,
-	ColorPalette,
+	ColorPalette
 } = wp.editor;
 
 const {
@@ -631,6 +631,7 @@ registerBlockType( 'k2/alert-block', {
 					</InspectorControls>,
 
 					<div className={'WidgetContainer'}>
+
 						<div style={SubWidgetStyling}>
 
 							<div style={ParentContainerStyling} className={'container'}>
@@ -648,6 +649,7 @@ registerBlockType( 'k2/alert-block', {
 								/>
 							</div>
 						</div>
+
 
 					</div>
 				]

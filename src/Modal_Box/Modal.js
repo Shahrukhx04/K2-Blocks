@@ -1,6 +1,7 @@
 import './style.scss';
 import './editor.scss';
 import {FONTS} from './Fonts.js';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -17,28 +18,92 @@ const {
 	SelectControl,
 	DateTimePicker,
 	ColorPicker,
-	CheckboxControl
+	CheckboxControl,
+	TextControl,
+	RangeControl
 
 } = wp.components;
 
-const modalBlockIcon = (
-	<svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="-69 0 512 512" width="512px" class=""><g>
-		<path d="m270.894531 286.8125c-11.867187-12.816406-17.113281-18.976562-17.113281-30.738281 0-11.949219 0-19.164063 19.832031-39.921875 21.558594-22.5625 51.082031-53.46875 51.082031-156.667969 0-8.285156-5.96875-15-13.332031-15h-249.550781c-7.363281 0-13.332031 6.714844-13.332031 15 0 103.199219 29.527343 134.105469 51.082031 156.667969 12.367188 12.945312 19.832031 20.757812 19.832031 39.921875 0 9.523437-4.90625 15.253906-16 27.3125-21.867187 23.765625-54.914062 59.683593-54.914062 169.140625 0 8.28125 5.96875 15 13.332031 15h249.550781c7.363281 0 13.332031-6.71875 13.332031-15 0-107.621094-32.375-142.582032-53.800781-165.714844zm0 0" fill="#c4e8f2" data-original="#C4E8F2" class=""/>
-		<g fill="#ffcd2a">
-			<path d="m315.671875 441.351562-119.074219-106.664062c-5.699218-5.101562-14.320312-5.101562-20.019531 0l-119.070313 106.664062c-4.632812 4.148438-6.226562 10.722657-4.003906 16.53125 2.222656 5.804688 7.792969 9.640626 14.011719 9.640626h238.148437c6.21875 0 11.789063-3.832032 14.011719-9.640626 2.222657-5.808593.628907-12.382812-4.003906-16.53125zm0 0" data-original="#FFCD2A" class="" style={{fill:'#43CEA2'}} data-old_color="#FFCD2A"/><path d="m201.625 266.15625c0-8.304688-6.730469-15.035156-15.035156-15.035156-8.304688 0-15.035156 6.730468-15.035156 15.035156 0 8.300781 6.730468 15.03125 15.035156 15.03125 8.304687 0 15.035156-6.730469 15.035156-15.03125zm0 0" data-original="#FFCD2A" class="" style={{fill:'#43CEA2'}} data-old_color="#FFCD2A"/>
-			<path d="m201.625 305.988281c0-8.304687-6.730469-15.035156-15.035156-15.035156-8.304688 0-15.035156 6.730469-15.035156 15.035156 0 8.300781 6.730468 15.03125 15.035156 15.03125 8.304687 0 15.035156-6.730469 15.035156-15.03125zm0 0" data-original="#FFCD2A" class="" style={{fill:'#43CEA2'}} data-old_color="#FFCD2A"/>
-			<path d="m98.308594 155.128906c7.152344 15.058594 16.144531 23.421875 26.550781 33.101563 9.152344 8.511719 20.542969 19.109375 28.585937 34.011719 6.609376 12.246093 19.308594 19.855468 33.144532 19.855468 13.835937 0 26.535156-7.609375 33.140625-19.855468 8.042969-14.902344 19.433593-25.496094 28.585937-34.011719 10.410156-9.679688 19.402344-18.042969 26.550782-33.097657 3.820312-8.039062 6.890624-17.640624 9.132812-28.535156.910156-4.414062-.21875-9.003906-3.066406-12.5-2.847656-3.492187-7.117188-5.519531-11.625-5.519531h-165.4375c-4.511719 0-8.777344 2.027344-11.628906 5.523437-2.847657 3.492188-3.972657 8.082032-3.0625 12.5 2.242187 10.890626 5.3125 20.492188 9.128906 28.527344zm0 0" data-original="#FFCD2A" class="" style={{fill:'#43CEA2'}} data-old_color="#FFCD2A"/>
-			</g>
-			<path d="m61.8125 44.484375c-7.363281 0-13.332031 6.714844-13.332031 15 0 103.199219 29.527343 134.105469 51.082031 156.667969 12.367188 12.945312 19.832031 20.757812 19.832031 39.921875 0 9.523437-4.90625 15.253906-16 27.3125-21.867187 23.765625-54.914062 59.679687-54.914062 169.136719 0 8.285156 5.96875 15 13.332031 15h124.777344v-423.039063zm0 0" fill="#ddf1f8" data-original="#DDF1F8" class=""/>
-			<path d="m176.578125 334.6875-119.070313 106.664062c-4.632812 4.148438-6.226562 10.722657-4.003906 16.53125 2.222656 5.804688 7.792969 9.640626 14.011719 9.640626h119.074219v-136.664063c-3.582032 0-7.160156 1.277344-10.011719 3.828125zm0 0" fill="#ffe353" data-original="#FFE353" class="active-path" style={{fill:'#4AE6B5'}} data-old_color="#ffe353"/>
-			<path d="m186.589844 251.121094c-8.304688 0-15.035156 6.730468-15.035156 15.035156 0 8.300781 6.730468 15.03125 15.035156 15.03125zm0 0" fill="#ffe353" data-original="#FFE353" class="active-path" style={{fill:'#4AE6B5'}} data-old_color="#ffe353"/><path d="m186.589844 290.953125c-8.304688 0-15.035156 6.730469-15.035156 15.035156 0 8.300781 6.730468 15.03125 15.035156 15.03125zm0 0" fill="#ffe353" data-original="#FFE353" class="active-path" style={{fill:'#4AE6B5'}} data-old_color="#ffe353"/>
-			<path d="m103.871094 108.574219c-4.511719 0-8.777344 2.027343-11.628906 5.523437-2.847657 3.496094-3.972657 8.085938-3.0625 12.5 2.242187 10.894532 5.3125 20.496094 9.128906 28.53125 7.152344 15.058594 16.144531 23.417969 26.550781 33.101563 9.152344 8.511719 20.542969 19.105469 28.585937 34.011719 6.609376 12.246093 19.308594 19.851562 33.144532 19.851562v-133.519531zm0 0" fill="#ffe353" data-original="#FFE353" class="active-path" style={{fill:'#4AE6B5'}} data-old_color="#ffe353"/>
-			<path d="m16.175781 74.484375h340.828125c8.28125 0 15-6.714844 15-15v-44.484375c0-8.285156-6.71875-15-15-15h-340.828125c-8.285156 0-15 6.714844-15 15v44.484375c0 8.285156 6.714844 15 15 15zm0 0" fill="#006091" data-original="#006091" class="" style={{fill:'#400CBA'}} data-old_color="#006091"/><path d="m358.179688 437.523438h-343.179688c-8.285156 0-15 6.71875-15 15v44.476562c0 8.285156 6.714844 15 15 15h343.175781c8.285157 0 15-6.714844 15-15v-44.476562c.003907-8.28125-6.714843-15-14.996093-15zm0 0" fill="#006091" data-original="#006091" class="" style={{fill:'#400CBA'}} data-old_color="#006091"/>
-			<path d="m16.175781 0c-8.285156 0-15 6.714844-15 15v44.484375c0 8.285156 6.714844 15 15 15h170.414063v-74.484375zm0 0" fill="#0077b1" data-original="#0077B1" class="" style={{fill:'#470DD0'}} data-old_color="#0077b1"/>
-		<path d="m15 437.523438c-8.285156 0-15 6.71875-15 15v44.476562c0 8.285156 6.714844 15 15 15h171.589844v-74.476562zm0 0" fill="#0077b1" data-original="#0077B1" class="" style={{fill:'#470DD0'}} data-old_color="#0077b1"/>
-		</g> 
-		</svg>
-);
+const modalBlockIcon =  (
+    <svg viewBox="0 0 512 512" width={512} height={512}>
+      <path
+        data-original="#A7DCFC"
+        fill="#a7dcfc"
+        d="M474.5 496h30V176l-50-60z"
+      />
+      <path
+        data-original="#EAF7FF"
+        className="prefix__active-path"
+        data-old_color="#EAF7FF"
+        fill="#d0f6ea"
+        d="M7.5 176v320h467V116z"
+      />
+      <path
+        data-original="#F85B3F"
+        data-old_color="#F85B3F"
+        fill="#43cea2"
+        d="M474.5 86l-20 45 20 45h30V86z"
+      />
+      <path
+        data-original="#FF7F67"
+        data-old_color="#FF7F67"
+        fill="#43cea2"
+        d="M414.5 86l-20 45 20 45h60V86z"
+      />
+      <path
+        data-original="#B6B8B5"
+        data-old_color="#B6B8B5"
+        fill="#43cea2"
+        d="M7.5 86h407v90H7.5z"
+      />
+      <path data-original="#FFFFFF" fill="#fff" d="M37.5 116h347v30h-347z" />
+      <path
+        data-original="#A7DCFC"
+        fill="#a7dcfc"
+        d="M384.5 271h30V76l-50-30z"
+      />
+      <path
+        data-original="#EAF7FF"
+        className="prefix__active-path"
+        data-old_color="#EAF7FF"
+        fill="#d0f6ea"
+        d="M97.5 76v195h287V46z"
+      />
+      <path
+        data-original="#F85B3F"
+        data-old_color="#F85B3F"
+        fill="#43cea2"
+        d="M384.5 16l-20 35 20 35h30V16z"
+      />
+      <path
+        data-original="#FF7F67"
+        data-old_color="#FF7F67"
+        fill="#43cea2"
+        d="M344.5 16l-20 35 20 35h40V16z"
+      />
+      <path
+        data-original="#B6B8B5"
+        data-old_color="#B6B8B5"
+        fill="#43cea2"
+        d="M97.5 16h247v70h-247z"
+      />
+      <path
+        d="M314.5 58.5h-187c-4.142 0-7.5-3.357-7.5-7.5s3.358-7.5 7.5-7.5h187c4.142 0 7.5 3.357 7.5 7.5s-3.358 7.5-7.5 7.5z"
+        data-original="#FFFFFF"
+        fill="#fff"
+      />
+      <path
+        d="M504.5 78.5H422V16a7.5 7.5 0 00-7.5-7.5h-317A7.5 7.5 0 0090 16v62.5H7.5A7.5 7.5 0 000 86v410a7.5 7.5 0 007.5 7.5h497a7.5 7.5 0 007.5-7.5V86a7.5 7.5 0 00-7.5-7.5zm-7.5 15v75h-75v-75h75zm-90-15h-55v-55h55v55zm-302-55h232v55H157.5c-4.142 0-7.5 3.357-7.5 7.5s3.358 7.5 7.5 7.5H407v170H105v-87.49V93.5h22.5c4.142 0 7.5-3.357 7.5-7.5s-3.358-7.5-7.5-7.5H105v-55zm-15 115H45v-15h45v15zm0-45v15H37.5A7.5 7.5 0 0030 116v30a7.5 7.5 0 007.5 7.5H90v15H15v-75h75zm-75 395v-305h75V271a7.5 7.5 0 007.5 7.5h317a7.5 7.5 0 007.5-7.5v-87.5h75v305H15z"
+        data-original="#000000"
+        data-old_color="#000000"
+        fill="#470dd0"
+      />
+    </svg>
+  );
+  const MY_TEMPLATE = [
+	[ 'core/heading', { placeholder: 'This is a Modal popup' } ],
+    [ 'core/paragraph', { placeholder: 'Add your blocks here' } ],
+];
 /**
  * Register: aa Gutenberg Block.
  *
@@ -52,37 +117,109 @@ const modalBlockIcon = (
  *                             registered; otherwise `undefined`.
  */
 
-registerBlockType( 'k2/timer-block', {
+registerBlockType( 'k2/modal-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: 'Timer',
+	title: 'Modal box',
 	icon: {
 		src: modalBlockIcon,
 	},
 	category: 'magik-blocks',
 	attributes: {
-		
-
+		type : {
+			type: 'string',
+			default: 'button'
+		},
+		popupDelay: {
+			type: 'number',
+			default: 3
+		},
+		buttonColor: {
+			type: 'string',
+			default: '#43cea2'
+		},
+		buttonText: {
+			type: 'string',
+			default: 'Open Sesame'
+		},
 	},
 
 	edit: function(props) {
+
+			var controls = (
+				<PanelBody title={"Button styling"}>
+					<TextControl
+						label={<strong>Text</strong>}
+						onChange={(value)=>{props.setAttributes({buttonText:value})}}
+						value = {props.attributes.buttonText}
+					/>
+					<ColorPicker
+						color={props.attributes.buttonColor}
+						onChangeComplete={(value)=>{props.setAttributes({buttonColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'})}}
+					/>
+				</PanelBody>
+			);
+			if(props.attributes.type == 'time'){
+				controls = (
+					<RangeControl
+						label= "Popup delay"
+						value={ props.attributes.popupDelay }
+						onChange={ (value)=>{props.setAttributes({popupDelay:value})} }
+						min={ 1 }
+						max={ 10 }
+						step ={1}
+					/>   
+				);
+			}
+
+			var buttonStyle = {
+				backgroundColor: props.attributes.buttonColor,
+			}
 			return ([
 				<InspectorControls>
-					
+					<SelectControl
+						label="Type"
+						value={props.attributes.type}
+						options={[
+							{ label: 'Button', value: 'button' },
+							{ label: 'Timed', value: 'time'}
+						]}
+						onChange={(value)=>{props.setAttributes({type:value})}}
+					/>
+					{controls}
 				</InspectorControls>
 				,
 				<div className={'modal-container'}>
-
+					{(props.attributes.type == 'button') &&
+						<button className={'modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
+					}
+					<div class="modal-backend">
+						<div class="modal-content-backend">
+							<InnerBlocks template={ MY_TEMPLATE }/>
+						</div>
+					</div>
 				</div>
 			])
 		}
 	,
 	save: function(props) {
-
-
+		var buttonStyle = {
+			backgroundColor: props.attributes.buttonColor,
+		}
 		return (
-			<div className={'modal-container'} data-time={timer_str}>
-
+		<div className={'modal-container'} data-type={props.attributes.type} data-time={props.attributes.popupDelay*1000}>
+			{
+				(props.attributes.type == 'button') &&
+				<button className={'modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
+			}
+			<div className="modal fade-in">
+				<div className="modal-content">
+					<InnerBlocks.Content />
+					<div className="modal-footer">
+						<span class="close">close</span>
+					</div>
+				</div>
 			</div>
+		</div>
 	  );
 	},
 })

@@ -2,17 +2,18 @@
 .sidenav {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-shrink: 2;
   background-color: white;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: 0.5s;
   flex-grow: 1;
-  height: 100%;
-  width: 0%;
+  width: 0vw;
   padding-top: 10rem;
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   z-index:10;
 }
 
@@ -62,4 +63,13 @@
   background-color: transparent;
   margin-left: 2em;
   margin-right: 2em;
+}
+
+.ParentSection{
+  display: flex;
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  justify-content: center;
+  box-sizing: content-box;
 }

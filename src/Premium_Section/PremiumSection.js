@@ -31,51 +31,53 @@ registerBlockType( 'k2/premium-section', {
 	icon: 'smiley',
 	category: 'magik-blocks',
 	attributes: {
+		SelectedPost: {
+			type: 'number',
+			default: 0
+		}
 	},
-	edit(){
+	edit: function(){
 
 
 
 		function openNav() {
-			document.getElementById("mySidenav").style.width = "100%";
+			document.getElementById("mySidenav").style.width = "100vw";
 			document.body.style.backgroundColor = "rgb(0,0,128,0.2)"
+			console.log(document.getElementById('ParentSection').style.width)
 		}
 
 		function closeNav() {
-			document.getElementById("mySidenav").style.width = "0%";
+			document.getElementById("mySidenav").style.width = "0vw";
 			document.body.style.backgroundColor = "white"
 
 		}
 
 
 
+		return <div id={'ParentSection'} className={'ParentSection'}>
+					<div id="mySidenav" className="sidenav">
+						<div id={'CrossButton'} className="closebtn" onClick={closeNav}>&times;</div>
+						<div className={'InnerBlockContainer'}>
+							<InnerBlocks
+								templateInsertUpdatesSelection={ true }
+								renderAppender={ () => (
+									<InnerBlocks.ButtonBlockAppender
+									/>
+								) }
+							/>
 
-		return (
-			[
-				<div id="mySidenav" className="sidenav">
-					<div id={'CrossButton'} className="closebtn" onClick={closeNav}>&times;</div>
-					<div className={'InnerBlockContainer'}>
-						<InnerBlocks
-							templateInsertUpdatesSelection={ true }
-							renderAppender={ () => (
-								<InnerBlocks.ButtonBlockAppender
-								/>
-							) }
-						/>
-
+						</div>
 					</div>
-				</div>,
-				<div className={'ButtonStyle'}>
-					<span  style={{fontSize:'45px' , cursor:'pointer', textAlign: 'right'}} onClick={openNav}>&#9776;</span>
+					<div className={'ButtonStyle'}>
+						<span  style={{fontSize:'45px' , cursor:'pointer', textAlign: 'right'}} onClick={openNav}>&#9776;</span>
+					</div>
 				</div>
-
-			]
-			)
 
 
 
 	},
-	save(){
+	save: function(){
+
 
 		return <div>
 			<div id="mySidenav" className="sidenav">

@@ -254,21 +254,22 @@ div.box {
   display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  -ms-flex-negative: 2;
+      flex-shrink: 2;
   background-color: white;
-  overflow-x: hidden;
+  overflow: hidden;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
   -ms-flex-positive: 1;
       flex-grow: 1;
-  height: 100%;
-  width: 0%;
+  width: 0vw;
   padding-top: 10rem;
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 10; }
 
 .ButtonStyle {
@@ -318,6 +319,17 @@ div.box {
   background-color: transparent;
   margin-left: 2em;
   margin-right: 2em; }
+
+.ParentSection {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; }
 /**
  * #.# Common SCSS
  *

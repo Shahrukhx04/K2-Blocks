@@ -111,6 +111,8 @@ function register_custom_scripts(){
 	wp_enqueue_script( 'timer_frontend', plugins_url( 'src/Timer_Block/Frontend/TimerFe.js', dirname( __FILE__ ) ), array('jquery'),
 			true );
 	wp_enqueue_script( 'counter_frontend', plugins_url( 'src/Counter_Block/Frontend/CounterFe.js', dirname( __FILE__ ) ), array('jquery'),
+			true );
+	wp_enqueue_script( 'modal_frontend', plugins_url( 'src/Modal_Box/Frontend/ModalBoxFe.js', dirname( __FILE__ ) ), array('jquery'),
             true );
 
     wp_enqueue_script( 'ImageScroll_Frontend', plugins_url( 'src/Image_Scroll/Frontend/ImageScrollFrontEnd.js', dirname( __FILE__ ) ), array('jquery'),

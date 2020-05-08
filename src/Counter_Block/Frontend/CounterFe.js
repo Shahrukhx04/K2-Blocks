@@ -1,7 +1,7 @@
 
 
 jQuery(document).ready(function( $ ) {
-        console.log("hello0");
+        //console.log("hello0");
 
         function elementScrolled(elem)
         {

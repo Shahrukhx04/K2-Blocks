@@ -98,7 +98,7 @@ registerBlockType( 'k2/counter-block', {
 		},
 		titleFontSize: {
 			type: 'number',
-			deafult: 1
+			default: 1
 		},
 		counterShapeClass: {
 			type: 'string',

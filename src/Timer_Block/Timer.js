@@ -313,6 +313,7 @@ registerBlockType( 'k2/timer-block', {
 				,
 				<div className={'TimerParentContainer'}>
 
+
 					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
 						<span style={{display: 'block'}}>
 							<div style={TimerValueContainerStyling} className='TimerValueContainer'>

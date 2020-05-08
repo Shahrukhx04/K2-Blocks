@@ -144,9 +144,14 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-
 .components-datetime {
   padding: 0 !important; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
 /**
  * #.# Common SCSS
  *

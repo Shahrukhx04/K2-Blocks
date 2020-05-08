@@ -79,7 +79,7 @@
       justify-content: center; }
 
 .CoverParentContainer {
-  width: 70%;
+  width: 70rem;
   background-color: lightgray;
   background-position: center;
   background-size: cover;
@@ -127,7 +127,7 @@
   cursor: pointer; }
 
 .ClassicParentContainer {
-  width: 70%;
+  width: 80rem;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -250,18 +250,41 @@ div.box {
  * that are used across the project.
 */
 .sidenav {
-  height: 100%;
-  width: 0%;
-  position: fixed;
-  top: 0;
-  left: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-negative: 2;
+      flex-shrink: 2;
   background-color: white;
-  overflow-x: hidden;
+  overflow: hidden;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  padding-top: 150px;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  width: 0vw;
+  padding-top: 10rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 10; }
+
+.ButtonStyle {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-top: 2em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  height: 100%; }
 
 .sidenav a {
   padding: 8px 8px 8px 32px;
@@ -296,6 +319,17 @@ div.box {
   background-color: transparent;
   margin-left: 2em;
   margin-right: 2em; }
+
+.ParentSection {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; }
 /**
  * #.# Common SCSS
  *

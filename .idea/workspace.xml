@@ -7,11 +7,8 @@
   <component name="ChangeListManager">
     <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Counter_Block/Counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Counter_Block/Counter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Timer_Block/Timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timer_Block/Timer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -243,10 +243,10 @@ registerBlockType( 'k2/timer-block', {
 				}
 			}
 			var fontDefaultColors = [
-				{ color: 'white' },
-				{ color: 'black' },
-				{color: 'darkred'},
-				{color: 'whitesmoke'}
+				{ color: '#32897A' },
+				{  color: '#1995AD' },
+				{  color: '#011A27' },
+				{  color: '#F69454' },
 			];
 
 			const TimerBlockStyling = {

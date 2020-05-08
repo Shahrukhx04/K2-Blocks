@@ -419,3 +419,8 @@ div.box {
     opacity: 0; }
   to {
     opacity: 1; } }
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 90%;
+    margin: 30% auto; } }

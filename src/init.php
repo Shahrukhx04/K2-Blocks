@@ -117,6 +117,9 @@ function register_custom_scripts(){
 
     wp_enqueue_script( 'ImageScroll_Frontend', plugins_url( 'src/Image_Scroll/Frontend/ImageScrollFrontEnd.js', dirname( __FILE__ ) ), array('jquery'),
                         true );
+
+    wp_enqueue_script( 'PremiumSection_Frontend', plugins_url( 'src/Premium_Section/Frontend/PremiumSection.js', dirname( __FILE__ ) ), array('jquery'),
+                                                true );
 }
 add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );
 

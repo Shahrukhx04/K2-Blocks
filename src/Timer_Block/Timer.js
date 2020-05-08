@@ -17,7 +17,8 @@ const {
 	SelectControl,
 	DateTimePicker,
 	ColorPicker,
-	CheckboxControl
+	CheckboxControl,
+	PanelRow
 
 } = wp.components;
 
@@ -36,7 +37,7 @@ const accordionBlockIcon = (
 			<path d="m16.175781 74.484375h340.828125c8.28125 0 15-6.714844 15-15v-44.484375c0-8.285156-6.71875-15-15-15h-340.828125c-8.285156 0-15 6.714844-15 15v44.484375c0 8.285156 6.714844 15 15 15zm0 0" fill="#006091" data-original="#006091" class="" style={{fill:'#400CBA'}} data-old_color="#006091"/><path d="m358.179688 437.523438h-343.179688c-8.285156 0-15 6.71875-15 15v44.476562c0 8.285156 6.714844 15 15 15h343.175781c8.285157 0 15-6.714844 15-15v-44.476562c.003907-8.28125-6.714843-15-14.996093-15zm0 0" fill="#006091" data-original="#006091" class="" style={{fill:'#400CBA'}} data-old_color="#006091"/>
 			<path d="m16.175781 0c-8.285156 0-15 6.714844-15 15v44.484375c0 8.285156 6.714844 15 15 15h170.414063v-74.484375zm0 0" fill="#0077b1" data-original="#0077B1" class="" style={{fill:'#470DD0'}} data-old_color="#0077b1"/>
 		<path d="m15 437.523438c-8.285156 0-15 6.71875-15 15v44.476562c0 8.285156 6.714844 15 15 15h171.589844v-74.476562zm0 0" fill="#0077b1" data-original="#0077B1" class="" style={{fill:'#470DD0'}} data-old_color="#0077b1"/>
-		</g> 
+		</g>
 		</svg>
 );
 /**
@@ -141,7 +142,7 @@ registerBlockType( 'k2/timer-block', {
 					// what's left is seconds
 					seconds_ = Math.floor(delta % 60);  // in theory the modulus is not required
 				}
-				
+
 				console.log("result: "+days_+" "+hours_+" "+minutes_+" "+seconds_)
 				props.setAttributes({
 					days_: days_,
@@ -239,7 +240,7 @@ registerBlockType( 'k2/timer-block', {
 						TimerTextColor: 'white'
 
 					})
-				} 
+				}
 			}
 			var fontDefaultColors = [
 				{ color: 'white' },
@@ -265,12 +266,14 @@ registerBlockType( 'k2/timer-block', {
 			}
 			return ([
 				<InspectorControls>
-					<PanelBody title={"Date and Time"}>
-						<DateTimePicker
-							currentDate = {new Date(props.attributes.year,props.attributes.month,props.attributes.date,props.attributes.hours,props.attributes.minutes,0,0)}
-							onChange={updateDateTime}
-						/>
+
+					<PanelBody title={'Date Time Settings'}>
+							<DateTimePicker
+								currentDate = {new Date(props.attributes.year,props.attributes.month,props.attributes.date,props.attributes.hours,props.attributes.minutes,0,0)}
+								onChange={updateDateTime}
+							/>
 					</PanelBody>
+
 					<PanelBody title={"Styling and color"}>
 						<SelectControl
 									label="Skin"
@@ -304,7 +307,7 @@ registerBlockType( 'k2/timer-block', {
 							onChange={ onChangeTimerTextColor }
 							colors={ fontDefaultColors }
 						/>
-						
+
 					</PanelBody>
 				</InspectorControls>
 				,

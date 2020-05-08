@@ -59,7 +59,7 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTA_Image: {
 			type: 'string',
-			default: 'http://localhost/wordpress/wp-content/uploads/2020/04/OXFORD-EXPLORE-1-e1581881277914.jpg'
+			default: 'http://localhost/wordpress/wp-content/uploads/2020/04/Culture-and-Diversity-e1575982916249.jpg'
 		},
 		CTAHeadingText: {
 			type: 'string',
@@ -428,14 +428,15 @@ registerBlockType( 'k2/call-to-action-block', {
 		}
 
 		const ClassicParentContainer = {
-			flexDirection: attributes.CTAClassicPosition
+			flexDirection: attributes.CTAClassicPosition,
+			minHeight: attributes.CTAClassicBoxHeight + 'vh'
 		}
 
 		const ClassicImageContainerStyling = {
 			flexBasis: attributes.CTAClassicImageContainerWidth + '%',
 			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
-			backgroundImage: 'url("' +attributes.CTA_Image + '")'
-
+			backgroundImage: 'url("' +attributes.CTA_Image + '")',
+			minHeight: attributes.CTACoverContainerHeight + 'vh'
 		}
 
 		const CoverParentStyling = {

@@ -34,9 +34,7 @@ registerBlockType( 'k2/premium-section', {
 	},
 	edit(){
 
-		const MY_TEMPLATE = [
 
-		];
 
 		function openNav() {
 			document.getElementById("mySidenav").style.width = "100%";
@@ -58,6 +56,7 @@ registerBlockType( 'k2/premium-section', {
 					<div id={'CrossButton'} className="closebtn" onClick={closeNav}>&times;</div>
 					<div className={'InnerBlockContainer'}>
 						<InnerBlocks
+							templateInsertUpdatesSelection={ true }
 							renderAppender={ () => (
 								<InnerBlocks.ButtonBlockAppender
 								/>
@@ -66,7 +65,9 @@ registerBlockType( 'k2/premium-section', {
 
 					</div>
 				</div>,
-				<span  style={{fontSize:'30px' , cursor:'pointer', textAlign: 'center'}} onClick={openNav}>&#9776; Click</span>
+				<div className={'ButtonStyle'}>
+					<span  style={{fontSize:'45px' , cursor:'pointer', textAlign: 'right'}} onClick={openNav}>&#9776;</span>
+				</div>
 
 			]
 			)
@@ -82,10 +83,12 @@ registerBlockType( 'k2/premium-section', {
 				<div className={'InnerBlockContainer'}>
 					<InnerBlocks.Content
 					/>
-
 				</div>
 			</div>
-			<span id={'PremiumSectionButton'} style={{fontSize:'30px' , cursor:'pointer', textAlign: 'center'}} >&#9776; Click</span>
+			<div className={'ButtonStyle'}>
+				<span id={'PremiumSectionButton'} style={{fontSize:'45px' , cursor:'pointer', textAlign: 'center'}} >&#9776;</span>
+
+			</div>
 		</div>
 
 	}

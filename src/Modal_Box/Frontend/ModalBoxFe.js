@@ -21,7 +21,7 @@ jQuery(document).ready(function( $ ) {
               }, time);
         }
         
-        var span = modal.children(".modal-content").children(".modal-footer").children(".close")[0];
+        var span = modal.children(".modal-content").children(".close")[0];
         console.log(span)
 
         // When the user clicks on "close", close the modal

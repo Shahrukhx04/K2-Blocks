@@ -1,6 +1,6 @@
 import './style.scss';
 import './editor.scss';
-import {FONTS} from './Fonts.js';
+import {GLOBAL_FONTS} from '../Global_Fonts';
 import { InnerBlocks } from '@wordpress/block-editor';
 
 
@@ -137,7 +137,7 @@ registerBlockType( 'k2/modal-block', {
 			type: 'string',
 			default: 'Open Sesame'
 		},
-		ButtonTextSize: {
+		buttonTextSize: {
 			type: 'string',
 			default: 1	
 		},
@@ -149,11 +149,51 @@ registerBlockType( 'k2/modal-block', {
 			type: 'number',
 			default: 1
 		},
-
+		closeButtonPosition: {
+			type: 'Object',
+			default:{
+				top:0,
+				right:0,
+				text:'topright'
+			}
+		},
+		textColor:{
+			type:'string',
+			default:'white'
+		},
+		textFontFamily:{
+			type:'string',
+			default:''
+		}
+		
 	},
 
 	edit: function(props) {
 
+		
+		function onCloseButtonPositionChange(value){
+			if(value=='topright'){
+				props.setAttributes({
+					closeButtonPosition:{top:0,right:0,text:value}
+				})
+			}
+			else if(value == 'topleft'){
+				props.setAttributes({
+					closeButtonPosition:{top:0,right:'auto',text:value}
+				})	
+			}
+			else if(value == 'bottomright'){
+				props.setAttributes({
+					closeButtonPosition:{top:'90%',right:0,text:value}
+				})	
+			}
+			else if(value == 'bottomleft'){
+				props.setAttributes({
+					closeButtonPosition:{top:'90%',right:'auto',text:value}
+				})	
+			}
+			console.log(props.attributes.closeButtonPosition)
+		}
 			var controls = (
 				<PanelBody title={"Button styling"}>
 					<TextControl
@@ -161,10 +201,26 @@ registerBlockType( 'k2/modal-block', {
 						onChange={(value)=>{props.setAttributes({buttonText:value})}}
 						value = {props.attributes.buttonText}
 					/>
+
+					<label class="components-base-control__label">Text color</label>
+					<ColorPicker
+						color={ props.attributes.textColor }
+						onChangeComplete={ ( value ) => {props.setAttributes( {textColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} ); console.log(props.attributes.haloColor)} }
+					/>
+
+					<SelectControl
+								label="Text Font"
+								value={props.attributes.textFontFamily}
+								options={GLOBAL_FONTS}
+								onChange={(value)=>{props.setAttributes({textFontFamily:value})}}
+					/>
+
+					<label class="components-base-control__label">Button color</label>
 					<ColorPicker
 						color={props.attributes.buttonColor}
 						onChangeComplete={(value)=>{props.setAttributes({buttonColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'})}}
 					/>
+
 					<RangeControl
 						label= "Button width"
 						value={ props.attributes.buttonWidth }
@@ -183,8 +239,8 @@ registerBlockType( 'k2/modal-block', {
 					/>
 					<RangeControl
 						label= "Font size"
-						value={ props.attributes.ButtonTextSize }
-						onChange={ (value)=>{props.setAttributes({ButtonTextSize:value})} }
+						value={ props.attributes.buttonTextSize }
+						onChange={ (value)=>{props.setAttributes({buttonTextSize:value})} }
 						min={ 0.1 }
 						max={ 10 }
 						step ={0.1}
@@ -207,7 +263,14 @@ registerBlockType( 'k2/modal-block', {
 			var buttonStyle = {
 				backgroundColor: props.attributes.buttonColor,
 				padding : props.attributes.buttonHeight+"em "+props.attributes.buttonWidth+"em",
-				fontSize: props.attributes.ButtonTextSize+"em",
+				fontSize: props.attributes.buttonTextSize+"em",
+				fontFamily:props.attributes.textFontFamily,
+				color: props.attributes.textColor,
+				
+			}
+			var closeButtonStyle = {
+				top:props.attributes.closeButtonPosition.top,
+				right:props.attributes.closeButtonPosition.right
 			}
 			return ([
 				<InspectorControls>
@@ -221,16 +284,30 @@ registerBlockType( 'k2/modal-block', {
 						onChange={(value)=>{props.setAttributes({type:value})}}
 					/>
 					{controls}
+					<SelectControl
+						label="'Close' button position"
+						value={props.attributes.closeButtonPosition.text}
+						options={[
+							{ label: 'Top Right', value: 'topright' },
+							{ label: 'Top Left', value: 'topleft'},
+							{ label: 'Bottom Right', value: 'bottomright'},
+							{ label: 'Bottom Left', value: 'bottomleft'}
+						]}
+						onChange={onCloseButtonPositionChange}
+					/>
+
 				</InspectorControls>
+				
 				,
 				<div className={'modal-container'}>
 					{(props.attributes.type == 'button') &&
 						<button className={'modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
 					}
-					<div class="modal-backend">
-						<div class="modal-content-backend">
+					<div className="modal-backend">
+						<div className="modal-content-backend">
 							<InnerBlocks renderAppender={ () => (<InnerBlocks.ButtonBlockAppender/>) }/>
 						</div>
+						<div className="close" style={closeButtonStyle}>&times;</div>
 					</div>
 				</div>
 			])
@@ -239,6 +316,14 @@ registerBlockType( 'k2/modal-block', {
 	save: function(props) {
 		var buttonStyle = {
 			backgroundColor: props.attributes.buttonColor,
+			padding : props.attributes.buttonHeight+"em "+props.attributes.buttonWidth+"em",
+			fontSize: props.attributes.buttonTextSize+"em",
+			fontFamily:props.attributes.textFontFamily,
+			color: props.attributes.textColor,
+		}
+		var closeButtonStyle = {
+			top:props.attributes.closeButtonPosition.top,
+			right:props.attributes.closeButtonPosition.right
 		}
 		return (
 		<div className={'modal-container'} data-type={props.attributes.type} data-time={props.attributes.popupDelay*1000}>
@@ -249,9 +334,7 @@ registerBlockType( 'k2/modal-block', {
 			<div className="modal fade-in">
 				<div className="modal-content">
 					<InnerBlocks.Content />
-					<div className="modal-footer">
-						<span class="close">close</span>
-					</div>
+					<div className="close" style={closeButtonStyle}>&times;</div>
 				</div>
 			</div>
 		</div>

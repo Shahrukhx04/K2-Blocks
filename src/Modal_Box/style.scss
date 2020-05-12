@@ -18,19 +18,16 @@
 .modal-backend {
   box-shadow: 1px 1px 20px grey;
   border-radius: 20px;
-}
-
-/* Modal Content/Box */
-.modal-content-backend {
   background-color: #fefefe;
   margin:5% auto; /* 15% from the top and centered */
   padding: 20px;
   border: none;
   width: 100%; /* Could be more or less, depending on screen size */
-  box-shadow: 1px 1px 20px grey;
-  border-radius: 20px;
   margin-top: 2em;
+  position: relative;
 }
+
+
 
 /* Modal Content/Box */
 .modal-content {
@@ -41,18 +38,22 @@
   width: 60%; /* Could be more or less, depending on screen size */
   box-shadow: 1px 1px 20px grey;
   border-radius: 20px;
+  position: relative;
 }
 
-.modal-footer {
-  height: 1em;
-}
-/* The Close Button */
 .close {
   color: #aaa;
-  float: right;
-  font-size: 2 em;
+  font-size: 2em !important;
   font-weight: bold;
+  display:block;
+  text-align: right;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  top:0;
+  right:0;
 }
+
 
 .close:hover,
 .close:focus {

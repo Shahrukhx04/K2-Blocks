@@ -87,11 +87,11 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAOverlayColorAlpha: {
 			type: 'number',
-			default: 0.3
+			default: 0.0
 		},
 		CTAOverlayEnableDisable: {
 			type: 'boolean',
-			default: true
+			default: false
 		},
 		CTAClassicPosition: {
 			type: 'string',
@@ -104,6 +104,50 @@ registerBlockType( 'k2/call-to-action-block', {
 		CTAClassicBoxHeight: {
 			type: 'number',
 			default: 70
+		},
+		CTAAlignment: {
+			type: 'string',
+			default: 'flex-start'
+		},
+		CTABoxWidth: {
+			type: 'number',
+			default: 80
+		},
+		InspectorControlClassicOptionDisplay:{
+			type: 'string',
+			default: 'Left'
+		},
+		CTAisHeadingEnabled: {
+			type: 'boolean',
+			default: true
+		},
+		CTAisParagraphyEnabled: {
+			type: 'boolean',
+			default: true
+		},
+		CTAisButtonEnabled: {
+			type: 'boolean',
+			default: true
+		},
+		CTAInnerContainerPlacement: {
+			type: 'string',
+			default: 'center'
+		},
+		CTAHeadingColor: {
+			type: 'string',
+			default: '#002147'
+		},
+		CTAParagraphColor: {
+			type: 'string',
+			default: '#002147'
+		},
+		CTAHeadingFontSize: {
+			type: 'number',
+			default: 1
+		},
+		CTAParagraphyFontSize: {
+			type: 'number',
+			default: 0.5
 		}
 	},
 
@@ -134,9 +178,14 @@ registerBlockType( 'k2/call-to-action-block', {
 			{ name: 'blue', color: '#00f' },
 		];
 
+		const BoxedContainerStyling = {
+			justifyContent: attributes.CTAAlignment
+		}
+
 		const ClassicParentContainer = {
 			flexDirection: attributes.CTAClassicPosition,
-			minHeight: attributes.CTAClassicBoxHeight + 'vh'
+			minHeight: attributes.CTAClassicBoxHeight + 'vh',
+			width: attributes.CTABoxWidth + 'rem'
 		}
 
 		const ClassicImageContainerStyling = {
@@ -149,9 +198,30 @@ registerBlockType( 'k2/call-to-action-block', {
 		const CoverParentStyling = {
 			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
 			backgroundImage: 'url("' +attributes.CTA_Image + '")',
-			minHeight: attributes.CTACoverContainerHeight + 'vh'
+			minHeight: attributes.CTACoverContainerHeight + 'vh',
+			width: attributes.CTABoxWidth + 'rem'
+
 		}
 
+		const CTATextAlignment = {
+			textAlign: attributes.CTAInnerContainerPlacement
+		}
+
+		const CTAHeadingStyling = {
+			color: attributes.CTAHeadingColor,
+			fontsize: attributes.CTAHeadingFontSize + 'em' + ' !important'
+		}
+
+		const CTAParagraphStyling = {
+			color: attributes.CTAParagraphColor,
+			fontsize: attributes.CTAParagraphyFontSize + 'em'
+		}
+
+		function onChangeCTAInnerContainerPlacement(NewPlacement) {
+			setAttributes({
+				CTAInnerContainerPlacement: NewPlacement
+			})
+		}
 		function onChangeCTAParagraph(NewText) {
 			setAttributes({
 				CTAParagraphText: NewText
@@ -192,20 +262,42 @@ registerBlockType( 'k2/call-to-action-block', {
 
 				CTAOverlayColorAlpha: NewColor['rgb'].a
 			})
+
 		}
 
 		function onChangeCTAOverlayEnableDisable(NewSetting) {
 			setAttributes({
 				CTAOverlayEnableDisable: NewSetting
 			})
+			if(NewSetting === true){
+				setAttributes({
+					CTAOverlayColorAlpha: 0.3
+				})
+			} else if(NewSetting === false) {
+				setAttributes({
+					CTAOverlayColorAlpha: 0.0
+				})
+			}
 		}
 
 		function onChangeCTAClassicPosition(NewPosition) {
+			console.log(NewPosition)
+			if (NewPosition === 'Right'){
+				setAttributes({
+					CTAClassicPosition: 'row-reverse',
+				})
+			} else 	if (NewPosition === 'Left'){
+				setAttributes({
+					CTAClassicPosition: 'row',
+				})
+			}
+
 			setAttributes({
-				CTAClassicPosition: NewPosition,
+
+				InspectorControlClassicOptionDisplay: NewPosition,
 				CTAClassicImageContainerWidth: 50
 			})
-			console.log(NewPosition)
+
 		}
 
 
@@ -221,9 +313,60 @@ registerBlockType( 'k2/call-to-action-block', {
 				CTAClassicBoxHeight: Newheight
 			})
 		}
+
+		function onChangeCTAAllignment(NewAlignment) {
+			setAttributes({
+				CTAAlignment: NewAlignment
+			})
+		}
+
+		function onChangeCTABoxWidth(NewWidth) {
+			setAttributes({
+				CTABoxWidth: NewWidth
+			})
+		}
+
+		function onChangeCTAisHeadingEnabled(NewValue) {
+			setAttributes({
+				CTAisHeadingEnabled: NewValue
+			})
+		}
+		function onChangeCTAisParagraphyEnabled(NewValue) {
+			setAttributes({
+				CTAisParagraphyEnabled: NewValue
+			})
+		}
+		function onChangeCTAisButtonEnabled(Newoption) {
+			setAttributes({
+				CTAisButtonEnabled: Newoption
+			})
+		}
+
+		function onChangeCTAHeadingColor(NewColor) {
+			setAttributes({
+				CTAHeadingColor: NewColor
+			})
+		}
+		function onChangeCTAParagraphColor(NewColor) {
+			setAttributes({
+				CTAParagraphColor: NewColor
+			})
+		}
+
+		function onChageCTAHeadingFontSize(NewFontSize) {
+			setAttributes({
+				CTAHeadingFontSize: NewFontSize
+			})
+		}
+
+		function onChangeCTAParagraphyFontSize(NewFontSize) {
+			setAttributes({
+				CTAParagraphyFontSize: NewFontSize
+			})
+		}
 		return ( [
 			<InspectorControls>
-				<PanelBody title={'Layout Select'}>
+				<PanelBody title={'Layout Settings'}>
 					<SelectControl
 						label="Skin"
 						value={ attributes.LayoutDesign }
@@ -240,21 +383,60 @@ registerBlockType( 'k2/call-to-action-block', {
 						{
 							(attributes.LayoutDesign == 'Classic')
 								?
-										<div className={'InspectorControlClassicPosition'}>
-											<p> Position </p>
-											<div className={'InspectorControlClassicPositionEachElement'}  onClick={() => onChangeCTAClassicPosition('row')}>
-												<i className="fas fa-align-left" ></i>
-											</div>
-											<div className={'InspectorControlClassicPositionEachElement'} onClick={() => onChangeCTAClassicPosition('row-reverse')}>
-												<i className="fas fa-align-right"></i>
-											</div>
-										</div>
-
-
+										<SelectControl
+											label="Text Position"
+											value={ attributes.InspectorControlClassicOptionDisplay }
+											options={
+												[
+													{ label: 'Left', value: 'Left' },
+													{ label: 'Right', value: 'Right' }
+												]
+											}
+											onChange={ onChangeCTAClassicPosition}
+										/>
 								:
 								null
 						}
 
+					<PanelRow>
+
+						<div style={{paddingBottom: '2%'}}>
+							<label><strong>Position</strong></label>
+						</div>
+						<div className={'InspectorControlAlertBoxAlignment'}>
+
+							<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeCTAAllignment('flex-start')}>
+								<i className="fas fa-align-left" ></i>
+							</div>
+							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAAllignment('center')}>
+								<i className="fas fa-align-center"></i>
+							</div>
+							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAAllignment('flex-end')}>
+								<i className="fas fa-align-right"></i>
+							</div>
+						</div>
+
+					</PanelRow>
+
+					<PanelRow>
+
+						<div style={{paddingBottom: '2%'}}>
+							<label><strong>Text Alignment</strong></label>
+						</div>
+						<div className={'InspectorControlAlertBoxAlignment'}>
+
+							<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeCTAInnerContainerPlacement('left')}>
+								<i className="fas fa-align-left" ></i>
+							</div>
+							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAInnerContainerPlacement('center')}>
+								<i className="fas fa-align-center"></i>
+							</div>
+							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAInnerContainerPlacement('right')}>
+								<i className="fas fa-align-right"></i>
+							</div>
+						</div>
+
+					</PanelRow>
 
 				</PanelBody>
 
@@ -262,11 +444,13 @@ registerBlockType( 'k2/call-to-action-block', {
 					{
 						(attributes.LayoutDesign == 'Classic')?
 							<div>
+
+
 								<RangeControl
 									label={<strong> Box Height </strong>}
 									value={ attributes.CTAClassicBoxHeight }
 									onChange={ onChnageCTAClassicBoxHeight }
-									min={ 10 }
+									min={ 0 }
 									max={ 100 }
 									step ={1}
 								/>
@@ -274,7 +458,7 @@ registerBlockType( 'k2/call-to-action-block', {
 									label={<strong> Image Height </strong>}
 									value={ attributes.CTACoverContainerHeight }
 									onChange={ onChangeCTACoverContainerHeight }
-									min={ 10 }
+									min={ 0 }
 									max={ 100 }
 									step ={1}
 								/>
@@ -285,12 +469,21 @@ registerBlockType( 'k2/call-to-action-block', {
 								label={<strong> Box Height </strong>}
 								value={ attributes.CTACoverContainerHeight }
 								onChange={ onChangeCTACoverContainerHeight }
-								min={ 10 }
+								min={ 0 }
 								max={ 100 }
 								step ={1}
 							/>
 
 					}
+
+					<RangeControl
+						label={<strong> Box Width </strong>}
+						value={ attributes.CTABoxWidth }
+						onChange={ onChangeCTABoxWidth }
+						min={ 10 }
+						max={ 100 }
+						step ={1}
+					/>
 				</PanelBody>
 
 
@@ -322,19 +515,112 @@ registerBlockType( 'k2/call-to-action-block', {
 
 					</PanelRow>
 
-					<label > Fill Color </label>
-					<ColorPicker
-						color={ colors }
-						value = {attributes.CTAOverlayColor}
-						onChangeComplete={ onChangeCTAOverlayColor }
-					/>
+					{
+						(attributes.CTAOverlayEnableDisable === true)?<div>
+							<label > Fill Color </label>
+							<ColorPicker
+								color={ colors }
+								value = {attributes.CTAOverlayColor}
+								onChangeComplete={ onChangeCTAOverlayColor }
+							/>
+							</div>
+							:null
+					}
+
+
 				</PanelBody>
+
+				<PanelBody title={'Heading'}>
+					<PanelRow>
+						<p>
+							Heading
+						</p>
+
+						<ToggleControl
+							checked = {attributes.CTAisHeadingEnabled}
+							onChange = {onChangeCTAisHeadingEnabled}
+						/>
+
+					</PanelRow>
+
+					{
+						(attributes.CTAisHeadingEnabled === true)?<div>
+
+							<RangeControl
+								label={<strong> Font Size </strong>}
+								value={ attributes.CTAHeadingFontSize }
+								onChange={ onChageCTAHeadingFontSize }
+								min={ 0 }
+								max={ 15 }
+								step ={0.1}
+							/>
+
+							<ColorPalette
+								value = {attributes.CTAHeadingColor}
+								onChange = {onChangeCTAHeadingColor}
+								colors = {colors} />
+
+						</div>:null
+					}
+
+				</PanelBody>
+
+				<PanelBody title={'Paragraph'}>
+					<PanelRow>
+						<p>
+							Paragraph
+						</p>
+						<ToggleControl
+							checked = {attributes.CTAisParagraphyEnabled}
+							onChange = {onChangeCTAisParagraphyEnabled}
+						/>
+
+					</PanelRow>
+
+					{
+						(attributes.CTAisParagraphyEnabled === true)?<div>
+
+							<RangeControl
+								label={<strong> Font Size </strong>}
+								value={ attributes.CTAParagraphyFontSize }
+								onChange={ onChangeCTAParagraphyFontSize }
+								min={ 0 }
+								max={ 15 }
+								step ={0.1}
+							/>
+							<ColorPalette
+								value = {attributes.CTAParagraphColor}
+								onChange = {onChangeCTAParagraphColor}
+								colors = {colors} />
+						</div>:null
+					}
+
+				</PanelBody>
+
+
 				<PanelBody title={'Button'}>
-					<TextControl
-						label="Button Text"
-						value={ attributes.CTAButtonText }
-						onChange={ onChangeCTAButtonText}
-					/>
+
+					<PanelRow>
+						<p>
+							Button
+						</p>
+						<ToggleControl
+							checked = {attributes.CTAisButtonEnabled}
+							onChange = {onChangeCTAisButtonEnabled}
+						/>
+
+					</PanelRow>
+
+					{
+						(attributes.CTAisButtonEnabled === true)?<div>
+								<TextControl
+									label="Button Text"
+									value={ attributes.CTAButtonText }
+									onChange={ onChangeCTAButtonText}
+								/>
+							</div>
+							:null
+					}
 
 				</PanelBody>
 
@@ -342,31 +628,45 @@ registerBlockType( 'k2/call-to-action-block', {
 			<div>
 				{
 					(attributes.LayoutDesign == 'Classic')?
-						<div  className={'BoxedContainer'}>
+						<div  style={BoxedContainerStyling} className={'BoxedContainer'}>
 
 							<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
-								<div className={'ClassicTextContainer'}>
-
-									<RichText
+								<div style={CTATextAlignment} className={'ClassicTextContainer'}>
+									{
+										(attributes.CTAisHeadingEnabled === true)?
+										<RichText
 										tagName="h1" // The tag here is the element output and editable in the admin
 										value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+										style={CTAHeadingStyling}
 										className = {'ClassicHeadingStyle'}
 										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
 										onChange={ onChangeCTAHeading } // Store updated content as a block attribute
 										placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
-									/>
-									<RichText
-										tagName="h1" // The tag here is the element output and editable in the admin
-										value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
-										className = {'ClassicParagraphHeading'}
-										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
-										onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
-										placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
-									/>
+										/>
+										: null
+									}
 
-									<button className={'ClassicButtonStyling'}>
-										{attributes.CTAButtonText}
-									</button>
+									{
+										( attributes.CTAisParagraphyEnabled === true ) ?
+											<RichText
+												tagName="p" // The tag here is the element output and editable in the admin
+												value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+												style={CTAParagraphStyling}
+												className={ 'ClassicParagraphHeading' }
+												formattingControls={ ['bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+												onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
+												placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
+											/>
+											: null
+									}
+
+									{
+										( attributes.CTAisButtonEnabled === true ) ?
+											<button className={ 'ClassicButtonStyling' }>
+												{ attributes.CTAButtonText }
+											</button>
+											: null
+									}
 								</div>
 								<div style={ClassicImageContainerStyling} className={'ClassicImageContainer'}>
 
@@ -374,33 +674,47 @@ registerBlockType( 'k2/call-to-action-block', {
 							</div>
 						</div>
 
-						: <div  className={'BoxedContainer'}>
+						: <div  style={BoxedContainerStyling} className={'BoxedContainer'}>
 
 							<div style={CoverParentStyling} className={'CoverParentContainer'}>
 
-								<div className={'CoverTextContainer'}>
+								<div style={CTATextAlignment} className={'CoverTextContainer'}>
+									{
+										( attributes.CTAisHeadingEnabled === true ) ?
+											<RichText
+												tagName="h1" // The tag here is the element output and editable in the admin
+												value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+												style={CTAHeadingStyling}
+												className={ 'CoverHeadingStyle' }
+												formattingControls={ ['bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+												onChange={ onChangeCTAHeading } // Store updated content as a block attribute
+												placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
+											/>
+											: null
+									}
 
-									<RichText
-										tagName="h1" // The tag here is the element output and editable in the admin
-										value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
-										className = {'CoverHeadingStyle'}
-										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
-										onChange={ onChangeCTAHeading } // Store updated content as a block attribute
-										placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
-									/>
+									{
+										( attributes.CTAisParagraphyEnabled === true ) ?
 									<RichText
 										tagName="p" // The tag here is the element output and editable in the admin
 										value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+										style={CTAParagraphStyling}
 										className = {'CoverParagraphHeading'}
 										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
 										onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
 										placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
 									/>
+										: null
+									}
 
 
-									<button className={'CoverButtonStyling'}>
-										{attributes.CTAButtonText}
-									</button>
+									{
+										( attributes.CTAisButtonEnabled === true ) ?
+											<button className={ 'CoverButtonStyling' }>
+												{ attributes.CTAButtonText }
+											</button>
+											: null
+									}
 								</div>
 							</div>
 
@@ -427,9 +741,14 @@ registerBlockType( 'k2/call-to-action-block', {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
 
+		const BoxedContainerStyling = {
+			justifyContent: attributes.CTAAlignment
+		}
+
 		const ClassicParentContainer = {
 			flexDirection: attributes.CTAClassicPosition,
-			minHeight: attributes.CTAClassicBoxHeight + 'vh'
+			minHeight: attributes.CTAClassicBoxHeight + 'vh',
+			width: attributes.CTABoxWidth + 'rem'
 		}
 
 		const ClassicImageContainerStyling = {
@@ -442,7 +761,9 @@ registerBlockType( 'k2/call-to-action-block', {
 		const CoverParentStyling = {
 			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
 			backgroundImage: 'url("' +attributes.CTA_Image + '")',
-			minHeight: attributes.CTACoverContainerHeight + 'vh'
+			minHeight: attributes.CTACoverContainerHeight + 'vh',
+			width: attributes.CTABoxWidth + 'rem'
+
 		}
 
 
@@ -451,7 +772,7 @@ registerBlockType( 'k2/call-to-action-block', {
 		return 	<div>
 			{
 				(attributes.LayoutDesign == 'Classic')?
-					<div className={'BoxedContainer'}>
+					<div style={BoxedContainerStyling} className={'BoxedContainer'}>
 						<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
 							<div className={'ClassicTextContainer'}>
 								<RichText.Content
@@ -476,7 +797,7 @@ registerBlockType( 'k2/call-to-action-block', {
 						</div>
 					</div>
 
-					: <div className={'BoxedContainer'}>
+					: <div style={BoxedContainerStyling} className={'BoxedContainer'}>
 
 						<div style={CoverParentStyling} className={'CoverParentContainer'}>
 

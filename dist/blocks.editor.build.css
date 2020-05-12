@@ -138,27 +138,34 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.Editorsidenav {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  background-color: white;
-  overflow-x: hidden;
-  -webkit-transition: 0.5s;
-  -o-transition: 0.5s;
-  transition: 0.5s;
-  -ms-flex-positive: 1;
-      flex-grow: 1;
-  height: 100%;
-  width: 0%;
-  margin-top: 10rem;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1; }
+@-webkit-keyframes pulse {
+  0% {
+    background-color: #ffffff; }
+  50% {
+    background-color: #cccccc; }
+  100% {
+    background-color: #ffffff; } }
+@keyframes pulse {
+  0% {
+    background-color: #ffffff; }
+  50% {
+    background-color: #cccccc; }
+  100% {
+    background-color: #ffffff; } }
+
+.wp-block-cgb-block-guten-load-post {
+  padding: 0.5em;
+  border: 1px dashed rgba(0, 0, 0, 0.5); }
+  .wp-block-cgb-block-guten-load-post.no-post {
+    background: yellow;
+    -webkit-animation: none;
+            animation: none; }
+  .wp-block-cgb-block-guten-load-post.loading {
+    -webkit-animation: pulse 3s infinite;
+            animation: pulse 3s infinite; }
+  .wp-block-cgb-block-guten-load-post.has-post {
+    -webkit-animation: none;
+            animation: none; }
 /**
  * #.# Common SCSS
  *

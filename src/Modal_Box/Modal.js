@@ -8,17 +8,13 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
 const {
-	RichText,
 	InspectorControls,
-	ColorPalette
 } = wp.editor;
 
 const {
 	PanelBody,
 	SelectControl,
-	DateTimePicker,
 	ColorPicker,
-	CheckboxControl,
 	TextControl,
 	RangeControl
 
@@ -100,10 +96,10 @@ const modalBlockIcon =  (
       />
     </svg>
   );
-  const MY_TEMPLATE = [
-	[ 'core/heading', { placeholder: 'This is a Modal popup' } ],
-    [ 'core/paragraph', { placeholder: 'Add your blocks here' } ],
-];
+//   const MY_TEMPLATE = [
+// 	[ 'core/heading', { placeholder: 'This is a Modal popup' } ],
+//     [ 'core/paragraph', { placeholder: 'Add your blocks here' } ],
+// ];
 /**
  * Register: aa Gutenberg Block.
  *
@@ -141,6 +137,19 @@ registerBlockType( 'k2/modal-block', {
 			type: 'string',
 			default: 'Open Sesame'
 		},
+		ButtonTextSize: {
+			type: 'string',
+			default: 1	
+		},
+		buttonWidth: {
+			type: 'number',
+			default: 2
+		},
+		buttonHeight: {
+			type: 'number',
+			default: 1
+		},
+
 	},
 
 	edit: function(props) {
@@ -156,12 +165,36 @@ registerBlockType( 'k2/modal-block', {
 						color={props.attributes.buttonColor}
 						onChangeComplete={(value)=>{props.setAttributes({buttonColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'})}}
 					/>
+					<RangeControl
+						label= "Button width"
+						value={ props.attributes.buttonWidth }
+						onChange={ (value)=>{props.setAttributes({buttonWidth:value})} }
+						min={ 0.1 }
+						max={ 10 }
+						step ={0.1}
+					/>
+					<RangeControl
+						label= "Button Height"
+						value={ props.attributes.buttonHeight }
+						onChange={ (value)=>{props.setAttributes({buttonHeight:value})} }
+						min={ 0.1 }
+						max={ 10 }
+						step ={0.1}
+					/>
+					<RangeControl
+						label= "Font size"
+						value={ props.attributes.ButtonTextSize }
+						onChange={ (value)=>{props.setAttributes({ButtonTextSize:value})} }
+						min={ 0.1 }
+						max={ 10 }
+						step ={0.1}
+					/>
 				</PanelBody>
 			);
 			if(props.attributes.type == 'time'){
 				controls = (
 					<RangeControl
-						label= "Popup delay"
+						label= "Popup delay (secs)"
 						value={ props.attributes.popupDelay }
 						onChange={ (value)=>{props.setAttributes({popupDelay:value})} }
 						min={ 1 }
@@ -173,6 +206,8 @@ registerBlockType( 'k2/modal-block', {
 
 			var buttonStyle = {
 				backgroundColor: props.attributes.buttonColor,
+				padding : props.attributes.buttonHeight+"em "+props.attributes.buttonWidth+"em",
+				fontSize: props.attributes.ButtonTextSize+"em",
 			}
 			return ([
 				<InspectorControls>
@@ -194,7 +229,7 @@ registerBlockType( 'k2/modal-block', {
 					}
 					<div class="modal-backend">
 						<div class="modal-content-backend">
-							<InnerBlocks template={ MY_TEMPLATE }/>
+							<InnerBlocks renderAppender={ () => (<InnerBlocks.ButtonBlockAppender/>) }/>
 						</div>
 					</div>
 				</div>

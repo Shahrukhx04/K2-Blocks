@@ -25,10 +25,11 @@
   background-color: #fefefe;
   margin:5% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
+  border: none;
   width: 100%; /* Could be more or less, depending on screen size */
   box-shadow: 1px 1px 20px grey;
   border-radius: 20px;
+  margin-top: 2em;
 }
 
 /* Modal Content/Box */
@@ -36,7 +37,7 @@
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
-  border: 1px solid #888;
+  border: none;
   width: 60%; /* Could be more or less, depending on screen size */
   box-shadow: 1px 1px 20px grey;
   border-radius: 20px;
@@ -64,11 +65,11 @@
   background-color: #43cea2;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 1em 2em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 2 em;
+  font-size: 1em;
 }
 .fade-in { 
   animation:opac 0.8s

@@ -11,11 +11,11 @@
   display: flex;
   margin-top: 2em;
   margin-bottom: 2em;
-  justify-content: center;
 }
+
+
 .CoverParentContainer{
 
-  width: 70rem;
   //background-image: url("https://oxfordsummerprogram.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-10-at-12.33.09-PM-1-1.jpeg");
   background-color: lightgray;
   background-position: center;
@@ -27,17 +27,15 @@
 }
 
 .CoverTextContainer {
-  text-align: center;
+  width: 100%;
   padding: 2em;
 }
 
-.CoverHeadingStyle {
-  color: white !important;
+.CoverHeadingStyle{
 }
 
 .CoverParagraphHeading{
   color: white;
-  font-size: 1.1em !important;
   font-family: "Poppins",Sans-serif;
 }
 
@@ -91,7 +89,6 @@
 
 
 .ClassicParentContainer{
-  width: 80rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap-reverse;
@@ -116,19 +113,16 @@
 
 // Text Container
 .ClassicTextContainer {
-  flex-basis: 33.33%;
-  text-align: justify;
+  flex-basis: 50%;
   vertical-align: middle;
   padding: 2em;
 }
 
 .ClassicHeadingStyle {
-  color: #002147 !important;
 }
 
 .ClassicParagraphHeading{
   color: #002147;
-  font-size: 1.1em !important;
   font-family: "Poppins",Sans-serif;
 }
 

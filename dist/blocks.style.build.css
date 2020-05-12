@@ -74,12 +74,9 @@
   display: -ms-flexbox;
   display: flex;
   margin-top: 2em;
-  margin-bottom: 2em;
-  -ms-flex-pack: center;
-      justify-content: center; }
+  margin-bottom: 2em; }
 
 .CoverParentContainer {
-  width: 70rem;
   background-color: lightgray;
   background-position: center;
   background-size: cover;
@@ -90,15 +87,11 @@
   position: relative; }
 
 .CoverTextContainer {
-  text-align: center;
+  width: 100%;
   padding: 2em; }
-
-.CoverHeadingStyle {
-  color: white !important; }
 
 .CoverParagraphHeading {
   color: white;
-  font-size: 1.1em !important;
   font-family: "Poppins",Sans-serif; }
 
 .CoverButtonStyling {
@@ -127,7 +120,6 @@
   cursor: pointer; }
 
 .ClassicParentContainer {
-  width: 80rem;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -145,18 +137,13 @@
   position: relative; }
 
 .ClassicTextContainer {
-  -ms-flex-preferred-size: 33.33%;
-      flex-basis: 33.33%;
-  text-align: justify;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
   vertical-align: middle;
   padding: 2em; }
 
-.ClassicHeadingStyle {
-  color: #002147 !important; }
-
 .ClassicParagraphHeading {
   color: #002147;
-  font-size: 1.1em !important;
   font-family: "Poppins",Sans-serif; }
 
 .ClassicButtonStyling {
@@ -256,8 +243,8 @@ div.box {
       flex-direction: column;
   -ms-flex-negative: 2;
       flex-shrink: 2;
-  background-color: white;
-  overflow: hidden;
+  background-color: lightsalmon;
+  overflow: scroll;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -270,7 +257,7 @@ div.box {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10; }
+  z-index: 1; }
 
 .ButtonStyle {
   display: -ms-flexbox;

@@ -21,7 +21,7 @@ const {
 } = wp.components;
 
 const magicColumnsBlockIcon =  (
-    <svg viewBox="0 0 512 512" width={512} height={512} {...props}>
+    <svg viewBox="0 0 512 512" width={512} height={512}>
       <path
         d="M222.844 485.088H17.067C7.641 485.088 0 477.447 0 468.021V43.979c0-9.425 7.641-17.067 17.067-17.067h205.777c9.425 0 17.067 7.641 17.067 17.067V468.02c0 9.427-7.64 17.068-17.067 17.068z"
         data-original="#FFE365"
@@ -82,10 +82,6 @@ const magicColumnsBlockIcon =  (
       </g>
     </svg>
   );
-//   const MY_TEMPLATE = [
-// 	[ 'core/heading', { placeholder: 'This is a Modal popup' } ],
-//     [ 'core/paragraph', { placeholder: 'Add your blocks here' } ],
-// ];
 /**
  * Register: aa Gutenberg Block.
  *
@@ -107,32 +103,172 @@ registerBlockType( 'k2/magic-columns-block', {
 	},
 	category: 'magik-blocks',
 	attributes: {
-		
+		numOfColumns:{
+			type:'number',
+			default:4
+		},
+		titles:{
+			type:'array',
+			default:['Title1','Title2','Title3','Title4','Title5','Title6','Title7','Title8','Title9','Title10']
+		}
 	},
 
 	edit: function(props) {
 
-		
-		
+		function makeColumns(){
+			var columns = [];
+			for (var i=0;i<props.attributes.numOfColumns;i++){
+				columns.push(
+					<div className="mc-col">
+						<div className="mc-col-content">
+							<h2>Column 1</h2>
+							<p>Some text..</p>
+							<button className="mc-col-button">{"Hello"}</button>
+						</div>
+						
+					</div>
+				);
+				columns.push(
+					<figure className="mc-figure">
+						<div className="mc-image-container">
+							<img className="mc-image" src = "https://unlimited-elements.com/wp-content/uploads/ac_assets/uc_list_image_background_hover_switcher/2.jpg"></img>
+						</div>
+					</figure>
+				);
+			}
+			return columns;
+		}
+		function makeColumnControls(){
+			var columnControls = [];
+			for (var i=0; i<props.attributes.numOfColumns;i++){
+				//console.log(i)
+				columnControls.push(
+				<PanelBody title={"Column "+(i+1)} >
+					<TextControl
+						label={<strong>Title</strong>}
+						onChange={(value)=>{							
+							var temp = props.attributes.titles;
+							var newTitles = temp.map((val,index)=>{
+								//console.log(index)
+								if (index === i){
+									//console.log(index,i)
+									return value; //replace with new title
+								}
+								else{
+									//console.log(val)
+									return val; //keep old title
+								}
+							})
+							props.setAttributes({
+								titles:newTitles
+							})
+							//console.log(newTitles)
+						}}
+						value = {props.attributes.titles[i]}
+					/>
+				</PanelBody>
+				)
+			}
+			return columnControls
+		}
 			
 		return ([
 			<InspectorControls>
-				
+				<RangeControl
+					label= "Number of Columns"
+					value={ props.attributes.numOfColumns }
+					onChange={ (value)=>{props.setAttributes({numOfColumns:value})} }
+					min={ 1 }
+					max={ 10 }
+					step ={1}
+				/>
+				{makeColumnControls()}
 			</InspectorControls>
 			
 			,
 			<div className={'magic-columns-container'}>
-				
+				<div className="mc-row">
+					{makeColumns()}
+				</div>
 			</div>
 		])
 	}
 	,
 	save: function(props) {
+		function makeColumns(){
+			var columns = [];
+			for (var i=0;i<props.attributes.numOfColumns;i++){
+				columns.push(
+					<div className="mc-col">
+						<div className="mc-col-content">
+							<h2>{props.attributes.titles[i]}</h2>
+							<p>Some text..</p>
+							<button className="mc-col-button">{"Hello"}</button>
+						</div>
+						
+					</div>
+				);
+				columns.push(
+					<figure className="mc-figure">
+						<div className="mc-image-container">
+							<img className="mc-image" src = "https://unlimited-elements.com/wp-content/uploads/ac_assets/uc_list_image_background_hover_switcher/2.jpg"></img>
+						</div>
+					</figure>
+				);
+			}
+			return columns;
+		}
 		
 		return (
 		<div className={'magic-columns-container'}>
-				
+			<div className="mc-row">
+				{makeColumns()}
+			</div>
 		</div>
 	  );
 	},
 })
+
+
+
+/*<div className="mc-col">
+						<div className="mc-col-content">
+							<h2>Column 1</h2>
+							<p>Some text..</p>
+							<button className="mc-col-button">{"Hello"}</button>
+						</div>
+						
+					</div>
+					<figure className="mc-figure">
+						<div className="mc-image-container">
+							<img className="mc-image" src = "https://unlimited-elements.com/wp-content/uploads/ac_assets/uc_list_image_background_hover_switcher/2.jpg"></img>
+						</div>
+					</figure>
+					
+					<div className="mc-col">
+						<h2>Column 2</h2>
+    					<p>Some text..</p>
+					</div>
+					<figure className="mc-figure">
+						<div className="mc-image-container">
+						</div>
+					</figure>
+					
+					<div className="mc-col">
+						<h2>Column 3</h2>
+    					<p>Some text..</p>
+					</div>
+					<figure className="mc-figure">
+						<div className="mc-image-container">
+						</div>
+					</figure>
+					
+					<div className="mc-col">
+						<h2>Column 3</h2>
+    					<p>Some text..</p>
+					</div>
+					<figure className="mc-figure">
+						<div className="mc-image-container">
+						</div>
+					</figure>*/
+

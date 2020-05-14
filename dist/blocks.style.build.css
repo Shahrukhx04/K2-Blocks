@@ -91,20 +91,13 @@
   padding: 2em; }
 
 .CoverParagraphHeading {
-  color: white;
-  font-family: "Poppins",Sans-serif; }
+  color: white; }
 
 .CoverButtonStyling {
-  background-color: #002147;
   padding: 0.5em 1em;
   display: inline-block;
-  border-width: 2px;
-  border-style: solid;
-  border-color: white;
-  color: white !important;
   font-family: 'poppins';
   font-weight: 500;
-  font-size: 1.4em !important;
   line-height: 1 !important;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
@@ -143,20 +136,13 @@
   padding: 2em; }
 
 .ClassicParagraphHeading {
-  color: #002147;
-  font-family: "Poppins",Sans-serif; }
+  color: #002147; }
 
 .ClassicButtonStyling {
-  background-color: transparent;
   padding: 0.5em 1em;
   display: inline-block;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #002147;
-  color: #002147 !important;
   font-family: 'poppins';
   font-weight: 500;
-  font-size: 1.4em !important;
   line-height: 1 !important;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
@@ -243,48 +229,26 @@ div.box {
       flex-direction: column;
   -ms-flex-negative: 2;
       flex-shrink: 2;
-  background-color: lightsalmon;
   overflow: scroll;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
   -ms-flex-positive: 1;
       flex-grow: 1;
-  width: 0vw;
-  padding-top: 10rem;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1; }
+  z-index: 100; }
 
 .ButtonStyle {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
       flex-direction: row;
-  -ms-flex-pack: end;
-      justify-content: flex-end;
   -ms-flex-align: center;
       align-items: center;
   margin-top: 2em;
   padding-top: 0.5em;
   padding-right: 1em;
   height: 100%; }
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: red;
-  display: block;
-  -webkit-transition: 0.3s;
-  -o-transition: 0.3s;
-  transition: 0.3s; }
-
-.sidenav a:hover {
-  color: pink; }
 
 .sidenav .closebtn {
   position: absolute;

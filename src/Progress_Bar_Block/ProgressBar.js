@@ -63,7 +63,7 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		title: {
 			type: 'string',
-			default: 'Progressing'
+			default: 'Progress'
 		},
 		titleColor: {
 			type: 'string',

@@ -138,34 +138,58 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-@-webkit-keyframes pulse {
-  0% {
-    background-color: #ffffff; }
-  50% {
-    background-color: #cccccc; }
-  100% {
-    background-color: #ffffff; } }
-@keyframes pulse {
-  0% {
-    background-color: #ffffff; }
-  50% {
-    background-color: #cccccc; }
-  100% {
-    background-color: #ffffff; } }
+.InspectorControlOverlayPosition {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
 
-.wp-block-cgb-block-guten-load-post {
-  padding: 0.5em;
-  border: 1px dashed rgba(0, 0, 0, 0.5); }
-  .wp-block-cgb-block-guten-load-post.no-post {
-    background: yellow;
-    -webkit-animation: none;
-            animation: none; }
-  .wp-block-cgb-block-guten-load-post.loading {
-    -webkit-animation: pulse 3s infinite;
-            animation: pulse 3s infinite; }
-  .wp-block-cgb-block-guten-load-post.has-post {
-    -webkit-animation: none;
-            animation: none; }
+.InspectorControlOverlayPositionEach {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.IconListWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 2em; }
+
+.IconListSubWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  max-height: 120px;
+  overflow: auto; }
+
+.IconListSubWrapper span {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.IconListSubWrapper span:hover {
+  color: orange;
+  background-color: #FED8B1;
+  cursor: pointer; }
+
+.active {
+  color: orange;
+  background-color: #FED8B1; }
 /**
  * #.# Common SCSS
  *

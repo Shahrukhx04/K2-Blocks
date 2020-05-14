@@ -8,6 +8,7 @@
 //  Import CSS.
 import './editor.scss';
 import './style.scss';
+import { GLOBAL_FONTS } from '../Global_Fonts';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
@@ -29,8 +30,9 @@ const {
 	SelectControl,
 	Button,
 	ColorPicker,
-	ColorPalette
-
+	ColorPalette,
+	FontSizePicker,
+	CheckboxControl
 } = wp.components;
 
 
@@ -63,11 +65,11 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingText: {
 			type: 'string',
-			default: 'K2 Call To Action'
+			default: 'Classic Call To Action'
 		},
 		CTAParagraphText: {
 			type: 'string',
-			default: 'K2 blocks are added to the Gutenberg editor as soon as you install the plugin. You can start using it as any other Gutenberg block.'
+			default: 'Hello, I’m a classic Call to Action block with a heading, paragraph, button, and an image. You can edit all these elements in any way you want to.'
 		},
 		CTAButtonText: {
 			type: 'string',
@@ -143,11 +145,99 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingFontSize: {
 			type: 'number',
-			default: 1
+			default: 2
 		},
 		CTAParagraphyFontSize: {
 			type: 'number',
 			default: 0.5
+		},
+		CTAButtonFontSize: {
+			type: 'number',
+			default: 1.4
+		},
+		CTAHeadingFontFamily: {
+			type: 'string',
+			default: 'Lucida Console'
+		},
+		CTAParagraphFontFamily: {
+			type: 'string',
+			default: 'Lucida Console'
+		},
+		CTAButtonFontFamily: {
+			type: 'string',
+			default: 'Lucida Console'
+		},
+		CTAButtonFontWeight: {
+			type: 'string',
+			default: 'normal'
+		},
+		CTAButtonTextStyle: {
+			type: 'number',
+			default: 'normal'
+		},
+		CTAButtonTextDecoration: {
+			type: 'string',
+			default: 'None'
+		},
+
+		CTAHeadingFontWeight: {
+			type: 'string',
+			default: 'normal'
+		},
+		CTAHeadingTextStyle: {
+			type: 'number',
+			default: 'normal'
+		},
+		CTAHeadingTextDecoration: {
+			type: 'string',
+			default: 'None'
+		},
+
+
+		CTAParagraphFontWeight: {
+			type: 'string',
+			default: 'normal'
+		},
+		CTAParagraphTextStyle: {
+			type: 'number',
+			default: 'normal'
+		},
+		CTAParagraphTextDecoration: {
+			type: 'string',
+			default: 'None'
+		},
+
+		CTAButtonBorderStyle: {
+			type: 'string',
+			default: 'None'
+		},
+		CTAButtonBorderWidth: {
+			type: 'number',
+			default: 2
+		},
+		CTAButtonBorderRadius: {
+			type: 'number',
+			default: 0
+		},
+		CTAButtonBorderColor: {
+			type: 'string',
+			default: 'blue'
+		},
+		CTAButtonColor: {
+			type: 'string',
+			default: 'blue'
+		},
+		CTAButtonTextColor: {
+			type: 'string',
+			default: 'white'
+		},
+		CTAButtonlink: {
+			type: 'string',
+			default: ''
+		},
+		CTAButtonLinkOpenNewTab: {
+			type: 'boolean',
+			default: false
 		}
 	},
 
@@ -171,11 +261,25 @@ registerBlockType( 'k2/call-to-action-block', {
 		const CTAIMAGE = {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
-
+		const FontWeightAvaibles= [
+			{ label: 'normal'},
+			{ label: '100'},
+			{ label: '200'},
+			{ label: '300'},
+			{ label: '400'},
+			{ label: '500'},
+			{ label: '600'},
+		]
 		const colors = [
 			{ name: 'red', color: '#f00' },
 			{ name: 'white', color: '#fff' },
 			{ name: 'blue', color: '#00f' },
+		];
+		const ToolBarColors = [
+			{ color: '#32897A' },
+			{  color: '#1995AD' },
+			{  color: '#011A27' },
+			{  color: '#F69454' },
 		];
 
 		const BoxedContainerStyling = {
@@ -209,12 +313,46 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		const CTAHeadingStyling = {
 			color: attributes.CTAHeadingColor,
-			fontsize: attributes.CTAHeadingFontSize + 'em' + ' !important'
+			fontSize: attributes.CTAHeadingFontSize + 'em',
+			fontFamily: attributes.CTAHeadingFontFamily,
+			fontWeight: attributes.CTAHeadingFontWeight,
+			fontStyle: attributes.CTAHeadingTextStyle,
+			textDecoration: attributes.CTAHeadingTextDecoration
 		}
 
 		const CTAParagraphStyling = {
 			color: attributes.CTAParagraphColor,
-			fontsize: attributes.CTAParagraphyFontSize + 'em'
+			fontSize: attributes.CTAParagraphyFontSize + 'em',
+			fontFamily: attributes.CTAParagraphFontFamily,
+			fontWeight: attributes.CTAParagraphFontWeight,
+			fontStyle: attributes.CTAParagraphTextStyle,
+			textDecoration: attributes.CTAParagraphTextDecoration
+		}
+
+		const CTAButtonStyling = {
+			fontSize: attributes.CTAButtonFontSize + 'em',
+			fontFamily: attributes.CTAButtonFontFamily,
+			fontWeight: attributes.CTAButtonFontWeight,
+			fontStyle: attributes.CTAButtonTextStyle,
+			textDecoration: attributes.CTAButtonTextDecoration,
+			borderColor: attributes.CTAButtonBorderColor,
+			borderRadius: attributes.CTAButtonBorderRadius,
+			borderStyle: attributes.CTAButtonBorderStyle,
+			borderWidth: attributes.CTAButtonBorderWidth,
+			backgroundColor: attributes.CTAButtonColor,
+			color: attributes.CTAButtonTextColor
+		}
+
+		function onChangeCTAButtonColor(Newcolor) {
+			setAttributes({
+				CTAButtonColor: Newcolor
+			})
+		}
+
+		function onChangeCTAButtonTextColor(NewColor) {
+			setAttributes({
+				CTAButtonTextColor: NewColor
+			})
 		}
 
 		function onChangeCTAInnerContainerPlacement(NewPlacement) {
@@ -364,9 +502,131 @@ registerBlockType( 'k2/call-to-action-block', {
 				CTAParagraphyFontSize: NewFontSize
 			})
 		}
+
+		function onChangeCTAButtonFontSize(NewfontSize) {
+			setAttributes({
+				CTAButtonFontSize: NewfontSize
+			})
+		}
+
+		function onChangeCTAHeadingFontWeight(NewWeight) {
+			setAttributes({
+				CTAHeadingFontWeight: NewWeight
+			})
+		}
+
+		function onChangeCTAHeadingFontStyle(NewStyle) {
+			setAttributes({
+				CTAHeadingTextStyle: NewStyle
+			})
+		}
+
+		function onChangeCTAHeadingFontDecoration(NewDecoration) {
+			setAttributes({
+				CTAHeadingTextDecoration: NewDecoration
+			})
+		}
+
+
+		function onChangeCTAParagraphFontWeight(NewWeight) {
+			setAttributes({
+				CTAParagraphFontWeight: NewWeight
+			})
+		}
+
+		function onChangeCTAParagraphFontStyle(NewStyle) {
+			setAttributes({
+				CTAParagraphTextStyle: NewStyle
+			})
+		}
+
+		function onChangeCTAParagraphFontDecoration(NewDecoration) {
+			setAttributes({
+				CTAParagraphTextDecoration: NewDecoration
+			})
+		}
+
+
+		function onChangeCTAButtonFontWeight(NewWeight) {
+			setAttributes({
+				CTAButtonFontWeight: NewWeight
+			})
+		}
+
+		function onChangeCTAButtonFontStyle(NewStyle) {
+			setAttributes({
+				CTAButtonTextStyle: NewStyle
+			})
+		}
+
+		function onChangeCTAButtonFontDecoration(NewDecoration) {
+			setAttributes({
+				CTAButtonTextDecoration: NewDecoration
+			})
+		}
+
+		function onChangeCTAHeadingFontFamily(NewFont) {
+			setAttributes({
+				CTAHeadingFontFamily: NewFont
+			})
+		}
+
+
+		function onChangeCTAParagraphyontFamily(NewFont) {
+			setAttributes({
+				CTAParagraphFontFamily: NewFont
+			})
+		}
+
+
+		function onChangeCTAButtonFontFamily(NewFont) {
+			setAttributes({
+				CTAButtonFontFamily: NewFont
+			})
+		}
+
+		function onChangeCTABorderColor(NewColor) {
+			setAttributes({
+				CTAButtonBorderColor: NewColor
+			})
+		}
+
+
+		function onChangeCTABorderWidth(NewWidth) {
+			setAttributes({
+				CTAButtonBorderWidth: NewWidth
+			})
+		}
+
+		function onChangeCTABorderRadius(NewRadius) {
+			setAttributes({
+				CTAButtonBorderRadius: NewRadius
+			})
+		}
+
+		function onChangeCTABorderStyle(NewStyle) {
+			setAttributes({
+				CTAButtonBorderStyle: NewStyle
+			})
+		}
+
+		function onChangeCTAButtonLink(NewLink) {
+			setAttributes({
+				CTAButtonlink: NewLink
+			})
+		}
+
+		function onChangeCTAButtonLinkNewTab(NewTab) {
+			setAttributes({
+				CTAButtonLinkOpenNewTab: NewTab
+			})
+		}
+
 		return ( [
 			<InspectorControls>
 				<PanelBody title={'Layout Settings'}>
+
+
 					<SelectControl
 						label="Skin"
 						value={ attributes.LayoutDesign }
@@ -545,6 +805,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 					{
 						(attributes.CTAisHeadingEnabled === true)?<div>
+							<ColorPalette
+								value = {attributes.CTAHeadingColor}
+								onChange = {onChangeCTAHeadingColor}
+								colors = {colors} />
 
 							<RangeControl
 								label={<strong> Font Size </strong>}
@@ -555,10 +819,51 @@ registerBlockType( 'k2/call-to-action-block', {
 								step ={0.1}
 							/>
 
-							<ColorPalette
-								value = {attributes.CTAHeadingColor}
-								onChange = {onChangeCTAHeadingColor}
-								colors = {colors} />
+							<PanelRow>
+								<SelectControl
+									label="Font Family"
+									value={ attributes.CTAHeadingFontFamily }
+									options={ GLOBAL_FONTS }
+									onChange={ onChangeCTAHeadingFontFamily}
+								/>
+
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label="Weight"
+									value={ attributes.CTAHeadingFontWeight }
+									options={ FontWeightAvaibles }
+									onChange={ onChangeCTAHeadingFontWeight}
+								/>
+							</PanelRow>
+
+							<SelectControl
+								label="Style"
+								value={ attributes.CTAHeadingTextStyle }
+								options={
+									[
+										{ label: 'Normal', value: 'Normal' },
+										{ label: 'oblique', value: 'oblique' },
+										{ label: 'italic', value: 'italic' },
+									]
+								}
+								onChange={ onChangeCTAHeadingFontStyle}
+							/>
+
+							<SelectControl
+								label="Decoration"
+								value={ attributes.CTAHeadingTextDecoration }
+								options={
+									[
+										{ label: 'None', value: 'None' },
+										{ label: 'underline', value: 'underline' },
+										{ label: 'overline', value: 'overline' },
+										{ label: 'line-through', value: 'line-through' },
+									]
+								}
+								onChange={ onChangeCTAHeadingFontDecoration}
+							/>
 
 						</div>:null
 					}
@@ -580,6 +885,11 @@ registerBlockType( 'k2/call-to-action-block', {
 					{
 						(attributes.CTAisParagraphyEnabled === true)?<div>
 
+							<ColorPalette
+								value = {attributes.CTAParagraphColor}
+								onChange = {onChangeCTAParagraphColor}
+								colors = {colors} />
+
 							<RangeControl
 								label={<strong> Font Size </strong>}
 								value={ attributes.CTAParagraphyFontSize }
@@ -588,10 +898,54 @@ registerBlockType( 'k2/call-to-action-block', {
 								max={ 15 }
 								step ={0.1}
 							/>
-							<ColorPalette
-								value = {attributes.CTAParagraphColor}
-								onChange = {onChangeCTAParagraphColor}
-								colors = {colors} />
+
+							<PanelRow>
+								<SelectControl
+									label="Font Family"
+									value={ attributes.CTAParagraphFontFamily }
+									options={ GLOBAL_FONTS }
+									onChange={ onChangeCTAParagraphyontFamily}
+								/>
+
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label="Weight"
+									value={ attributes.CTAParagraphFontWeight }
+									options={ FontWeightAvaibles }
+									onChange={ onChangeCTAParagraphFontWeight}
+								/>
+							</PanelRow>
+
+							<SelectControl
+								label="Style"
+								value={ attributes.CTAParagraphTextStyle }
+								options={
+									[
+										{ label: 'Normal', value: 'Normal' },
+										{ label: 'oblique', value: 'oblique' },
+										{ label: 'italic', value: 'italic' },
+									]
+								}
+								onChange={ onChangeCTAParagraphFontStyle}
+							/>
+
+							<SelectControl
+								label="Decoration"
+								value={ attributes.CTAParagraphTextDecoration }
+								options={
+									[
+										{ label: 'None', value: 'None' },
+										{ label: 'underline', value: 'underline' },
+										{ label: 'overline', value: 'overline' },
+										{ label: 'line-through', value: 'line-through' },
+									]
+								}
+								onChange={ onChangeCTAParagraphFontDecoration}
+							/>
+
+
 						</div>:null
 					}
 
@@ -613,12 +967,143 @@ registerBlockType( 'k2/call-to-action-block', {
 
 					{
 						(attributes.CTAisButtonEnabled === true)?<div>
-								<TextControl
-									label="Button Text"
-									value={ attributes.CTAButtonText }
-									onChange={ onChangeCTAButtonText}
+							<TextControl
+								label="Button Text"
+								value={ attributes.CTAButtonText }
+								onChange={ onChangeCTAButtonText}
+							/>
+
+							<TextControl
+								label="Url"
+								help="link Format: https://www.google.com/"
+								value={ attributes.CTAButtonlink }
+								onChange={ onChangeCTAButtonLink}
+							/>
+							<CheckboxControl
+								label="Open in New Tab"
+								checked={ attributes.CTAButtonLinkOpenNewTab}
+								onChange={ onChangeCTAButtonLinkNewTab }
+							/>
+
+
+							<ColorPalette
+							value = {attributes.CTAButtonTextColor}
+							onChange = {onChangeCTAButtonTextColor}
+							colors = {colors} />
+
+
+							<ColorPalette
+								value = {attributes.CTAButtonColor}
+								onChange = {onChangeCTAButtonColor}
+								colors = {colors} />
+
+
+							<RangeControl
+								label={<strong> Font Size </strong>}
+								value={ attributes.CTAButtonFontSize }
+								onChange={ onChangeCTAButtonFontSize }
+								min={ 0 }
+								max={ 15 }
+								step ={0.1}
+							/>
+
+							<PanelRow>
+								<SelectControl
+									label="Font Family"
+									value={ attributes.CTAButtonFontFamily }
+									options={ GLOBAL_FONTS }
+									onChange={ onChangeCTAButtonFontFamily}
 								/>
+
+							</PanelRow>
+
+							<PanelRow>
+								<SelectControl
+									label="Weight"
+									value={ attributes.CTAButtonFontWeight }
+									options={ FontWeightAvaibles }
+									onChange={ onChangeCTAButtonFontWeight}
+								/>
+							</PanelRow>
+
+							<SelectControl
+								label="Style"
+								value={ attributes.CTAButtonTextStyle }
+								options={
+									[
+										{ label: 'Normal', value: 'Normal' },
+										{ label: 'oblique', value: 'oblique' },
+										{ label: 'italic', value: 'italic' },
+									]
+								}
+								onChange={ onChangeCTAButtonFontStyle}
+							/>
+
+							<SelectControl
+								label="Decoration"
+								value={ attributes.CTAButtonTextDecoration }
+								options={
+									[
+										{ label: 'None', value: 'None' },
+										{ label: 'underline', value: 'underline' },
+										{ label: 'overline', value: 'overline' },
+										{ label: 'line-through', value: 'line-through' },
+									]
+								}
+								onChange={ onChangeCTAButtonFontDecoration}
+							/>
+								<SelectControl
+									label="Border Type"
+									value={ attributes.CTAButtonBorderStyle }
+									options={
+										[
+											{ label: 'None', value: 'None' },
+											{ label: 'Solid', value: 'Solid' },
+											{ label: 'Double', value: 'Double' },
+											{ label: 'Dotted', value: 'Dotted' },
+											{ label: 'Dashed', value: 'Dashed' },
+											{ label: 'groove', value: 'groove' }
+										]
+									}
+									onChange={ onChangeCTABorderStyle}
+								/>
+
+								{
+									(attributes.CTAButtonBorderStyle === 'None')?null:
+										<div>
+
+											<p><strong>Border Color</strong></p>
+											<ColorPalette
+												value={attributes.CTAButtonBorderColor}
+												onChange={onChangeCTABorderColor}
+												colors = {ToolBarColors}
+											/>
+
+
+											<RangeControl
+												label={<strong>Border Width</strong>}
+												value={ attributes.CTAButtonBorderWidth }
+												onChange={ onChangeCTABorderWidth }
+												min={ 0 }
+												max={ 50 }
+												step ={1}
+											/>
+
+
+											<RangeControl
+												label={<strong>Border Radius</strong>}
+												value={ attributes.CTAButtonBorderRadius }
+												onChange={ onChangeCTABorderRadius }
+												min={ 0 }
+												max={ 50 }
+												step ={1}
+											/>
+										</div>
+								}
+
 							</div>
+
+
 							:null
 					}
 
@@ -662,7 +1147,8 @@ registerBlockType( 'k2/call-to-action-block', {
 
 									{
 										( attributes.CTAisButtonEnabled === true ) ?
-											<button className={ 'ClassicButtonStyling' }>
+
+											<button style={CTAButtonStyling} className={ 'ClassicButtonStyling' }>
 												{ attributes.CTAButtonText }
 											</button>
 											: null
@@ -710,7 +1196,7 @@ registerBlockType( 'k2/call-to-action-block', {
 
 									{
 										( attributes.CTAisButtonEnabled === true ) ?
-											<button className={ 'CoverButtonStyling' }>
+											<button style={CTAButtonStyling} className={ 'CoverButtonStyling' }>
 												{ attributes.CTAButtonText }
 											</button>
 											: null
@@ -740,6 +1226,26 @@ registerBlockType( 'k2/call-to-action-block', {
 		const CTAIMAGE = {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
+		const FontWeightAvaibles= [
+			{ label: 'normal'},
+			{ label: '100'},
+			{ label: '200'},
+			{ label: '300'},
+			{ label: '400'},
+			{ label: '500'},
+			{ label: '600'},
+		]
+		const colors = [
+			{ name: 'red', color: '#f00' },
+			{ name: 'white', color: '#fff' },
+			{ name: 'blue', color: '#00f' },
+		];
+		const ToolBarColors = [
+			{ color: '#32897A' },
+			{  color: '#1995AD' },
+			{  color: '#011A27' },
+			{  color: '#F69454' },
+		];
 
 		const BoxedContainerStyling = {
 			justifyContent: attributes.CTAAlignment
@@ -766,61 +1272,142 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		}
 
+		const CTATextAlignment = {
+			textAlign: attributes.CTAInnerContainerPlacement
+		}
+
+		const CTAHeadingStyling = {
+			color: attributes.CTAHeadingColor,
+			fontSize: attributes.CTAHeadingFontSize + 'em',
+			fontFamily: attributes.CTAHeadingFontFamily,
+			fontWeight: attributes.CTAHeadingFontWeight,
+			fontStyle: attributes.CTAHeadingTextStyle,
+			textDecoration: attributes.CTAHeadingTextDecoration
+		}
+
+		const CTAParagraphStyling = {
+			color: attributes.CTAParagraphColor,
+			fontSize: attributes.CTAParagraphyFontSize + 'em',
+			fontFamily: attributes.CTAParagraphFontFamily,
+			fontWeight: attributes.CTAParagraphFontWeight,
+			fontStyle: attributes.CTAParagraphTextStyle,
+			textDecoration: attributes.CTAParagraphTextDecoration
+		}
+
+		const CTAButtonStyling = {
+			fontSize: attributes.CTAButtonFontSize + 'em',
+			fontFamily: attributes.CTAButtonFontFamily,
+			fontWeight: attributes.CTAButtonFontWeight,
+			fontStyle: attributes.CTAButtonTextStyle,
+			textDecoration: attributes.CTAButtonTextDecoration,
+			borderColor: attributes.CTAButtonBorderColor,
+			borderRadius: attributes.CTAButtonBorderRadius,
+			borderStyle: attributes.CTAButtonBorderStyle,
+			borderWidth: attributes.CTAButtonBorderWidth,
+			backgroundColor: attributes.CTAButtonColor,
+			color: attributes.CTAButtonTextColor
+		}
 
 
-
-		return 	<div>
+		return <div>
 			{
 				(attributes.LayoutDesign == 'Classic')?
-					<div style={BoxedContainerStyling} className={'BoxedContainer'}>
+					<div  style={BoxedContainerStyling} className={'BoxedContainer'}>
+
 						<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
-							<div className={'ClassicTextContainer'}>
-								<RichText.Content
-									tagName="h1" // The tag here is the element output and editable in the admin
-									value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
-									className = {'ClassicHeadingStyle'}
-								/>
-								<RichText.Content
-									tagName="p" // The tag here is the element output and editable in the admin
-									value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
-									className = {'ClassicParagraphHeading'}
-								/>
+							<div style={CTATextAlignment} className={'ClassicTextContainer'}>
+								{
+									(attributes.CTAisHeadingEnabled === true)?
+										<RichText.Content
+											tagName="h1" // The tag here is the element output and editable in the admin
+											value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+											style={CTAHeadingStyling}
+											className = {'ClassicHeadingStyle'}
+										/>
+										: null
+								}
 
-								<button className={'ClassicButtonStyling'}>
-									{attributes.CTAButtonText}
-								</button>
+								{
+									( attributes.CTAisParagraphyEnabled === true ) ?
+										<RichText.Content
+											tagName="p" // The tag here is the element output and editable in the admin
+											value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+											style={CTAParagraphStyling}
+											className={ 'ClassicParagraphHeading' }
+										/>
+										: null
+								}
+
+								{
+									( attributes.CTAisButtonEnabled === true ) ?
+										(attributes.CTAButtonLinkOpenNewTab === false)?
+										<button onclick={'window.location.href = "' + attributes.CTAButtonlink + '"'} style={CTAButtonStyling} className={ 'ClassicButtonStyling' }>
+											{ attributes.CTAButtonText }
+										</button>:
+										<button
+											onclick={"window.open('"+ attributes.CTAButtonlink + "','_blank')"}
+											style={ CTAButtonStyling } className={ 'ClassicButtonStyling' }>
+											{ attributes.CTAButtonText }
+										</button>
+										: null
+								}
 							</div>
-							<div style={ClassicImageContainerStyling}  className={'ClassicImageContainer'}>
+							<div style={ClassicImageContainerStyling} className={'ClassicImageContainer'}>
 
 							</div>
-
 						</div>
 					</div>
 
-					: <div style={BoxedContainerStyling} className={'BoxedContainer'}>
+					: <div  style={BoxedContainerStyling} className={'BoxedContainer'}>
 
 						<div style={CoverParentStyling} className={'CoverParentContainer'}>
 
-							<div className={'CoverTextContainer'}>
-								<RichText.Content
-									tagName="h1" // The tag here is the element output and editable in the admin
-									value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
-									className = {'CoverHeadingStyle'}
-								/>
-								<RichText.Content
-									tagName="p" // The tag here is the element output and editable in the admin
-									value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
-									className = {'CoverParagraphHeading'}
-								/>
+							<div style={CTATextAlignment} className={'CoverTextContainer'}>
+								{
+									( attributes.CTAisHeadingEnabled === true ) ?
+										<RichText.Content
+											tagName="h1" // The tag here is the element output and editable in the admin
+											value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
+											style={CTAHeadingStyling}
+											className={ 'CoverHeadingStyle' }
+										/>
+										: null
+								}
 
-								<button className={'CoverButtonStyling'}>
-									{attributes.CTAButtonText}
-								</button>
+								{
+									( attributes.CTAisParagraphyEnabled === true ) ?
+										<RichText.Content
+											tagName="p" // The tag here is the element output and editable in the admin
+											value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
+											style={CTAParagraphStyling}
+											className = {'CoverParagraphHeading'}
+										/>
+										: null
+								}
+
+
+								{
+									( attributes.CTAisButtonEnabled === true ) ?
+										(attributes.CTAButtonLinkOpenNewTab === false)?
+											<button onclick={'window.location.href = "' + attributes.CTAButtonlink + '"'} style={CTAButtonStyling} className={ 'ClassicButtonStyling' }>
+												{ attributes.CTAButtonText }
+											</button>:
+											<button
+												onclick={"window.open(' + " + attributes.CTAButtonlink + "',_blank')"}
+												style={ CTAButtonStyling } className={ 'ClassicButtonStyling' }>
+												{ attributes.CTAButtonText }
+											</button>
+										: null
+								}
 							</div>
 						</div>
+
 					</div>
 			}
 		</div>
+
+
+
 	},
 
 

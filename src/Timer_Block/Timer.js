@@ -442,16 +442,20 @@ registerBlockType( 'k2/timer-block', {
 		backgroundColor: props.attributes.BlockBackgroundColor,
 		boxShadow: (props.attributes.BlockBackgroundShadow)?"1px 1px 10px #888888":'',
 		minWidth: props.attributes.BlockMinWidth + '%',
-		borderRadius: '1%'
+		borderRadius: '2%'
 	}
 	const TimerValueContainerStyling = {
 		backgroundColor: props.attributes.TimerValueBackgroundColor,
 		boxShadow: (props.attributes.TimerValueBackGroundShadow)?"1px 1px 10px #888888":'',
-		color: props.attributes.TimerValueColor
+		color: props.attributes.TimerValueColor,
+		fontSize: props.attributes.numberFontSize+"em",
+		fontFamily: props.attributes.numberFontFamily,
 	}
 
 	const TimerTextContainerStyling = {
-		color: props.attributes.TimerTextColor
+		color: props.attributes.TimerTextColor,
+		fontSize: props.attributes.textFontSize+"em",
+		fontFamily: props.attributes.textFontFamily
 	}
 
 

@@ -186,3 +186,68 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.mc-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  height: 100%; }
+
+.mc-col {
+  -ms-flex: 25%;
+      flex: 25%;
+  padding: 20px;
+  z-index: 2;
+  height: 800px; }
+
+.mc-figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-transform: scale(1.25);
+      -ms-transform: scale(1.25);
+          transform: scale(1.25);
+  padding: none; }
+
+.mc-figure .mc-image {
+  width: 100% !important;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  float: left;
+  min-height: 800px; }
+
+@media screen and (max-width: 600px) {
+  .row {
+    -ms-flex-direction: column;
+        flex-direction: column; } }
+
+.fade-in {
+  -webkit-animation: opac 0.8s;
+          animation: opac 0.8s; }
+
+@-webkit-keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }

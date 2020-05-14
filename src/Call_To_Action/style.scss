@@ -31,32 +31,27 @@
   padding: 2em;
 }
 
-.CoverHeadingStyle{
+.CoverHeadingStyle {
 }
+
 
 .CoverParagraphHeading{
   color: white;
-  font-family: "Poppins",Sans-serif;
 }
 
 
 
 .CoverButtonStyling{
-  background-color: #002147;
   padding: 0.5em 1em;
   display: inline-block;
   // border settings
-  border-width: 2px;
-  border-style: solid;
-  border-color: white;
+
 
 
 
   //text settings
-  color: white !important;
   font-family: 'poppins';
   font-weight: 500;
-  font-size: 1.4em !important;
   line-height: 1 !important;
 
   //transition effect
@@ -118,28 +113,20 @@
   padding: 2em;
 }
 
-.ClassicHeadingStyle {
+.ClassicHeadingStyle{
 }
 
 .ClassicParagraphHeading{
   color: #002147;
-  font-family: "Poppins",Sans-serif;
 }
 
 .ClassicButtonStyling{
-  background-color: transparent;
   padding: 0.5em 1em;
   display: inline-block;
-  // border settings
-  border-width: 2px;
-  border-style: solid;
-  border-color: #002147;
 
   //text settings
-  color: #002147 !important;
   font-family: 'poppins';
   font-weight: 500;
-  font-size: 1.4em !important;
   line-height: 1 !important;
 
   //transition effect

@@ -64,7 +64,7 @@ registerBlockType( 'k2/timer-block', {
 		minutes: {type:'integer',default:0},// for date
 		hours: {type:'integer',default:0},
 		date: {type:'integer',default:1},
-		month:{type:'integer',default:7},
+		month:{type:'integer',default:1},
 		year:{type:'integer',default:2020},
 
 		days_: {type:'integer',default:0}, //for showing on timer

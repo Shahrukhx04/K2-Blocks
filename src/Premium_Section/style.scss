@@ -3,24 +3,16 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 2;
-  background-color: lightsalmon;
   overflow: scroll;
   transition: 0.5s;
   flex-grow: 1;
-  width: 0vw;
-  padding-top: 10rem;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index:1;
+  z-index:100;
 }
 
 .ButtonStyle{
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
   margin-top: 2em;
   padding-top: 0.5em;
@@ -29,18 +21,6 @@
 }
 
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: red;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: pink;
-}
 
 .sidenav .closebtn {
   position: absolute;

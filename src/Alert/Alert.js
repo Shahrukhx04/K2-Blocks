@@ -60,7 +60,7 @@ registerBlockType( 'k2/alert-block', {
 
 		AlertBoxText: {
 			type: 'string',
-			default: 'Hello Max! This is a warning for you! '
+			default: 'Hello, I am a info box with an icon and text. '
 		},
 		AlertBoxColor: {
 			type: 'string',

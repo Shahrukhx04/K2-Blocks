@@ -385,7 +385,7 @@ registerBlockType( 'k2/premium-section', {
 				 data-OverlayTopDown = {attributes.OverlayTopDown}
 				 data-SilidingOption = {attributes.OverlaySlidingAttribute}
 			>
-				<span id={'PremiumSectionButton'} style={ { fontSize: '45px', cursor: 'pointer', textAlign: 'right' } } >
+				<span className={'PremiumSectionButton'} style={ { fontSize: '45px', cursor: 'pointer', textAlign: 'right' } } >
 							<i style={IconStyling} className={attributes.TriggerButtonIcon}></i>
 						</span>
 			</div>

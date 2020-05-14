@@ -1,15 +1,13 @@
 import './style.scss';
 import './editor.scss';
-import {FONTS} from './Fonts.js';
+import {GLOBAL_FONTS} from '../Global_Fonts';
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 
 const {
-	RichText,
 	InspectorControls,
-	ColorPalette
 } = wp.editor;
 
 const {
@@ -18,7 +16,8 @@ const {
 	DateTimePicker,
 	ColorPicker,
 	CheckboxControl,
-	PanelRow
+	TextControl,
+	RangeControl
 
 } = wp.components;
 
@@ -84,9 +83,25 @@ registerBlockType( 'k2/timer-block', {
 			type: 'string',
 			default: 'white'
 		},
+		numberFontSize: {
+			type: 'number',
+			default: 3
+		},
+		numberFontFamily: {
+			type: 'string',
+			default: '"Montserrat",Sans-serif'
+		},
 		TimerTextColor: {
 			type: 'string',
 			default: '#B2A6FF'
+		},
+		textFontFamily: {
+			type: 'string',
+			default: '"Montserrat",Sans-serif'
+		},
+		textFontSize : {
+			type: 'number',
+			default: 1
 		},
 		TimerLayout: {
 			type: 'string',
@@ -202,15 +217,15 @@ registerBlockType( 'k2/timer-block', {
 				}
 			}
 
-			function onChangeTimerValueColor(NewColor) {
+			function onChangeTimerValueColor(value) {
 				props.setAttributes({
-					TimerValueColor: NewColor
+					TimerValueColor: 'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'
 				})
 			}
 
-			function onChangeTimerTextColor(NewColor) {
+			function onChangeTimerTextColor(value) {
 				props.setAttributes({
-					TimerTextColor: NewColor
+					TimerTextColor: 'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'
 				})
 			}
 
@@ -253,16 +268,20 @@ registerBlockType( 'k2/timer-block', {
 				backgroundColor: props.attributes.BlockBackgroundColor,
 				boxShadow: (props.attributes.BlockBackgroundShadow)?"1px 1px 10px #888888":'',
 				minWidth: props.attributes.BlockMinWidth + '%',
-				borderRadius: '1%'
+				borderRadius: '2%'
 			}
 			const TimerValueContainerStyling = {
 				backgroundColor: props.attributes.TimerValueBackgroundColor,
 				boxShadow: (props.attributes.TimerValueBackGroundShadow)?"1px 1px 10px #888888":'',
-				color: props.attributes.TimerValueColor
+				color: props.attributes.TimerValueColor,
+				fontSize: props.attributes.numberFontSize+"em",
+				fontFamily: props.attributes.numberFontFamily,
 			}
 
 			const TimerTextContainerStyling = {
-				color: props.attributes.TimerTextColor
+				color: props.attributes.TimerTextColor,
+				fontSize: props.attributes.textFontSize+"em",
+				fontFamily: props.attributes.textFontFamily
 			}
 			return ([
 				<InspectorControls>
@@ -274,7 +293,7 @@ registerBlockType( 'k2/timer-block', {
 							/>
 					</PanelBody>
 
-					<PanelBody title={"Styling and color"}>
+					<PanelBody title={"Background"}>
 						<SelectControl
 									label="Skin"
 									value={props.attributes.TimerLayout}
@@ -295,20 +314,65 @@ registerBlockType( 'k2/timer-block', {
 							color={ ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor }
 							onChangeComplete={onChangeBackgroundColor}
 						/>
-						<label class="components-base-control__label">Numbers color</label>
-						<ColorPalette
-							value = { props.attributes.TimerValueColor }
-							onChange={onChangeTimerValueColor}
-							colors = {fontDefaultColors}
+						<TextControl
+							onChange={(value)=>{
+								if(props.attributes.TimerLayout == 'Classic')props.setAttributes({TimerValueBackgroundColor: value,})
+								else{props.setAttributes({BlockBackgroundColor: value})}}
+							}
+							value = {( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor}
 						/>
-						<label className="components-base-control__label">Text color</label>
-						<ColorPalette
-							value={ props.attributes.TimerTextColor}
-							onChange={ onChangeTimerTextColor }
-							colors={ fontDefaultColors }
-						/>
-
 					</PanelBody>
+					<PanelBody title={"Numbers Styling"}>
+						<label class="components-base-control__label">Numbers color</label>
+						<ColorPicker
+							color={ props.attributes.TimerValueColor}
+							onChangeComplete={onChangeTimerValueColor}
+						/>
+						<TextControl
+							onChange={(value)=>{props.setAttributes({TimerValueColor:value})}}
+							value = {props.attributes.TimerValueColor}
+						/>
+						<RangeControl
+							label= "Number Font Size"
+							value={ props.attributes.numberFontSize }
+							onChange={ (value)=>{props.setAttributes({numberFontSize:value})} }
+							min={ 1 }
+							max={ 8 }
+							step ={0.1}
+						/>
+						<SelectControl
+							label="Number Font"
+							value={props.attributes.numberFontFamily}
+							options={GLOBAL_FONTS}
+							onChange={(value)=>{props.setAttributes({numberFontFamily:value})}}
+						/>
+					</PanelBody>
+
+					<PanelBody title={"Text Styling"}>
+						<label class="components-base-control__label">Text color</label>
+						<ColorPicker
+							color={ props.attributes.TimerTextColor }
+							onChangeComplete={onChangeTimerTextColor}
+						/>
+						<TextControl
+							onChange={(value)=>{props.setAttributes({TimerTextColor:value})}}
+							value = {props.attributes.TimerTextColor}
+						/>
+						<RangeControl
+							label= "Text Font Size"
+							value={ props.attributes.textFontSize }
+							onChange={ (value)=>{props.setAttributes({textFontSize:value})} }
+							min={ 1 }
+							max={ 8 }
+							step ={0.1}
+						/>
+						<SelectControl
+							label="Text Font"
+							value={props.attributes.textFontFamily}
+							options={GLOBAL_FONTS}
+							onChange={(value)=>{props.setAttributes({textFontFamily:value})}}
+						/>
+					</PanelBody>	
 				</InspectorControls>
 				,
 				<div className={'TimerParentContainer'}>

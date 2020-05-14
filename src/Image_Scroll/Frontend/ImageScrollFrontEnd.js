@@ -1,18 +1,16 @@
 
 jQuery(document).ready(function( $ ) {
-
-
-	var PositionX = $('#ImageScroll').attr('data-PositionX');
-	var PositionY = $('#ImageScroll').attr('data-PositionY');
-	var PositionHoverX = $('#ImageScroll').attr('data-PositionHoverX');
-	var PositionHoverY = $('#ImageScroll').attr('data-PositionHoverY');
-
-	$('#ImageScroll').mouseover(function(){
-
-		console.log(PositionX, PositionY, PositionHoverX, PositionHoverY)
-		$(this).css({backgroundPosition: PositionHoverX + '%' + PositionHoverY +'%'});
-	});
-	$('#ImageScroll').mouseout(function(){
-		$(this).css({backgroundPosition: PositionX + '%' + PositionY +'%'});
+	$('.wp-block-k2-imagescroll-block').each(function (index) {
+		var imageScroll = $(this).children('.SubParentContainer').children('.ImageParentContainer')[0];
+		var PositionX = $(imageScroll).attr('data-PositionX');
+		var PositionY = $(imageScroll).attr('data-PositionY');
+		var PositionHoverX = $(imageScroll).attr('data-PositionHoverX');
+		var PositionHoverY = $(imageScroll).attr('data-PositionHoverY');
+		$(imageScroll).mouseover(function(){
+			$(imageScroll).css({backgroundPosition: PositionHoverX + '%' + PositionHoverY +'%'});
+		});
+		$(imageScroll).mouseout(function(){
+			$(imageScroll).css({backgroundPosition: PositionX + '%' + PositionY +'%'});
+		});
 	});
 });

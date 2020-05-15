@@ -14,9 +14,7 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin: 2em 0.5em;
-  -ms-flex-pack: center;
-      justify-content: center; }
+  margin: 2em 0.5em; }
 
 .ProgressBarOutsideContainer {
   display: -ms-inline-flexbox;
@@ -180,8 +178,6 @@
   display: flex;
   margin-top: 2em;
   margin-bottom: 2em;
-  -ms-flex-pack: center;
-      justify-content: center;
   -webkit-box-sizing: content-box;
           box-sizing: content-box; }
 

@@ -257,10 +257,6 @@ registerBlockType( 'k2/call-to-action-block', {
 	 * @returns {Mixed} JSX Component.
 	 */
 	edit ({attributes, setAttributes}) {
-
-		const CTAIMAGE = {
-			backgroundImage: 'url("' +attributes.CTA_Image + '")'
-		}
 		const FontWeightAvaibles= [
 			{ label: 'normal'},
 			{ label: '100'},
@@ -281,6 +277,10 @@ registerBlockType( 'k2/call-to-action-block', {
 			{  color: '#011A27' },
 			{  color: '#F69454' },
 		];
+		const CTAIMAGE = {
+			backgroundImage: 'url("' +attributes.CTA_Image + '")'
+		}
+
 
 		const BoxedContainerStyling = {
 			justifyContent: attributes.CTAAlignment
@@ -622,6 +622,40 @@ registerBlockType( 'k2/call-to-action-block', {
 			})
 		}
 
+		function onChangeAlignmentIconChange(value) {
+
+			if (value.target.tagName === 'SPAN'){
+				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var Spans = MainDiv.getElementsByTagName('div');
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					}
+				}
+				console.log(value.target.tagName)
+				value.target.className = value.target.className + ' active'
+
+			}
+
+		}
+
+		function onChangeTextAlignmentIconChange(value) {
+
+			if (value.target.tagName === 'SPAN'){
+				var MainDiv = document.getElementById("TextAlignContainer");
+				var Spans = MainDiv.getElementsByTagName('div');
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					}
+				}
+				console.log(value.target.tagName)
+				value.target.className = value.target.className + ' active'
+
+			}
+
+		}
+
 		return ( [
 			<InspectorControls>
 				<PanelBody title={'Layout Settings'}>
@@ -663,16 +697,16 @@ registerBlockType( 'k2/call-to-action-block', {
 						<div style={{paddingBottom: '2%'}}>
 							<label><strong>Position</strong></label>
 						</div>
-						<div className={'InspectorControlAlertBoxAlignment'}>
+						<div id = 'AlignmentIconsParent' className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
 
 							<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeCTAAllignment('flex-start')}>
-								<i className="fas fa-align-left" ></i>
+								<span className="fas fa-align-left AlignmentIconsStyle" ></span>
 							</div>
 							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAAllignment('center')}>
-								<i className="fas fa-align-center"></i>
+								<span className="fas fa-align-center AlignmentIconsStyle active"></span>
 							</div>
 							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAAllignment('flex-end')}>
-								<i className="fas fa-align-right"></i>
+								<span className="fas fa-align-right AlignmentIconsStyle"></span>
 							</div>
 						</div>
 
@@ -681,18 +715,18 @@ registerBlockType( 'k2/call-to-action-block', {
 					<PanelRow>
 
 						<div style={{paddingBottom: '2%'}}>
-							<label><strong>Text Alignment</strong></label>
+							<label><strong>Text Align</strong></label>
 						</div>
-						<div className={'InspectorControlAlertBoxAlignment'}>
+						<div id ="TextAlignContainer" className={'InspectorControlAlertBoxAlignment'} onClick={onChangeTextAlignmentIconChange}>
 
 							<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeCTAInnerContainerPlacement('left')}>
-								<i className="fas fa-align-left" ></i>
+								<span className="fas fa-align-left AlignmentIconsStyle" ></span>
 							</div>
 							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAInnerContainerPlacement('center')}>
-								<i className="fas fa-align-center"></i>
+								<span className="fas fa-align-center AlignmentIconsStyle active"></span>
 							</div>
 							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAInnerContainerPlacement('right')}>
-								<i className="fas fa-align-right"></i>
+								<span className="fas fa-align-right AlignmentIconsStyle"></span>
 							</div>
 						</div>
 
@@ -1223,29 +1257,11 @@ registerBlockType( 'k2/call-to-action-block', {
 	 */
 	save ({attributes, setAttributes}) {
 
+
 		const CTAIMAGE = {
 			backgroundImage: 'url("' +attributes.CTA_Image + '")'
 		}
-		const FontWeightAvaibles= [
-			{ label: 'normal'},
-			{ label: '100'},
-			{ label: '200'},
-			{ label: '300'},
-			{ label: '400'},
-			{ label: '500'},
-			{ label: '600'},
-		]
-		const colors = [
-			{ name: 'red', color: '#f00' },
-			{ name: 'white', color: '#fff' },
-			{ name: 'blue', color: '#00f' },
-		];
-		const ToolBarColors = [
-			{ color: '#32897A' },
-			{  color: '#1995AD' },
-			{  color: '#011A27' },
-			{  color: '#F69454' },
-		];
+
 
 		const BoxedContainerStyling = {
 			justifyContent: attributes.CTAAlignment
@@ -1307,6 +1323,7 @@ registerBlockType( 'k2/call-to-action-block', {
 			backgroundColor: attributes.CTAButtonColor,
 			color: attributes.CTAButtonTextColor
 		}
+
 
 
 		return <div>

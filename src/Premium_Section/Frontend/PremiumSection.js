@@ -10,13 +10,13 @@ jQuery(document).ready(function( $ ) {
 			$(mysidenav).css(SilidingOption, '100%');
 			$(mysidenav).css(OverlayTopDown, '0');
 			$(mysidenav).css(OverlayLeftRight, '0');
-			$(mysidenav).css("overflow", "hidden");
+			$("body").css("overflow", "hidden");
 		});
 		var crossButton = $(mysidenav).children('.closebtn')[0];
 		$(crossButton).click(function(){
 			$(mysidenav).css(SilidingOption, '0%');
 			$("body").css("overflow", "auto");
-	
+
 		})
 	})
 })

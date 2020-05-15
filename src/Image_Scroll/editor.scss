@@ -16,3 +16,22 @@
   padding: 5px;
   opacity: 0.59;
 }
+
+.InspectorControlImageAlignment{
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.InspectorControlImageAlignmentEach{
+  flex-basis: 33.33%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.AlignmentIconsStyle {
+  font-size: 15px;
+  padding: 0.8em;
+}

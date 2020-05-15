@@ -128,6 +128,10 @@ registerBlockType( 'k2/progressbar-block', {
 		ProgressBarTextDisplay: {
 			type: 'boolean',
 			default: true
+		},
+		ProgressBarAllignment: {
+			type: 'string',
+			default: 'center'
 		}
 	},
 
@@ -173,6 +177,10 @@ registerBlockType( 'k2/progressbar-block', {
 			{ label: '500'},
 			{ label: '600'},
 		]
+
+		const ProgressBarParentContainer = {
+			justifyContent: attributes.ProgressBarAllignment
+		}
 
 		const ProgressBarSubParentContainerStyling = {
 			width: attributes.ProgressBarWidth + 'rem'
@@ -360,6 +368,28 @@ registerBlockType( 'k2/progressbar-block', {
 			})
 		}
 
+		function onChangeProgressBarAllignment(NewAllignment) {
+			setAttributes({
+				ProgressBarAllignment: NewAllignment
+			})
+		}
+
+		function onChangeAlignmentIconChange(value) {
+
+			if (value.target.tagName === 'SPAN'){
+				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var Spans = MainDiv.getElementsByTagName('div');
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					}
+				}
+				console.log(value.target.tagName)
+				value.target.className = value.target.className + ' active'
+
+			}
+
+		}
 		return ([
 
 				<InspectorControls>
@@ -391,7 +421,31 @@ registerBlockType( 'k2/progressbar-block', {
 							min={ 0 }
 							max={ 100 }
 						/>
+
+						<PanelRow>
+
+							<div style={{paddingBottom: '2%'}}>
+								<label><strong>Alignment</strong></label>
+							</div>
+							<div id = 'AlignmentIconsParent' className={'InspectorControlProgressBarAlignment'} onClick={onChangeAlignmentIconChange}>
+
+								<div className={'InspectorControlProgressBarAlignmentEach'}  onClick={() => onChangeProgressBarAllignment('flex-start')}>
+									<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+								</div>
+								<div className={'InspectorControlProgressBarAlignmentEach'} onClick={() => onChangeProgressBarAllignment('center')}>
+									<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+								</div>
+								<div className={'InspectorControlProgressBarAlignmentEach'} onClick={() => onChangeProgressBarAllignment('flex-end')}>
+									<span className="fas fa-align-right AlignmentIconsStyle"></span>
+								</div>
+							</div>
+
+						</PanelRow>
+
 					</PanelBody>
+
+
+
 
 
 					<PanelBody title={"Colors"}>
@@ -573,7 +627,7 @@ registerBlockType( 'k2/progressbar-block', {
 
 				</InspectorControls>,
 
-				<div className={'ProgressBarParentContainer'}>
+				<div style={ProgressBarParentContainer} className={'ProgressBarParentContainer'}>
 					<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
 
 						{
@@ -619,6 +673,10 @@ registerBlockType( 'k2/progressbar-block', {
 	 */
 	save ({attributes}) {
 
+		const ProgressBarParentContainer = {
+			justifyContent: attributes.ProgressBarAllignment
+		}
+
 		const ProgressBarSubParentContainerStyling = {
 			width: attributes.ProgressBarWidth + 'rem'
 		}
@@ -656,7 +714,7 @@ registerBlockType( 'k2/progressbar-block', {
 			textDecoration: attributes.ProgressBarTextDecoration,
 			wordWrap: 'break-word'
 		}
-		return 	<div className={'ProgressBarParentContainer'}>
+		return 	<div style={ProgressBarParentContainer} className={'ProgressBarParentContainer'}>
 			<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
 
 				{

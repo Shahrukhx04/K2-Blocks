@@ -55,7 +55,7 @@ registerBlockType( 'k2/progressbar-block', {
 
 		progressBarColor: {
 			type: 'string',
-			default: 'red'
+			default: '#1995AD'
 		},
 		progressBarHeight: {
 			type: 'number',
@@ -67,11 +67,11 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		titleColor: {
 			type: 'string',
-			default: 'red'
+			default: '#1995AD'
 		},
 		progressBarPercentage:{
 			type: 'number',
-			default: 40
+			default: 54
 		},
 		ShowPercentage: {
 			type: 'boolean',
@@ -79,7 +79,7 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		TextFontSize: {
 			type: 'number',
-			default: 10
+			default: 14
 		},
 		ProgressBarBackGroundColor: {
 			type: 'string',
@@ -95,19 +95,19 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		TextFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Arial'
 		},
 		TextFontWeight: {
 			type: 'string',
-			default: 'normal'
+			default: '600'
 		},
 		ProgressBarBorderRadius: {
 			type: 'number',
-			default: 30
+			default: 36
 		},
 		ProgressBarOpacity: {
 			type: 'number',
-			default: 0.5
+			default: 0.4
 		},
 		ProgressBarStripedOrSolid: {
 			type: 'boolean',
@@ -115,7 +115,7 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		ProgressBarWidth: {
 			type: 'number',
-			default: 30
+			default: 54
 		},
 		ProgressBarTextStyle: {
 			type: 'number',

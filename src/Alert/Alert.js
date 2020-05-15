@@ -64,7 +64,7 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxColor: {
 			type: 'string',
-			default: 'transparent'
+			default: '#1995AD'
 		},
 		AlertBoxBorderColor: {
 			type: 'string',
@@ -72,11 +72,11 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxTextColor: {
 			type: 'string',
-			default: 'orange'
+			default: '#ffffff'
 		},
 		AlertBoxIconSize: {
 			type: 'number',
-			default: 5
+			default: 3
 		},
 		AlertBoxTextSize: {
 			type: 'number',
@@ -84,7 +84,7 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxIconColor: {
 			type: 'string',
-			default: 'orange'
+			default: '#1995AD'
 		},
 		AlertBoxIconType:{
 			type: 'string',
@@ -120,7 +120,7 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxBorderRadius: {
 			type: 'number',
-			default: 0
+			default: 16
 		},
 		AlertBoxWidgetWidth: {
 			type: 'number',
@@ -128,15 +128,15 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertIconBackgroundColor: {
 			type: 'string',
-			default: '#FED8B1'
+			default: 'white'
 		},
 		AlertIconBackgroundBorderRadius: {
 			type:'number',
-			default: 0
+			default: 13
 		},
 		AlertBoxTextFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Gill Sans'
 		},
 		AlertBoxTextFontWeight: {
 			type: 'string',

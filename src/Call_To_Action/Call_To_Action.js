@@ -57,7 +57,7 @@ registerBlockType( 'k2/call-to-action-block', {
 	attributes: {
 		LayoutDesign: {
 			type: 'string',
-			default: 'Classic'
+			default: 'Cover'
 		},
 		CTA_Image: {
 			type: 'string',
@@ -77,23 +77,23 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAOverlayColorRed: {
 			type: 'number',
-			default: 68
+			default: 180
 		},
 		CTAOverlayColorGreen: {
 			type: 'number',
-			default: 68
+			default: 55
 		},
 		CTAOverlayColorBlue: {
 			type: 'number',
-			default: 68
+			default: 87
 		},
 		CTAOverlayColorAlpha: {
 			type: 'number',
-			default: 0.0
+			default: 0.6
 		},
 		CTAOverlayEnableDisable: {
 			type: 'boolean',
-			default: false
+			default: true
 		},
 		CTAClassicPosition: {
 			type: 'string',
@@ -109,11 +109,11 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAAlignment: {
 			type: 'string',
-			default: 'flex-start'
+			default: 'center'
 		},
 		CTABoxWidth: {
 			type: 'number',
-			default: 80
+			default: 58
 		},
 		InspectorControlClassicOptionDisplay:{
 			type: 'string',
@@ -137,11 +137,11 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingColor: {
 			type: 'string',
-			default: '#002147'
+			default: 'white'
 		},
 		CTAParagraphColor: {
 			type: 'string',
-			default: '#002147'
+			default: 'white'
 		},
 		CTAHeadingFontSize: {
 			type: 'number',
@@ -149,7 +149,7 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAParagraphyFontSize: {
 			type: 'number',
-			default: 0.5
+			default: 1.4
 		},
 		CTAButtonFontSize: {
 			type: 'number',
@@ -157,15 +157,15 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Helvatica'
 		},
 		CTAParagraphFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Helvatica'
 		},
 		CTAButtonFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Helvatica'
 		},
 		CTAButtonFontWeight: {
 			type: 'string',
@@ -182,7 +182,7 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		CTAHeadingFontWeight: {
 			type: 'string',
-			default: 'normal'
+			default: '600'
 		},
 		CTAHeadingTextStyle: {
 			type: 'number',
@@ -196,7 +196,7 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		CTAParagraphFontWeight: {
 			type: 'string',
-			default: 'normal'
+			default: '300'
 		},
 		CTAParagraphTextStyle: {
 			type: 'number',
@@ -213,19 +213,19 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAButtonBorderWidth: {
 			type: 'number',
-			default: 2
+			default: 3
 		},
 		CTAButtonBorderRadius: {
 			type: 'number',
-			default: 0
+			default: 3
 		},
 		CTAButtonBorderColor: {
 			type: 'string',
-			default: 'blue'
+			default: '#ffffff'
 		},
 		CTAButtonColor: {
 			type: 'string',
-			default: 'blue'
+			default: '#3d8c97'
 		},
 		CTAButtonTextColor: {
 			type: 'string',

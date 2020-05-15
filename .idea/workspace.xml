@@ -11,18 +11,10 @@
       <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Alert/Alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/Alert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alert/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/editor.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Counter_Block/Counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Counter_Block/Counter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/editor.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

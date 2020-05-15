@@ -37,7 +37,7 @@ registerBlockType( 'k2/imagescroll-block', {
 	attributes: {
 		MagicImage: {
 			type: 'string',
-			default: 'http://localhost/wordpress/wp-content/uploads/2020/05/ice-cream-caramel.jpg'
+			default: 'http://localhost/wordpress/wp-content/uploads/2020/05/3.jpg'
 		},
 		MagicImageOverlayColorRed: {
 			type: 'number',
@@ -61,7 +61,7 @@ registerBlockType( 'k2/imagescroll-block', {
 		},
 		MagicImageHeight: {
 			type: 'number',
-			default: 50
+			default: 27
 		},
 		MagicImageBackgroundPositionX: {
 			type: 'number',
@@ -97,11 +97,11 @@ registerBlockType( 'k2/imagescroll-block', {
 		},
 		MagicImageWidth: {
 			type: 'number',
-			default: 20
+			default: 27
 		},
 		MagicImageBorderRadius: {
 			type: 'number',
-			default: 20
+			default: 12
 		},
 		MagicImageOverlayOption: {
 			type: 'boolean',

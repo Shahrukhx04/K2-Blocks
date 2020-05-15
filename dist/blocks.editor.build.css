@@ -1,7 +1,332 @@
-.InspectorControlProgressBarAlignment{display:-ms-inline-flexbox;display:inline-flex;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.InspectorControlProgressBarAlignmentEach{-ms-flex-preferred-size:33.33%;flex-basis:33.33%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;cursor:pointer}.AlignmentIconsStyle{font-size:15px;padding:0.8em}
-.ImageSelectControl{display:-ms-flexbox;display:flex;height:100px;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;background-position:center;background-size:cover;cursor:pointer}.ImageSelectControl i{font-size:48px;color:#ddd}.components-color-picker__inputs-wrapper{display:none}.InspectorControlClassicPosition{display:-ms-inline-flexbox;display:inline-flex;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.InspectorControlClassicPositionEachElement{-ms-flex-preferred-size:50%;flex-basis:50%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;cursor:pointer}.AlignmentIconsStyle{font-size:15px;padding:0.8em}
-.ImageSelectControl{display:-ms-flexbox;display:flex;height:100px;-ms-flex-align:center;align-items:center;-ms-flex-pack:center;justify-content:center;background-position:center;background-size:cover;cursor:pointer}.ImageSelectControl i{font-size:35px;color:white;padding:5px;opacity:0.59}.InspectorControlImageAlignment{display:-ms-inline-flexbox;display:inline-flex;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.InspectorControlImageAlignmentEach{-ms-flex-preferred-size:33.33%;flex-basis:33.33%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;cursor:pointer}.AlignmentIconsStyle{font-size:15px;padding:0.8em}
-.InspectorControlAlertBoxAlignment{display:-ms-inline-flexbox;display:inline-flex;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.InspectorControlAlertBoxAlignmentEach{-ms-flex-preferred-size:33.33%;flex-basis:33.33%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;cursor:pointer}.IconListWrapper{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-top:1em;margin-bottom:2em}.IconListSubWrapper{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;padding-top:1em;padding-bottom:2em;max-height:120px;overflow:auto}.IconListSubWrapper span{font-size:15px;padding:0.8em}.IconListSubWrapper span:hover{color:orange;background-color:#FED8B1;cursor:pointer}.AlignmentIconsStyle{font-size:15px;padding:0.8em}.active{color:orange;background-color:#FED8B1}
-.InspectorControlOverlayPosition{display:-ms-inline-flexbox;display:inline-flex;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box}.InspectorControlOverlayPositionEach{-ms-flex-preferred-size:33.33%;flex-basis:33.33%;-webkit-box-sizing:border-box;box-sizing:border-box;display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;cursor:pointer}.IconListWrapper{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-top:1em;margin-bottom:2em}.IconListSubWrapper{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;padding-top:1em;padding-bottom:2em;max-height:120px;overflow:auto}.IconListSubWrapper span{font-size:15px;padding:0.8em}.IconListSubWrapper span:hover{color:orange;background-color:#FED8B1;cursor:pointer}.AlignmentIconsStyle{font-size:15px;padding:0.8em}.active{color:orange;background-color:#FED8B1}
-.components-datetime{padding:0 !important}
-.mc-row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;position:relative;width:100%;overflow:hidden;background:#000;height:100%}.mc-col{-ms-flex:25%;flex:25%;padding:20px;z-index:2;height:800px}.mc-figure{position:absolute;top:0;left:0;height:100%;width:100%;z-index:0;overflow:hidden;-webkit-transform:scale(1.25);-ms-transform:scale(1.25);transform:scale(1.25);padding:none}.mc-figure .mc-image{width:100% !important;height:100% !important;-o-object-fit:cover;object-fit:cover;float:left;min-height:800px}@media screen and (max-width: 600px){.row{-ms-flex-direction:column;flex-direction:column}}.fade-in{-webkit-animation:opac 0.8s;animation:opac 0.8s}@-webkit-keyframes opac{from{opacity:0}to{opacity:1}}@keyframes opac{from{opacity:0}to{opacity:1}}
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.InspectorControlProgressBarAlignment {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlProgressBarAlignmentEach {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.AlignmentIconsStyle {
+  font-size: 15px;
+  padding: 0.8em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for BackEnd.
+ */
+.ImageSelectControl {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
+
+.ImageSelectControl i {
+  font-size: 48px;
+  color: #ddd; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
+
+.InspectorControlClassicPosition {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlClassicPositionEachElement {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.AlignmentIconsStyle {
+  font-size: 15px;
+  padding: 0.8em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.ImageSelectControl {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
+
+.ImageSelectControl i {
+  font-size: 35px;
+  color: white;
+  padding: 5px;
+  opacity: 0.59; }
+
+.InspectorControlImageAlignment {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlImageAlignmentEach {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.AlignmentIconsStyle {
+  font-size: 15px;
+  padding: 0.8em; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.InspectorControlAlertBoxAlignment {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlAlertBoxAlignmentEach {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.IconListWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 2em; }
+
+.IconListSubWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  max-height: 120px;
+  overflow: auto; }
+
+.IconListSubWrapper span {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.IconListSubWrapper span:hover {
+  color: orange;
+  background-color: #FED8B1;
+  cursor: pointer; }
+
+.AlignmentIconsStyle {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.active {
+  color: orange;
+  background-color: #FED8B1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.InspectorControlOverlayPosition {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.InspectorControlOverlayPositionEach {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.IconListWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 2em; }
+
+.IconListSubWrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  max-height: 120px;
+  overflow: auto; }
+
+.IconListSubWrapper span {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.IconListSubWrapper span:hover {
+  color: orange;
+  background-color: #FED8B1;
+  cursor: pointer; }
+
+.AlignmentIconsStyle {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.active {
+  color: orange;
+  background-color: #FED8B1; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.components-datetime {
+  padding: 0 !important; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.mc-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+  height: 100%; }
+
+.mc-col {
+  -ms-flex: 25%;
+      flex: 25%;
+  padding: 20px;
+  z-index: 2;
+  height: 800px; }
+
+.mc-figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+  -webkit-transform: scale(1.25);
+      -ms-transform: scale(1.25);
+          transform: scale(1.25);
+  padding: none; }
+
+.mc-figure .mc-image {
+  width: 100% !important;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
+  float: left;
+  min-height: 800px; }
+
+@media screen and (max-width: 600px) {
+  .row {
+    -ms-flex-direction: column;
+        flex-direction: column; } }
+
+.fade-in {
+  -webkit-animation: opac 0.8s;
+          animation: opac 0.8s; }
+
+@-webkit-keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }

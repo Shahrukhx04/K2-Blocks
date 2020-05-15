@@ -164,17 +164,8 @@ registerBlockType( 'k2/premium-section', {
 			console.log(value.target.className)
 			value.target.className = value.target.className + ' active'
 
-			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('active')){
-					Spans[i].className = Spans[i].className.replace('active','')
-				}
-			}
-			this.props.setAttributes({
-				TriggerButtonIcon: value.target.className
-			})
-			console.log(value.target.className)
-			value.target.className = value.target.className + ' active'
 		}
+
 
 
 
@@ -245,18 +236,39 @@ registerBlockType( 'k2/premium-section', {
 			}
 		}
 
+
+		onChangeAlignmentIconChange(value) {
+
+			if (value.target.tagName === 'SPAN'){
+				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var Spans = MainDiv.getElementsByTagName('div');
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					}
+				}
+				console.log(value.target.tagName)
+				value.target.className = value.target.className + ' active'
+
+			}
+
+		}
+
+
 		render() {
 			const { className } = this.props;
 
 			return (
 				[
 					<InspectorControls>
-						<SelectControl
-							label="Select the Template Post"
-							value={ this.state.ReactComponentSelectedPost }
-							options= {this.state.ReactComponentAllPostOptions}
-							onChange={ this.onChangeSelectedPost}
-						/>
+						<PanelBody>
+							<SelectControl
+								label="Select the Template Post"
+								value={ this.state.ReactComponentSelectedPost }
+								options= {this.state.ReactComponentAllPostOptions}
+								onChange={ this.onChangeSelectedPost}
+							/>
+						</PanelBody>
 
 						<PanelBody title={'Trigger Settings'}>
 
@@ -308,16 +320,15 @@ registerBlockType( 'k2/premium-section', {
 								<div style={{paddingBottom: '2%'}}>
 									<label><strong>Alignment</strong></label>
 								</div>
-								<div className={'InspectorControlOverlayPosition'}>
-
+								<div id = 'AlignmentIconsParent' className={'InspectorControlOverlayPosition'} onClick={this.onChangeAlignmentIconChange}>
 									<div className={'InspectorControlOverlayPositionEach'}  onClick={() => this.onChangeIconPosition('flex-start')}>
-										<i className="fas fa-align-left" ></i>
+										<span className="fas fa-align-left AlignmentIconsStyle" ></span>
 									</div>
 									<div className={'InspectorControlOverlayPositionEach'} onClick={() => this.onChangeIconPosition('center')}>
-										<i className="fas fa-align-center"></i>
+										<span className="fas fa-align-center AlignmentIconsStyle active"></span>
 									</div>
 									<div className={'InspectorControlOverlayPositionEach'} onClick={() => this.onChangeIconPosition('flex-end')}>
-										<i className="fas fa-align-right"></i>
+										<span className="fas fa-align-right AlignmentIconsStyle"></span>
 									</div>
 								</div>
 

@@ -382,6 +382,23 @@ registerBlockType( 'k2/alert-block', {
 			})
 		}
 
+		function onChangeAlignmentIconChange(value) {
+
+			if (value.target.tagName === 'SPAN'){
+				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var Spans = MainDiv.getElementsByTagName('div');
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					}
+				}
+				console.log(value.target.tagName)
+				value.target.className = value.target.className + ' active'
+
+			}
+
+		}
+
 		return (
 				[
 
@@ -475,16 +492,16 @@ registerBlockType( 'k2/alert-block', {
 								<div style={{paddingBottom: '2%'}}>
 									<label><strong>Alignment</strong></label>
 								</div>
-								<div className={'InspectorControlAlertBoxAlignment'}>
+								<div id = {'AlignmentIconsParent'} className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
 
 									<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeAlertBoxClassicAlignment('flex-start')}>
-										<i className="fas fa-align-left" ></i>
+										<span className="fas fa-align-left AlignmentIconsStyle active" ></span>
 									</div>
 									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxClassicAlignment('center')}>
-										<i className="fas fa-align-center"></i>
+										<span className="fas fa-align-center AlignmentIconsStyle"></span>
 									</div>
 									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxClassicAlignment('flex-end')}>
-										<i className="fas fa-align-right"></i>
+										<span className="fas fa-align-right AlignmentIconsStyle"></span>
 									</div>
 								</div>
 

@@ -118,6 +118,10 @@ registerBlockType( 'k2/imagescroll-block', {
 		MagicImageBorderColor: {
 			type: 'number',
 			default: 'blue'
+		},
+		MagicImageAlignment: {
+			type: 'string',
+			default: 'center'
 		}
 
 	},
@@ -156,6 +160,10 @@ registerBlockType( 'k2/imagescroll-block', {
 			borderWidth: attributes.MagicImageBorderWidth + 'px',
 			borderColor: attributes.MagicImageBorderColor
 
+		}
+
+		const ParentContainerStyling = {
+			justifyContent: attributes.MagicImageAlignment
 		}
 
 
@@ -328,6 +336,31 @@ registerBlockType( 'k2/imagescroll-block', {
 				MagicImageBorderColor: NewColor
 			})
 		}
+
+		function onChangeMagicImageAlignment(NewAlignment) {
+			setAttributes({
+				MagicImageAlignment: NewAlignment
+			})
+		}
+
+
+		function onChangeAlignmentIconChange(value) {
+
+			if (value.target.tagName === 'SPAN'){
+				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var Spans = MainDiv.getElementsByTagName('div');
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					}
+				}
+				console.log(value.target.tagName)
+				value.target.className = value.target.className + ' active'
+
+			}
+
+		}
+
 		return (
 			[
 				<InspectorControls>
@@ -358,6 +391,25 @@ registerBlockType( 'k2/imagescroll-block', {
 							step ={1}
 						/>
 
+						<PanelRow>
+
+							<div style={{paddingBottom: '2%'}}>
+								<label><strong>Alignment</strong></label>
+							</div>
+							<div id = 'AlignmentIconsParent' className={'InspectorControlImageAlignment'} onClick={onChangeAlignmentIconChange}>
+
+								<div className={'InspectorControlImageAlignmentEach'}  onClick={() => onChangeMagicImageAlignment('flex-start')}>
+									<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+								</div>
+								<div className={'InspectorControlImageAlignmentEach'} onClick={() => onChangeMagicImageAlignment('center')}>
+									<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+								</div>
+								<div className={'InspectorControlImageAlignmentEach'} onClick={() => onChangeMagicImageAlignment('flex-end')}>
+									<span className="fas fa-align-right AlignmentIconsStyle"></span>
+								</div>
+							</div>
+
+						</PanelRow>
 
 
 
@@ -489,7 +541,7 @@ registerBlockType( 'k2/imagescroll-block', {
 				</InspectorControls>
 
 				,
-				<div className={'ParentContainer'}>
+				<div style={ParentContainerStyling} className={'ParentContainer'}>
 					<div  style={SubParentStyling} className={'SubParentContainer'}>
 						<div  style={MagicImageStyling} className={'ImageParentContainer'} onMouseOver={onMagicImageMouseHover} onMouseLeave={onMagicImageMouseLeave}>
 
@@ -502,6 +554,7 @@ registerBlockType( 'k2/imagescroll-block', {
 	},
 
 	save( { attributes } ) {
+
 
 
 		const SubParentStyling = {
@@ -527,8 +580,12 @@ registerBlockType( 'k2/imagescroll-block', {
 
 		}
 
+		const ParentContainerStyling = {
+			justifyContent: attributes.MagicImageAlignment
+		}
 
-		return 	<div className={'ParentContainer'}>
+
+		return 	<div style={ParentContainerStyling}  className={'ParentContainer'}>
 			<div  style={SubParentStyling} className={'SubParentContainer'}>
 				<div id="ImageScroll" style={MagicImageStyling} className={'ImageParentContainer'}
 					 data-PositionX = {attributes.MagicImageBackgroundPositionX }

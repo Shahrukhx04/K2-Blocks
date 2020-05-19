@@ -307,6 +307,8 @@ registerBlockType( 'k2/premium-section', {
 								value={ this.state.ReactComponentSelectedPost }
 								options= {this.state.ReactComponentAllPostOptions}
 								onChange={ this.onChangeSelectedPost}
+								help="For smooth functionality, add only k2 blocks or wordpress default widgets in template post"
+
 							/>
 						</PanelBody>
 

@@ -25,6 +25,38 @@
 .AlignmentIconsStyle {
   font-size: 15px;
   padding: 0.8em; }
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
 /**
  * #.# Common SCSS
  *
@@ -76,6 +108,39 @@
 .AlignmentIconsStyle {
   font-size: 15px;
   padding: 0.8em; }
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
 /**
  * #.# Common SCSS
  *
@@ -121,6 +186,39 @@
 .AlignmentIconsStyle {
   font-size: 15px;
   padding: 0.8em; }
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
 /**
  * #.# Common SCSS
  *
@@ -183,6 +281,39 @@
 .active {
   color: orange;
   background-color: #FED8B1; }
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
 /**
  * #.# Common SCSS
  *
@@ -245,6 +376,39 @@
 .active {
   color: orange;
   background-color: #FED8B1; }
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
 /**
  * #.# Common SCSS
  *
@@ -253,15 +417,112 @@
 */
 .components-datetime {
   padding: 0 !important; }
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.popup .popuptext {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+

@@ -19,7 +19,8 @@ const {
 	ToggleControl,
 	SelectControl,
 	ColorPicker,
-	ColorPalette
+	ColorPalette,
+	TextControl
 
 } = wp.components;
 
@@ -40,31 +41,16 @@ registerBlockType( 'k2/imagescroll-block', {
 	attributes: {
 		MagicImage: {
 			type: 'string',
-			default: 'http://localhost/wordpress/wp-content/uploads/2020/05/ice-cream-caramel.jpg'
+			default: 'http://k2blocks.com/wp-content/uploads/2020/05/photo-of-rocky-mountains-during-dawn-4067906-scaled.jpg'
 		},
-		MagicImageOverlayColorRed: {
-			type: 'number',
-			default: 68
-		},
-		MagicImageOverlayColorGreen: {
-			type: 'number',
-			default: 68
-		},
-		MagicImageOverlayColorBlue: {
-			type: 'number',
-			default: 68
-		},
-		MagicImageOverlayColorAlpha: {
-			type: 'number',
-			default: 0.0
-		},
+
 		MagicImageTransition: {
 			type: 'number',
 			default: 2
 		},
 		MagicImageHeight: {
 			type: 'number',
-			default: 50
+			default: 27
 		},
 		MagicImageBackgroundPositionX: {
 			type: 'number',
@@ -100,11 +86,11 @@ registerBlockType( 'k2/imagescroll-block', {
 		},
 		MagicImageWidth: {
 			type: 'number',
-			default: 20
+			default: 27
 		},
 		MagicImageBorderRadius: {
 			type: 'number',
-			default: 20
+			default: 12
 		},
 		MagicImageOverlayOption: {
 			type: 'boolean',
@@ -125,6 +111,12 @@ registerBlockType( 'k2/imagescroll-block', {
 		MagicImageAlignment: {
 			type: 'string',
 			default: 'center'
+		},
+		ImageScrollOverlayColor: {
+			type: 'string'
+		},
+		InspectorControlImageOverlayColor: {
+			type: 'string'
 		}
 
 	},
@@ -148,11 +140,7 @@ registerBlockType( 'k2/imagescroll-block', {
 
 		const MagicImageStyling = {
 			backgroundImage: 'url("' +attributes.MagicImage + '")',
-			boxShadow: 'inset 0 0 0 100vh rgba(' +
-				attributes.MagicImageOverlayColorRed + ',' +
-				attributes.MagicImageOverlayColorGreen + ',' +
-				attributes.MagicImageOverlayColorBlue + ',' +
-				attributes.MagicImageOverlayColorAlpha + ')',
+			boxShadow: attributes.ImageScrollOverlayColor,
 
 			transition: 'background-position ' + attributes.MagicImageTransition + 's ease-in-out',
 			height: attributes.MagicImageHeight + 'vh',
@@ -178,14 +166,16 @@ registerBlockType( 'k2/imagescroll-block', {
 
 		function onChangeMagicImageOverlay(NewOverlay) {
 			setAttributes({
-				MagicImageOverlayColorRed: NewOverlay['rgb'].r,
 
-				MagicImageOverlayColorGreen: NewOverlay['rgb'].g,
+				InspectorControlImageOverlayColor: 'rgba('+NewOverlay.rgb.r+','+NewOverlay.rgb.g+','+NewOverlay.rgb.b+','+NewOverlay.rgb.a+')',
 
-				MagicImageOverlayColorBlue: NewOverlay['rgb'].b,
-
-				MagicImageOverlayColorAlpha: NewOverlay['rgb'].a
+				ImageScrollOverlayColor: 'inset 0 0 0 100vh rgba(' +
+					NewOverlay['rgb'].r + ',' +
+					NewOverlay['rgb'].g + ',' +
+					NewOverlay['rgb'].b + ',' +
+					NewOverlay['rgb'].a + ')'
 			})
+
 		}
 		function onMagicImageChange(NewImage){
 			setAttributes({
@@ -315,11 +305,11 @@ registerBlockType( 'k2/imagescroll-block', {
 			})
 			if (NewOption == false){
 				setAttributes({
-					MagicImageOverlayColorAlpha: 0.0
+					ImageScrollOverlayColor: ''
 				})
 			} else {
 				setAttributes({
-					MagicImageOverlayColorAlpha: 0.3
+					ImageScrollOverlayColor: 'inset 0 0 0 100vh ' + attributes.InspectorControlImageOverlayColor
 				})
 			}
 		}
@@ -336,7 +326,8 @@ registerBlockType( 'k2/imagescroll-block', {
 		}
 		function onChangeMagicImageBorderColor(NewColor) {
 			setAttributes({
-				MagicImageBorderColor: NewColor
+				MagicImageBorderColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')',
+
 			})
 		}
 
@@ -362,6 +353,16 @@ registerBlockType( 'k2/imagescroll-block', {
 
 			}
 
+		}
+
+		function myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
 		}
 
 		return (
@@ -450,11 +451,24 @@ registerBlockType( 'k2/imagescroll-block', {
 							attributes.MagicImageOverlayOption == false ?
 								null :
 								<div>
-									<label > Fill Color </label>
-									<ColorPicker
-										value = {"rgb(68,68,68,0.4)"}
-										onChangeComplete={ onChangeMagicImageOverlay }
-									/>
+									<PanelRow>
+										<p><strong>Fill color</strong></p>
+										<div className="popup">
+									<span style={{backgroundColor: attributes.InspectorControlImageOverlayColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+											<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.ImageScrollOverlayColor }
+											onChangeComplete={ onChangeMagicImageOverlay }
+										/>
+									</div>
+
+									</span>
+										</div>
+									</PanelRow>
+
 								</div>
 
 						}
@@ -499,11 +513,30 @@ registerBlockType( 'k2/imagescroll-block', {
 										max={ 100 }
 										step ={1}
 									/>
-									<p><strong>Border Color</strong></p>
-									<ColorPalette
-										value = {attributes.MagicImageBorderColor}
-										onChange = {onChangeMagicImageBorderColor}
-										colors = {colors} />
+
+									<PanelRow>
+										<p><strong>Border color</strong></p>
+										<div className="popup">
+									<span style={{backgroundColor: attributes.MagicImageBorderColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+											<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.MagicImageBorderColor }
+											onChangeComplete={ onChangeMagicImageBorderColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { MagicImageBorderColor: value } )
+											} }
+											value={ attributes.MagicImageBorderColor}
+										/>
+									</div>
+
+									</span>
+										</div>
+									</PanelRow>
 								</div>
 
 						}
@@ -566,12 +599,7 @@ registerBlockType( 'k2/imagescroll-block', {
 
 		const MagicImageStyling = {
 			backgroundImage: 'url("' +attributes.MagicImage + '")',
-			boxShadow: 'inset 0 0 0 100vh rgba(' +
-				attributes.MagicImageOverlayColorRed + ',' +
-				attributes.MagicImageOverlayColorGreen + ',' +
-				attributes.MagicImageOverlayColorBlue + ',' +
-				attributes.MagicImageOverlayColorAlpha + ')',
-
+			boxShadow: attributes.ImageScrollOverlayColor,
 			transition: 'background-position ' + attributes.MagicImageTransition + 's ease-in-out',
 			height: attributes.MagicImageHeight + 'vh',
 			backgroundPositionX: attributes.MagicImageBackgroundPositionX + '%',

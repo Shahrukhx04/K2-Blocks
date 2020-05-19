@@ -15,7 +15,9 @@ const {
 	PanelBody,
 	PanelRow,
 	SelectControl,
-	TextControl
+	TextControl,
+	RangeControl,
+	ColorPicker
 } = wp.components;
 const { apiFetch } = wp;
 const { Component } = wp.element;
@@ -75,6 +77,14 @@ registerBlockType( 'k2/premium-section', {
 		OverlayBackGroundColor: {
 			type: 'string',
 			default: 'orange'
+		},
+		OverlayTransition: {
+			type: 'number',
+			default: '1'
+		},
+		OverlayOpeningWidth: {
+			type: 'number',
+			default: 100
 		}
 	},
 
@@ -90,6 +100,8 @@ registerBlockType( 'k2/premium-section', {
 			this.onChangeOverlayPosition = this.onChangeOverlayPosition.bind(this)
 			this.onChangeIconPosition = this.onChangeIconPosition.bind(this)
 			this.onChangeOverlayBackGroundColor = this.onChangeOverlayBackGroundColor.bind(this)
+			this.onChangeOverlayTransition = this.onChangeOverlayTransition.bind(this)
+			this.onChangeOverlayOpeningWidth = this.onChangeOverlayOpeningWidth.bind(this)
 			this.state = {
 				ReactComponentAllPosts: '',
 				ReactComponentAllPostOptions: [{ value: 0, label: __( 'Select a Post' ) }],
@@ -104,7 +116,7 @@ registerBlockType( 'k2/premium-section', {
 					color: this.props.attributes.IconColor
 				},
 				IconPosition: this.props.attributes.IconPosition,
-				OverlayPosition: 'LeftToRight'
+				OverlayPosition: 'LeftToRight',
 			}
 
 			this.FetchPostsRestApi()
@@ -112,25 +124,26 @@ registerBlockType( 'k2/premium-section', {
 
 
 		FetchPostsRestApi(){
-			apiFetch( { path: "/wp/v2/posts" } ).then( posts => {
+				apiFetch( { path: "/wp/v2/posts" } ).then( posts => {
+					console.log(posts)
+					this.setState(
+						{
+							ReactComponentAllPosts: posts
+						}
+					);
 
-				this.setState(
-					{
-						ReactComponentAllPosts: posts
+					for (var i = 0; i<posts.length ;i++){
+						this.state.ReactComponentAllPostOptions.push({value:posts[i].id, label:posts[i].title.rendered})
 					}
-				);
+					this.forceUpdate()
+				} )
 
-				for (var i = 0; i<posts.length ;i++){
-					this.state.ReactComponentAllPostOptions.push({value:posts[i].id, label:posts[i].title.rendered})
-				}
-				this.forceUpdate()
-			} )
 		}
 
 		onChangeOverlayBackGroundColor(NewColor){
 
 			this.props.setAttributes({
-				OverlayBackGroundColor: NewColor
+				OverlayBackGroundColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
 			})
 
 		}
@@ -169,19 +182,18 @@ registerBlockType( 'k2/premium-section', {
 
 
 
-
-
 		onChangeIconColor(NewColor){
-			console.log(NewColor)
 			this.setState(
 				{
 					IconStyling: {
-						color: NewColor
+						color: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 					}
 				}
 			);
 			this.props.setAttributes({
-				IconColor: NewColor
+				IconColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -193,6 +205,7 @@ registerBlockType( 'k2/premium-section', {
 				IconPosition: NewPosition
 			})
 		}
+
 
 		onChangeOverlayPosition(value){
 			this.setState({
@@ -255,6 +268,30 @@ registerBlockType( 'k2/premium-section', {
 
 		}
 
+		onChangeOverlayTransition(NewTransition){
+			this.props.setAttributes({
+				OverlayTransition: NewTransition
+			})
+		}
+
+
+		onChangeOverlayOpeningWidth(NewWidth){
+			this.props.setAttributes({
+				OverlayOpeningWidth: NewWidth
+			})
+		}
+
+		myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
+		}
+
+
 
 		render() {
 			const { className } = this.props;
@@ -263,11 +300,16 @@ registerBlockType( 'k2/premium-section', {
 				[
 					<InspectorControls>
 						<PanelBody>
+
+
+
 							<SelectControl
 								label="Select the Template Post"
 								value={ this.state.ReactComponentSelectedPost }
 								options= {this.state.ReactComponentAllPostOptions}
 								onChange={ this.onChangeSelectedPost}
+								help="For smooth functionality, add only k2 blocks or wordpress default widgets in template post"
+
 							/>
 						</PanelBody>
 
@@ -286,6 +328,7 @@ registerBlockType( 'k2/premium-section', {
 							</div>
 
 
+
 							<SelectControl
 								label="Overlay Position"
 								value={ this.state.OverlayPosition }
@@ -296,6 +339,25 @@ registerBlockType( 'k2/premium-section', {
 									{ label: 'Bottom Up', value: 'DownToUp' }
 								]}
 								onChange={ this.onChangeOverlayPosition}
+							/>
+
+
+							<RangeControl
+								label={<strong>Overlay Speed</strong>}
+								value={ this.props.attributes.OverlayTransition }
+								onChange={ this.onChangeOverlayTransition }
+								min={ 0.1 }
+								max={ 10 }
+								step ={0.1}
+							/>
+
+							<RangeControl
+								label={<strong>Overlay Gutter</strong>}
+								value={ this.props.attributes.OverlayOpeningWidth }
+								onChange={ this.onChangeOverlayOpeningWidth }
+								min={ 1 }
+								max={ 100 }
+								step ={1}
 							/>
 
 							<PanelRow>
@@ -322,24 +384,62 @@ registerBlockType( 'k2/premium-section', {
 
 						<PanelBody title={'Trigger Styles'}>
 
-							<p><strong>Icon Color</strong></p>
-							<ColorPalette
-								value={this.state.IconStyling.color}
-								onChange={this.onChangeIconColor}
-								colors = {this.state.ToolBarColors}
-							/>
-							<TextControl
-								value={this.state.IconStyling.color}
-								onChange={this.onChangeIconColor}
-							/>
+							<PanelRow>
+								<p><strong>Icon color</strong></p>
+								<div className="popup">
+								<span style={{backgroundColor: this.state.IconStyling.color}} className={ 'dot' } onClick={ this.myFunction }>
+								</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ this.state.IconStyling.color }
+														onChangeComplete={ this.onChangeIconColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															this.props.setAttributes( { titleColor: value } )
+															this.setState({IconStyling: {
+																	color: value
+																}})
+
+														} }
+														value={ this.state.IconStyling.color  }
+													/>
+												</div>
+
+								</span>
+								</div>
+							</PanelRow>
 
 						</PanelBody>
 						<PanelBody title={'Overlay Settings'}>
-							<ColorPalette
-								value={this.props.attributes.OverlayBackGroundColor}
-								onChange={this.onChangeOverlayBackGroundColor}
-								colors = {this.state.ToolBarColors}
-							/>
+
+							<PanelRow>
+								<p><strong>Overlay color</strong></p>
+								<div className="popup">
+								<span style={{backgroundColor: this.props.attributes.OverlayBackGroundColor}} className={ 'dot' } onClick={ this.myFunction }>
+								</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ this.props.attributes.OverlayBackGroundColor }
+														onChangeComplete={ this.onChangeOverlayBackGroundColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															this.props.setAttributes( { OverlayBackGroundColor: value } )
+														} }
+														value={ this.props.attributes.OverlayBackGroundColor  }
+													/>
+												</div>
+
+								</span>
+								</div>
+							</PanelRow>
+
+
 						</PanelBody>
 					</InspectorControls>,
 					<div style={{justifyContent: this.state.IconPosition}} className={ 'ButtonStyle' }>
@@ -364,7 +464,8 @@ registerBlockType( 'k2/premium-section', {
 		const SideNavStyling = {
 			width: attributes.OverlayWidth,
 			height: attributes.OverlayHeight,
-			backgroundColor: attributes.OverlayBackGroundColor
+			backgroundColor: attributes.OverlayBackGroundColor,
+			transition: attributes.OverlayTransition + 's'
 		}
 
 		return <div>
@@ -378,6 +479,7 @@ registerBlockType( 'k2/premium-section', {
 				 data-OverlayLeftRight = {attributes.OverlayleftRight }
 				 data-OverlayTopDown = {attributes.OverlayTopDown}
 				 data-SilidingOption = {attributes.OverlaySlidingAttribute}
+				 data-OverlayWidth = {attributes.OverlayOpeningWidth}
 			>
 				<span className={'PremiumSectionButton'} style={ { fontSize: '45px', cursor: 'pointer', textAlign: 'right' } } >
 							<i style={IconStyling} className={attributes.TriggerButtonIcon}></i>

@@ -477,7 +477,7 @@ registerBlockType( 'k2/alert-block', {
 							/>
 
 							<RangeControl
-								label={<strong>Widget Widtg</strong>}
+								label={<strong>Widget Width</strong>}
 								value={ attributes.AlertBoxWidth }
 								onChange={ onChangeAlertBoxWidth }
 								min={ 1 }

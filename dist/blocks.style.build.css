@@ -147,14 +147,6 @@
   transition: 0.5s; }
 
 .ClassicButtonStyling:hover {
-
-  background-color: #002147;
-  padding: 0.5em 1em;
-  border-width: 0.1em;
-  border-style: solid;
-  border-color: #002147;
-  color: white !important;
-
   cursor: pointer; }
 
 @media (max-width: 1000px) {
@@ -201,16 +193,9 @@
   display: flex;
   margin-top: 2em;
   margin-bottom: 2em;
-
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
-
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 100%; }
-
 
 div.container {
   width: 100%;
@@ -233,12 +218,8 @@ div.box {
       flex-direction: column;
   -ms-flex-negative: 2;
       flex-shrink: 2;
-
-  overflow: scroll;
-
   overflow-x: hidden;
   overflow-y: scroll;
-
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;

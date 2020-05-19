@@ -26,7 +26,6 @@
   font-size: 15px;
   padding: 0.8em; }
 
-
 .popup {
   position: relative;
   display: inline-block;
@@ -109,7 +108,6 @@
   font-size: 15px;
   padding: 0.8em; }
 
-
 .popup {
   position: relative;
   display: inline-block;
@@ -140,7 +138,6 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-
 /**
  * #.# Common SCSS
  *
@@ -187,7 +184,6 @@
   font-size: 15px;
   padding: 0.8em; }
 
-
 .popup {
   position: relative;
   display: inline-block;
@@ -218,7 +214,6 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-
 /**
  * #.# Common SCSS
  *
@@ -282,7 +277,6 @@
   color: orange;
   background-color: #FED8B1; }
 
-
 .popup {
   position: relative;
   display: inline-block;
@@ -313,7 +307,6 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-
 /**
  * #.# Common SCSS
  *
@@ -377,7 +370,6 @@
   color: orange;
   background-color: #FED8B1; }
 
-
 .popup {
   position: relative;
   display: inline-block;
@@ -408,7 +400,6 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-
 /**
  * #.# Common SCSS
  *
@@ -418,7 +409,6 @@
 .components-datetime {
   padding: 0 !important; }
 
-
 .popup {
   position: relative;
   display: inline-block;
@@ -449,14 +439,12 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-
 .popup {
   position: relative;
   display: inline-block;
@@ -487,14 +475,12 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-
 .popup {
   position: relative;
   display: inline-block;
@@ -525,4 +511,3 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
-

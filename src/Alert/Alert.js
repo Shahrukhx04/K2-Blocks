@@ -424,27 +424,6 @@ registerBlockType( 'k2/alert-block', {
 								{GLOBAL_ICONS.map((value, index) => {
         							return <span className={'fa '+value}></span>
       							})}
-									{/* <span className={'fa fa fa-rocket active'}></span>
-									<span className={'fa fa fa-bell'} ></span>
-									<span className={'fa fa fa-plane'}></span>
-									<span className={'fa fa fa-clock'}></span>
-									<span className={'fa fa fa-pen'} ></span>
-									<span className={'fa fa-address-book'} ></span>
-
-									<span className={'fa fa fa-ad'}></span>
-									<span className={'fa fa fa-align-right'} ></span>
-									<span className={'fa fa fa-allergies'}></span>
-									<span className={'fa fa fa-ambulance'}></span>
-									<span className={'fa fa fa-american-sign-language-interpreting'} ></span>
-									<span className={'fa fa-anchor'} ></span>
-
-
-									<span className={'fa fa fa-angle-double-down'}></span>
-									<span className={'fa fa fa-angle-double-left'} ></span>
-									<span className={'fa fa fa-angle-double-right'}></span>
-									<span className={'fa fa fa-angle-double-up'}></span>
-									<span className={'fa fa fa-angle-down'} ></span>
-									<span className={'fa fa-angle-left'} ></span> */}
 								</div>
 							</div>
 							<SelectControl

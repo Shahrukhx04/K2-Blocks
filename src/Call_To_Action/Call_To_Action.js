@@ -247,10 +247,12 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 
 		CallToActionOverlayColor: {
-			type: 'string'
+			type: 'string',
+			default: 'inset 0 0 0 100vh rgba(68,68,68,0.4)'
 		},
 		InspectorControlCallToActionOverlayColor: {
-			type: 'string'
+			type: 'string',
+			default: 'rgba(68,68,68,0.4)'
 		}
 	},
 

@@ -25,7 +25,8 @@ const {
 	TextControl,
 	RangeControl,
 	ToggleControl,
-	SelectControl
+	SelectControl,
+	ColorPicker,
 
 } = wp.components;
 
@@ -61,7 +62,7 @@ registerBlockType( 'k2/progressbar-block', {
 
 		progressBarColor: {
 			type: 'string',
-			default: 'red'
+			default: '#1995AD'
 		},
 		progressBarHeight: {
 			type: 'number',
@@ -73,11 +74,11 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		titleColor: {
 			type: 'string',
-			default: 'red'
+			default: '#1995AD'
 		},
 		progressBarPercentage:{
 			type: 'number',
-			default: 40
+			default: 54
 		},
 		ShowPercentage: {
 			type: 'boolean',
@@ -85,7 +86,7 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		TextFontSize: {
 			type: 'number',
-			default: 10
+			default: 14
 		},
 		ProgressBarBackGroundColor: {
 			type: 'string',
@@ -101,19 +102,19 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		TextFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Arial'
 		},
 		TextFontWeight: {
 			type: 'string',
-			default: 'normal'
+			default: '600'
 		},
 		ProgressBarBorderRadius: {
 			type: 'number',
-			default: 30
+			default: 36
 		},
 		ProgressBarOpacity: {
 			type: 'number',
-			default: 0.5
+			default: 0.4
 		},
 		ProgressBarStripedOrSolid: {
 			type: 'boolean',
@@ -121,7 +122,7 @@ registerBlockType( 'k2/progressbar-block', {
 		},
 		ProgressBarWidth: {
 			type: 'number',
-			default: 30
+			default: 54
 		},
 		ProgressBarTextStyle: {
 			type: 'number',
@@ -229,7 +230,8 @@ registerBlockType( 'k2/progressbar-block', {
 
 			setAttributes(
 				{
-					titleColor: NewColor
+					titleColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 				}
 			)
 		}
@@ -242,14 +244,17 @@ registerBlockType( 'k2/progressbar-block', {
 
 		function onBorderColorChange(NewColor) {
 			setAttributes({
-				progressBorderColor: NewColor
+				progressBorderColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
 		function onBarColorChange(NewColor) {
 
 			setAttributes({
-				progressBarColor: NewColor
+				progressBarColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
+
 			})
 		}
 
@@ -267,13 +272,15 @@ registerBlockType( 'k2/progressbar-block', {
 
 		function onGradient1ColorChange(Newcolor) {
 			setAttributes({
-				ProgressBarGradientColor1: Newcolor
+				ProgressBarGradientColor1: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
 		function onGradient2ColorChange(NewColor) {
 			setAttributes({
-				ProgressBargradientColor2: NewColor
+				ProgressBargradientColor2: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -308,7 +315,8 @@ registerBlockType( 'k2/progressbar-block', {
 
 		function onChangeProgressBarBackgound(NewColor) {
 			setAttributes({
-				ProgressBarBackGroundColor: NewColor
+				ProgressBarBackGroundColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -396,6 +404,17 @@ registerBlockType( 'k2/progressbar-block', {
 			}
 
 		}
+
+
+		function myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
+		}
 		return ([
 
 				<InspectorControls>
@@ -456,17 +475,54 @@ registerBlockType( 'k2/progressbar-block', {
 
 					<PanelBody title={"Colors"}>
 
-						<p><strong>Title Color</strong></p>
-						<ColorPalette
-							value = { titleColor }
-							onChange={onTitleColorChange}
-							colors = {ToolBarColors}
-						/>
-						<p><strong>Progress Bar Color</strong></p>
-						<ColorPalette
-							value = {attributes.progressBarColor}
-							onChange = {onBarColorChange}
-							colors = {ToolBarColors} />
+						<PanelRow>
+							<p><strong>Title color</strong></p>
+							<div className="popup">
+								<span style={{backgroundColor: attributes.titleColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+								<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.titleColor }
+														onChangeComplete={ onTitleColorChange }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { titleColor: value } )
+														} }
+														value={ attributes.titleColor}
+													/>
+												</div>
+
+								</span>
+							</div>
+						</PanelRow>
+
+						<PanelRow>
+							<p><strong>Progress Bar color</strong></p>
+							<div className="popup">
+								<span style={{backgroundColor: attributes.progressBarColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+								<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.progressBarColor }
+														onChangeComplete={ onBarColorChange }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { progressBarColor: value } )
+														} }
+														value={ attributes.progressBarColor}
+													/>
+												</div>
+
+								</span>
+							</div>
+						</PanelRow>
+
 
 
 
@@ -620,12 +676,29 @@ registerBlockType( 'k2/progressbar-block', {
 
 					<PanelBody title={'Background'}>
 
-							<p><strong>Backgorund</strong></p>
-							<ColorPalette
-								value = { attributes.ProgressBarBackGroundColor }
-								onChange={onChangeProgressBarBackgound}
-								colors = {ToolBarColors}
-							/>
+						<PanelRow>
+							<p><strong>Background color</strong></p>
+							<div className="popup">
+								<span style={{backgroundColor: attributes.ProgressBarBackGroundColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+								<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.ProgressBarBackGroundColor }
+														onChangeComplete={ onChangeProgressBarBackgound }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { ProgressBarBackGroundColor: value } )
+														} }
+														value={ attributes.ProgressBarBackGroundColor}
+													/>
+												</div>
+
+								</span>
+							</div>
+						</PanelRow>
 
 					</PanelBody>
 

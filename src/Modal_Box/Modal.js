@@ -16,7 +16,8 @@ const {
 	SelectControl,
 	ColorPicker,
 	TextControl,
-	RangeControl
+	RangeControl,
+	PanelRow
 
 } = wp.components;
 
@@ -72,7 +73,7 @@ registerBlockType( 'k2/modal-block', {
 		},
 		buttonTextSize: {
 			type: 'string',
-			default: 1	
+			default: 1
 		},
 		buttonWidth: {
 			type: 'number',
@@ -98,12 +99,22 @@ registerBlockType( 'k2/modal-block', {
 			type:'string',
 			default:''
 		}
-		
+
 	},
 
 	edit: function(props) {
 
-		
+
+		function myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
+		}
+
 		function onCloseButtonPositionChange(value){
 			if(value=='topright'){
 				props.setAttributes({
@@ -113,17 +124,17 @@ registerBlockType( 'k2/modal-block', {
 			else if(value == 'topleft'){
 				props.setAttributes({
 					closeButtonPosition:{top:0,right:'auto',text:value}
-				})	
+				})
 			}
 			else if(value == 'bottomright'){
 				props.setAttributes({
 					closeButtonPosition:{top:'90%',right:0,text:value}
-				})	
+				})
 			}
 			else if(value == 'bottomleft'){
 				props.setAttributes({
 					closeButtonPosition:{top:'90%',right:'auto',text:value}
-				})	
+				})
 			}
 			console.log(props.attributes.closeButtonPosition)
 		}
@@ -135,11 +146,31 @@ registerBlockType( 'k2/modal-block', {
 						value = {props.attributes.buttonText}
 					/>
 
-					<label class="components-base-control__label">Text color</label>
-					<ColorPicker
-						color={ props.attributes.textColor }
-						onChangeComplete={ ( value ) => {props.setAttributes( {textColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} ); console.log(props.attributes.haloColor)} }
-					/>
+					<PanelRow>
+						<p><strong>Title color</strong></p>
+						<div className="popup">
+								<span style={{backgroundColor:props.attributes.textColor }} className={ 'dot' } onClick={ myFunction }>
+									</span>
+							<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ props.attributes.textColor }
+											onChangeComplete={ ( value ) => {props.setAttributes( {textColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} ); console.log(props.attributes.haloColor)} }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												props.setAttributes( { textColor: value } )
+											} }
+											value={ props.attributes.textColor }
+										/>
+									</div>
+
+								</span>
+						</div>
+					</PanelRow>
+
+
 
 					<SelectControl
 								label="Text Font"
@@ -148,11 +179,30 @@ registerBlockType( 'k2/modal-block', {
 								onChange={(value)=>{props.setAttributes({textFontFamily:value})}}
 					/>
 
-					<label class="components-base-control__label">Button color</label>
-					<ColorPicker
-						color={props.attributes.buttonColor}
-						onChangeComplete={(value)=>{props.setAttributes({buttonColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'})}}
-					/>
+					<PanelRow>
+						<p><strong>Button color</strong></p>
+						<div className="popup">
+								<span style={{backgroundColor:props.attributes.buttonColor }} className={ 'dot' } onClick={ myFunction }>
+									</span>
+							<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={props.attributes.buttonColor}
+											onChangeComplete={(value)=>{props.setAttributes({buttonColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'})}}
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												props.setAttributes( { buttonColor: value } )
+											} }
+											value={ props.attributes.buttonColor }
+										/>
+									</div>
+
+								</span>
+						</div>
+					</PanelRow>
+
 
 					<RangeControl
 						label= "Button width"
@@ -181,15 +231,20 @@ registerBlockType( 'k2/modal-block', {
 				</PanelBody>
 			);
 			if(props.attributes.type == 'time'){
+
 				controls = (
-					<RangeControl
-						label= "Popup delay (secs)"
-						value={ props.attributes.popupDelay }
-						onChange={ (value)=>{props.setAttributes({popupDelay:value})} }
-						min={ 1 }
-						max={ 10 }
-						step ={1}
-					/>   
+								<PanelBody>
+
+										<RangeControl
+													label= "Popup delay (secs)"
+													value={ props.attributes.popupDelay }
+													onChange={ (value)=>{props.setAttributes({popupDelay:value})} }
+													min={ 1 }
+													max={ 10 }
+													step ={1}
+												/>
+								</PanelBody>
+
 				);
 			}
 
@@ -199,7 +254,7 @@ registerBlockType( 'k2/modal-block', {
 				fontSize: props.attributes.buttonTextSize+"em",
 				fontFamily:props.attributes.textFontFamily,
 				color: props.attributes.textColor,
-				
+
 			}
 			var closeButtonStyle = {
 				top:props.attributes.closeButtonPosition.top,
@@ -207,30 +262,34 @@ registerBlockType( 'k2/modal-block', {
 			}
 			return ([
 				<InspectorControls>
-					<SelectControl
-						label="Type"
-						value={props.attributes.type}
-						options={[
-							{ label: 'Button', value: 'button' },
-							{ label: 'Timed', value: 'time'}
-						]}
-						onChange={(value)=>{props.setAttributes({type:value})}}
-					/>
-					{controls}
-					<SelectControl
-						label="'Close' button position"
-						value={props.attributes.closeButtonPosition.text}
-						options={[
-							{ label: 'Top Right', value: 'topright' },
-							{ label: 'Top Left', value: 'topleft'},
-							{ label: 'Bottom Right', value: 'bottomright'},
-							{ label: 'Bottom Left', value: 'bottomleft'}
-						]}
-						onChange={onCloseButtonPositionChange}
-					/>
+					<PanelBody>
 
+						<SelectControl
+							label="Type"
+							value={props.attributes.type}
+							options={[
+								{ label: 'Button', value: 'button' },
+								{ label: 'Timed', value: 'time'}
+							]}
+							onChange={(value)=>{props.setAttributes({type:value})}}
+						/>
+						<SelectControl
+							label="'Close' button position"
+							value={props.attributes.closeButtonPosition.text}
+							options={[
+								{ label: 'Top Right', value: 'topright' },
+								{ label: 'Top Left', value: 'topleft'},
+								{ label: 'Bottom Right', value: 'bottomright'},
+								{ label: 'Bottom Left', value: 'bottomleft'}
+							]}
+							onChange={onCloseButtonPositionChange}
+						/>
+
+					</PanelBody>
+
+					{controls}
 				</InspectorControls>
-				
+
 				,
 				<div className={'modal-container'}>
 					{(props.attributes.type == 'button') &&

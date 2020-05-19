@@ -17,7 +17,8 @@ const {
 	ColorPicker,
 	CheckboxControl,
 	TextControl,
-	RangeControl
+	RangeControl,
+	PanelRow
 
 } = wp.components;
 
@@ -274,6 +275,21 @@ registerBlockType( 'k2/timer-block', {
 				fontSize: props.attributes.textFontSize+"em",
 				fontFamily: props.attributes.textFontFamily
 			}
+
+			function myFunction(value) {
+				var ParentDiv = value.target.parentNode
+				var PopupDiv = ParentDiv.getElementsByTagName('span')
+				if (PopupDiv[1].hidden  === true){
+					PopupDiv[1].hidden  = false
+				} else if (PopupDiv[1].hidden  === false){
+					PopupDiv[1].hidden  = true
+				}
+			}
+
+			function TempFuntion() {
+				console.log('Print')
+			}
+
 			return ([
 				<InspectorControls>
 
@@ -300,29 +316,56 @@ registerBlockType( 'k2/timer-block', {
 							checked={ ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackGroundShadow: props.attributes.BlockBackgroundShadow }
 							onChange={ toggleShadow }
 						/>
-						<label class="components-base-control__label">Timer color</label>
-						<ColorPicker
-							color={ ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor }
-							onChangeComplete={onChangeBackgroundColor}
-						/>
-						<TextControl
-							onChange={(value)=>{
-								if(props.attributes.TimerLayout == 'Classic')props.setAttributes({TimerValueBackgroundColor: value,})
-								else{props.setAttributes({BlockBackgroundColor: value})}}
-							}
-							value = {( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor}
-						/>
+
+						<PanelRow>
+							<p><strong>Timer color</strong></p>
+							<div className="popup">
+							<span style={{backgroundColor: ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor}} className={ 'dot' } onClick={ myFunction }>
+							</span>
+								<span className="popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
+
+									<ColorPicker
+										color={ ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor }
+										onChangeComplete={onChangeBackgroundColor}
+									/>
+									<TextControl
+										onChange={(value)=>{
+											if(props.attributes.TimerLayout == 'Classic')props.setAttributes({TimerValueBackgroundColor: value,})
+											else{props.setAttributes({BlockBackgroundColor: value})}}
+										}
+										value = {( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor}
+									/>
+
+							</span>
+							</div>
+						</PanelRow>
+
 					</PanelBody>
 					<PanelBody title={"Numbers Styling"}>
-						<label class="components-base-control__label">Numbers color</label>
-						<ColorPicker
-							color={ props.attributes.TimerValueColor}
-							onChangeComplete={onChangeTimerValueColor}
-						/>
-						<TextControl
-							onChange={(value)=>{props.setAttributes({TimerValueColor:value})}}
-							value = {props.attributes.TimerValueColor}
-						/>
+
+						<PanelRow>
+							<p><strong>Numbers color</strong></p>
+							<div className="popup">
+							<span style={{backgroundColor: props.attributes.TimerValueColor}} className={ 'dot' } onClick={ myFunction }>
+							</span>
+								<span className="popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
+
+								<ColorPicker
+									color={ props.attributes.TimerValueColor }
+									onChangeComplete={ onChangeTimerValueColor }
+								/>
+								<TextControl
+									onChange={ ( value ) => {
+										props.setAttributes( { TimerValueColor: value } )
+									} }
+									value={ props.attributes.TimerValueColor }
+								/>
+
+							</span>
+							</div>
+						</PanelRow>
+
+
 						<RangeControl
 							label= "Number Font Size"
 							value={ props.attributes.numberFontSize }
@@ -340,15 +383,27 @@ registerBlockType( 'k2/timer-block', {
 					</PanelBody>
 
 					<PanelBody title={"Text Styling"}>
-						<label class="components-base-control__label">Text color</label>
-						<ColorPicker
-							color={ props.attributes.TimerTextColor }
-							onChangeComplete={onChangeTimerTextColor}
-						/>
-						<TextControl
-							onChange={(value)=>{props.setAttributes({TimerTextColor:value})}}
-							value = {props.attributes.TimerTextColor}
-						/>
+
+						<PanelRow>
+							<p><strong>Text color</strong></p>
+							<div className="popup">
+							<span style={{backgroundColor: props.attributes.TimerTextColor}} className={ 'dot' } onClick={ myFunction }>
+							</span>
+								<span className="popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
+
+								<ColorPicker
+									color={ props.attributes.TimerTextColor }
+									onChangeComplete={onChangeTimerTextColor}
+								/>
+								<TextControl
+									onChange={(value)=>{props.setAttributes({TimerTextColor:value})}}
+									value = {props.attributes.TimerTextColor}
+								/>
+
+							</span>
+							</div>
+						</PanelRow>
+
 						<RangeControl
 							label= "Text Font Size"
 							value={ props.attributes.textFontSize }
@@ -363,7 +418,7 @@ registerBlockType( 'k2/timer-block', {
 							options={GLOBAL_FONTS}
 							onChange={(value)=>{props.setAttributes({textFontFamily:value})}}
 						/>
-					</PanelBody>	
+					</PanelBody>
 				</InspectorControls>
 				,
 				<div className={'TimerParentContainer'}>

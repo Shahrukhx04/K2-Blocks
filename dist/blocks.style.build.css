@@ -1,8 +1,454 @@
-.ProgressBarParentContainer{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin:2em 0.5em}.ProgressBarOutsideContainer{display:-ms-inline-flexbox;display:inline-flex;width:100%;-webkit-box-shadow:inset 0 0px 1px rgba(0,0,0,0.2),inset 0 -2px 1px rgba(0,0,0,0.2);box-shadow:inset 0 0px 1px rgba(0,0,0,0.2),inset 0 -2px 1px rgba(0,0,0,0.2)}.ProgressBarInsideAnimation{display:block;background-color:green;position:relative;overflow:hidden;background-size:100%;-webkit-box-shadow:inset 0 0px 1px rgba(0,0,0,0.2),inset 0 -2px 1px rgba(0,0,0,0.2);box-shadow:inset 0 0px 1px rgba(0,0,0,0.2),inset 0 -2px 1px rgba(0,0,0,0.2)}.ProgressBarInsideAnimation span{position:absolute;top:0;bottom:0;left:0;right:0;content:"";background-image:-webkit-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);background-image:-o-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);background-image:linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);background-size:30px 30px;-webkit-animation:CandyEffect 0.5s infinite linear;animation:CandyEffect 0.5s infinite linear}@-webkit-keyframes CandyEffect{from{background-position:0 100%}to{background-position:30px 100%}}@keyframes CandyEffect{from{background-position:0 100%}to{background-position:30px 100%}}
-.BoxedContainer{display:-ms-flexbox;display:flex;margin-top:2em;margin-bottom:2em}.CoverParentContainer{background-color:lightgray;background-position:center;background-size:cover;display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;position:relative}.CoverTextContainer{width:100%;padding:2em}.CoverParagraphHeading{color:white}.CoverButtonStyling{padding:0.5em 1em;display:inline-block;font-family:'poppins';font-weight:500;line-height:1 !important;-webkit-transition:0.5s;-o-transition:0.5s;transition:0.5s}.CoverButtonStyling:hover{background-color:white;padding:0.5em 1em;border-width:2px;border-style:solid;border-color:#002147;color:#002147 !important;cursor:pointer}.ClassicParentContainer{display:-ms-flexbox;display:flex;-ms-flex-align:center;align-items:center;-ms-flex-wrap:wrap-reverse;flex-wrap:wrap-reverse;position:relative}.ClassicImageContainer{background-color:lightgray;-ms-flex-preferred-size:50%;flex-basis:50%;background-size:cover;background-position:50%;position:relative}.ClassicTextContainer{-ms-flex-preferred-size:50%;flex-basis:50%;vertical-align:middle;padding:2em}.ClassicParagraphHeading{color:#002147}.ClassicButtonStyling{padding:0.5em 1em;display:inline-block;font-family:'poppins';font-weight:500;line-height:1 !important;-webkit-transition:0.5s;-o-transition:0.5s;transition:0.5s}.ClassicButtonStyling:hover{background-color:#002147;padding:0.5em 1em;border-width:0.1em;border-style:solid;border-color:#002147;color:white !important;cursor:pointer}@media (max-width: 1000px){.CoverParentContainerSpan{width:100%}}@media (max-width: 700px){.ClassicImageContainer{-ms-flex-preferred-size:100%;flex-basis:100%;min-height:65vh}.ClassicTextContainer{-ms-flex-preferred-size:100%;flex-basis:100%}}
-.ParentContainer{display:-ms-flexbox;display:flex;margin-top:2em;margin-bottom:2em;-webkit-box-sizing:content-box;box-sizing:content-box}.SubParentContainer{max-height:100vh}.ImageParentContainer{background-size:cover;background-repeat:no-repeat;border-radius:20px}
-.WidgetContainer{display:-ms-flexbox;display:flex;margin-top:2em;margin-bottom:2em;-ms-flex-pack:center;justify-content:center;-ms-flex-wrap:wrap;flex-wrap:wrap}div.container{width:100%;display:-ms-inline-flexbox;display:inline-flex;padding:0.5em}div.box{display:block}
-.sidenav{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;-ms-flex-negative:2;flex-shrink:2;overflow:scroll;-webkit-transition:0.5s;-o-transition:0.5s;transition:0.5s;-ms-flex-positive:1;flex-grow:1;position:fixed;z-index:100}.ButtonStyle{display:-ms-flexbox;display:flex;-ms-flex-direction:row;flex-direction:row;-ms-flex-align:center;align-items:center;margin-top:2em;padding-top:0.5em;padding-right:1em;height:100%}.sidenav .closebtn{position:absolute;top:0;right:25px;font-size:36px;margin-left:50px;margin-top:100px;cursor:pointer}@media screen and (max-height: 450px){.sidenav{padding-top:15px}.sidenav a{font-size:18px}}.InnerBlockContainer{height:auto;background-color:transparent;margin-left:2em;margin-right:2em}.ParentSection{display:-ms-flexbox;display:flex;width:100%;margin-top:2em;margin-bottom:2em;-ms-flex-pack:center;justify-content:center;-webkit-box-sizing:content-box;box-sizing:content-box}
-.TimerParentContainer{display:-ms-flexbox;display:flex;-ms-flex-pack:center;justify-content:center;background-color:transparent}.TimerBlockContainer{display:-ms-inline-flexbox;display:inline-flex;-ms-flex-pack:center;justify-content:center;-ms-flex-align:center;align-items:center;max-width:100%;margin:0.5%;padding:1%}.TimerValueContainer{font-family:"Montserrat",Sans-serif;font-size:45px;font-weight:900;line-height:1.2em;padding:20px}.TimerTextContainer{font-size:1.2vw;text-align:center;font-family:"Montserrat",Sans-serif;font-weight:500}@media (max-width: 767px){.TimerValueContainer{font-size:7vw;padding:9px}}
-.counter-widget{background:none;width:150px;height:150px;text-align:center;margin:auto}.counter-widget .content .cw-number{padding:0px;margin:0;font-size:50px;font-family:"Arial Black", Gadget, sans-serif;color:black}.counter-widget .content .cw-title{font-family:Verdana,Geneva,sans-serif;color:black}.counter-widget.cw-round{width:150px;height:150px;border-radius:50%}.counter-widget.cw-square{background-color:white}.counter-widget.cw-halo{border-radius:50%}
-.modal-container{text-align:center}.modal{display:none;position:fixed;z-index:10;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,0.4)}.modal-backend{-webkit-box-shadow:1px 1px 20px grey;box-shadow:1px 1px 20px grey;border-radius:20px;background-color:#fefefe;margin:5% auto;padding:20px;border:none;width:100%;margin-top:2em;position:relative}.modal-content{background-color:#fefefe;margin:15% auto;padding:20px;border:none;width:60%;-webkit-box-shadow:1px 1px 20px grey;box-shadow:1px 1px 20px grey;border-radius:20px;position:relative}.close{color:#aaa;font-size:2em !important;font-weight:bold;display:block;text-align:right;padding-left:20px;padding-right:20px;position:absolute;top:0;right:0}.close:hover,.close:focus{color:black;text-decoration:none;cursor:pointer}.modal-button{background-color:#43cea2;border:none;color:white;padding:1em 2em;text-align:center;text-decoration:none;display:inline-block;font-size:1em}.fade-in{-webkit-animation:opac 0.8s;animation:opac 0.8s}@-webkit-keyframes opac{from{opacity:0}to{opacity:1}}@keyframes opac{from{opacity:0}to{opacity:1}}@media (max-width: 767px){.modal-content{width:90%;margin:30% auto}}
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for FrontEnd + BackEnd.
+ */
+.ProgressBarParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 2em 0.5em; }
+
+.ProgressBarOutsideContainer {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
+
+.ProgressBarInsideAnimation {
+  display: block;
+  background-color: green;
+  position: relative;
+  overflow: hidden;
+  background-size: 100%;
+  -webkit-box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: inset 0 0px 1px rgba(0, 0, 0, 0.2), inset 0 -2px 1px rgba(0, 0, 0, 0.2); }
+
+.ProgressBarInsideAnimation span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  background-image: -webkit-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, white 25%, transparent 25%, transparent 50%, white 50%, white 75%, transparent 75%, transparent);
+  background-size: 30px 30px;
+  -webkit-animation: CandyEffect 0.5s infinite linear;
+          animation: CandyEffect 0.5s infinite linear; }
+
+@-webkit-keyframes CandyEffect {
+  from {
+    background-position: 0 100%; }
+  to {
+    background-position: 30px 100%; } }
+
+@keyframes CandyEffect {
+  from {
+    background-position: 0 100%; }
+  to {
+    background-position: 30px 100%; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for FrontEnd + BackEnd.
+ */
+.BoxedContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em; }
+
+.CoverParentContainer {
+  background-color: lightgray;
+  background-position: center;
+  background-size: cover;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  position: relative; }
+
+.CoverTextContainer {
+  width: 100%;
+  padding: 2em; }
+
+.CoverParagraphHeading {
+  color: white; }
+
+.CoverButtonStyling {
+  padding: 0.5em 1em;
+  display: inline-block;
+  font-family: 'poppins';
+  font-weight: 500;
+  line-height: 1 !important;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+
+.CoverButtonStyling:hover {
+  background-color: white;
+  padding: 0.5em 1em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #002147;
+  color: #002147 !important;
+  cursor: pointer; }
+
+.ClassicParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+  position: relative; }
+
+.ClassicImageContainer {
+  background-color: lightgray;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  background-size: cover;
+  background-position: 50%;
+  position: relative; }
+
+.ClassicTextContainer {
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  vertical-align: middle;
+  padding: 2em; }
+
+.ClassicParagraphHeading {
+  color: #002147; }
+
+.ClassicButtonStyling {
+  padding: 0.5em 1em;
+  display: inline-block;
+  font-family: 'poppins';
+  font-weight: 500;
+  line-height: 1 !important;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+
+.ClassicButtonStyling:hover {
+  cursor: pointer; }
+
+@media (max-width: 1000px) {
+  .CoverParentContainerSpan {
+    width: 100%; } }
+
+@media (max-width: 700px) {
+  .ClassicImageContainer {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    min-height: 65vh; }
+  .ClassicTextContainer {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.ParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; }
+
+.SubParentContainer {
+  max-height: 100vh; }
+
+.ImageParentContainer {
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 20px; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.WidgetContainer {
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+div.container {
+  width: 100%;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0.5em; }
+
+div.box {
+  display: block; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.sidenav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-negative: 2;
+      flex-shrink: 2;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  -ms-flex-positive: 1;
+      flex-grow: 1;
+  position: fixed;
+  z-index: 100; }
+
+.ButtonStyle {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-align: center;
+      align-items: center;
+  margin-top: 2em;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  height: 100%; }
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  margin-top: 100px;
+  cursor: pointer; }
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px; }
+  .sidenav a {
+    font-size: 18px; } }
+
+.InnerBlockContainer {
+  height: auto;
+  background-color: transparent;
+  margin-left: 2em;
+  margin-right: 2em; }
+
+.ParentSection {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.TimerParentContainer {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-color: transparent; }
+
+.TimerBlockContainer {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  max-width: 100%;
+  margin: 0.5%;
+  padding: 1%; }
+
+.TimerValueContainer {
+  font-family: "Montserrat",Sans-serif;
+  font-size: 45px;
+  font-weight: 900;
+  line-height: 1.2em;
+  padding: 20px; }
+
+.TimerTextContainer {
+  font-size: 1.2vw;
+  text-align: center;
+  font-family: "Montserrat",Sans-serif;
+  font-weight: 500; }
+
+@media (max-width: 767px) {
+  .TimerValueContainer {
+    font-size: 7vw;
+    padding: 9px; } }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.counter-widget {
+  background: none;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  margin: auto; }
+
+.counter-widget .content .cw-number {
+  padding: 0px;
+  margin: 0;
+  font-size: 50px;
+  font-family: "Arial Black", Gadget, sans-serif;
+  color: black; }
+
+.counter-widget .content .cw-title {
+  font-family: Verdana,Geneva,sans-serif;
+  color: black; }
+
+.counter-widget.cw-round {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%; }
+
+.counter-widget.cw-square {
+  background-color: white; }
+
+.counter-widget.cw-halo {
+  border-radius: 50%; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.modal-container {
+  text-align: center; }
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 10;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+.modal-backend {
+  -webkit-box-shadow: 1px 1px 20px grey;
+          box-shadow: 1px 1px 20px grey;
+  border-radius: 20px;
+  background-color: #fefefe;
+  margin: 5% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: none;
+  width: 100%;
+  /* Could be more or less, depending on screen size */
+  margin-top: 2em;
+  position: relative; }
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: none;
+  width: 60%;
+  /* Could be more or less, depending on screen size */
+  -webkit-box-shadow: 1px 1px 20px grey;
+          box-shadow: 1px 1px 20px grey;
+  border-radius: 20px;
+  position: relative; }
+
+.close {
+  color: #aaa;
+  font-size: 2em !important;
+  font-weight: bold;
+  display: block;
+  text-align: right;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
+.modal-button {
+  background-color: #43cea2;
+  border: none;
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em; }
+
+.fade-in {
+  -webkit-animation: opac 0.8s;
+          animation: opac 0.8s; }
+
+@-webkit-keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes opac {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@media (max-width: 767px) {
+  .modal-content {
+    width: 90%;
+    margin: 30% auto; } }

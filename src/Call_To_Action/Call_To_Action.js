@@ -63,11 +63,11 @@ registerBlockType( 'k2/call-to-action-block', {
 	attributes: {
 		LayoutDesign: {
 			type: 'string',
-			default: 'Classic'
+			default: 'Cover'
 		},
 		CTA_Image: {
 			type: 'string',
-			default: 'http://localhost/wordpress/wp-content/uploads/2020/04/Culture-and-Diversity-e1575982916249.jpg'
+			default: 'http://k2blocks.com/wp-content/uploads/2020/05/young-man-listening-to-paper-cup-phone-3761514-scaled.jpg'
 		},
 		CTAHeadingText: {
 			type: 'string',
@@ -83,23 +83,23 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAOverlayColorRed: {
 			type: 'number',
-			default: 68
+			default: 180
 		},
 		CTAOverlayColorGreen: {
 			type: 'number',
-			default: 68
+			default: 55
 		},
 		CTAOverlayColorBlue: {
 			type: 'number',
-			default: 68
+			default: 87
 		},
 		CTAOverlayColorAlpha: {
 			type: 'number',
-			default: 0.0
+			default: 0.6
 		},
 		CTAOverlayEnableDisable: {
 			type: 'boolean',
-			default: false
+			default: true
 		},
 		CTAClassicPosition: {
 			type: 'string',
@@ -115,11 +115,11 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAAlignment: {
 			type: 'string',
-			default: 'flex-start'
+			default: 'center'
 		},
 		CTABoxWidth: {
 			type: 'number',
-			default: 80
+			default: 58
 		},
 		InspectorControlClassicOptionDisplay:{
 			type: 'string',
@@ -143,11 +143,11 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingColor: {
 			type: 'string',
-			default: '#002147'
+			default: 'white'
 		},
 		CTAParagraphColor: {
 			type: 'string',
-			default: '#002147'
+			default: 'white'
 		},
 		CTAHeadingFontSize: {
 			type: 'number',
@@ -155,7 +155,7 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAParagraphyFontSize: {
 			type: 'number',
-			default: 0.5
+			default: 1.4
 		},
 		CTAButtonFontSize: {
 			type: 'number',
@@ -163,15 +163,15 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Helvatica'
 		},
 		CTAParagraphFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Helvatica'
 		},
 		CTAButtonFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Helvatica'
 		},
 		CTAButtonFontWeight: {
 			type: 'string',
@@ -188,7 +188,7 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		CTAHeadingFontWeight: {
 			type: 'string',
-			default: 'normal'
+			default: '600'
 		},
 		CTAHeadingTextStyle: {
 			type: 'number',
@@ -202,7 +202,7 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		CTAParagraphFontWeight: {
 			type: 'string',
-			default: 'normal'
+			default: '300'
 		},
 		CTAParagraphTextStyle: {
 			type: 'number',
@@ -219,19 +219,19 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAButtonBorderWidth: {
 			type: 'number',
-			default: 2
+			default: 3
 		},
 		CTAButtonBorderRadius: {
 			type: 'number',
-			default: 0
+			default: 3
 		},
 		CTAButtonBorderColor: {
 			type: 'string',
-			default: 'blue'
+			default: '#ffffff'
 		},
 		CTAButtonColor: {
 			type: 'string',
-			default: 'blue'
+			default: '#3d8c97'
 		},
 		CTAButtonTextColor: {
 			type: 'string',
@@ -244,6 +244,13 @@ registerBlockType( 'k2/call-to-action-block', {
 		CTAButtonLinkOpenNewTab: {
 			type: 'boolean',
 			default: false
+		},
+
+		CallToActionOverlayColor: {
+			type: 'string'
+		},
+		InspectorControlCallToActionOverlayColor: {
+			type: 'string'
 		}
 	},
 
@@ -300,13 +307,13 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		const ClassicImageContainerStyling = {
 			flexBasis: attributes.CTAClassicImageContainerWidth + '%',
-			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			boxShadow: attributes.CallToActionOverlayColor,
 			backgroundImage: 'url("' +attributes.CTA_Image + '")',
 			minHeight: attributes.CTACoverContainerHeight + 'vh'
 		}
 
 		const CoverParentStyling = {
-			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			boxShadow: attributes.CallToActionOverlayColor,
 			backgroundImage: 'url("' +attributes.CTA_Image + '")',
 			minHeight: attributes.CTACoverContainerHeight + 'vh',
 			width: attributes.CTABoxWidth + 'rem'
@@ -351,13 +358,15 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		function onChangeCTAButtonColor(Newcolor) {
 			setAttributes({
-				CTAButtonColor: Newcolor
+				CTAButtonColor: 'rgba('+Newcolor.rgb.r+','+Newcolor.rgb.g+','+Newcolor.rgb.b+','+Newcolor.rgb.a+')'
+
 			})
 		}
 
 		function onChangeCTAButtonTextColor(NewColor) {
 			setAttributes({
-				CTAButtonTextColor: NewColor
+				CTAButtonTextColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -404,8 +413,15 @@ registerBlockType( 'k2/call-to-action-block', {
 
 				CTAOverlayColorBlue: NewColor['rgb'].b,
 
-				CTAOverlayColorAlpha: NewColor['rgb'].a
-			})
+				CTAOverlayColorAlpha: NewColor['rgb'].a,
+				InspectorControlCallToActionOverlayColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')',
+				CallToActionOverlayColor: 'inset 0 0 0 100vh rgba(' +
+					NewColor['rgb'].r + ',' +
+					NewColor['rgb'].g + ',' +
+					NewColor['rgb'].b + ',' +
+					NewColor['rgb'].a + ')'
+
+		})
 
 		}
 
@@ -415,11 +431,11 @@ registerBlockType( 'k2/call-to-action-block', {
 			})
 			if(NewSetting === true){
 				setAttributes({
-					CTAOverlayColorAlpha: 0.3
+					CallToActionOverlayColor: 'inset 0 0 0 100vh ' + attributes.InspectorControlCallToActionOverlayColor
 				})
 			} else if(NewSetting === false) {
 				setAttributes({
-					CTAOverlayColorAlpha: 0.0
+					CallToActionOverlayColor: ''
 				})
 			}
 		}
@@ -488,12 +504,14 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		function onChangeCTAHeadingColor(NewColor) {
 			setAttributes({
-				CTAHeadingColor: NewColor
+				CTAHeadingColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 		function onChangeCTAParagraphColor(NewColor) {
 			setAttributes({
-				CTAParagraphColor: NewColor
+				CTAParagraphColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -593,7 +611,8 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		function onChangeCTABorderColor(NewColor) {
 			setAttributes({
-				CTAButtonBorderColor: NewColor
+				CTAButtonBorderColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -660,6 +679,16 @@ registerBlockType( 'k2/call-to-action-block', {
 
 			}
 
+		}
+
+		function myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
 		}
 
 		return ( [
@@ -817,12 +846,24 @@ registerBlockType( 'k2/call-to-action-block', {
 
 					{
 						(attributes.CTAOverlayEnableDisable === true)?<div>
-							<label > Fill Color </label>
-							<ColorPicker
-								color={ colors }
-								value = {attributes.CTAOverlayColor}
-								onChangeComplete={ onChangeCTAOverlayColor }
-							/>
+
+								<PanelRow>
+									<p><strong>Fill color</strong></p>
+									<div className="popup">
+									<span style={{backgroundColor: attributes.InspectorControlCallToActionOverlayColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+										<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.CallToActionOverlayColor }
+											onChangeComplete={ onChangeCTAOverlayColor }
+										/>
+									</div>
+
+									</span>
+									</div>
+								</PanelRow>
 							</div>
 							:null
 					}
@@ -845,10 +886,31 @@ registerBlockType( 'k2/call-to-action-block', {
 
 					{
 						(attributes.CTAisHeadingEnabled === true)?<div>
-							<ColorPalette
-								value = {attributes.CTAHeadingColor}
-								onChange = {onChangeCTAHeadingColor}
-								colors = {colors} />
+
+
+							<PanelRow>
+								<p><strong>Color</strong></p>
+								<div className="popup">
+								<span style={{backgroundColor: attributes.CTAHeadingColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.CTAHeadingColor }
+														onChangeComplete={ onChangeCTAHeadingColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { CTAHeadingColor: value } )
+														} }
+														value={ attributes.CTAHeadingColor}
+													/>
+												</div>
+
+								</span>
+								</div>
+							</PanelRow>
 
 							<RangeControl
 								label={<strong> Font Size </strong>}
@@ -925,10 +987,29 @@ registerBlockType( 'k2/call-to-action-block', {
 					{
 						(attributes.CTAisParagraphyEnabled === true)?<div>
 
-							<ColorPalette
-								value = {attributes.CTAParagraphColor}
-								onChange = {onChangeCTAParagraphColor}
-								colors = {colors} />
+							<PanelRow>
+								<p><strong>Color</strong></p>
+								<div className="popup">
+								<span style={{backgroundColor: attributes.CTAParagraphColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.CTAParagraphColor }
+														onChangeComplete={ onChangeCTAParagraphColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { CTAParagraphColor: value } )
+														} }
+														value={ attributes.CTAParagraphColor}
+													/>
+												</div>
+
+								</span>
+								</div>
+							</PanelRow>
 
 							<RangeControl
 								label={<strong> Font Size </strong>}
@@ -1026,16 +1107,54 @@ registerBlockType( 'k2/call-to-action-block', {
 							/>
 
 
-							<ColorPalette
-							value = {attributes.CTAButtonTextColor}
-							onChange = {onChangeCTAButtonTextColor}
-							colors = {colors} />
+								<PanelRow>
+									<p><strong>Text Color</strong></p>
+									<div className="popup">
+								<span style={{backgroundColor: attributes.CTAButtonTextColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+										<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.CTAButtonTextColor }
+														onChangeComplete={ onChangeCTAButtonTextColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { CTAButtonTextColor: value } )
+														} }
+														value={ attributes.CTAButtonTextColor}
+													/>
+												</div>
+
+								</span>
+									</div>
+								</PanelRow>
 
 
-							<ColorPalette
-								value = {attributes.CTAButtonColor}
-								onChange = {onChangeCTAButtonColor}
-								colors = {colors} />
+								<PanelRow>
+									<p><strong>Background Color</strong></p>
+									<div className="popup">
+									<span style={{backgroundColor: attributes.CTAButtonColor}} className={ 'dot' } onClick={ myFunction }>
+										</span>
+												<span className="popuptext" id="myPopup" hidden={ true }>
+
+														<div>
+															<ColorPicker
+																color={ attributes.CTAButtonColor }
+																onChangeComplete={ onChangeCTAButtonColor }
+															/>
+															<TextControl
+																onChange={ ( value ) => {
+																	setAttributes( { CTAButtonColor: value } )
+																} }
+																value={ attributes.CTAButtonColor}
+															/>
+														</div>
+
+										</span>
+									</div>
+								</PanelRow>
 
 
 							<RangeControl
@@ -1112,12 +1231,29 @@ registerBlockType( 'k2/call-to-action-block', {
 									(attributes.CTAButtonBorderStyle === 'None')?null:
 										<div>
 
-											<p><strong>Border Color</strong></p>
-											<ColorPalette
-												value={attributes.CTAButtonBorderColor}
-												onChange={onChangeCTABorderColor}
-												colors = {ToolBarColors}
-											/>
+											<PanelRow>
+												<p><strong>Border Color</strong></p>
+												<div className="popup">
+														<span style={{backgroundColor: attributes.CTAButtonBorderColor}} className={ 'dot' } onClick={ myFunction }>
+														</span>
+																			<span className="popuptext" id="myPopup" hidden={ true }>
+
+																		<div>
+																			<ColorPicker
+																				color={ attributes.CTAButtonBorderColor }
+																				onChangeComplete={ onChangeCTABorderColor }
+																			/>
+																			<TextControl
+																				onChange={ ( value ) => {
+																					setAttributes( { CTAButtonBorderColor: value } )
+																				} }
+																				value={ attributes.CTAButtonBorderColor}
+																			/>
+																		</div>
+
+														</span>
+												</div>
+											</PanelRow>
 
 
 											<RangeControl
@@ -1281,13 +1417,13 @@ registerBlockType( 'k2/call-to-action-block', {
 
 		const ClassicImageContainerStyling = {
 			flexBasis: attributes.CTAClassicImageContainerWidth + '%',
-			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			boxShadow: attributes.CallToActionOverlayColor,
 			backgroundImage: 'url("' +attributes.CTA_Image + '")',
 			minHeight: attributes.CTACoverContainerHeight + 'vh'
 		}
 
 		const CoverParentStyling = {
-			boxShadow: 'inset 0 0 0 100vh rgba(' + attributes.CTAOverlayColorRed + ',' + attributes.CTAOverlayColorGreen + ',' + attributes.CTAOverlayColorBlue + ',' + attributes.CTAOverlayColorAlpha + ')',
+			boxShadow: attributes.CallToActionOverlayColor,
 			backgroundImage: 'url("' +attributes.CTA_Image + '")',
 			minHeight: attributes.CTACoverContainerHeight + 'vh',
 			width: attributes.CTABoxWidth + 'rem'

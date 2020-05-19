@@ -20,7 +20,8 @@ const { registerBlockType,
 const {
 	RichText,
 	InspectorControls,
-	ColorPalette
+	ColorPalette,
+	PanelColorSettings
 } = wp.editor;
 
 const {
@@ -28,8 +29,9 @@ const {
 	RangeControl,
 	SelectControl,
 	Panel,
-	PanelRow
-
+	PanelRow,
+	ColorPicker,
+	TextControl
 } = wp.components;
 
 const alertBoxIcon = (
@@ -58,7 +60,7 @@ const alertBoxIcon = (
 registerBlockType( 'k2/alert-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Alert Block' ), // Block title.
-	icon: {src:alertBoxIcon}, 
+	icon: {src:alertBoxIcon},
 	category: 'k2-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Alert blocks' ),
@@ -68,11 +70,11 @@ registerBlockType( 'k2/alert-block', {
 
 		AlertBoxText: {
 			type: 'string',
-			default: 'Hello, I am a info box with an icon and text. '
+			default: 'Hello, I am an info box with an icon and text. '
 		},
 		AlertBoxColor: {
 			type: 'string',
-			default: 'transparent'
+			default: '#1995AD'
 		},
 		AlertBoxBorderColor: {
 			type: 'string',
@@ -80,11 +82,11 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxTextColor: {
 			type: 'string',
-			default: 'orange'
+			default: '#ffffff'
 		},
 		AlertBoxIconSize: {
 			type: 'number',
-			default: 5
+			default: 3
 		},
 		AlertBoxTextSize: {
 			type: 'number',
@@ -92,7 +94,7 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxIconColor: {
 			type: 'string',
-			default: 'orange'
+			default: '#1995AD'
 		},
 		AlertBoxIconType:{
 			type: 'string',
@@ -128,7 +130,7 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxBorderRadius: {
 			type: 'number',
-			default: 0
+			default: 16
 		},
 		AlertBoxWidgetWidth: {
 			type: 'number',
@@ -136,15 +138,15 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertIconBackgroundColor: {
 			type: 'string',
-			default: '#FED8B1'
+			default: 'white'
 		},
 		AlertIconBackgroundBorderRadius: {
 			type:'number',
-			default: 0
+			default: 13
 		},
 		AlertBoxTextFontFamily: {
 			type: 'string',
-			default: 'Lucida Console'
+			default: 'Gill Sans'
 		},
 		AlertBoxTextFontWeight: {
 			type: 'string',
@@ -158,6 +160,10 @@ registerBlockType( 'k2/alert-block', {
 			type: 'string',
 			default: 'None'
 		},
+		AlertBoxWidth: {
+			type: 'number',
+			default: 100
+		}
 
 	},
 
@@ -208,7 +214,8 @@ registerBlockType( 'k2/alert-block', {
 			justifyContent: attributes.AlertBoxSimpleAlignment,
 			borderStyle: attributes.AlertBoxBorderStyle,
 			borderWidth: attributes.AlertBoxBorderWidth + 'px',
-			borderRadius: attributes.AlertBoxBorderRadius + 'px'
+			borderRadius: attributes.AlertBoxBorderRadius + 'px',
+			width: attributes.AlertBoxWidth + '%'
 		}
 
 		const AlertIconStyling = {
@@ -243,19 +250,21 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeAlertBoxColor(NewColor) {
 			setAttributes({
-				AlertBoxColor: NewColor
+				AlertBoxColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
 		function onChangeAlertBoxBorderColor(NewColor) {
 			setAttributes({
-				AlertBoxBorderColor: NewColor
+				AlertBoxBorderColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
 		function OnChangeAlertBoxTextColor(NewColor) {
 			setAttributes({
-				AlertBoxTextColor: NewColor
+				AlertBoxTextColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
 			})
 		}
 
@@ -273,7 +282,8 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeIconColor(NewColor) {
 			setAttributes({
-				AlertBoxIconColor: NewColor
+				AlertBoxIconColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -338,7 +348,7 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeAlertIconBackgroundColor(NewColor) {
 			setAttributes({
-				AlertIconBackgroundColor: NewColor
+				AlertIconBackgroundColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
 			})
 		}
 
@@ -407,13 +417,29 @@ registerBlockType( 'k2/alert-block', {
 
 		}
 
+
+		function myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
+		}
+
+		function onChangeAlertBoxWidth(NewWidth) {
+			setAttributes({
+				AlertBoxWidth: NewWidth
+			})
+		}
 		return (
 				[
 
 					<InspectorControls>
 
-
 						<PanelBody>
+
 
 							<div className={'IconListWrapper'}>
 								<div>
@@ -454,6 +480,7 @@ registerBlockType( 'k2/alert-block', {
 								}
 								onChange={ onChangeAlertBoxLayout}
 							/>
+
 
 							<RangeControl
 								label={<strong>Icon Size</strong>}
@@ -538,12 +565,29 @@ registerBlockType( 'k2/alert-block', {
 								(attributes.AlertBoxBorderStyle === 'None')?null:
 									<div>
 
-										<p><strong>Border Color</strong></p>
-										<ColorPalette
-											value={attributes.AlertBoxBorderColor}
-											onChange={onChangeAlertBoxBorderColor}
-											colors = {ToolBarColors}
-										/>
+										<PanelRow>
+											<p><strong>Border color</strong></p>
+											<div className="popup">
+												<span style={{backgroundColor: attributes.AlertBoxBorderColor}} className={ 'dot' } onClick={ myFunction }>
+												</span>
+															<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.AlertBoxBorderColor }
+														onChangeComplete={ onChangeAlertBoxBorderColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { AlertBoxBorderColor: value } )
+														} }
+														value={ attributes.AlertBoxBorderColor}
+													/>
+												</div>
+
+												</span>
+											</div>
+										</PanelRow>
 
 
 										<RangeControl
@@ -619,38 +663,107 @@ registerBlockType( 'k2/alert-block', {
 
 						<PanelBody title={'Colors'}>
 
-							<p><strong>Text Color</strong></p>
-							<ColorPalette
-								value={attributes.AlertBoxTextColor}
-								onChange={OnChangeAlertBoxTextColor}
-								colors = {ToolBarColors}
-								/>
-							<p><strong>Icon Color</strong></p>
-							<ColorPalette
-								value={attributes.AlertBoxIconColor}
-								onChange={onChangeIconColor}
-								colors = {ToolBarColors}
-							/>
+							<PanelRow>
+								<p><strong>Text color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertBoxTextColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
 
+									<div>
+										<ColorPicker
+											color={ attributes.AlertBoxTextColor }
+											onChangeComplete={ OnChangeAlertBoxTextColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertBoxTextColor: value } )
+											} }
+											value={ attributes.AlertBoxTextColor}
+										/>
+									</div>
 
-							<p><strong>Icon Backgound Color</strong></p>
-							<ColorPalette
-								value={attributes.AlertIconBackgroundColor}
-								onChange={onChangeAlertIconBackgroundColor}
-								colors = {ToolBarColors}
-							/>
+									</span>
+								</div>
+							</PanelRow>
+
+							<PanelRow>
+								<p><strong>Icon color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertBoxIconColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.AlertBoxIconColor }
+											onChangeComplete={ onChangeIconColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertBoxIconColor: value } )
+											} }
+											value={ attributes.AlertBoxIconColor}
+										/>
+									</div>
+
+									</span>
+								</div>
+							</PanelRow>
+
+							<PanelRow>
+								<p><strong>Icon Background color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertIconBackgroundColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+											<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.AlertIconBackgroundColor }
+											onChangeComplete={ onChangeAlertIconBackgroundColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertIconBackgroundColor: value } )
+											} }
+											value={ attributes.AlertIconBackgroundColor}
+										/>
+									</div>
+
+									</span>
+								</div>
+							</PanelRow>
 
 
 
 						</PanelBody>
 
 						<PanelBody title={'Background'}>
-							<p><strong>Fill Color</strong></p>
-							<ColorPalette
-								value = {attributes.AlertBoxColor}
-								onChange = {onChangeAlertBoxColor}
-								colors = {ToolBarColors}
-							/>
+
+							<PanelRow>
+								<p><strong>Fill color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertBoxColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.AlertBoxColor }
+											onChangeComplete={ onChangeAlertBoxColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertBoxColor: value } )
+											} }
+											value={ attributes.AlertBoxColor}
+										/>
+									</div>
+
+									</span>
+								</div>
+							</PanelRow>
 						</PanelBody>
 
 					</InspectorControls>,

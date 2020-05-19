@@ -18,6 +18,7 @@ const {
 	TextControl,
 	RangeControl,
 	ColorPicker,
+	PanelRow
 } = wp.components;
 
 const counterBlockIcon =(
@@ -134,6 +135,18 @@ registerBlockType( 'k2/counter-block', {
 				);
 			}
 
+			function onChangeNumberColor(value){
+				props.setAttributes( {
+					numberFontColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'}
+				);
+			}
+
+
+			function onChangetitleFontColor(value){
+				props.setAttributes( {
+					titleFontColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'}
+				);
+			}
 
 			function onNumberChange(value){
 				props.setAttributes({
@@ -186,7 +199,20 @@ registerBlockType( 'k2/counter-block', {
 					title:value
 				})
 			}
-			var styling = {
+
+			function myFunction(value) {
+				var ParentDiv = value.target.parentNode
+				var PopupDiv = ParentDiv.getElementsByTagName('span')
+				if (PopupDiv[1].hidden  === true){
+					PopupDiv[1].hidden  = false
+				} else if (PopupDiv[1].hidden  === false){
+					PopupDiv[1].hidden  = true
+				}
+			}
+
+
+
+		var styling = {
 				backgroundColor: (props.attributes.counterShapeClass == '')?'transparent':props.attributes.backgroundColor,
 				width: props.attributes.widgetSize+"px",
 				height: props.attributes.widgetSize+"px",
@@ -224,7 +250,8 @@ registerBlockType( 'k2/counter-block', {
 			);
 			if (props.attributes.type === 'days'){
 				contentControls = (
-					<div>
+
+				<div>
 						<label>Date</label>
 						<DateTimePicker
 							currentDate = {new Date(props.attributes.date.year,props.attributes.date.month,props.attributes.date.day,0,0,0,0)}
@@ -235,31 +262,94 @@ registerBlockType( 'k2/counter-block', {
 			}
 
 			var colorControls = (
-				<div>
-					<label class="components-base-control__label">Background color</label>
-					<ColorPicker
-						color={ props.attributes.backgroundColor }
-						onChangeComplete={onBackgroundColorChange}
-					/>
-				</div>
+
+				<PanelRow>
+					<p><strong>Background color</strong></p>
+					<div className="popup">
+							<span style={{backgroundColor: props.attributes.backgroundColor}} className={ 'dot' } onClick={ myFunction }>
+							</span>
+						<span className="popuptext" id="myPopup" hidden={ true }>
+
+							<div>
+								<ColorPicker
+									color={ props.attributes.backgroundColor }
+									onChangeComplete={ onBackgroundColorChange }
+								/>
+								<TextControl
+									onChange={ ( value ) => {
+										props.setAttributes( { backgroundColor: value } )
+									} }
+									value={ props.attributes.backgroundColor}
+								/>
+							</div>
+
+							</span>
+					</div>
+				</PanelRow>
+
+
+
 			);
-			if(props.attributes.counterShapeClass==''){
+			if(props.attributes.counterShapeClass===''){
 				colorControls = null;
 			}
-			if(props.attributes.counterShapeClass=='cw-halo'){
+			if(props.attributes.counterShapeClass==='cw-halo'){
 				colorControls = (
-					<div>
-					<label class="components-base-control__label">Background color</label>
-					<ColorPicker
-						color={ props.attributes.backgroundColor }
-						onChangeComplete={onBackgroundColorChange}
-					/>
-					<label class="components-base-control__label">Halo color</label>
-					<ColorPicker
-						color={ props.attributes.haloColor }
-						onChangeComplete={ ( value ) => {props.setAttributes( {haloColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} ); console.log(props.attributes.haloColor)} }
-					/>
-					</div>
+
+				<div>
+
+						<PanelRow>
+							<p><strong>Background color</strong></p>
+							<div className="popup">
+								<span style={{backgroundColor: props.attributes.backgroundColor}} className={ 'dot' } onClick={ myFunction }>
+								</span>
+								<span className="popuptext" id="myPopup" hidden={ true }>
+
+								<div>
+									<ColorPicker
+										color={ props.attributes.backgroundColor }
+										onChangeComplete={onBackgroundColorChange}
+									/>
+									<TextControl
+										onChange={ ( value ) => {
+											props.setAttributes( { backgroundColor: value } )
+										} }
+										value={ props.attributes.backgroundColor}
+									/>
+								</div>
+
+								</span>
+							</div>
+						</PanelRow>
+
+
+
+						<PanelRow>
+							<p><strong>Halo color</strong></p>
+							<div className="popup">
+									<span style={{backgroundColor: props.attributes.haloColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+								<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ props.attributes.haloColor }
+											onChangeComplete={ ( value ) => {props.setAttributes( {haloColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'} ); console.log(props.attributes.haloColor)} }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												props.setAttributes( { haloColor: value } )
+											} }
+											value={ props.attributes.haloColor}
+										/>
+									</div>
+
+									</span>
+							</div>
+						</PanelRow>
+
+				</div>
+
 
 				)
 			}
@@ -331,12 +421,30 @@ registerBlockType( 'k2/counter-block', {
 
 						{colorControls}
 
-						<label class="components-base-control__label">Number color</label>
-						<ColorPalette
-							value = { props.attributes.numberFontColor }
-							onChange={(value)=>{props.setAttributes({numberFontColor:value})}}
-							colors = {fontDefaultColors}
-						/>
+						<PanelRow>
+							<p><strong>Number color</strong></p>
+							<div className="popup">
+								<span style={{backgroundColor:props.attributes.numberFontColor }} className={ 'dot' } onClick={ myFunction }>
+									</span>
+										<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ props.attributes.numberFontColor }
+											onChangeComplete={ onChangeNumberColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												props.setAttributes( { numberFontColor: value } )
+											} }
+											value={ props.attributes.numberFontColor }
+										/>
+									</div>
+
+								</span>
+							</div>
+						</PanelRow>
+
 
 						<SelectControl
 									label="Number Font"
@@ -354,12 +462,30 @@ registerBlockType( 'k2/counter-block', {
 							step ={0.1}
 						/>
 
-						<label class="components-base-control__label">Title color</label>
-						<ColorPalette
-							value = { props.attributes.titleFontColor }
-							onChange={(value)=>{props.setAttributes({titleFontColor:value})}}
-							colors = {fontDefaultColors}
-						/>
+						<PanelRow>
+							<p><strong>Title color</strong></p>
+							<div className="popup">
+								<span style={{backgroundColor:props.attributes.titleFontColor }} className={ 'dot' } onClick={ myFunction }>
+									</span>
+										<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ props.attributes.titleFontColor }
+											onChangeComplete={ onChangetitleFontColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												props.setAttributes( { titleFontColor: value } )
+											} }
+											value={ props.attributes.titleFontColor }
+										/>
+									</div>
+
+								</span>
+							</div>
+						</PanelRow>
+
 						<SelectControl
 									label="Title Font"
 									value={props.attributes.titleFontFamily}

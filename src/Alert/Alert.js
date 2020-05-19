@@ -59,7 +59,7 @@ const alertBoxIcon = (
  */
 registerBlockType( 'k2/alert-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
-	title: __( 'Alert Block' ), // Block title.
+	title: __( 'Info Box' ), // Block title.
 	icon: {src:alertBoxIcon},
 	category: 'k2-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
@@ -114,11 +114,11 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxClassicAlignment: {
 			type: 'string',
-			default: 'flex-start'
+			default: 'center'
 		},
 		AlertBoxSimpleAlignment: {
 			type: 'string',
-			default: 'flex-start'
+			default: 'center'
 		},
 		AlertBoxBorderStyle: {
 			type: 'string',
@@ -162,7 +162,11 @@ registerBlockType( 'k2/alert-block', {
 		},
 		AlertBoxWidth: {
 			type: 'number',
-			default: 100
+			default: 50
+		},
+		AlertBoxWidgetAlignment: {
+			type: 'string',
+			default: 'center'
 		}
 
 	},
@@ -199,6 +203,9 @@ registerBlockType( 'k2/alert-block', {
 			{ label: '600'},
 		]
 
+		const WidgetContainerStyling = {
+			justifyContent: attributes.AlertBoxWidgetAlignment
+		}
 		const IconList = [
 			{label: 'Rocket' , value: 'fa fa-rocket'},
 			{label: 'Warning' ,value: 'fa fa-warning'},
@@ -215,7 +222,6 @@ registerBlockType( 'k2/alert-block', {
 			borderStyle: attributes.AlertBoxBorderStyle,
 			borderWidth: attributes.AlertBoxBorderWidth + 'px',
 			borderRadius: attributes.AlertBoxBorderRadius + 'px',
-			width: attributes.AlertBoxWidth + '%'
 		}
 
 		const AlertIconStyling = {
@@ -239,7 +245,7 @@ registerBlockType( 'k2/alert-block', {
 		}
 
 		const SubWidgetStyling = {
-			width: '100%',
+			width: attributes.AlertBoxWidth + 'rem'
 		}
 
 		function onAlertBoxTextChange(NewText){
@@ -324,6 +330,12 @@ registerBlockType( 'k2/alert-block', {
 			}
 		}
 
+		function onChangeAlertBoxWidgetAlignment(NewAlignment){
+			setAttributes({
+				AlertBoxWidgetAlignment: NewAlignment
+			})
+		}
+
 		function onChangeAlertBoxBorderStyle(NewStyle) {
 			setAttributes({
 				AlertBoxBorderStyle: NewStyle
@@ -403,14 +415,14 @@ registerBlockType( 'k2/alert-block', {
 		function onChangeAlignmentIconChange(value) {
 
 			if (value.target.tagName === 'SPAN'){
-				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var ParentDiv = value.target.parentNode
+				var MainDiv = ParentDiv.parentNode
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
 					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
 						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
 					}
 				}
-				console.log(value.target.tagName)
 				value.target.className = value.target.className + ' active'
 
 			}
@@ -481,6 +493,15 @@ registerBlockType( 'k2/alert-block', {
 								onChange={ onChangeAlertBoxLayout}
 							/>
 
+							<RangeControl
+								label={<strong>Widget Widtg</strong>}
+								value={ attributes.AlertBoxWidth }
+								onChange={ onChangeAlertBoxWidth }
+								min={ 1 }
+								max={ 100 }
+								step ={1}
+							/>
+
 
 							<RangeControl
 								label={<strong>Icon Size</strong>}
@@ -530,12 +551,33 @@ registerBlockType( 'k2/alert-block', {
 								<div id = {'AlignmentIconsParent'} className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
 
 									<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeAlertBoxClassicAlignment('flex-start')}>
-										<span className="fas fa-align-left AlignmentIconsStyle active" ></span>
+										<span className="fas fa-align-left AlignmentIconsStyle" ></span>
 									</div>
 									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxClassicAlignment('center')}>
-										<span className="fas fa-align-center AlignmentIconsStyle"></span>
+										<span className="fas fa-align-center AlignmentIconsStyle active"></span>
 									</div>
 									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxClassicAlignment('flex-end')}>
+										<span className="fas fa-align-right AlignmentIconsStyle"></span>
+									</div>
+								</div>
+
+							</PanelRow>
+
+
+							<PanelRow>
+
+								<div style={{paddingBottom: '2%'}}>
+									<label><strong>Position</strong></label>
+								</div>
+								<div id = {'AlignmentIconsParent'} className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
+
+									<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeAlertBoxWidgetAlignment('flex-start')}>
+										<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+									</div>
+									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxWidgetAlignment('center')}>
+										<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+									</div>
+									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxWidgetAlignment('flex-end')}>
 										<span className="fas fa-align-right AlignmentIconsStyle"></span>
 									</div>
 								</div>
@@ -768,9 +810,9 @@ registerBlockType( 'k2/alert-block', {
 
 					</InspectorControls>,
 
-					<div className={'WidgetContainer'}>
+					<div style={WidgetContainerStyling} className={'WidgetContainer'}>
 
-						<div style={SubWidgetStyling}>
+						<div className={'SubParentContainer'} style={SubWidgetStyling}>
 
 							<div style={ParentContainerStyling} className={'container'}>
 								<div className={"box"}>
@@ -808,7 +850,9 @@ registerBlockType( 'k2/alert-block', {
 	 * @returns {Mixed} JSX Frontend HTML.
 	 */
 	save ({attributes}) {
-
+		const WidgetContainerStyling = {
+			justifyContent: attributes.AlertBoxWidgetAlignment
+		}
 		const ParentContainerStyling = {
 			backgroundColor: attributes.AlertBoxColor,
 			borderColor: attributes.AlertBoxBorderColor,
@@ -840,7 +884,7 @@ registerBlockType( 'k2/alert-block', {
 			width: '100%',
 		}
 
-		return <div className={'WidgetContainer'}>
+		return <div  style={WidgetContainerStyling} className={'WidgetContainer'}>
 			<div style={SubWidgetStyling}>
 
 				<div style={ParentContainerStyling} className={'container'}>

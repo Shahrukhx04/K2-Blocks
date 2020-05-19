@@ -193,10 +193,9 @@
   display: flex;
   margin-top: 2em;
   margin-bottom: 2em;
-  -ms-flex-pack: center;
-      justify-content: center;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  width: 100%; }
 
 div.container {
   width: 100%;

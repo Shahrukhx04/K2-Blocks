@@ -9,6 +9,7 @@
 import './editor.scss';
 import './style.scss';
 import { GLOBAL_FONTS } from '../Global_Fonts';
+import { GLOBAL_ICONS} from '../Global_Icons'
 
 
 
@@ -420,7 +421,10 @@ registerBlockType( 'k2/alert-block', {
 									<label><strong>Select Icon</strong></label>
 								</div>
 								<div id='IconWrapper' className={'IconListSubWrapper'}  onClickCapture={onChangeAlertIconActive}>
-									<span className={'fa fa fa-rocket active'}></span>
+								{GLOBAL_ICONS.map((value, index) => {
+        							return <span className={'fa '+value}></span>
+      							})}
+									{/* <span className={'fa fa fa-rocket active'}></span>
 									<span className={'fa fa fa-bell'} ></span>
 									<span className={'fa fa fa-plane'}></span>
 									<span className={'fa fa fa-clock'}></span>
@@ -440,7 +444,7 @@ registerBlockType( 'k2/alert-block', {
 									<span className={'fa fa fa-angle-double-right'}></span>
 									<span className={'fa fa fa-angle-double-up'}></span>
 									<span className={'fa fa fa-angle-down'} ></span>
-									<span className={'fa fa-angle-left'} ></span>
+									<span className={'fa fa-angle-left'} ></span> */}
 								</div>
 							</div>
 							<SelectControl

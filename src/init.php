@@ -128,7 +128,9 @@ add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );
 
 //register fontawesome icons
 function custom_load_font_awesome() {
-	wp_enqueue_style( 'load-fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+	//wp_enqueue_style( 'load-fa', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' );
+	wp_enqueue_style('font-awesome','src/font-awesome/all.min.css');
 }
+
 add_action( 'wp_enqueue_scripts', 'custom_load_font_awesome' );
 //add_action( 'admin_enqueue_scripts', 'register_custom_backend_scripts' );

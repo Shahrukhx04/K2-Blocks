@@ -4,10 +4,12 @@ jQuery(document).ready(function( $ ) {
 		var OverlayLeftRight = $(triggerAttrs).attr('data-OverlayLeftRight');
 		var OverlayTopDown = $(triggerAttrs).attr('data-OverlayTopDown');
 		var SilidingOption = $(triggerAttrs).attr('data-SilidingOption');
+		var OverlayOpeningWidth = $(triggerAttrs).attr('data-OverlayWidth');
+
 		var button = $(triggerAttrs).children('.PremiumSectionButton')[0];
 		var mysidenav = $(this).children('.sidenav')[0];
 		$(button).click(function(){
-			$(mysidenav).css(SilidingOption, '100%');
+			 $(mysidenav).css(SilidingOption, OverlayOpeningWidth + '%');
 			$(mysidenav).css(OverlayTopDown, '0');
 			$(mysidenav).css(OverlayLeftRight, '0');
 			$("body").css("overflow", "hidden");

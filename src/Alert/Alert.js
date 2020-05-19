@@ -20,7 +20,8 @@ const { registerBlockType,
 const {
 	RichText,
 	InspectorControls,
-	ColorPalette
+	ColorPalette,
+	PanelColorSettings
 } = wp.editor;
 
 const {
@@ -28,11 +29,20 @@ const {
 	RangeControl,
 	SelectControl,
 	Panel,
-	PanelRow
-
+	PanelRow,
+	ColorPicker,
+	TextControl
 } = wp.components;
 
-
+const alertBoxIcon = (
+    <svg width={800} height={800} viewBox="0 0 800 800">
+      <image
+        width={800}
+        height={800}
+        xlinkHref="data:image/png;base64,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 AElFTkSuQmCC"
+      />
+    </svg>
+);
 
 /**
  * Register: aa Gutenberg Block.
@@ -50,8 +60,8 @@ const {
 registerBlockType( 'k2/alert-block', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Alert Block' ), // Block title.
-	icon: 'smiley', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
-	category: 'magik-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+	icon: {src:alertBoxIcon},
+	category: 'k2-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Alert blocks' ),
 		__( 'Magik Blocks' ),
@@ -60,7 +70,7 @@ registerBlockType( 'k2/alert-block', {
 
 		AlertBoxText: {
 			type: 'string',
-			default: 'Hello, I am a info box with an icon and text. '
+			default: 'Hello, I am an info box with an icon and text. '
 		},
 		AlertBoxColor: {
 			type: 'string',
@@ -150,6 +160,10 @@ registerBlockType( 'k2/alert-block', {
 			type: 'string',
 			default: 'None'
 		},
+		AlertBoxWidth: {
+			type: 'number',
+			default: 100
+		}
 
 	},
 
@@ -200,7 +214,8 @@ registerBlockType( 'k2/alert-block', {
 			justifyContent: attributes.AlertBoxSimpleAlignment,
 			borderStyle: attributes.AlertBoxBorderStyle,
 			borderWidth: attributes.AlertBoxBorderWidth + 'px',
-			borderRadius: attributes.AlertBoxBorderRadius + 'px'
+			borderRadius: attributes.AlertBoxBorderRadius + 'px',
+			width: attributes.AlertBoxWidth + '%'
 		}
 
 		const AlertIconStyling = {
@@ -235,19 +250,21 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeAlertBoxColor(NewColor) {
 			setAttributes({
-				AlertBoxColor: NewColor
+				AlertBoxColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
 		function onChangeAlertBoxBorderColor(NewColor) {
 			setAttributes({
-				AlertBoxBorderColor: NewColor
+				AlertBoxBorderColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
 		function OnChangeAlertBoxTextColor(NewColor) {
 			setAttributes({
-				AlertBoxTextColor: NewColor
+				AlertBoxTextColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
 			})
 		}
 
@@ -265,7 +282,8 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeIconColor(NewColor) {
 			setAttributes({
-				AlertBoxIconColor: NewColor
+				AlertBoxIconColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
+
 			})
 		}
 
@@ -330,7 +348,7 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeAlertIconBackgroundColor(NewColor) {
 			setAttributes({
-				AlertIconBackgroundColor: NewColor
+				AlertIconBackgroundColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')'
 			})
 		}
 
@@ -399,13 +417,29 @@ registerBlockType( 'k2/alert-block', {
 
 		}
 
+
+		function myFunction(value) {
+			var ParentDiv = value.target.parentNode
+			var PopupDiv = ParentDiv.getElementsByTagName('span')
+			if (PopupDiv[1].hidden  === true){
+				PopupDiv[1].hidden  = false
+			} else if (PopupDiv[1].hidden  === false){
+				PopupDiv[1].hidden  = true
+			}
+		}
+
+		function onChangeAlertBoxWidth(NewWidth) {
+			setAttributes({
+				AlertBoxWidth: NewWidth
+			})
+		}
 		return (
 				[
 
 					<InspectorControls>
 
-
 						<PanelBody>
+
 
 							<div className={'IconListWrapper'}>
 								<div>
@@ -446,6 +480,7 @@ registerBlockType( 'k2/alert-block', {
 								}
 								onChange={ onChangeAlertBoxLayout}
 							/>
+
 
 							<RangeControl
 								label={<strong>Icon Size</strong>}
@@ -530,12 +565,29 @@ registerBlockType( 'k2/alert-block', {
 								(attributes.AlertBoxBorderStyle === 'None')?null:
 									<div>
 
-										<p><strong>Border Color</strong></p>
-										<ColorPalette
-											value={attributes.AlertBoxBorderColor}
-											onChange={onChangeAlertBoxBorderColor}
-											colors = {ToolBarColors}
-										/>
+										<PanelRow>
+											<p><strong>Border color</strong></p>
+											<div className="popup">
+												<span style={{backgroundColor: attributes.AlertBoxBorderColor}} className={ 'dot' } onClick={ myFunction }>
+												</span>
+															<span className="popuptext" id="myPopup" hidden={ true }>
+
+												<div>
+													<ColorPicker
+														color={ attributes.AlertBoxBorderColor }
+														onChangeComplete={ onChangeAlertBoxBorderColor }
+													/>
+													<TextControl
+														onChange={ ( value ) => {
+															setAttributes( { AlertBoxBorderColor: value } )
+														} }
+														value={ attributes.AlertBoxBorderColor}
+													/>
+												</div>
+
+												</span>
+											</div>
+										</PanelRow>
 
 
 										<RangeControl
@@ -611,38 +663,107 @@ registerBlockType( 'k2/alert-block', {
 
 						<PanelBody title={'Colors'}>
 
-							<p><strong>Text Color</strong></p>
-							<ColorPalette
-								value={attributes.AlertBoxTextColor}
-								onChange={OnChangeAlertBoxTextColor}
-								colors = {ToolBarColors}
-								/>
-							<p><strong>Icon Color</strong></p>
-							<ColorPalette
-								value={attributes.AlertBoxIconColor}
-								onChange={onChangeIconColor}
-								colors = {ToolBarColors}
-							/>
+							<PanelRow>
+								<p><strong>Text color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertBoxTextColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
 
+									<div>
+										<ColorPicker
+											color={ attributes.AlertBoxTextColor }
+											onChangeComplete={ OnChangeAlertBoxTextColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertBoxTextColor: value } )
+											} }
+											value={ attributes.AlertBoxTextColor}
+										/>
+									</div>
 
-							<p><strong>Icon Backgound Color</strong></p>
-							<ColorPalette
-								value={attributes.AlertIconBackgroundColor}
-								onChange={onChangeAlertIconBackgroundColor}
-								colors = {ToolBarColors}
-							/>
+									</span>
+								</div>
+							</PanelRow>
+
+							<PanelRow>
+								<p><strong>Icon color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertBoxIconColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.AlertBoxIconColor }
+											onChangeComplete={ onChangeIconColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertBoxIconColor: value } )
+											} }
+											value={ attributes.AlertBoxIconColor}
+										/>
+									</div>
+
+									</span>
+								</div>
+							</PanelRow>
+
+							<PanelRow>
+								<p><strong>Icon Background color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertIconBackgroundColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+											<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.AlertIconBackgroundColor }
+											onChangeComplete={ onChangeAlertIconBackgroundColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertIconBackgroundColor: value } )
+											} }
+											value={ attributes.AlertIconBackgroundColor}
+										/>
+									</div>
+
+									</span>
+								</div>
+							</PanelRow>
 
 
 
 						</PanelBody>
 
 						<PanelBody title={'Background'}>
-							<p><strong>Fill Color</strong></p>
-							<ColorPalette
-								value = {attributes.AlertBoxColor}
-								onChange = {onChangeAlertBoxColor}
-								colors = {ToolBarColors}
-							/>
+
+							<PanelRow>
+								<p><strong>Fill color</strong></p>
+								<div className="popup">
+									<span style={{backgroundColor: attributes.AlertBoxColor}} className={ 'dot' } onClick={ myFunction }>
+									</span>
+									<span className="popuptext" id="myPopup" hidden={ true }>
+
+									<div>
+										<ColorPicker
+											color={ attributes.AlertBoxColor }
+											onChangeComplete={ onChangeAlertBoxColor }
+										/>
+										<TextControl
+											onChange={ ( value ) => {
+												setAttributes( { AlertBoxColor: value } )
+											} }
+											value={ attributes.AlertBoxColor}
+										/>
+									</div>
+
+									</span>
+								</div>
+							</PanelRow>
 						</PanelBody>
 
 					</InspectorControls>,

@@ -5,7 +5,7 @@
  * Enqueue CSS/JS of all the blocks.
  *
  * @since   1.0.0
- * @package CGB
+ * @package K2Blocks
  */
 
 // Exit if accessed directly.
@@ -33,8 +33,8 @@ function K2_Blocks_Category( $categories, $post ) {
 		$categories,
 		array(
 			array(
-				'slug' => 'magik-blocks',
-				'title' => __( 'K2 Blocks', 'magik-blocks' ),
+				'slug' => 'k2-blocks',
+				'title' => __( 'K2 Blocks', 'k2-blocks' ),
 			),
 		)
 	);

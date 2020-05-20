@@ -278,9 +278,7 @@ registerBlockType( 'k2/modal-block', {
 							value={props.attributes.closeButtonPosition.text}
 							options={[
 								{ label: 'Top Right', value: 'topright' },
-								{ label: 'Top Left', value: 'topleft'},
-								{ label: 'Bottom Right', value: 'bottomright'},
-								{ label: 'Bottom Left', value: 'bottomleft'}
+								{ label: 'Top Left', value: 'topleft'}
 							]}
 							onChange={onCloseButtonPositionChange}
 						/>

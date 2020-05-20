@@ -148,10 +148,10 @@ registerBlockType( 'k2/modal-block', {
 
 					<PanelRow>
 						<p><strong>Title color</strong></p>
-						<div className="popup">
-								<span style={{backgroundColor:props.attributes.textColor }} className={ 'dot' } onClick={ myFunction }>
+						<div className="k2-modal-inspector-popup">
+								<span style={{backgroundColor:props.attributes.textColor }} className={ 'k2-modal-inspector-dot' } onClick={ myFunction }>
 									</span>
-							<span className="popuptext" id="myPopup" hidden={ true }>
+							<span className="k2-modal-inspector-popuptext" id="myPopup" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -181,10 +181,10 @@ registerBlockType( 'k2/modal-block', {
 
 					<PanelRow>
 						<p><strong>Button color</strong></p>
-						<div className="popup">
-								<span style={{backgroundColor:props.attributes.buttonColor }} className={ 'dot' } onClick={ myFunction }>
+						<div className="k2-modal-inspector-popup">
+								<span style={{backgroundColor:props.attributes.buttonColor }} className={ 'k2-modal-inspector-dot' } onClick={ myFunction }>
 									</span>
-							<span className="popuptext" id="myPopup" hidden={ true }>
+							<span className="k2-modal-inspector-popuptext" id="myPopup" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -289,15 +289,15 @@ registerBlockType( 'k2/modal-block', {
 				</InspectorControls>
 
 				,
-				<div className={'modal-container'}>
+				<div className={'k2-modal-container'}>
 					{(props.attributes.type == 'button') &&
-						<button className={'modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
+						<button className={'k2-modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
 					}
-					<div className="modal-backend">
-						<div className="modal-content-backend">
+					<div className="k2-modal-backend">
+						<div className="k2-modal-content-backend">
 							<InnerBlocks renderAppender={ () => (<InnerBlocks.ButtonBlockAppender/>) }/>
 						</div>
-						<div className="close" style={closeButtonStyle}>&times;</div>
+						<div className="k2-modal-close" style={closeButtonStyle}>&times;</div>
 					</div>
 				</div>
 			])
@@ -316,15 +316,15 @@ registerBlockType( 'k2/modal-block', {
 			right:props.attributes.closeButtonPosition.right
 		}
 		return (
-		<div className={'modal-container'} data-type={props.attributes.type} data-time={props.attributes.popupDelay*1000}>
+		<div className={'k2-modal-container'} data-type={props.attributes.type} data-time={props.attributes.popupDelay*1000}>
 			{
 				(props.attributes.type == 'button') &&
-				<button className={'modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
+				<button className={'k2-modal-button'} style = {buttonStyle}>{props.attributes.buttonText}</button>
 			}
-			<div className="modal fade-in">
-				<div className="modal-content">
+			<div className="k2-modal k2-modal-fade-in">
+				<div className="k2-modal-content">
 					<InnerBlocks.Content />
-					<div className="close" style={closeButtonStyle}>&times;</div>
+					<div className="k2-modal-close" style={closeButtonStyle}>&times;</div>
 				</div>
 			</div>
 		</div>

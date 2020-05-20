@@ -1,6 +1,6 @@
 import './style.scss';
 import './editor.scss';
-import {FONTS} from './Fonts.js';
+import {GLOBAL_FONTS} from '../Global_Fonts';
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -216,7 +216,7 @@ registerBlockType( 'k2/counter-block', {
 				backgroundColor: (props.attributes.counterShapeClass == '')?'transparent':props.attributes.backgroundColor,
 				width: props.attributes.widgetSize+"px",
 				height: props.attributes.widgetSize+"px",
-				boxShadow: (props.attributes.counterShapeClass != 'cw-halo')?'none':"0 0 25px "+props.attributes.haloColor
+				boxShadow: (props.attributes.counterShapeClass != 'k2-cw-halo')?'none':"0 0 25px "+props.attributes.haloColor
 			}
 
 			var titleStyling = {
@@ -265,10 +265,10 @@ registerBlockType( 'k2/counter-block', {
 
 				<PanelRow>
 					<p><strong>Background color</strong></p>
-					<div className="popup">
-							<span style={{backgroundColor: props.attributes.backgroundColor}} className={ 'dot' } onClick={ myFunction }>
+					<div className="k2-counter-inspector-popup">
+							<span style={{backgroundColor: props.attributes.backgroundColor}} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
 							</span>
-						<span className="popuptext" id="myPopup" hidden={ true }>
+						<span className="k2-counter-inspector-popuptext" id="myPopup" hidden={ true }>
 
 							<div>
 								<ColorPicker
@@ -293,17 +293,17 @@ registerBlockType( 'k2/counter-block', {
 			if(props.attributes.counterShapeClass===''){
 				colorControls = null;
 			}
-			if(props.attributes.counterShapeClass==='cw-halo'){
+			if(props.attributes.counterShapeClass==='k2-cw-halo'){
 				colorControls = (
 
 				<div>
 
 						<PanelRow>
 							<p><strong>Background color</strong></p>
-							<div className="popup">
-								<span style={{backgroundColor: props.attributes.backgroundColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-counter-inspector-popup">
+								<span style={{backgroundColor: props.attributes.backgroundColor}} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
 								</span>
-								<span className="popuptext" id="myPopup" hidden={ true }>
+								<span className="k2-counter-inspector-popuptext" id="myPopup" hidden={ true }>
 
 								<div>
 									<ColorPicker
@@ -326,10 +326,10 @@ registerBlockType( 'k2/counter-block', {
 
 						<PanelRow>
 							<p><strong>Halo color</strong></p>
-							<div className="popup">
-									<span style={{backgroundColor: props.attributes.haloColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-counter-inspector-popup">
+									<span style={{backgroundColor: props.attributes.haloColor}} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
 									</span>
-								<span className="popuptext" id="myPopup" hidden={ true }>
+								<span className="k2-counter-inspector-popuptext" id="myPopup" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -412,9 +412,9 @@ registerBlockType( 'k2/counter-block', {
 									value={props.attributes.counterShapeClass}
 									options={[
 										{label: 'None', value: ''},
-										{ label: 'Square', value: 'cw-square' },
-										{ label: 'Round', value: 'cw-round' },
-										{label: 'Halo', value: 'cw-halo'}
+										{ label: 'Square', value: 'k2-cw-square' },
+										{ label: 'Round', value: 'k2-cw-round' },
+										{label: 'Halo', value: 'k2-cw-halo'}
 									]}
 									onChange={(value)=>{props.setAttributes({counterShapeClass:value})}}
 						/>
@@ -423,10 +423,10 @@ registerBlockType( 'k2/counter-block', {
 
 						<PanelRow>
 							<p><strong>Number color</strong></p>
-							<div className="popup">
-								<span style={{backgroundColor:props.attributes.numberFontColor }} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-counter-inspector-popup">
+								<span style={{backgroundColor:props.attributes.numberFontColor }} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
 									</span>
-										<span className="popuptext" id="myPopup" hidden={ true }>
+										<span className="k2-counter-inspector-popuptext" id="myPopup" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -449,7 +449,7 @@ registerBlockType( 'k2/counter-block', {
 						<SelectControl
 									label="Number Font"
 									value={props.attributes.numberFontFamily}
-									options={FONTS}
+									options={GLOBAL_FONTS}
 									onChange={(value)=>{props.setAttributes({numberFontFamily:value})}}
 						/>
 
@@ -464,10 +464,10 @@ registerBlockType( 'k2/counter-block', {
 
 						<PanelRow>
 							<p><strong>Title color</strong></p>
-							<div className="popup">
-								<span style={{backgroundColor:props.attributes.titleFontColor }} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-counter-inspector-popup">
+								<span style={{backgroundColor:props.attributes.titleFontColor }} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
 									</span>
-										<span className="popuptext" id="myPopup" hidden={ true }>
+										<span className="k2-counter-inspector-popuptext" id="myPopup" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -489,7 +489,7 @@ registerBlockType( 'k2/counter-block', {
 						<SelectControl
 									label="Title Font"
 									value={props.attributes.titleFontFamily}
-									options={FONTS}
+									options={GLOBAL_FONTS}
 									onChange={(value)=>{props.setAttributes({titleFontFamily:value})}}
 						/>
 						<RangeControl
@@ -505,15 +505,15 @@ registerBlockType( 'k2/counter-block', {
 					</PanelBody>
 				</InspectorControls>
 				,
-				<div className="cw-holder">
-					<div className={"counter-widget"+" "+props.attributes.counterShapeClass} style={styling}>
-						<div className="content" style={contentStyling}>
-							<div className="cw-number" style={numberStyling}>
-								<span className="cw-prefix">{props.attributes.prefix}</span>
-								<span className="cw-span-number">{props.attributes.number}</span>
-								<span className="cw-postfix">{props.attributes.postfix}</span>
+				<div className="k2-cw-parent">
+					<div className={"k2-cw-container"+" "+props.attributes.counterShapeClass} style={styling}>
+						<div className="k2-cw-content" style={contentStyling}>
+							<div className="k2-cw-number" style={numberStyling}>
+								<span className="k2-cw-prefix">{props.attributes.prefix}</span>
+								<span className="k2-cw-span-number">{props.attributes.number}</span>
+								<span className="k2-cw-postfix">{props.attributes.postfix}</span>
 							</div>
-							<p className="cw-title" style={titleStyling}> {props.attributes.title} </p>
+							<p className="k2-cw-title" style={titleStyling}> {props.attributes.title} </p>
 
 						</div>
 					</div>
@@ -526,7 +526,7 @@ registerBlockType( 'k2/counter-block', {
 			backgroundColor: (props.attributes.counterShapeClass == '')?'transparent':props.attributes.backgroundColor,
 			width: props.attributes.widgetSize+"px",
 			height: props.attributes.widgetSize+"px",
-			boxShadow: (props.attributes.counterShapeClass != 'cw-halo')?'none':"0 0 25px "+props.attributes.haloColor
+			boxShadow: (props.attributes.counterShapeClass != 'k2-cw-halo')?'none':"0 0 25px "+props.attributes.haloColor
 		}
 
 		var titleStyling = {
@@ -545,15 +545,15 @@ registerBlockType( 'k2/counter-block', {
 			paddingTop: props.attributes.paddingTop+'px'
 		}
 		return (
-			<div className="cw-holder">
-				<div className={"counter-widget"+" "+props.attributes.counterShapeClass} style={styling} data-done={0}>
-					<div className="content" style={contentStyling}>
-						<div className="cw-number" style={numberStyling}>
-							<span className="cw-prefix">{props.attributes.prefix}</span>
-							<span className="cw-span-number">{props.attributes.number}</span>
-							<span className="cw-postfix">{props.attributes.postfix}</span>
+			<div className="k2-cw-parent">
+				<div className={"k2-cw-container"+" "+props.attributes.counterShapeClass} style={styling} data-done={0}>
+					<div className="k2-cw-content" style={contentStyling}>
+						<div className="k2-cw-number" style={numberStyling}>
+							<span className="k2-cw-prefix">{props.attributes.prefix}</span>
+							<span className="k2-cw-span-number">{props.attributes.number}</span>
+							<span className="k2-cw-postfix">{props.attributes.postfix}</span>
 						</div>
-						<p className="cw-title" style={titleStyling}> {props.attributes.title} </p>
+						<p className="k2-cw-title" style={titleStyling}> {props.attributes.title} </p>
 					</div>
 				</div>
 			</div>

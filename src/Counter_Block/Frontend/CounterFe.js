@@ -13,18 +13,18 @@ jQuery(document).ready(function( $ ) {
 
         function animateCounter(){
           // This is where we use the function to detect if ".box2" is scrolled into view, and when it is add the class ".animated" to the <p> child element
-            $('.counter-widget').each(function () {
+            $('.k2-cw-container').each(function () {
               if(elementScrolled(this) && $(this).attr('data-done') == 0){
                 $(this).attr('data-done',"1");
                 console.log("was true")
-                console.log($(this).children(".content").children(".cw-number").children(".cw-span-number").text())
+                console.log($(this).children(".k2-cw-content").children(".k2-cw-number").children(".k2-cw-span-number").text())
                 $(this).prop('Counter',0).animate({
-                Counter: $(this).children(".content").children(".cw-number").children(".cw-span-number").text()
+                Counter: $(this).children(".k2-cw-content").children(".k2-cw-number").children(".k2-cw-span-number").text()
                 }, {
                     duration: 3000,
                     easing: 'swing',
                     step: function (now) {
-                        $(this).children(".content").children(".cw-number").children(".cw-span-number").text(Math.ceil(now));
+                        $(this).children(".k2-cw-content").children(".k2-cw-number").children(".k2-cw-span-number").text(Math.ceil(now));
                     }
                     });
               }

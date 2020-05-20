@@ -1,8 +1,8 @@
-.modal-container {
+.k2-modal-container {
   text-align: center;
 }
 
-.modal {
+.k2-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 10; /* Sit on top */
@@ -15,7 +15,7 @@
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-backend {
+.k2-modal-backend {
   box-shadow: 1px 1px 20px grey;
   border-radius: 20px;
   background-color: #fefefe;
@@ -30,7 +30,7 @@
 
 
 /* Modal Content/Box */
-.modal-content {
+.k2-modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -41,7 +41,7 @@
   position: relative;
 }
 
-.close {
+.k2-modal-close {
   color: #aaa;
   font-size: 2em !important;
   font-weight: bold;
@@ -55,14 +55,14 @@
 }
 
 
-.close:hover,
-.close:focus {
+.k2-modal-close:hover,
+.k2-modal-close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-.modal-button {
+.k2-modal-button {
   background-color: #43cea2;
   border: none;
   color: white;
@@ -72,7 +72,8 @@
   display: inline-block;
   font-size: 1em;
 }
-.fade-in { 
+
+.k2-modal-fade-in { 
   animation:opac 0.8s
 }
 @keyframes opac { 
@@ -81,7 +82,7 @@
 }
 
 @media (max-width: 767px) {
-  .modal-content {
+  .k2-modal-content {
     width:90%;
     margin: 30% auto;
   }

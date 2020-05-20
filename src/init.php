@@ -39,6 +39,7 @@ function K2_Blocks_Category( $categories, $post ) {
 		)
 	);
 }
+add_filter( 'block_categories', 'K2_Blocks_Category', 10, 2);
 
 function k2blocks_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.
@@ -104,10 +105,10 @@ function k2blocks_block_assets() { // phpcs:ignore
 // Hook: Block assets.
 add_action( 'init', 'k2blocks_block_assets' );
 
-add_filter( 'block_categories', 'K2_Blocks_Category', 10, 2);
+
 
 //register custom frontend scripts
-function register_custom_scripts(){
+function k2_blocks_register_custom_scripts(){
 	wp_enqueue_script( 'timer_frontend', plugins_url( 'src/Timer_Block/Frontend/TimerFe.js', dirname( __FILE__ ) ), array('jquery'),
 			true );
 	wp_enqueue_script( 'counter_frontend', plugins_url( 'src/Counter_Block/Frontend/CounterFe.js', dirname( __FILE__ ) ), array('jquery'),
@@ -115,30 +116,26 @@ function register_custom_scripts(){
 	wp_enqueue_script( 'modal_frontend', plugins_url( 'src/Modal_Box/Frontend/ModalBoxFe.js', dirname( __FILE__ ) ), array('jquery'),
             true );
 
-    wp_enqueue_script( 'ImageScroll_Frontend', plugins_url( 'src/Image_Scroll/Frontend/ImageScrollFrontEnd.js', dirname( __FILE__ ) ), array('jquery'),
+    wp_enqueue_script( 'imageScroll_Frontend', plugins_url( 'src/Image_Scroll/Frontend/ImageScrollFrontEnd.js', dirname( __FILE__ ) ), array('jquery'),
                         true );
 
-    wp_enqueue_script( 'PremiumSection_Frontend', plugins_url( 'src/Premium_Section/Frontend/PremiumSection.js', dirname( __FILE__ ) ), array('jquery'),
+    wp_enqueue_script( 'premiumSection_Frontend', plugins_url( 'src/Premium_Section/Frontend/PremiumSection.js', dirname( __FILE__ ) ), array('jquery'),
                                                 true );
 
      wp_enqueue_script( 'wp-api-fetch' );
 }
-add_action( 'wp_enqueue_scripts', 'register_custom_scripts' );
+add_action( 'wp_enqueue_scripts', 'k2_blocks_register_custom_scripts' );
 
-
-//register fontawesome icons
-function font_awesome_js(){
-	?>
-        <script src="https://kit.fontawesome.com/c0a6d6a3cc.js" crossorigin="anonymous"></script>
-    <?php
+function k2_blocks_register_custom_styles(){
+	wp_register_style('k2_font_awesome','https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',null,null);
+	wp_enqueue_style('k2_font_awesome');
 }
-add_action('wp_head', 'font_awesome_js');
+add_action( 'wp_enqueue_scripts', 'k2_blocks_register_custom_styles' );
 
-function pw_load_scripts($hook) {
- 
+function k2_blocks_register_custom_backend_styles($hook) {
 	if( $hook != 'edit.php' && $hook != 'post.php' && $hook != 'post-new.php' ) 
 		return;
- 
-	wp_enqueue_script( 'custom-js', 'https://kit.fontawesome.com/c0a6d6a3cc.js' );
+	wp_register_style( 'k2_font_awesome_backend','https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' , false, '1.0.0' );
+	wp_enqueue_style( 'k2_font_awesome_backend');
 }
-add_action('admin_enqueue_scripts', 'pw_load_scripts');
+add_action('admin_enqueue_scripts', 'k2_blocks_register_custom_backend_styles');

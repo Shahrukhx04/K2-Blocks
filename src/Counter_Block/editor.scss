@@ -1,4 +1,4 @@
-.popup {
+.k2-counter-inspector-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -9,7 +9,7 @@
 }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-counter-inspector-popup .k2-counter-inspector-popuptext {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -23,7 +23,7 @@
   border: 2px solid rgba(25, 149, 173, 1);
 }
 
-.dot {
+.k2-counter-inspector-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;

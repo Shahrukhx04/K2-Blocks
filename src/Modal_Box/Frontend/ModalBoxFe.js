@@ -1,12 +1,12 @@
 jQuery(document).ready(function( $ ) {
-    $('.modal-container').each(function (index) {
+    $('.k2-modal-container').each(function (index) {
         console.log("found box container")
-        var modal = $(this).children(".modal");
+        var modal = $(this).children(".k2-modal");
 
         var dataType = $(this).attr('data-type');
         if (dataType==='button') {
             // Get the button that opens the modal
-            var btn = $(this).children(".modal-button")[0];
+            var btn = $(this).children(".k2-modal-button")[0];
             // When the user clicks on the button, open the modal
             btn.onclick = function() {
                 modal[0].style.display = "block";
@@ -21,7 +21,7 @@ jQuery(document).ready(function( $ ) {
               }, time);
         }
         
-        var span = modal.children(".modal-content").children(".close")[0];
+        var span = modal.children(".k2-modal-content").children(".k2-modal-close")[0];
         console.log(span)
 
         // When the user clicks on "close", close the modal

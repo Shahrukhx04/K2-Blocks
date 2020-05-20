@@ -2,7 +2,7 @@ jQuery(document).ready(function( $ ) {
 
     var timeString = [];
     function getTimes(){
-        $('.TimerParentContainer').each(function () {
+        $('.k2-tw-parent-container').each(function () {
             var t_String = $(this).attr('data-time').split(",");
             temp = [];
             var i;
@@ -17,7 +17,7 @@ jQuery(document).ready(function( $ ) {
     }
 
     function updateTW(){
-        $('.TimerParentContainer').each(function (index) {
+        $('.k2-tw-parent-container').each(function (index) {
             //console.log("In timer number:"+index)
             var targetDate = new Date(timeString[index][0],timeString[index][1],timeString[index][2],timeString[index][3],timeString[index][4],timeString[index][5],timeString[index][6]);
             //console.log(timeString);
@@ -49,7 +49,7 @@ jQuery(document).ready(function( $ ) {
                 // what's left is seconds
                 seconds_ = Math.floor(delta % 60);  // in theory the modulus is not required
             }
-            var temp = $(this).children(".TimerBlockContainer").children("span");
+            var temp = $(this).children(".k2-tw-block-container").children("span");
             temp.children(".tw-digit-seconds").html((seconds_ < 10) ? '0' + seconds_ : seconds_);
             temp.children(".tw-digit-minutes").html((minutes_ < 10) ? '0' + minutes_ : minutes_);
             temp.children(".tw-digit-hours").html((hours_ < 10) ? '0' + hours_ : hours_);

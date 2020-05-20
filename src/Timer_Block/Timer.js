@@ -55,7 +55,7 @@ registerBlockType( 'k2/timer-block', {
 		minutes: {type:'integer',default:0},// for date
 		hours: {type:'integer',default:0},
 		date: {type:'integer',default:1},
-		month:{type:'integer',default:1},
+		month:{type:'integer',default:7},
 		year:{type:'integer',default:2020},
 
 		days_: {type:'integer',default:0}, //for showing on timer
@@ -319,10 +319,10 @@ registerBlockType( 'k2/timer-block', {
 
 						<PanelRow>
 							<p><strong>Timer color</strong></p>
-							<div className="popup">
-							<span style={{backgroundColor: ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-tw-inspector-popup">
+							<span style={{backgroundColor: ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor}} className={ 'k2-tw-inspector-dot' } onClick={ myFunction }>
 							</span>
-								<span className="popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
+								<span className="k2-tw-inspector-popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
 
 									<ColorPicker
 										color={ ( props.attributes.TimerLayout == 'Classic')? props.attributes.TimerValueBackgroundColor : props.attributes.BlockBackgroundColor }
@@ -345,10 +345,10 @@ registerBlockType( 'k2/timer-block', {
 
 						<PanelRow>
 							<p><strong>Numbers color</strong></p>
-							<div className="popup">
-							<span style={{backgroundColor: props.attributes.TimerValueColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-tw-inspector-popup">
+							<span style={{backgroundColor: props.attributes.TimerValueColor}} className={ 'k2-tw-inspector-dot' } onClick={ myFunction }>
 							</span>
-								<span className="popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
+								<span className="k2-tw-inspector-popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
 
 								<ColorPicker
 									color={ props.attributes.TimerValueColor }
@@ -386,10 +386,10 @@ registerBlockType( 'k2/timer-block', {
 
 						<PanelRow>
 							<p><strong>Text color</strong></p>
-							<div className="popup">
-							<span style={{backgroundColor: props.attributes.TimerTextColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-tw-inspector-popup">
+							<span style={{backgroundColor: props.attributes.TimerTextColor}} className={ 'k2-tw-inspector-dot' } onClick={ myFunction }>
 							</span>
-								<span className="popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
+								<span className="k2-tw-inspector-popuptext" id="myPopup" hidden={ true } onClick={ TempFuntion }>
 
 								<ColorPicker
 									color={ props.attributes.TimerTextColor }
@@ -421,59 +421,59 @@ registerBlockType( 'k2/timer-block', {
 					</PanelBody>
 				</InspectorControls>
 				,
-				<div className={'TimerParentContainer'}>
+				<div className={'k2-tw-parent-container'}>
 
 
-					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+					<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className='TimerValueContainer'>
+							<div style={TimerValueContainerStyling} className='k2-tw-value-container'>
 								{
 									(props.attributes.days_ < 10)? '0' + props.attributes.days_ : props.attributes.days_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Days
 							</div>
 						</span>
 					</div>
 
 
-					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+					<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container'}>
 								{
 									(props.attributes.hours_ < 10)? '0' + props.attributes.hours_ : props.attributes.hours_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Hours
 							</div>
 						</span>
 					</div>
 
 
-					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+					<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container'}>
 								{
 									(props.attributes.minutes_ < 10)? '0' + props.attributes.minutes_ : props.attributes.minutes_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Minutes
 							</div>
 						</span>
 					</div>
 
 
-					<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+					<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container'}>
 								{
 									(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Seconds
 							</div>
 						</span>
@@ -506,58 +506,58 @@ registerBlockType( 'k2/timer-block', {
 
 
 		return (
-			<div className={'TimerParentContainer'} data-time={timer_str}>
+			<div className={'k2-tw-parent-container'} data-time={timer_str}>
 
-				<div style={TimerBlockStyling} className={'TimerBlockContainer'} >
+				<div style={TimerBlockStyling} className={'k2-tw-block-container'} >
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-days'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container tw-digit-days'}>
 								{
 									(props.attributes.days_ < 10)? '0' + props.attributes.days_ : props.attributes.days_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Days
 							</div>
 						</span>
 				</div>
 
 
-				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-hours'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container tw-digit-hours'}>
 								{
 									(props.attributes.hours_ < 10)? '0' + props.attributes.hours_ : props.attributes.hours_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Hours
 							</div>
 						</span>
 				</div>
 
 
-				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-minutes'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container tw-digit-minutes'}>
 								{
 									(props.attributes.minutes_ < 10)? '0' + props.attributes.minutes_ : props.attributes.minutes_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Minutes
 							</div>
 						</span>
 				</div>
 
 
-				<div style={TimerBlockStyling} className={'TimerBlockContainer'}>
+				<div style={TimerBlockStyling} className={'k2-tw-block-container'}>
 						<span style={{display: 'block'}}>
-							<div style={TimerValueContainerStyling} className={'TimerValueContainer tw-digit-seconds'}>
+							<div style={TimerValueContainerStyling} className={'k2-tw-value-container tw-digit-seconds'}>
 								{
 									(props.attributes.seconds_ < 10)? '0' + props.attributes.seconds_ : props.attributes.seconds_
 								}
 							</div>
-							<div style={TimerTextContainerStyling} className={'TimerTextContainer'} >
+							<div style={TimerTextContainerStyling} className={'k2-tw-text-container'} >
 								Seconds
 							</div>
 						</span>

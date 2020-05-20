@@ -165,18 +165,18 @@ registerBlockType( 'k2/premium-section', {
 
 		onChangeAlertIconActive(value) {
 
-			var MainDiv = document.getElementById("IconWrapper");
+			var MainDiv = document.getElementById("k2-ps-icon-list-wrapper-id");
 			var Spans = MainDiv.getElementsByTagName('span');
 			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('active')){
-					Spans[i].className = Spans[i].className.replace('active','')
+				if (Spans[i].className.includes('k2-ps-active')){
+					Spans[i].className = Spans[i].className.replace('k2-ps-active','')
 				}
 			}
 			this.props.setAttributes({
 				TriggerButtonIcon: value.target.className
 			})
 			console.log(value.target.className)
-			value.target.className = value.target.className + ' active'
+			value.target.className = value.target.className + ' k2-ps-active'
 
 		}
 
@@ -254,15 +254,15 @@ registerBlockType( 'k2/premium-section', {
 		onChangeAlignmentIconChange(value) {
 
 			if (value.target.tagName === 'SPAN'){
-				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var MainDiv = document.getElementById("k2-ps-inspector-control-overlay-position-id");
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-ps-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-ps-active','')
 					}
 				}
 				console.log(value.target.tagName)
-				value.target.className = value.target.className + ' active'
+				value.target.className = value.target.className + ' k2-ps-active'
 
 			}
 
@@ -315,12 +315,12 @@ registerBlockType( 'k2/premium-section', {
 
 						<PanelBody title={'Trigger Settings'}>
 
-							<div className={'IconListWrapper'}>
+							<div className={'k2-ps-icon-list-wrapper'}>
 								<div>
 									<label><strong>Select Icon</strong></label>
 								</div>
-								<div id='IconWrapper' className={'IconListSubWrapper'}  onClickCapture={this.onChangeAlertIconActive}>
-									<span className={'fa fa fa-bars active'}></span>
+								<div id='k2-ps-icon-list-wrapper-id' className={'k2-ps-icon-sub-list-wrapper'}  onClickCapture={this.onChangeAlertIconActive}>
+									<span className={'fa fa fa-bars k2-ps-active'}></span>
 									{GLOBAL_ICONS.map((value, index) => {
         								return <span className={'fa '+value}></span>
       								})}
@@ -365,15 +365,15 @@ registerBlockType( 'k2/premium-section', {
 								<div style={{paddingBottom: '2%'}}>
 									<label><strong>Alignment</strong></label>
 								</div>
-								<div id = 'AlignmentIconsParent' className={'InspectorControlOverlayPosition'} onClick={this.onChangeAlignmentIconChange}>
-									<div className={'InspectorControlOverlayPositionEach'}  onClick={() => this.onChangeIconPosition('flex-start')}>
-										<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+								<div id = 'k2-ps-inspector-control-overlay-position-id' className={'k2-ps-inspector-control-overlay-position'} onClick={this.onChangeAlignmentIconChange}>
+									<div className={'k2-ps-inspector-control-overlay-position-single'}  onClick={() => this.onChangeIconPosition('flex-start')}>
+										<span className="fas fa-align-left k2-ps-alignment-icon" ></span>
 									</div>
-									<div className={'InspectorControlOverlayPositionEach'} onClick={() => this.onChangeIconPosition('center')}>
-										<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+									<div className={'k2-ps-inspector-control-overlay-position-single'} onClick={() => this.onChangeIconPosition('center')}>
+										<span className="fas fa-align-center k2-ps-alignment-icon k2-ps-active"></span>
 									</div>
-									<div className={'InspectorControlOverlayPositionEach'} onClick={() => this.onChangeIconPosition('flex-end')}>
-										<span className="fas fa-align-right AlignmentIconsStyle"></span>
+									<div className={'k2-ps-inspector-control-overlay-position-single'} onClick={() => this.onChangeIconPosition('flex-end')}>
+										<span className="fas fa-align-right k2-ps-alignment-icon"></span>
 									</div>
 								</div>
 
@@ -386,10 +386,10 @@ registerBlockType( 'k2/premium-section', {
 
 							<PanelRow>
 								<p><strong>Icon color</strong></p>
-								<div className="popup">
-								<span style={{backgroundColor: this.state.IconStyling.color}} className={ 'dot' } onClick={ this.myFunction }>
+								<div className="k2-ps-popup">
+								<span style={{backgroundColor: this.state.IconStyling.color}} className={ 'k2-ps-dot' } onClick={ this.myFunction }>
 								</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-ps-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -417,10 +417,10 @@ registerBlockType( 'k2/premium-section', {
 
 							<PanelRow>
 								<p><strong>Overlay color</strong></p>
-								<div className="popup">
-								<span style={{backgroundColor: this.props.attributes.OverlayBackGroundColor}} className={ 'dot' } onClick={ this.myFunction }>
+								<div className="k2-ps-popup">
+								<span style={{backgroundColor: this.props.attributes.OverlayBackGroundColor}} className={ 'k2-ps-dot' } onClick={ this.myFunction }>
 								</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-ps-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -442,7 +442,7 @@ registerBlockType( 'k2/premium-section', {
 
 						</PanelBody>
 					</InspectorControls>,
-					<div style={{justifyContent: this.state.IconPosition}} className={ 'ButtonStyle' }>
+					<div style={{justifyContent: this.state.IconPosition}} className={ 'k2-ps-trigger-button' }>
 						<span style={ { fontSize: '45px', cursor: 'pointer', textAlign: 'right' } } >
 							<i style={this.state.IconStyling} className={this.props.attributes.TriggerButtonIcon}></i>
 						</span>
@@ -469,19 +469,19 @@ registerBlockType( 'k2/premium-section', {
 		}
 
 		return <div>
-			<div style={SideNavStyling} id="mySidenav" className="sidenav">
-				<div id={'CrossButton'} className="closebtn">&times;</div>
-				<div className={'InnerBlockContainer'}>
+			<div style={SideNavStyling} id="mySidenav" className="k2-ps-sliding-window">
+				<div id={'CrossButton'} className="k2-ps-close-button">&times;</div>
+				<div className={'k2-ps-fetched-post-content'}>
 					<p dangerouslySetInnerHTML={ { __html: attributes.SelectedPostContent } }></p>
 				</div>
 			</div>
-			<div id="TriggerAttributes"  style={{justifyContent: attributes.IconPosition}} className={'ButtonStyle'}
+			<div id="TriggerAttributes"  style={{justifyContent: attributes.IconPosition}} className={'k2-ps-trigger-button'}
 				 data-OverlayLeftRight = {attributes.OverlayleftRight }
 				 data-OverlayTopDown = {attributes.OverlayTopDown}
 				 data-SilidingOption = {attributes.OverlaySlidingAttribute}
 				 data-OverlayWidth = {attributes.OverlayOpeningWidth}
 			>
-				<span className={'PremiumSectionButton'} style={ { fontSize: '45px', cursor: 'pointer', textAlign: 'right' } } >
+				<span className={'k2-ps-trigger-span'} style={ { fontSize: '45px', cursor: 'pointer', textAlign: 'right' } } >
 							<i style={IconStyling} className={attributes.TriggerButtonIcon}></i>
 						</span>
 			</div>

@@ -1,5 +1,5 @@
 
-.sidenav {
+.k2-ps-sliding-window {
   display: flex;
   flex-direction: column;
   flex-shrink: 2;
@@ -11,7 +11,7 @@
   z-index:100;
 }
 
-.ButtonStyle{
+.k2-ps-trigger-button{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -23,7 +23,7 @@
 
 
 
-.sidenav .closebtn {
+.k2-ps-sliding-window .k2-ps-close-button {
   position: absolute;
   top: 0;
   right: 25px;
@@ -34,16 +34,20 @@
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+  .k2-ps-sliding-window {padding-top: 15px;}
+  .k2-ps-sliding-window a {font-size: 18px;}
 }
 
 
-.InnerBlockContainer{
+.k2-ps-fetched-post-content{
   height: auto;
   background-color: transparent;
   margin-left: 2em;
   margin-right: 2em;
+}
+
+.k2-ps-trigger-span{
+
 }
 
 .ParentSection{

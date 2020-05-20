@@ -374,18 +374,18 @@ registerBlockType( 'k2/alert-block', {
 
 		function onChangeAlertIconActive(value) {
 
-			var MainDiv = document.getElementById("IconWrapper");
+			var MainDiv = document.getElementById("k2-ib-icon-list-wrapper-id");
 			var Spans = MainDiv.getElementsByTagName('span');
 			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('active')){
-					Spans[i].className = Spans[i].className.replace('active','')
+				if (Spans[i].className.includes('k2-ib-active')){
+					Spans[i].className = Spans[i].className.replace('k2-ib-active','')
 				}
 			}
 			setAttributes({
 				AlertBoxIconType: value.target.className
 			})
 			console.log(value.target.className)
-			value.target.className = value.target.className + ' active'
+			value.target.className = value.target.className + ' k2-ib-active'
 		}
 
 
@@ -420,11 +420,11 @@ registerBlockType( 'k2/alert-block', {
 				var MainDiv = ParentDiv.parentNode
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-ib-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-ib-active','')
 					}
 				}
-				value.target.className = value.target.className + ' active'
+				value.target.className = value.target.className + ' k2-ib-active'
 
 			}
 
@@ -454,11 +454,11 @@ registerBlockType( 'k2/alert-block', {
 						<PanelBody>
 
 
-							<div className={'IconListWrapper'}>
+							<div className={'k2-ib-icon-list-wrapper'}>
 								<div>
 									<label><strong>Select Icon</strong></label>
 								</div>
-								<div id='IconWrapper' className={'IconListSubWrapper'}  onClickCapture={onChangeAlertIconActive}>
+								<div id='k2-ib-icon-list-wrapper-id' className={'k2-ib-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
 								{GLOBAL_ICONS.map((value, index) => {
         							return <span className={'fa '+value}></span>
       							})}
@@ -531,16 +531,16 @@ registerBlockType( 'k2/alert-block', {
 								<div style={{paddingBottom: '2%'}}>
 									<label><strong>Alignment</strong></label>
 								</div>
-								<div id = {'AlignmentIconsParent'} className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
+								<div id = {'AlignmentIconsParent'} className={'k2-ib-inspector-control-alignment'} onClick={onChangeAlignmentIconChange}>
 
-									<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeAlertBoxClassicAlignment('flex-start')}>
-										<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+									<div className={'k2-ib-inspector-control-alignment-single'}  onClick={() => onChangeAlertBoxClassicAlignment('flex-start')}>
+										<span className="fas fa-align-left k2-ib-alignment-icon-style" ></span>
 									</div>
-									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxClassicAlignment('center')}>
-										<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxClassicAlignment('center')}>
+										<span className="fas fa-align-center k2-ib-alignment-icon-style k2-ib-active"></span>
 									</div>
-									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxClassicAlignment('flex-end')}>
-										<span className="fas fa-align-right AlignmentIconsStyle"></span>
+									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxClassicAlignment('flex-end')}>
+										<span className="fas fa-align-right k2-ib-alignment-icon-style"></span>
 									</div>
 								</div>
 
@@ -552,16 +552,16 @@ registerBlockType( 'k2/alert-block', {
 								<div style={{paddingBottom: '2%'}}>
 									<label><strong>Position</strong></label>
 								</div>
-								<div id = {'AlignmentIconsParent'} className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
+								<div id = {'AlignmentIconsParent'} className={'k2-ib-inspector-control-alignment'} onClick={onChangeAlignmentIconChange}>
 
-									<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeAlertBoxWidgetAlignment('flex-start')}>
-										<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+									<div className={'k2-ib-inspector-control-alignment-single'}  onClick={() => onChangeAlertBoxWidgetAlignment('flex-start')}>
+										<span className="fas fa-align-left k2-ib-alignment-icon-style" ></span>
 									</div>
-									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxWidgetAlignment('center')}>
-										<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxWidgetAlignment('center')}>
+										<span className="fas fa-align-center k2-ib-alignment-icon-style active"></span>
 									</div>
-									<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeAlertBoxWidgetAlignment('flex-end')}>
-										<span className="fas fa-align-right AlignmentIconsStyle"></span>
+									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxWidgetAlignment('flex-end')}>
+										<span className="fas fa-align-right k2-ib-alignment-icon-style"></span>
 									</div>
 								</div>
 
@@ -592,10 +592,10 @@ registerBlockType( 'k2/alert-block', {
 
 										<PanelRow>
 											<p><strong>Border color</strong></p>
-											<div className="popup">
-												<span style={{backgroundColor: attributes.AlertBoxBorderColor}} className={ 'dot' } onClick={ myFunction }>
+											<div className="k2-ib-popup">
+												<span style={{backgroundColor: attributes.AlertBoxBorderColor}} className={ 'k2-ib-dot' } onClick={ myFunction }>
 												</span>
-															<span className="popuptext" id="myPopup" hidden={ true }>
+															<span className="k2-ib-popup-text"  hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -690,10 +690,10 @@ registerBlockType( 'k2/alert-block', {
 
 							<PanelRow>
 								<p><strong>Text color</strong></p>
-								<div className="popup">
-									<span style={{backgroundColor: attributes.AlertBoxTextColor}} className={ 'dot' } onClick={ myFunction }>
+								<div className="k2-ib-popup">
+									<span style={{backgroundColor: attributes.AlertBoxTextColor}} className={ 'k2-ib-dot' } onClick={ myFunction }>
 									</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-ib-popup-text" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -714,10 +714,10 @@ registerBlockType( 'k2/alert-block', {
 
 							<PanelRow>
 								<p><strong>Icon color</strong></p>
-								<div className="popup">
-									<span style={{backgroundColor: attributes.AlertBoxIconColor}} className={ 'dot' } onClick={ myFunction }>
+								<div className="k2-ib-popup">
+									<span style={{backgroundColor: attributes.AlertBoxIconColor}} className={ 'k2-ib-dot' } onClick={ myFunction }>
 									</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-ib-popup-text" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -738,10 +738,10 @@ registerBlockType( 'k2/alert-block', {
 
 							<PanelRow>
 								<p><strong>Icon Background color</strong></p>
-								<div className="popup">
-									<span style={{backgroundColor: attributes.AlertIconBackgroundColor}} className={ 'dot' } onClick={ myFunction }>
+								<div className="k2-ib-popup">
+									<span style={{backgroundColor: attributes.AlertIconBackgroundColor}} className={ 'k2-ib-dot' } onClick={ myFunction }>
 									</span>
-											<span className="popuptext" id="myPopup" hidden={ true }>
+											<span className="k2-ib-popup-text" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -768,10 +768,10 @@ registerBlockType( 'k2/alert-block', {
 
 							<PanelRow>
 								<p><strong>Fill color</strong></p>
-								<div className="popup">
-									<span style={{backgroundColor: attributes.AlertBoxColor}} className={ 'dot' } onClick={ myFunction }>
+								<div className="k2-ib-popup">
+									<span style={{backgroundColor: attributes.AlertBoxColor}} className={ 'k2-ib-dot' } onClick={ myFunction }>
 									</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-ib-popup-text" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -793,18 +793,18 @@ registerBlockType( 'k2/alert-block', {
 
 					</InspectorControls>,
 
-					<div style={WidgetContainerStyling} className={'WidgetContainer'}>
+					<div style={WidgetContainerStyling} className={'k2-ib-widget-container'}>
 
-						<div className={'SubParentContainer'} style={SubWidgetStyling}>
+						<div style={SubWidgetStyling}>
 
-							<div style={ParentContainerStyling} className={'container'}>
-								<div className={"box"}>
+							<div style={ParentContainerStyling} className={'k2-ib-container'}>
+								<div className={"k2-ib-box"}>
 									<i style={AlertIconStyling} className={attributes.AlertBoxIconType}></i>
 								</div>
 								<RichText
 									tagName="div" // The tag here is the element output and editable in the admin
 									value={ attributes.AlertBoxText } // Any existing content, either from the database or an attribute default
-									className = {'box'}
+									className = {'k2-ib-box'}
 									style = {AlertTextStyling}
 									formattingControls={ [ 'bold', 'italic', 'link', 'text-color', 'text-highlight'] } // Allow the content to be made bold or italic, but do not allow other formatting options
 									onChange={ onAlertBoxTextChange } // Store updated content as a block attribute
@@ -867,18 +867,18 @@ registerBlockType( 'k2/alert-block', {
 			width: '100%',
 		}
 
-		return <div  style={WidgetContainerStyling} className={'WidgetContainer'}>
+		return <div  style={WidgetContainerStyling} className={'k2-ib-widget-container'}>
 			<div style={SubWidgetStyling}>
 
-				<div style={ParentContainerStyling} className={'container'}>
-					<div className={"box"}>
+				<div style={ParentContainerStyling} className={'k2-ib-container'}>
+					<div className={"k2-ib-box"}>
 						<i style={AlertIconStyling} className={attributes.AlertBoxIconType}></i>
 					</div>
 
 					<RichText.Content
 						tagName="div" // The tag here is the element output and editable in the admin
 						value={ attributes.AlertBoxText } // Any existing content, either from the database or an attribute default
-						className = {'box'}
+						className = {'k2-ib-box'}
 						style = {AlertTextStyling}
 					/>
 				</div>

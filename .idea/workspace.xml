@@ -8,9 +8,28 @@
     <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Alert/Alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/Alert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Alert/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/editor.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Alert/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Counter_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Counter_Block/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/Frontend/ImageScrollFrontEnd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/Frontend/ImageScrollFrontEnd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Modal_Box/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modal_Box/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Premium_Section/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Premium_Section/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Timer_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timer_Block/editor.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +70,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Shahrukhx04-startup-management-tool-a69d37c4bc3e" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="C:\Bitnami\wordpress-5.2.2-3\apps\wordpress\htdocs\wp-content\plugins\progressbar\node_modules\eslint" />
@@ -87,6 +106,7 @@
       <workItem from="1589440686060" duration="6972000" />
       <workItem from="1589867148978" duration="940000" />
       <workItem from="1589870609232" duration="4497000" />
+      <workItem from="1589975075475" duration="6234000" />
     </task>
     <servers />
   </component>
@@ -106,14 +126,22 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="509" y="174" key="FileChooserDialogImpl" timestamp="1589957491647">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="509" y="174" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1589957491647" />
     <state x="277" y="57" key="SettingsEditor" timestamp="1589368984355">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589368984355" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1589798418026">
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1589987244831">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1589798418026" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1589987244831" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1589987412797">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1589987412797" />
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1589351207244">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

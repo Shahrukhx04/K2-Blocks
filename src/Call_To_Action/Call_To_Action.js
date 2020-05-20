@@ -119,7 +119,7 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTABoxWidth: {
 			type: 'number',
-			default: 58
+			default: 80
 		},
 		InspectorControlClassicOptionDisplay:{
 			type: 'string',
@@ -392,7 +392,16 @@ registerBlockType( 'k2/call-to-action-block', {
 			setAttributes({
 				LayoutDesign: NewLayout
 			})
-			console.log(attributes.LayoutDesign)
+
+			if (NewLayout === 'Cover'){
+
+			}else if (NewLayout === 'Classic'){
+				setAttributes({
+					CTAHeadingColor: 'rgba(14,18,85,1)',
+					CTAParagraphColor: 'rgba(14,18,85,1)'
+
+				})
+			}
 		}
 
 		function onChangeCTAImageSelection(NewImage) {
@@ -652,15 +661,15 @@ registerBlockType( 'k2/call-to-action-block', {
 		function onChangeAlignmentIconChange(value) {
 
 			if (value.target.tagName === 'SPAN'){
-				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var MainDiv = document.getElementById("k2-cta-inspector-control-cta-align");
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-cta-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-cta-active','')
 					}
 				}
 				console.log(value.target.tagName)
-				value.target.className = value.target.className + ' active'
+				value.target.className = value.target.className + ' k2-cta-active'
 
 			}
 
@@ -669,15 +678,15 @@ registerBlockType( 'k2/call-to-action-block', {
 		function onChangeTextAlignmentIconChange(value) {
 
 			if (value.target.tagName === 'SPAN'){
-				var MainDiv = document.getElementById("TextAlignContainer");
+				var MainDiv = document.getElementById("k2-cta-inspector-control-text-align");
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-cta-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-cta-active','')
 					}
 				}
 				console.log(value.target.tagName)
-				value.target.className = value.target.className + ' active'
+				value.target.className = value.target.className + ' k2-cta-active'
 
 			}
 
@@ -734,16 +743,16 @@ registerBlockType( 'k2/call-to-action-block', {
 						<div style={{paddingBottom: '2%'}}>
 							<label><strong>Position</strong></label>
 						</div>
-						<div id = 'AlignmentIconsParent' className={'InspectorControlAlertBoxAlignment'} onClick={onChangeAlignmentIconChange}>
+						<div id = 'k2-cta-inspector-control-cta-align' className={'k2-cta-inspector-control-classic-position'} onClick={onChangeAlignmentIconChange}>
 
-							<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeCTAAllignment('flex-start')}>
-								<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+							<div className={'k2-cta-inspector-control-classic-position-single'}  onClick={() => onChangeCTAAllignment('flex-start')}>
+								<span className="fas fa-align-left k2-cta-alignment-icon" ></span>
 							</div>
-							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAAllignment('center')}>
-								<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAAllignment('center')}>
+								<span className="fas fa-align-center k2-cta-alignment-icon k2-cta-active"></span>
 							</div>
-							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAAllignment('flex-end')}>
-								<span className="fas fa-align-right AlignmentIconsStyle"></span>
+							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAAllignment('flex-end')}>
+								<span className="fas fa-align-right k2-cta-alignment-icon"></span>
 							</div>
 						</div>
 
@@ -754,16 +763,16 @@ registerBlockType( 'k2/call-to-action-block', {
 						<div style={{paddingBottom: '2%'}}>
 							<label><strong>Text Align</strong></label>
 						</div>
-						<div id ="TextAlignContainer" className={'InspectorControlAlertBoxAlignment'} onClick={onChangeTextAlignmentIconChange}>
+						<div id ="k2-cta-inspector-control-text-align" className={'k2-cta-inspector-control-classic-position'} onClick={onChangeTextAlignmentIconChange}>
 
-							<div className={'InspectorControlAlertBoxAlignmentEach'}  onClick={() => onChangeCTAInnerContainerPlacement('left')}>
-								<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+							<div className={'k2-cta-inspector-control-classic-position-single'}  onClick={() => onChangeCTAInnerContainerPlacement('left')}>
+								<span className="fas fa-align-left k2-cta-alignment-icon" ></span>
 							</div>
-							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAInnerContainerPlacement('center')}>
-								<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAInnerContainerPlacement('center')}>
+								<span className="fas fa-align-center k2-cta-alignment-icon k2-cta-active"></span>
 							</div>
-							<div className={'InspectorControlAlertBoxAlignmentEach'} onClick={() => onChangeCTAInnerContainerPlacement('right')}>
-								<span className="fas fa-align-right AlignmentIconsStyle"></span>
+							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAInnerContainerPlacement('right')}>
+								<span className="fas fa-align-right k2-cta-alignment-icon"></span>
 							</div>
 						</div>
 
@@ -824,7 +833,7 @@ registerBlockType( 'k2/call-to-action-block', {
 						type = {'images'}
 						value = {attributes.CTA_Image}
 						render={ ({open}) => {
-							return <div style={CTAIMAGE} className={'ImageSelectControl'}>
+							return <div style={CTAIMAGE} className={'k2-cta-image-select-control'}>
 									<i className="fa fa-plus-circle" onClick={open}></i>
 							</div>;
 						}}
@@ -851,10 +860,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 								<PanelRow>
 									<p><strong>Fill color</strong></p>
-									<div className="popup">
-									<span style={{backgroundColor: attributes.InspectorControlCallToActionOverlayColor}} className={ 'dot' } onClick={ myFunction }>
+									<div className="k2-cta-popup">
+									<span style={{backgroundColor: attributes.InspectorControlCallToActionOverlayColor}} className={ 'k2-cta-dot' } onClick={ myFunction }>
 									</span>
-										<span className="popuptext" id="myPopup" hidden={ true }>
+										<span className="k2-cta-popup-text" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -892,10 +901,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 							<PanelRow>
 								<p><strong>Color</strong></p>
-								<div className="popup">
-								<span style={{backgroundColor: attributes.CTAHeadingColor}} className={ 'dot' } onClick={ myFunction }>
+								<div className="k2-cta-popup">
+								<span style={{backgroundColor: attributes.CTAHeadingColor}} className={ 'k2-cta-dot' } onClick={ myFunction }>
 								</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-cta-popup-text"  hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -991,10 +1000,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 							<PanelRow>
 								<p><strong>Color</strong></p>
-								<div className="popup">
-								<span style={{backgroundColor: attributes.CTAParagraphColor}} className={ 'dot' } onClick={ myFunction }>
+								<div className="k2-cta-popup">
+								<span style={{backgroundColor: attributes.CTAParagraphColor}} className={ 'k2-cta-dot' } onClick={ myFunction }>
 								</span>
-									<span className="popuptext" id="myPopup" hidden={ true }>
+									<span className="k2-cta-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -1111,10 +1120,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 								<PanelRow>
 									<p><strong>Text Color</strong></p>
-									<div className="popup">
-								<span style={{backgroundColor: attributes.CTAButtonTextColor}} className={ 'dot' } onClick={ myFunction }>
+									<div className="k2-cta-popup">
+								<span style={{backgroundColor: attributes.CTAButtonTextColor}} className={ 'k2-cta-dot' } onClick={ myFunction }>
 								</span>
-										<span className="popuptext" id="myPopup" hidden={ true }>
+										<span className="k2-cta-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -1136,10 +1145,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 								<PanelRow>
 									<p><strong>Background Color</strong></p>
-									<div className="popup">
-									<span style={{backgroundColor: attributes.CTAButtonColor}} className={ 'dot' } onClick={ myFunction }>
+									<div className="k2-cta-popup">
+									<span style={{backgroundColor: attributes.CTAButtonColor}} className={ 'k2-cta-dot' } onClick={ myFunction }>
 										</span>
-												<span className="popuptext" id="myPopup" hidden={ true }>
+												<span className="k2-cta-popup-text" hidden={ true }>
 
 														<div>
 															<ColorPicker
@@ -1235,10 +1244,10 @@ registerBlockType( 'k2/call-to-action-block', {
 
 											<PanelRow>
 												<p><strong>Border Color</strong></p>
-												<div className="popup">
+												<div className="k2-cta-popup">
 														<span style={{backgroundColor: attributes.CTAButtonBorderColor}} className={ 'dot' } onClick={ myFunction }>
 														</span>
-																			<span className="popuptext" id="myPopup" hidden={ true }>
+																			<span className="k2-cta-popup-text" hidden={ true }>
 
 																		<div>
 																			<ColorPicker
@@ -1291,17 +1300,17 @@ registerBlockType( 'k2/call-to-action-block', {
 			<div>
 				{
 					(attributes.LayoutDesign == 'Classic')?
-						<div  style={BoxedContainerStyling} className={'BoxedContainer'}>
+						<div  style={BoxedContainerStyling} className={'k2-cta-boxed-container'}>
 
-							<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
-								<div style={CTATextAlignment} className={'ClassicTextContainer'}>
+							<div style={ClassicParentContainer} className={'k2-cta-classic-parent-container'}>
+								<div style={CTATextAlignment} className={'k2-cta-classic-text-container'}>
 									{
 										(attributes.CTAisHeadingEnabled === true)?
 										<RichText
 										tagName="h1" // The tag here is the element output and editable in the admin
 										value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
 										style={CTAHeadingStyling}
-										className = {'ClassicHeadingStyle'}
+										className = {'k2-cta-classic-heading-style'}
 										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
 										onChange={ onChangeCTAHeading } // Store updated content as a block attribute
 										placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
@@ -1315,7 +1324,7 @@ registerBlockType( 'k2/call-to-action-block', {
 												tagName="p" // The tag here is the element output and editable in the admin
 												value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
 												style={CTAParagraphStyling}
-												className={ 'ClassicParagraphHeading' }
+												className={ 'k2-cta-classic-paragraph-heading' }
 												formattingControls={ ['bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
 												onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
 												placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
@@ -1326,30 +1335,30 @@ registerBlockType( 'k2/call-to-action-block', {
 									{
 										( attributes.CTAisButtonEnabled === true ) ?
 
-											<button style={CTAButtonStyling} className={ 'ClassicButtonStyling' }>
+											<button style={CTAButtonStyling} className={ 'k2-cta-classic-button-styling' }>
 												{ attributes.CTAButtonText }
 											</button>
 											: null
 									}
 								</div>
-								<div style={ClassicImageContainerStyling} className={'ClassicImageContainer'}>
+								<div style={ClassicImageContainerStyling} className={'k2-cta-classic-image-container'}>
 
 								</div>
 							</div>
 						</div>
 
-						: <div  style={BoxedContainerStyling} className={'BoxedContainer'}>
+						: <div  style={BoxedContainerStyling} className={'k2-cta-boxed-container'}>
 
-							<div style={CoverParentStyling} className={'CoverParentContainer'}>
+							<div style={CoverParentStyling} className={'k2-cta-cover-parent-container'}>
 
-								<div style={CTATextAlignment} className={'CoverTextContainer'}>
+								<div style={CTATextAlignment} className={'k2-cta-cover-text-container'}>
 									{
 										( attributes.CTAisHeadingEnabled === true ) ?
 											<RichText
 												tagName="h1" // The tag here is the element output and editable in the admin
 												value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
 												style={CTAHeadingStyling}
-												className={ 'CoverHeadingStyle' }
+												className={ 'k2-cta-cover-heading-style' }
 												formattingControls={ ['bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
 												onChange={ onChangeCTAHeading } // Store updated content as a block attribute
 												placeholder={ __( 'K2 Call To Action' ) } // Display this text before any content has been added by the user
@@ -1363,7 +1372,7 @@ registerBlockType( 'k2/call-to-action-block', {
 										tagName="p" // The tag here is the element output and editable in the admin
 										value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
 										style={CTAParagraphStyling}
-										className = {'CoverParagraphHeading'}
+										className = {'k2-cta-cover-paragraph-heading'}
 										formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
 										onChange={ onChangeCTAParagraph } // Store updated content as a block attribute
 										placeholder={ __( 'Having years of experience running summer courses, we have observed young students beginning the programme with much trepidation and anxiety, but leaving Oxford having had one of the most enriching and memorable experiences of their lives.' ) } // Display this text before any content has been added by the user
@@ -1374,7 +1383,7 @@ registerBlockType( 'k2/call-to-action-block', {
 
 									{
 										( attributes.CTAisButtonEnabled === true ) ?
-											<button style={CTAButtonStyling} className={ 'CoverButtonStyling' }>
+											<button style={CTAButtonStyling} className={ 'k2-cta-cover-button-styling' }>
 												{ attributes.CTAButtonText }
 											</button>
 											: null
@@ -1473,17 +1482,17 @@ registerBlockType( 'k2/call-to-action-block', {
 		return <div>
 			{
 				(attributes.LayoutDesign == 'Classic')?
-					<div  style={BoxedContainerStyling} className={'BoxedContainer'}>
+					<div  style={BoxedContainerStyling} className={'k2-cta-boxed-container'}>
 
-						<div style={ClassicParentContainer} className={'ClassicParentContainer'}>
-							<div style={CTATextAlignment} className={'ClassicTextContainer'}>
+						<div style={ClassicParentContainer} className={'k2-cta-classic-parent-container'}>
+							<div style={CTATextAlignment} className={'k2-cta-classic-text-container'}>
 								{
 									(attributes.CTAisHeadingEnabled === true)?
 										<RichText.Content
 											tagName="h1" // The tag here is the element output and editable in the admin
 											value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
 											style={CTAHeadingStyling}
-											className = {'ClassicHeadingStyle'}
+											className = {'k2-cta-classic-heading-style'}
 										/>
 										: null
 								}
@@ -1494,7 +1503,7 @@ registerBlockType( 'k2/call-to-action-block', {
 											tagName="p" // The tag here is the element output and editable in the admin
 											value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
 											style={CTAParagraphStyling}
-											className={ 'ClassicParagraphHeading' }
+											className={ 'k2-cta-classic-paragraph-heading' }
 										/>
 										: null
 								}
@@ -1507,30 +1516,30 @@ registerBlockType( 'k2/call-to-action-block', {
 										</button>:
 										<button
 											onclick={"window.open('"+ attributes.CTAButtonlink + "','_blank')"}
-											style={ CTAButtonStyling } className={ 'ClassicButtonStyling' }>
+											style={ CTAButtonStyling } className={ 'k2-cta-classic-button-styling' }>
 											{ attributes.CTAButtonText }
 										</button>
 										: null
 								}
 							</div>
-							<div style={ClassicImageContainerStyling} className={'ClassicImageContainer'}>
+							<div style={ClassicImageContainerStyling} className={'k2-cta-classic-image-container'}>
 
 							</div>
 						</div>
 					</div>
 
-					: <div  style={BoxedContainerStyling} className={'BoxedContainer'}>
+					: <div  style={BoxedContainerStyling} className={'k2-cta-boxed-container'}>
 
-						<div style={CoverParentStyling} className={'CoverParentContainer'}>
+						<div style={CoverParentStyling} className={'k2-cta-cover-parent-container'}>
 
-							<div style={CTATextAlignment} className={'CoverTextContainer'}>
+							<div style={CTATextAlignment} className={'k2-cta-cover-text-container'}>
 								{
 									( attributes.CTAisHeadingEnabled === true ) ?
 										<RichText.Content
 											tagName="h1" // The tag here is the element output and editable in the admin
 											value={ attributes.CTAHeadingText } // Any existing content, either from the database or an attribute default
 											style={CTAHeadingStyling}
-											className={ 'CoverHeadingStyle' }
+											className={ 'k2-cta-cover-heading-style' }
 										/>
 										: null
 								}
@@ -1541,7 +1550,7 @@ registerBlockType( 'k2/call-to-action-block', {
 											tagName="p" // The tag here is the element output and editable in the admin
 											value={ attributes.CTAParagraphText } // Any existing content, either from the database or an attribute default
 											style={CTAParagraphStyling}
-											className = {'CoverParagraphHeading'}
+											className = {'k2-cta-cover-paragraph-heading'}
 										/>
 										: null
 								}
@@ -1555,7 +1564,7 @@ registerBlockType( 'k2/call-to-action-block', {
 											</button>:
 											<button
 												onclick={"window.open(' + " + attributes.CTAButtonlink + "',_blank')"}
-												style={ CTAButtonStyling } className={ 'ClassicButtonStyling' }>
+												style={ CTAButtonStyling } className={ 'k2-cta-cover-button-styling' }>
 												{ attributes.CTAButtonText }
 											</button>
 										: null

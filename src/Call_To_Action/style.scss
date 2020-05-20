@@ -7,14 +7,14 @@
 
 // Cover Design Elements
 
-.BoxedContainer{
+.k2-cta-boxed-container{
   display: flex;
   margin-top: 2em;
   margin-bottom: 2em;
 }
 
 
-.CoverParentContainer{
+.k2-cta-cover-parent-container{
 
   //background-image: url("https://oxfordsummerprogram.com/wp-content/uploads/2020/02/WhatsApp-Image-2020-02-10-at-12.33.09-PM-1-1.jpeg");
   background-color: lightgray;
@@ -26,22 +26,22 @@
 
 }
 
-.CoverTextContainer {
+.k2-cta-cover-text-container {
   width: 100%;
   padding: 2em;
 }
 
-.CoverHeadingStyle {
+.k2-cta-cover-heading-style {
 }
 
 
-.CoverParagraphHeading{
+.k2-cta-cover-paragraph-heading{
   color: white;
 }
 
 
 
-.CoverButtonStyling{
+.k2-cta-cover-button-styling{
   padding: 0.5em 1em;
   display: inline-block;
   // border settings
@@ -60,13 +60,9 @@
 
 }
 
-.CoverButtonStyling:hover{
-  background-color: white;
-  padding: 0.5em 1em;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #002147;
-  color: #002147 !important;
+
+.k2-cta-cover-button-styling:hover{
+
   cursor: pointer;
 }
 
@@ -83,7 +79,7 @@
 
 
 
-.ClassicParentContainer{
+.k2-cta-classic-parent-container{
   display: flex;
   align-items: center;
   flex-wrap: wrap-reverse;
@@ -95,7 +91,7 @@
 
 // Image Container
 
-.ClassicImageContainer{
+.k2-cta-classic-image-container{
   background-color: lightgray;
   flex-basis: 50%;
 //  background-image: url("http://localhost/wordpress/wp-content/uploads/2020/04/Culture-and-Diversity-e1575982916249.jpg");
@@ -107,20 +103,20 @@
 
 
 // Text Container
-.ClassicTextContainer {
+.k2-cta-classic-text-container {
   flex-basis: 50%;
   vertical-align: middle;
   padding: 2em;
 }
 
-.ClassicHeadingStyle{
+.k2-cta-classic-heading-style{
 }
 
-.ClassicParagraphHeading{
+.k2-cta-classic-paragraph-heading{
   color: #002147;
 }
 
-.ClassicButtonStyling{
+.k2-cta-classic-button-styling{
   padding: 0.5em 1em;
   display: inline-block;
 
@@ -135,29 +131,24 @@
 
 }
 
-.ClassicButtonStyling:hover{
-  //background-color: #002147;
-  //padding: 0.5em 1em;
-  //border-width: 0.1em;
-  //border-style: solid;
-  //border-color: #002147;
-  //color: white !important;
+.k2-cta-classic-button-styling:hover{
+
   cursor: pointer;
 }
-
-@media (max-width: 1000px) {
-  .CoverParentContainerSpan {
-	width: 100%;
-  }
-}
+//
+//@media (max-width: 1000px) {
+//  .CoverParentContainerSpan {
+//	width: 100%;
+//  }
+//}
 
 @media (max-width: 700px) {
-  .ClassicImageContainer {
+  .k2-cta-classic-image-container {
 	flex-basis: 100%;
 	min-height: 65vh;
   }
 
-  .ClassicTextContainer{
+  .k2-cta-classic-text-container{
 	flex-basis: 100%;
   }
 }

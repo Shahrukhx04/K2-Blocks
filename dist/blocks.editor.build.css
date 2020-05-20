@@ -4,14 +4,14 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.InspectorControlProgressBarAlignment {
+.k2-pb-inspector-alignment {
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-.InspectorControlProgressBarAlignmentEach {
+.k2-pb-inspector-alignment-single {
   -ms-flex-preferred-size: 33.33%;
       flex-basis: 33.33%;
   -webkit-box-sizing: border-box;
@@ -22,11 +22,11 @@
       justify-content: center;
   cursor: pointer; }
 
-.AlignmentIconsStyle {
+.k2-pb-alignment-icon {
   font-size: 15px;
   padding: 0.8em; }
 
-.popup {
+.k2-pg-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -36,7 +36,7 @@
   user-select: none; }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-pg-popup .k2-pg-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -49,13 +49,20 @@
   right: 50%;
   border: 2px solid #1995ad; }
 
-.dot {
+.k2-pb-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.k2-pb-active {
+  color: orange;
+  background-color: #FED8B1; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *
@@ -67,7 +74,10 @@
  *
  * CSS for BackEnd.
  */
-.ImageSelectControl {
+.components-color-picker__inputs-wrapper {
+  display: none; }
+
+.k2-cta-image-select-control {
   display: -ms-flexbox;
   display: flex;
   height: 100px;
@@ -79,21 +89,18 @@
   background-size: cover;
   cursor: pointer; }
 
-.ImageSelectControl i {
+.k2-cta-image-select-control i {
   font-size: 48px;
   color: #ddd; }
 
-.components-color-picker__inputs-wrapper {
-  display: none; }
-
-.InspectorControlClassicPosition {
+.k2-cta-inspector-control-classic-position {
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-.InspectorControlClassicPositionEachElement {
+.k2-cta-inspector-control-classic-position-single {
   -ms-flex-preferred-size: 50%;
       flex-basis: 50%;
   -webkit-box-sizing: border-box;
@@ -104,11 +111,15 @@
       justify-content: center;
   cursor: pointer; }
 
-.AlignmentIconsStyle {
+.k2-cta-alignment-icon {
   font-size: 15px;
   padding: 0.8em; }
 
-.popup {
+.k2-cta-active {
+  color: orange;
+  background-color: #FED8B1; }
+
+.k2-cta-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -118,7 +129,7 @@
   user-select: none; }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-cta-popup .k2-cta-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -131,7 +142,7 @@
   right: 50%;
   border: 2px solid #1995ad; }
 
-.dot {
+.k2-cta-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -144,7 +155,7 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.ImageSelectControl {
+.k2-is-image-control {
   display: -ms-flexbox;
   display: flex;
   height: 100px;
@@ -156,20 +167,20 @@
   background-size: cover;
   cursor: pointer; }
 
-.ImageSelectControl i {
+.k2-is-image-control i {
   font-size: 35px;
   color: white;
   padding: 5px;
   opacity: 0.59; }
 
-.InspectorControlImageAlignment {
+.k2-is-inspector-control-image-alignment {
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-.InspectorControlImageAlignmentEach {
+.k2-is-inspector-control-image-alignment-single {
   -ms-flex-preferred-size: 33.33%;
       flex-basis: 33.33%;
   -webkit-box-sizing: border-box;
@@ -180,11 +191,15 @@
       justify-content: center;
   cursor: pointer; }
 
-.AlignmentIconsStyle {
+.k2-is-inspector-control-alignment-icon {
   font-size: 15px;
   padding: 0.8em; }
 
-.popup {
+.k2-is-active {
+  color: orange;
+  background-color: #FED8B1; }
+
+.k2-is-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -193,8 +208,7 @@
   -ms-user-select: none;
   user-select: none; }
 
-/* The actual popup */
-.popup .popuptext {
+.k2-is-popup .k2-is-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -207,27 +221,30 @@
   right: 50%;
   border: 2px solid #1995ad; }
 
-.dot {
+.k2-is-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.InspectorControlAlertBoxAlignment {
+.k2-ib-inspector-control-alignment {
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-.InspectorControlAlertBoxAlignmentEach {
+.k2-ib-inspector-control-alignment-single {
   -ms-flex-preferred-size: 33.33%;
       flex-basis: 33.33%;
   -webkit-box-sizing: border-box;
@@ -238,7 +255,11 @@
       justify-content: center;
   cursor: pointer; }
 
-.IconListWrapper {
+.k2-ib-alignment-icon-style {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.k2-ib-icon-list-wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -248,7 +269,7 @@
   margin-top: 1em;
   margin-bottom: 2em; }
 
-.IconListSubWrapper {
+.k2-ib-icon-list-sub-wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -260,24 +281,20 @@
   max-height: 120px;
   overflow: auto; }
 
-.IconListSubWrapper span {
+.k2-ib-icon-list-sub-wrapper span {
   font-size: 15px;
   padding: 0.8em; }
 
-.IconListSubWrapper span:hover {
+.k2-ib-icon-list-sub-wrapper span:hover {
   color: orange;
   background-color: #FED8B1;
   cursor: pointer; }
 
-.AlignmentIconsStyle {
-  font-size: 15px;
-  padding: 0.8em; }
-
-.active {
+.k2-ib-active {
   color: orange;
   background-color: #FED8B1; }
 
-.popup {
+.k2-ib-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -287,7 +304,7 @@
   user-select: none; }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-ib-popup .k2-ib-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -300,27 +317,30 @@
   right: 50%;
   border: 2px solid #1995ad; }
 
-.dot {
+.k2-ib-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *
  * Can include things like variables and mixins
  * that are used across the project.
 */
-.InspectorControlOverlayPosition {
+.k2-ps-inspector-control-overlay-position {
   display: -ms-inline-flexbox;
   display: inline-flex;
   width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
-.InspectorControlOverlayPositionEach {
+.k2-ps-inspector-control-overlay-position-single {
   -ms-flex-preferred-size: 33.33%;
       flex-basis: 33.33%;
   -webkit-box-sizing: border-box;
@@ -331,7 +351,15 @@
       justify-content: center;
   cursor: pointer; }
 
-.IconListWrapper {
+.k2-ps-alignment-icon {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.k2-ps-active {
+  color: orange;
+  background-color: #FED8B1; }
+
+.k2-ps-icon-list-wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
@@ -341,7 +369,7 @@
   margin-top: 1em;
   margin-bottom: 2em; }
 
-.IconListSubWrapper {
+.k2-ps-icon-sub-list-wrapper {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -353,24 +381,16 @@
   max-height: 120px;
   overflow: auto; }
 
-.IconListSubWrapper span {
+.k2-ps-icon-sub-list-wrapper span {
   font-size: 15px;
   padding: 0.8em; }
 
-.IconListSubWrapper span:hover {
+.k2-ps-icon-sub-list-wrapper span:hover {
   color: orange;
   background-color: #FED8B1;
   cursor: pointer; }
 
-.AlignmentIconsStyle {
-  font-size: 15px;
-  padding: 0.8em; }
-
-.active {
-  color: orange;
-  background-color: #FED8B1; }
-
-.popup {
+.k2-ps-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -380,7 +400,7 @@
   user-select: none; }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-ps-popup .k2-ps-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -393,13 +413,16 @@
   right: 50%;
   border: 2px solid #1995ad; }
 
-.dot {
+.k2-ps-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *
@@ -439,6 +462,9 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *
@@ -475,6 +501,9 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *
@@ -511,3 +540,6 @@
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }

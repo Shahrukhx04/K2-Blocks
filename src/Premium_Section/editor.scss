@@ -1,19 +1,29 @@
-.InspectorControlOverlayPosition{
+.k2-ps-inspector-control-overlay-position{
   display: inline-flex;
   width: 100%;
   box-sizing: border-box;
 }
 
-.InspectorControlOverlayPositionEach{
+.k2-ps-inspector-control-overlay-position-single{
   flex-basis: 33.33%;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   cursor: pointer;
 }
+.k2-ps-alignment-icon {
+  font-size: 15px;
+  padding: 0.8em;
+}
+
+.k2-ps-active{
+  color: orange;
+  background-color: #FED8B1;
+}
 
 
-.IconListWrapper{
+
+.k2-ps-icon-list-wrapper{
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -21,7 +31,7 @@
   margin-bottom: 2em;
 }
 
-.IconListSubWrapper{
+.k2-ps-icon-sub-list-wrapper{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -31,28 +41,20 @@
   overflow: auto;
 }
 
-.IconListSubWrapper span {
+.k2-ps-icon-sub-list-wrapper span {
   font-size: 15px;
   padding: 0.8em;
 }
 
-.IconListSubWrapper span:hover {
+.k2-ps-icon-sub-list-wrapper span:hover {
   color: orange;
   background-color: #FED8B1;
   cursor: pointer;
 }
 
-.AlignmentIconsStyle {
-  font-size: 15px;
-  padding: 0.8em;
-}
 
-.active{
-  color: orange;
-  background-color: #FED8B1;
-}
 
-.popup {
+.k2-ps-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -63,7 +65,7 @@
 }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-ps-popup .k2-ps-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -77,11 +79,15 @@
   border: 2px solid rgba(25, 149, 173, 1);
 }
 
-.dot {
+.k2-ps-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;
   display: inline-block;
   padding-top: 2em;
   border: 1px solid grey;
+}
+
+.components-color-picker__inputs-wrapper{
+  display: none;
 }

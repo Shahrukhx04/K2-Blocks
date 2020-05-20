@@ -403,13 +403,13 @@ registerBlockType( 'k2/imagescroll-block', {
 							<div id = 'AlignmentIconsParent' className={'k2-is-inspector-control-image-alignment'} onClick={onChangeAlignmentIconChange}>
 
 								<div className={'k2-is-inspector-control-image-alignment-single'}  onClick={() => onChangeMagicImageAlignment('flex-start')}>
-									<span className="fas fa-align-left k2-is-inspector-control-alignment-icon" ></span>
+									<span className="fa fa-align-left k2-is-inspector-control-alignment-icon" ></span>
 								</div>
 								<div className={'k2-is-inspector-control-image-alignment-single'} onClick={() => onChangeMagicImageAlignment('center')}>
-									<span className="fas fa-align-center k2-is-inspector-control-alignment-icon k2-is-active"></span>
+									<span className="fa fa-align-center k2-is-inspector-control-alignment-icon k2-is-active"></span>
 								</div>
 								<div className={'k2-is-inspector-control-image-alignment-single'} onClick={() => onChangeMagicImageAlignment('flex-end')}>
-									<span className="fas fa-align-right k2-is-inspector-control-alignment-icon"></span>
+									<span className="fa fa-align-right k2-is-inspector-control-alignment-icon"></span>
 								</div>
 							</div>
 

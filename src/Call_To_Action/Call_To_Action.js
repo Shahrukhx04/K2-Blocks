@@ -746,13 +746,13 @@ registerBlockType( 'k2/call-to-action-block', {
 						<div id = 'k2-cta-inspector-control-cta-align' className={'k2-cta-inspector-control-classic-position'} onClick={onChangeAlignmentIconChange}>
 
 							<div className={'k2-cta-inspector-control-classic-position-single'}  onClick={() => onChangeCTAAllignment('flex-start')}>
-								<span className="fas fa-align-left k2-cta-alignment-icon" ></span>
+								<span className="fa fa-align-left k2-cta-alignment-icon" ></span>
 							</div>
 							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAAllignment('center')}>
-								<span className="fas fa-align-center k2-cta-alignment-icon k2-cta-active"></span>
+								<span className="fa fa-align-center k2-cta-alignment-icon k2-cta-active"></span>
 							</div>
 							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAAllignment('flex-end')}>
-								<span className="fas fa-align-right k2-cta-alignment-icon"></span>
+								<span className="fa fa-align-right k2-cta-alignment-icon"></span>
 							</div>
 						</div>
 

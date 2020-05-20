@@ -367,13 +367,13 @@ registerBlockType( 'k2/premium-section', {
 								</div>
 								<div id = 'k2-ps-inspector-control-overlay-position-id' className={'k2-ps-inspector-control-overlay-position'} onClick={this.onChangeAlignmentIconChange}>
 									<div className={'k2-ps-inspector-control-overlay-position-single'}  onClick={() => this.onChangeIconPosition('flex-start')}>
-										<span className="fas fa-align-left k2-ps-alignment-icon" ></span>
+										<span className="fa fa-align-left k2-ps-alignment-icon" ></span>
 									</div>
 									<div className={'k2-ps-inspector-control-overlay-position-single'} onClick={() => this.onChangeIconPosition('center')}>
-										<span className="fas fa-align-center k2-ps-alignment-icon k2-ps-active"></span>
+										<span className="fa fa-align-center k2-ps-alignment-icon k2-ps-active"></span>
 									</div>
 									<div className={'k2-ps-inspector-control-overlay-position-single'} onClick={() => this.onChangeIconPosition('flex-end')}>
-										<span className="fas fa-align-right k2-ps-alignment-icon"></span>
+										<span className="fa fa-align-right k2-ps-alignment-icon"></span>
 									</div>
 								</div>
 

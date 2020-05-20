@@ -455,13 +455,13 @@ registerBlockType( 'k2/progressbar-block', {
 							<div id = 'k2-pb-Alignment-Icons-Id' className={'k2-pb-inspector-alignment'} onClick={onChangeAlignmentIconChange}>
 
 								<div className={'k2-pb-inspector-alignment-single'}  onClick={() => onChangeProgressBarAllignment('flex-start')}>
-									<span className="fas fa-align-left k2-pb-alignment-icon" ></span>
+									<span className="fa fa-align-left k2-pb-alignment-icon" ></span>
 								</div>
 								<div className={'k2-pb-inspector-alignment-single'} onClick={() => onChangeProgressBarAllignment('center')}>
-									<span className="fas fa-align-center k2-pb-alignment-icon active"></span>
+									<span className="fa fa-align-center k2-pb-alignment-icon active"></span>
 								</div>
 								<div className={'k2-pb-inspector-alignment-single'} onClick={() => onChangeProgressBarAllignment('flex-end')}>
-									<span className="fas fa-align-right k2-pb-alignment-icon"></span>
+									<span className="fa fa-align-right k2-pb-alignment-icon"></span>
 								</div>
 							</div>
 

@@ -534,13 +534,13 @@ registerBlockType( 'k2/alert-block', {
 								<div id = {'AlignmentIconsParent'} className={'k2-ib-inspector-control-alignment'} onClick={onChangeAlignmentIconChange}>
 
 									<div className={'k2-ib-inspector-control-alignment-single'}  onClick={() => onChangeAlertBoxClassicAlignment('flex-start')}>
-										<span className="fas fa-align-left k2-ib-alignment-icon-style" ></span>
+										<span className="fa fa-align-left k2-ib-alignment-icon-style" ></span>
 									</div>
 									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxClassicAlignment('center')}>
-										<span className="fas fa-align-center k2-ib-alignment-icon-style k2-ib-active"></span>
+										<span className="fa fa-align-center k2-ib-alignment-icon-style k2-ib-active"></span>
 									</div>
 									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxClassicAlignment('flex-end')}>
-										<span className="fas fa-align-right k2-ib-alignment-icon-style"></span>
+										<span className="fa fa-align-right k2-ib-alignment-icon-style"></span>
 									</div>
 								</div>
 
@@ -555,13 +555,13 @@ registerBlockType( 'k2/alert-block', {
 								<div id = {'AlignmentIconsParent'} className={'k2-ib-inspector-control-alignment'} onClick={onChangeAlignmentIconChange}>
 
 									<div className={'k2-ib-inspector-control-alignment-single'}  onClick={() => onChangeAlertBoxWidgetAlignment('flex-start')}>
-										<span className="fas fa-align-left k2-ib-alignment-icon-style" ></span>
+										<span className="fa fa-align-left k2-ib-alignment-icon-style" ></span>
 									</div>
 									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxWidgetAlignment('center')}>
-										<span className="fas fa-align-center k2-ib-alignment-icon-style active"></span>
+										<span className="fa fa-align-center k2-ib-alignment-icon-style k2-ib-active"></span>
 									</div>
 									<div className={'k2-ib-inspector-control-alignment-single'} onClick={() => onChangeAlertBoxWidgetAlignment('flex-end')}>
-										<span className="fas fa-align-right k2-ib-alignment-icon-style"></span>
+										<span className="fa fa-align-right k2-ib-alignment-icon-style"></span>
 									</div>
 								</div>
 

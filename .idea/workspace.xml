@@ -11,25 +11,10 @@
       <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Alert/Alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/Alert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alert/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alert/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Counter_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Counter_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/Frontend/ImageScrollFrontEnd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/Frontend/ImageScrollFrontEnd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modal_Box/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modal_Box/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/style.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/style.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Timer_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timer_Block/editor.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +91,7 @@
       <workItem from="1589440686060" duration="6972000" />
       <workItem from="1589867148978" duration="940000" />
       <workItem from="1589870609232" duration="4497000" />
-      <workItem from="1589975075475" duration="6234000" />
+      <workItem from="1589975075475" duration="7814000" />
     </task>
     <servers />
   </component>

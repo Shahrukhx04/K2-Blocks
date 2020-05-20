@@ -344,12 +344,12 @@ registerBlockType( 'k2/imagescroll-block', {
 				var MainDiv = document.getElementById("AlignmentIconsParent");
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-is-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-is-active','')
 					}
 				}
 				console.log(value.target.tagName)
-				value.target.className = value.target.className + ' active'
+				value.target.className = value.target.className + ' k2-is-active'
 
 			}
 
@@ -400,16 +400,16 @@ registerBlockType( 'k2/imagescroll-block', {
 							<div style={{paddingBottom: '2%'}}>
 								<label><strong>Alignment</strong></label>
 							</div>
-							<div id = 'AlignmentIconsParent' className={'InspectorControlImageAlignment'} onClick={onChangeAlignmentIconChange}>
+							<div id = 'AlignmentIconsParent' className={'k2-is-inspector-control-image-alignment'} onClick={onChangeAlignmentIconChange}>
 
-								<div className={'InspectorControlImageAlignmentEach'}  onClick={() => onChangeMagicImageAlignment('flex-start')}>
-									<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+								<div className={'k2-is-inspector-control-image-alignment-single'}  onClick={() => onChangeMagicImageAlignment('flex-start')}>
+									<span className="fas fa-align-left k2-is-inspector-control-alignment-icon" ></span>
 								</div>
-								<div className={'InspectorControlImageAlignmentEach'} onClick={() => onChangeMagicImageAlignment('center')}>
-									<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+								<div className={'k2-is-inspector-control-image-alignment-single'} onClick={() => onChangeMagicImageAlignment('center')}>
+									<span className="fas fa-align-center k2-is-inspector-control-alignment-icon k2-is-active"></span>
 								</div>
-								<div className={'InspectorControlImageAlignmentEach'} onClick={() => onChangeMagicImageAlignment('flex-end')}>
-									<span className="fas fa-align-right AlignmentIconsStyle"></span>
+								<div className={'k2-is-inspector-control-image-alignment-single'} onClick={() => onChangeMagicImageAlignment('flex-end')}>
+									<span className="fas fa-align-right k2-is-inspector-control-alignment-icon"></span>
 								</div>
 							</div>
 
@@ -426,7 +426,7 @@ registerBlockType( 'k2/imagescroll-block', {
 							type = {'images'}
 							value = {attributes.MagicImage}
 							render={ ({open}) => {
-								return <div style={InspectorControlUploadImagePlaceholder} className={'ImageSelectControl'} onClick={open}>
+								return <div style={InspectorControlUploadImagePlaceholder} className={'k2-is-image-control'} onClick={open}>
 									<i className="fa fa-plus" ></i>
 								</div>;
 							}}
@@ -453,10 +453,10 @@ registerBlockType( 'k2/imagescroll-block', {
 								<div>
 									<PanelRow>
 										<p><strong>Fill color</strong></p>
-										<div className="popup">
-									<span style={{backgroundColor: attributes.InspectorControlImageOverlayColor}} className={ 'dot' } onClick={ myFunction }>
+										<div className="k2-is-popup">
+									<span style={{backgroundColor: attributes.InspectorControlImageOverlayColor}} className={ 'k2-is-dot' } onClick={ myFunction }>
 									</span>
-											<span className="popuptext" id="myPopup" hidden={ true }>
+											<span className="k2-is-popup-text" hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -516,10 +516,10 @@ registerBlockType( 'k2/imagescroll-block', {
 
 									<PanelRow>
 										<p><strong>Border color</strong></p>
-										<div className="popup">
-									<span style={{backgroundColor: attributes.MagicImageBorderColor}} className={ 'dot' } onClick={ myFunction }>
+										<div className="k2-is-popup">
+									<span style={{backgroundColor: attributes.MagicImageBorderColor}} className={ 'k2-is-dot' } onClick={ myFunction }>
 									</span>
-											<span className="popuptext" id="myPopup" hidden={ true }>
+											<span className="k2-is-popup-text"  hidden={ true }>
 
 									<div>
 										<ColorPicker
@@ -577,9 +577,9 @@ registerBlockType( 'k2/imagescroll-block', {
 				</InspectorControls>
 
 				,
-				<div style={ParentContainerStyling} className={'ParentContainer'}>
-					<div  style={SubParentStyling} className={'SubParentContainer'}>
-						<div  style={MagicImageStyling} className={'ImageParentContainer'} onMouseOver={onMagicImageMouseHover} onMouseLeave={onMagicImageMouseLeave}>
+				<div style={ParentContainerStyling} className={'k2-is-parent-container'}>
+					<div  style={SubParentStyling} className={'k2-is-sub-parent-container'}>
+						<div  style={MagicImageStyling} className={'k2-is-image-parent-container'} onMouseOver={onMagicImageMouseHover} onMouseLeave={onMagicImageMouseLeave}>
 
 						</div>
 					</div>
@@ -616,9 +616,9 @@ registerBlockType( 'k2/imagescroll-block', {
 		}
 
 
-		return 	<div style={ParentContainerStyling}  className={'ParentContainer'}>
-			<div  style={SubParentStyling} className={'SubParentContainer'}>
-				<div id="ImageScroll" style={MagicImageStyling} className={'ImageParentContainer'}
+		return 	<div style={ParentContainerStyling}  className={'k2-is-parent-container'}>
+			<div  style={SubParentStyling} className={'k2-is-sub-parent-container'}>
+				<div style={MagicImageStyling} className={'k2-is-image-parent-container'}
 					 data-PositionX = {attributes.MagicImageBackgroundPositionX }
 					 data-PositionY = {attributes.MagicImageBackgroundPositionY }
 					 data-PositionHoverX = {attributes.MagicImageBackgroundPositionXHover}

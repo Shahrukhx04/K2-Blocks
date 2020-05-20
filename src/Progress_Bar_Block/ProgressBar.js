@@ -391,15 +391,15 @@ registerBlockType( 'k2/progressbar-block', {
 		function onChangeAlignmentIconChange(value) {
 
 			if (value.target.tagName === 'SPAN'){
-				var MainDiv = document.getElementById("AlignmentIconsParent");
+				var MainDiv = document.getElementById("k2-pb-Alignment-Icons-Id");
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-pb-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-pb-active','')
 					}
 				}
 				console.log(value.target.tagName)
-				value.target.className = value.target.className + ' active'
+				value.target.className = value.target.className + ' k2-pb-active'
 
 			}
 
@@ -452,16 +452,16 @@ registerBlockType( 'k2/progressbar-block', {
 							<div style={{paddingBottom: '2%'}}>
 								<label><strong>Alignment</strong></label>
 							</div>
-							<div id = 'AlignmentIconsParent' className={'InspectorControlProgressBarAlignment'} onClick={onChangeAlignmentIconChange}>
+							<div id = 'k2-pb-Alignment-Icons-Id' className={'k2-pb-inspector-alignment'} onClick={onChangeAlignmentIconChange}>
 
-								<div className={'InspectorControlProgressBarAlignmentEach'}  onClick={() => onChangeProgressBarAllignment('flex-start')}>
-									<span className="fas fa-align-left AlignmentIconsStyle" ></span>
+								<div className={'k2-pb-inspector-alignment-single'}  onClick={() => onChangeProgressBarAllignment('flex-start')}>
+									<span className="fas fa-align-left k2-pb-alignment-icon" ></span>
 								</div>
-								<div className={'InspectorControlProgressBarAlignmentEach'} onClick={() => onChangeProgressBarAllignment('center')}>
-									<span className="fas fa-align-center AlignmentIconsStyle active"></span>
+								<div className={'k2-pb-inspector-alignment-single'} onClick={() => onChangeProgressBarAllignment('center')}>
+									<span className="fas fa-align-center k2-pb-alignment-icon active"></span>
 								</div>
-								<div className={'InspectorControlProgressBarAlignmentEach'} onClick={() => onChangeProgressBarAllignment('flex-end')}>
-									<span className="fas fa-align-right AlignmentIconsStyle"></span>
+								<div className={'k2-pb-inspector-alignment-single'} onClick={() => onChangeProgressBarAllignment('flex-end')}>
+									<span className="fas fa-align-right k2-pb-alignment-icon"></span>
 								</div>
 							</div>
 
@@ -477,10 +477,10 @@ registerBlockType( 'k2/progressbar-block', {
 
 						<PanelRow>
 							<p><strong>Title color</strong></p>
-							<div className="popup">
-								<span style={{backgroundColor: attributes.titleColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-pg-popup">
+								<span style={{backgroundColor: attributes.titleColor}} className={ 'k2-pb-dot' } onClick={ myFunction }>
 								</span>
-								<span className="popuptext" id="myPopup" hidden={ true }>
+								<span className="k2-pg-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -501,10 +501,10 @@ registerBlockType( 'k2/progressbar-block', {
 
 						<PanelRow>
 							<p><strong>Progress Bar color</strong></p>
-							<div className="popup">
-								<span style={{backgroundColor: attributes.progressBarColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-pg-popup">
+								<span style={{backgroundColor: attributes.progressBarColor}} className={ 'k2-pb-dot' } onClick={ myFunction }>
 								</span>
-								<span className="popuptext" id="myPopup" hidden={ true }>
+								<span className="k2-pg-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -678,10 +678,10 @@ registerBlockType( 'k2/progressbar-block', {
 
 						<PanelRow>
 							<p><strong>Background color</strong></p>
-							<div className="popup">
-								<span style={{backgroundColor: attributes.ProgressBarBackGroundColor}} className={ 'dot' } onClick={ myFunction }>
+							<div className="k2-pg-popup">
+								<span style={{backgroundColor: attributes.ProgressBarBackGroundColor}} className={ 'k2-pb-dot' } onClick={ myFunction }>
 								</span>
-								<span className="popuptext" id="myPopup" hidden={ true }>
+								<span className="k2-pg-popup-text" hidden={ true }>
 
 												<div>
 													<ColorPicker
@@ -706,8 +706,8 @@ registerBlockType( 'k2/progressbar-block', {
 
 				</InspectorControls>,
 
-				<div style={ProgressBarParentContainer} className={'ProgressBarParentContainer'}>
-					<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
+				<div style={ProgressBarParentContainer} className={'k2-pb-parent-container'}>
+					<div style={ProgressBarSubParentContainerStyling} className={'k2-pb-sub-parent-container '}>
 
 						{
 							(attributes.ProgressBarTextDisplay === false)?null:
@@ -726,8 +726,8 @@ registerBlockType( 'k2/progressbar-block', {
 
 
 
-						<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
-							<div className="ProgressBarInsideAnimation" style={ProgressBarInsideAnimationStyling}>
+						<div style={ProgressBarOutsideContainerStyling} className="k2-pb-outside-container ">
+							<div className="k2-pb-inside-container " style={ProgressBarInsideAnimationStyling}>
 								<span style={ProgressBarInsideAnimationSpanStyling}></span>
 							</div>
 						</div>
@@ -793,8 +793,8 @@ registerBlockType( 'k2/progressbar-block', {
 			textDecoration: attributes.ProgressBarTextDecoration,
 			wordWrap: 'break-word'
 		}
-		return 	<div style={ProgressBarParentContainer} className={'ProgressBarParentContainer'}>
-			<div style={ProgressBarSubParentContainerStyling} className={'ProgressBarSubContainer'}>
+		return 	<div style={ProgressBarParentContainer} className={'k2-pb-parent-container'}>
+			<div style={ProgressBarSubParentContainerStyling} className={'k2-pb-sub-parent-container '}>
 
 				{
 					(attributes.ProgressBarTextDisplay === false)?null:
@@ -812,8 +812,8 @@ registerBlockType( 'k2/progressbar-block', {
 				}
 
 
-				<div style={ProgressBarOutsideContainerStyling} className="ProgressBarOutsideContainer">
-					<div className="ProgressBarInsideAnimation" style={ProgressBarInsideAnimationStyling}>
+				<div style={ProgressBarOutsideContainerStyling} className="k2-pb-outside-container ">
+					<div className="k2-pb-inside-container " style={ProgressBarInsideAnimationStyling}>
 						<span style={ProgressBarInsideAnimationSpanStyling}></span>
 					</div>
 				</div>

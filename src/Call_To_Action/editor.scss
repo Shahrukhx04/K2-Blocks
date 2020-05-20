@@ -4,8 +4,10 @@
  * CSS for BackEnd.
  */
 
-
-.ImageSelectControl {
+.k2-cta-components-color-picker__inputs-wrapper{
+  display: none;
+}
+.k2-cta-image-select-control {
   display: flex;
   height: 100px;
   align-items: center;
@@ -14,23 +16,19 @@
   background-size: cover;
   cursor: pointer;
 }
-.ImageSelectControl i {
+.k2-cta-image-select-control i {
   font-size:48px;
   color: #ddd;
 
 }
-.components-color-picker__inputs-wrapper{
-  display: none;
-}
 
-
-.InspectorControlClassicPosition{
+.k2-cta-inspector-control-classic-position{
   display: inline-flex;
   width: 100%;
   box-sizing: border-box;
 }
 
-.InspectorControlClassicPositionEachElement{
+.k2-cta-inspector-control-classic-position-single{
   flex-basis: 50%;
   box-sizing: border-box;
   display: flex;
@@ -38,12 +36,17 @@
   cursor: pointer;
 }
 
-.AlignmentIconsStyle {
+.k2-cta-alignment-icon {
   font-size: 15px;
   padding: 0.8em;
 }
 
-.popup {
+.k2-cta-active{
+  color: orange;
+  background-color: #FED8B1;
+}
+
+.k2-cta-popup {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -54,7 +57,7 @@
 }
 
 /* The actual popup */
-.popup .popuptext {
+.k2-cta-popup .k2-cta-popup-text {
   width: 230px;
   background-color: white;
   color: #fff;
@@ -68,7 +71,7 @@
   border: 2px solid rgba(25, 149, 173, 1);
 }
 
-.dot {
+.k2-cta-dot {
   height: 25px;
   width: 25px;
   border-radius: 50%;

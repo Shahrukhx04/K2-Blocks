@@ -1,7 +1,7 @@
 
 jQuery(document).ready(function( $ ) {
 	$('.wp-block-k2-imagescroll-block').each(function (index) {
-		var imageScroll = $(this).children('.SubParentContainer').children('.ImageParentContainer')[0];
+		var imageScroll = $(this).children('.k2-is-sub-parent-container').children('.k2-is-image-parent-container')[0];
 		var PositionX = $(imageScroll).attr('data-PositionX');
 		var PositionY = $(imageScroll).attr('data-PositionY');
 		var PositionHoverX = $(imageScroll).attr('data-PositionHoverX');

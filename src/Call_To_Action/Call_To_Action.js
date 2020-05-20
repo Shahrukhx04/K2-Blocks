@@ -766,13 +766,13 @@ registerBlockType( 'k2/call-to-action-block', {
 						<div id ="k2-cta-inspector-control-text-align" className={'k2-cta-inspector-control-classic-position'} onClick={onChangeTextAlignmentIconChange}>
 
 							<div className={'k2-cta-inspector-control-classic-position-single'}  onClick={() => onChangeCTAInnerContainerPlacement('left')}>
-								<span className="fas fa-align-left k2-cta-alignment-icon" ></span>
+								<span className="fa fa-align-left k2-cta-alignment-icon" ></span>
 							</div>
 							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAInnerContainerPlacement('center')}>
-								<span className="fas fa-align-center k2-cta-alignment-icon k2-cta-active"></span>
+								<span className="fa fa-align-center k2-cta-alignment-icon k2-cta-active"></span>
 							</div>
 							<div className={'k2-cta-inspector-control-classic-position-single'} onClick={() => onChangeCTAInnerContainerPlacement('right')}>
-								<span className="fas fa-align-right k2-cta-alignment-icon"></span>
+								<span className="fa fa-align-right k2-cta-alignment-icon"></span>
 							</div>
 						</div>
 

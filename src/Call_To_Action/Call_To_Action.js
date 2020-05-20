@@ -1245,7 +1245,7 @@ registerBlockType( 'k2/call-to-action-block', {
 											<PanelRow>
 												<p><strong>Border Color</strong></p>
 												<div className="k2-cta-popup">
-														<span style={{backgroundColor: attributes.CTAButtonBorderColor}} className={ 'dot' } onClick={ myFunction }>
+														<span style={{backgroundColor: attributes.CTAButtonBorderColor}} className={ 'k2-cta-dot' } onClick={ myFunction }>
 														</span>
 																			<span className="k2-cta-popup-text" hidden={ true }>
 

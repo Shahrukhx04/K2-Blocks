@@ -71,7 +71,7 @@ registerBlockType( 'k2/alert-block', {
 
 		AlertBoxText: {
 			type: 'string',
-			default: 'Hello, I am an info box with an icon and text. '
+			default: 'Hello, I AM A BOX. '
 		},
 		AlertBoxColor: {
 			type: 'string',

@@ -7,7 +7,10 @@
   <component name="ChangeListManager">
     <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,13 +30,15 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Alert/Alert.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Counter_Block/Counter.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Modal_Box/Modal.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Banner/Banner.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Alert/Alert.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Timer_Block/Timer.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Button/Button.js" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1azVGV6kte139ODlXo3BqkaXwOA" />
   <component name="ProjectLevelVcsManager">
@@ -48,7 +53,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Shahrukhx04-startup-management-tool-a69d37c4bc3e" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="C:\Bitnami\wordpress-5.2.2-3\apps\wordpress\htdocs\wp-content\plugins\progressbar\node_modules\eslint" />
@@ -59,6 +64,11 @@
   </component>
   <component name="ReadonlyStatusHandler">
     <option name="SHOW_DIALOG" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Bitnami\wordpress-5.4-0\apps\wordpress\htdocs\wp-content\plugins\K2-Blocks\src" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -85,6 +95,9 @@
       <workItem from="1589867148978" duration="940000" />
       <workItem from="1589870609232" duration="4497000" />
       <workItem from="1589975075475" duration="9129000" />
+      <workItem from="1590494805035" duration="914000" />
+      <workItem from="1590731480795" duration="2602000" />
+      <workItem from="1591018926767" duration="774000" />
     </task>
     <servers />
   </component>

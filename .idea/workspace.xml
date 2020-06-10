@@ -8,9 +8,9 @@
     <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Banner/Banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banner/Banner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Banner/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banner/style.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,13 @@
       <workItem from="1589975075475" duration="9129000" />
       <workItem from="1590494805035" duration="914000" />
       <workItem from="1590731480795" duration="2602000" />
-      <workItem from="1591018926767" duration="774000" />
+      <workItem from="1591018926767" duration="1374000" />
+      <workItem from="1591087189805" duration="3303000" />
+      <workItem from="1591260391344" duration="13973000" />
+      <workItem from="1591517582075" duration="3701000" />
+      <workItem from="1591602967340" duration="268000" />
+      <workItem from="1591628040286" duration="1957000" />
+      <workItem from="1591687684429" duration="1200000" />
     </task>
     <servers />
   </component>

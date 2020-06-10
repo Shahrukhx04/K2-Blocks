@@ -53,14 +53,64 @@ registerBlockType( 'k2/hero-banner', {
 		__( 'Hero Banner	' ),
 		__( 'Magik Blocks' ),
 	],
-	attributes: {},
+	attributes: {
+		AnimatedBannerHeadingText: {
+			type: 'string',
+			default: 'Animated Banner'
+		},
+		AnimatedBannerParagraphText: {
+			type: 'string',
+			default: 'Hover on this banner for animation'
+		}
+	},
 
 	edit( { attributes, setAttributes } ) {
-		<h1>Here's new Banner Block</h1>
+
+
+		function onChangeAnimatedBannerHeading(NewText) {
+			setAttributes({
+				AnimatedBannerHeadingText: NewText
+			})
+		}
+
+		function onChangeAnimatedBannerParagraphText(NewText) {
+			setAttributes({
+				AnimatedBannerParagraphText: NewText
+			})
+		}
+
+		return <div className={'k2-AB-boxed-container'}>
+			<div className={'K2-AB-cover-parent-container-wrapper'}>
+				<div className={'k2-AB-cover-parent-container'}>
+					<div className={'k2-AB-cover-text-container'}>
+						<RichText
+							tagName="div" // The tag here is the element output and editable in the admin
+							value={ attributes.AnimatedBannerHeadingText } // Any existing content, either from the database or an attribute default
+							className={ 'k2-AB-cover-heading-style' }
+							formattingControls={ ['bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+							onChange={ onChangeAnimatedBannerHeading } // Store updated content as a block attribute
+							placeholder={ __( 'Animated Banner' ) } // Display this text before any content has been added by the user
+						/>
+
+						<RichText
+							tagName="div" // The tag here is the element output and editable in the admin
+							value={ attributes.AnimatedBannerParagraphText } // Any existing content, either from the database or an attribute default
+							className = {'k2-AB-cover-paragraph-heading'}
+							formattingControls={ [ 'bold', 'italic', 'link',] } // Allow the content to be made bold or italic, but do not allow other formatting options
+							onChange={ onChangeAnimatedBannerParagraphText } // Store updated content as a block attribute
+							placeholder={ __( 'Hover on this banner for animation' ) } // Display this text before any content has been added by the user
+						/>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
 	},
 
 	save( { attributes } ) {
-		<h1>
+		return <h1>
 			Here's the Banner showing on frontend
 		</h1>
 	}

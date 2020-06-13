@@ -8,10 +8,12 @@
     <list default="true" id="68de9a7a-4bba-49e3-94b3-afcd596e4ce2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Button/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button/Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Button/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button/style.scss" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,17 +30,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Counter_Block/Counter.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Modal_Box/Modal.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Banner/Banner.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/Alert/Alert.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Timer_Block/Timer.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Alert/Alert.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Premium_Section/Frontend/PremiumSection.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/Button/Button.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/Counter_Block/Counter.js" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1azVGV6kte139ODlXo3BqkaXwOA" />
   <component name="ProjectLevelVcsManager">
@@ -70,6 +72,18 @@
       <recent name="C:\Bitnami\wordpress-5.4-0\apps\wordpress\htdocs\wp-content\plugins\K2-Blocks\src" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -98,6 +112,8 @@
       <workItem from="1590494805035" duration="914000" />
       <workItem from="1590731480795" duration="2602000" />
       <workItem from="1591018926767" duration="774000" />
+      <workItem from="1591022347657" duration="14996000" />
+      <workItem from="1592068868881" duration="4035000" />
     </task>
     <servers />
   </component>
@@ -111,10 +127,20 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="oldMeFiltersMigrated" value="true" />
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="509" y="174" key="FileChooserDialogImpl" timestamp="1589957491647">

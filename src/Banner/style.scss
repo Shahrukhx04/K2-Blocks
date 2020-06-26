@@ -1,0 +1,75 @@
+.k2-AB-boxed-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.K2-AB-cover-parent-container-wrapper{
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 50vh;
+  width: 50rem;
+}
+
+.k2-AB-cover-parent-container{
+  background-image: url("http://localhost/wordpress/wp-content/uploads/2020/05/3.jpg");
+  background-color: lightgray;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+.k2-AB-cover-text-container {
+
+  // code for first animation
+  //width: 100%;
+  //height: 100%;
+  //display: flex;
+  //flex-direction: column;
+  //text-align: center;
+  //justify-content: center;
+  //opacity: 0;
+  //transition: 0.5s;
+
+  // Code for second animation
+  width: 100%;
+  height: 0%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  opacity: 0;
+  box-shadow: inset 0 0 0 100vh rgba(255,0,0,0.7);
+  transition: 0.5s;
+
+
+}
+
+.k2-AB-cover-parent-container:hover .k2-AB-cover-text-container{
+  //
+  //// Code for 1st Animation
+  //box-shadow: inset 0 0 0 100vh rgba(255,0,0,0.7);
+  //transform: translate(50px,50px);
+  //opacity: 1;
+
+
+  // Code for 2nd Animation
+  opacity: 1;
+  height: 100%;
+}
+
+.k2-AB-cover-heading-style {
+  color: white !important;
+  font-size: 2.5em !important;
+}
+
+
+.k2-AB-cover-paragraph-heading{
+  color: white;
+  font-size: 1.7em !important;
+}
+

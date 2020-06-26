@@ -453,52 +453,56 @@ div.k2-ib-box {
  * Can include things like variables and mixins
  * that are used across the project.
 */
-/**
- * #.# Common SCSS
- *
- * Can include things like variables and mixins
- * that are used across the project.
-*/
-.k2-hb-text {
-  padding: 10px 10px 10px 10px;
-  margin-bottom: 0px; }
-
-.k2-hb-text-container {
+.k2-AB-boxed-container {
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 2em; }
 
-.k2-hb-text.k2-hb-border-left {
-  border-left: 5px solid;
-  padding: 0px;
-  padding-left: 20px; }
-
-.k2-hb-text.k2-hb-border-top:before {
-  content: "";
-  /* This is necessary for the pseudo element to work. */
-  display: block;
-  /* This will put the pseudo element on its own line. */
-  margin: 0 auto;
-  /* This will center the border. */
-  width: 50%;
-  /* Change this to whatever width you want. */
-  padding-top: 20px;
-  /* This creates some space between the element and the border. */
-  border-bottom: 1px solid black;
-  /* This creates the border. Replace black with whatever color you want. */ }
-
-.k2-hb-text.k2-hb-border-under2 {
-  border-bottom: 5px solid #35C66B;
-  padding: 0px;
-  padding-bottom: 5px; }
-
-.k2-hb-text-container.k2-hb-border-under1 {
-  border-bottom: 5px solid #35C66B;
-  padding: 0px;
-  padding-bottom: 5px; }
-
-.k2-hb-icon-container {
+.K2-AB-cover-parent-container-wrapper {
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  position: relative;
+  min-height: 50vh;
+  width: 50rem; }
 
-.k2-hb-icon-container div {
-  padding: 10px; }
+.k2-AB-cover-parent-container {
+  background-image: url("http://localhost/wordpress/wp-content/uploads/2020/05/3.jpg");
+  background-color: lightgray;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%; }
+
+.k2-AB-cover-text-container {
+  width: 100%;
+  height: 0%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  text-align: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  opacity: 0;
+  -webkit-box-shadow: inset 0 0 0 100vh rgba(255, 0, 0, 0.7);
+          box-shadow: inset 0 0 0 100vh rgba(255, 0, 0, 0.7);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s; }
+
+.k2-AB-cover-parent-container:hover .k2-AB-cover-text-container {
+  opacity: 1;
+  height: 100%; }
+
+.k2-AB-cover-heading-style {
+  color: white !important;
+  font-size: 2.5em !important; }
+
+.k2-AB-cover-paragraph-heading {
+  color: white;
+  font-size: 1.7em !important; }

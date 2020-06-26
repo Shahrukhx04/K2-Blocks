@@ -39,7 +39,14 @@ registerBlockType( 'k2/premium-section', {
 	category: 'k2-blocks',
 	attributes: {
 
+		contentType: {
+			type: 'string',
+			default: 'post'
+		},
 		SelectedPostContent: {
+			type: 'string'
+		},
+		SelectedPageContent: {
 			type: 'string'
 		},
 		TriggerButtonIcon: {
@@ -94,6 +101,7 @@ registerBlockType( 'k2/premium-section', {
 			super(props);
 			this.props = props;
 			this.onChangeSelectedPost = this.onChangeSelectedPost.bind(this);
+			this.onChangeSelectedPage = this.onChangeSelectedPage.bind(this);
 			this.FetchPostsRestApi = this.FetchPostsRestApi.bind(this)
 			this.onChangeAlertIconActive = this.onChangeAlertIconActive.bind(this)
 			this.onChangeIconColor = this.onChangeIconColor.bind(this)
@@ -106,6 +114,9 @@ registerBlockType( 'k2/premium-section', {
 				ReactComponentAllPosts: '',
 				ReactComponentAllPostOptions: [{ value: 0, label: __( 'Select a Post' ) }],
 				ReactComponentSelectedPost: 0,
+				ReactComponentAllPages: '',
+				ReactComponentAllPageOptions: [{ value: 0, label: __( 'Select a Page' ) }],
+				ReactComponentSelectedPage: 0,
 				ToolBarColors: [
 					{ color: '#32897A' },
 					{ color: '#1995AD' },
@@ -116,7 +127,8 @@ registerBlockType( 'k2/premium-section', {
 					color: this.props.attributes.IconColor
 				},
 				IconPosition: this.props.attributes.IconPosition,
-				OverlayPosition: 'LeftToRight',
+				OverlayPosition: 'LeftToRight'
+				
 			}
 
 			this.FetchPostsRestApi()
@@ -124,6 +136,7 @@ registerBlockType( 'k2/premium-section', {
 
 
 		FetchPostsRestApi(){
+			//fetch posts
 				apiFetch( { path: "/wp/v2/posts" } ).then( posts => {
 					console.log(posts)
 					this.setState(
@@ -134,6 +147,35 @@ registerBlockType( 'k2/premium-section', {
 
 					for (var i = 0; i<posts.length ;i++){
 						this.state.ReactComponentAllPostOptions.push({value:posts[i].id, label:posts[i].title.rendered})
+					}
+					if(posts.length == 0){
+						this.setState(
+							{
+								ReactComponentAllPostOptions: [{ value: 0, label: __( 'No posts yet' ) }]
+							}
+						);
+					}
+					this.forceUpdate()
+				} )
+
+				//fetch pages
+				apiFetch( { path: "/wp/v2/pages" } ).then( pages => {
+					console.log(pages)
+					this.setState(
+						{
+							ReactComponentAllPages: pages
+						}
+					);
+
+					for (var i = 0; i<pages.length ;i++){
+						this.state.ReactComponentAllPageOptions.push({value:pages[i].id, label:pages[i].title.rendered})
+					}
+					if(pages.length == 0){
+						this.setState(
+							{
+								ReactComponentAllPageOptions: [{ value: 0, label: __( 'No ppages yet' ) }]
+							}
+						);
 					}
 					this.forceUpdate()
 				} )
@@ -162,7 +204,21 @@ registerBlockType( 'k2/premium-section', {
 					}
 				}
 		}
+		onChangeSelectedPage(NewSelectedPage) {
+			this.setState(
+				{
+					ReactComponentSelectedPage: NewSelectedPage
+				}
+			)
 
+			for (var i=0; i<this.state.ReactComponentAllPages.length; i++){
+				if (this.state.ReactComponentAllPages[i].id === parseInt(NewSelectedPage)){
+					this.props.setAttributes({
+						SelectedPageContent: this.state.ReactComponentAllPages[i].content.rendered
+					})
+					}
+				}
+		}
 		onChangeAlertIconActive(value) {
 
 			var MainDiv = document.getElementById("k2-ps-icon-list-wrapper-id");
@@ -295,22 +351,38 @@ registerBlockType( 'k2/premium-section', {
 
 		render() {
 			const { className } = this.props;
+			var postPageSelector = (
+				<SelectControl
+					label="Select the Template Post"
+					value={ this.state.ReactComponentSelectedPost }
+					options= {this.state.ReactComponentAllPostOptions}
+					onChange={ this.onChangeSelectedPost}
+					help="For smooth functionality, add only k2 blocks or wordpress default widgets in template post"
+				/>
+			);
+			if(this.props.attributes.contentType == 'page'){
+				postPageSelector = (
+					<SelectControl
+						label="Select the Template Page"
+						value={ this.state.ReactComponentSelectedPage }
+						options= {this.state.ReactComponentAllPageOptions}
+						onChange={ this.onChangeSelectedPage}
+						help="For smooth functionality, add only k2 blocks or wordpress default widgets in template page"
+					/>
+				);
+			}
 
 			return (
 				[
 					<InspectorControls>
 						<PanelBody>
-
-
-
 							<SelectControl
-								label="Select the Template Post"
-								value={ this.state.ReactComponentSelectedPost }
-								options= {this.state.ReactComponentAllPostOptions}
-								onChange={ this.onChangeSelectedPost}
-								help="For smooth functionality, add only k2 blocks or wordpress default widgets in template post"
-
+								label="Select type of content to show"
+								value={ this.state.contentType }
+								options= {[{ value: 'post', label: __( 'Post' ) },{ value: 'page', label: __( 'Page' ) }]}
+								onChange={(value)=>{this.props.setAttributes({contentType:value})}}
 							/>
+							{postPageSelector}
 						</PanelBody>
 
 						<PanelBody title={'Trigger Settings'}>
@@ -467,12 +539,12 @@ registerBlockType( 'k2/premium-section', {
 			backgroundColor: attributes.OverlayBackGroundColor,
 			transition: attributes.OverlayTransition + 's'
 		}
-
+		var content = (attributes.contentType == 'post') ? attributes.SelectedPostContent :attributes.SelectedPageContent;
 		return <div>
 			<div style={SideNavStyling} id="mySidenav" className="k2-ps-sliding-window">
 				<div id={'CrossButton'} className="k2-ps-close-button">&times;</div>
 				<div className={'k2-ps-fetched-post-content'}>
-					<p dangerouslySetInnerHTML={ { __html: attributes.SelectedPostContent } }></p>
+					<p dangerouslySetInnerHTML={ { __html: content } }></p>
 				</div>
 			</div>
 			<div id="TriggerAttributes"  style={{justifyContent: attributes.IconPosition}} className={'k2-ps-trigger-button'}

@@ -495,3 +495,10 @@ div.k2-ib-box {
   border-bottom: 5px solid #35C66B;
   padding: 0px;
   padding-bottom: 5px; }
+
+.k2-hb-icon-container {
+  display: -ms-flexbox;
+  display: flex; }
+
+.k2-hb-icon-container div {
+  padding: 10px; }

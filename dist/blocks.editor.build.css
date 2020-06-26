@@ -700,3 +700,19 @@ h6, p {
 
 .components-color-picker__inputs-wrapper {
   display: none; }
+
+.k2-hb-image-select-control {
+  display: -ms-flexbox;
+  display: flex;
+  height: 100px;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer; }
+
+.k2-hb-image-select-control i {
+  font-size: 48px;
+  color: #ddd; }

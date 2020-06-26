@@ -1,6 +1,7 @@
 import './style.scss';
 import './editor.scss';
 import {GLOBAL_FONTS} from '../Global_Fonts';
+import { GLOBAL_ICONS} from '../Global_Icons';
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
@@ -8,7 +9,8 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 
 const {
 	InspectorControls,
-	RichText
+	RichText,
+	MediaUpload
 } = wp.editor;
 
 const {
@@ -49,7 +51,7 @@ registerBlockType( 'k2/heading-block', {
 	attributes: {
 		headingType:{
 			type:'string',
-			default:'classic'
+			default:'iconHeading'
 		},
 		headingTag: {
 			type:'string',
@@ -70,7 +72,7 @@ registerBlockType( 'k2/heading-block', {
 		},
 		textSize: {
 			type: 'number',
-			default: 5
+			default: 3
 		},
 		textAlignment: {
 			type: 'string',
@@ -91,7 +93,7 @@ registerBlockType( 'k2/heading-block', {
 		/*Border styling */
 		borderStyle: {
 			type:'string',
-			default: 'none'
+			default: 'under2'
 		},
 		lineColor:{
 			type:'string',
@@ -99,8 +101,39 @@ registerBlockType( 'k2/heading-block', {
 		},
 		borderWidth:{
 			type:'number',
-			default: 10
+			default: 5
 		},
+		/*icon type*/
+		iconType:{
+			type:'string',
+			default: 'image'
+		},
+		iconClass:{
+			type:'string',
+			default: 'fa fa-rocket'
+		},
+		imageurl:{
+			type:'string',
+			default:'http://k2blocks.com/wp-content/uploads/2020/05/K2-Blocks-Logo-1.png'
+		},
+		/*icon styling*/
+		iconSize:{
+			type: 'number',
+			default: 5
+		},
+		iconColor:{
+			type:'string',
+			default: 'black'
+		},
+		/*image styling*/
+		imageheight:{
+			type: 'number',
+			default: 7
+		},
+		imagewidth:{
+			type: 'number',
+			default: 7
+		}
 	},
 
 	edit: function(props) {
@@ -123,6 +156,12 @@ registerBlockType( 'k2/heading-block', {
 				lineColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'}
 			);
 		}
+
+		function onChangeiconColor(value){
+			props.setAttributes( {
+			iconColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'});
+		}
+			
 		//helper for color popup
 		function myFunction(value) {
 			var ParentDiv = value.target.parentNode
@@ -151,15 +190,115 @@ registerBlockType( 'k2/heading-block', {
 
 		}
 
+		//helper icon slector
+		function onChangeIconActive(value) {
+
+			var MainDiv = document.getElementById("k2-ib-icon-list-wrapper-id");
+			var Spans = MainDiv.getElementsByTagName('span');
+			for (var i = 0; i < Spans.length; i++) {
+				if (Spans[i].className.includes('k2-ib-active')){
+					Spans[i].className = Spans[i].className.replace('k2-ib-active','')
+				}
+			}
+			props.setAttributes({
+				iconClass: value.target.className
+			})
+			console.log(value.target.className)
+			value.target.className = value.target.className + ' k2-ib-active'
+		}
+
+		function onImageSelect(value){
+			props.setAttributes({imageurl:value.url})
+			console.log(value.url)
+		}
+
 		/*Variables**************************/
-		var iconStyling = null;
-		if(props.attributes.headingType == 'iconHeading'){
-			iconStyling = (
-				<PanelBody title={'Icon Styling'}>
-						
+		var iconStylingMenu = null;
+		if(props.attributes.headingType == 'iconHeading' && props.attributes.iconType == 'icon'){
+			iconStylingMenu = (
+				<PanelBody title={'Icon Settings'}>
+					<div className={'k2-ib-icon-list-wrapper'}>
+						<div>
+							<label><strong>Select Icon</strong></label>
+						</div>
+						<div id='k2-ib-icon-list-wrapper-id' className={'k2-ib-icon-list-sub-wrapper'}  onClickCapture={onChangeIconActive}>
+						{GLOBAL_ICONS.map((value, index) => {
+							return <span className={'fa '+value}></span>
+						})}
+						</div>
+					</div>
+					<RangeControl
+						label={<strong>Icon Size</strong>}
+						value={ props.attributes.iconSize }
+						onChange={ (value)=>{props.setAttributes({iconSize:value})} }
+						min={ 0.1 }
+						max={ 10 }
+						step ={0.1}
+					/>
+					<PanelRow>
+						<p><strong>Icon color</strong></p>
+						<div className="k2-hb-inspector-popup">
+							<span style={{backgroundColor:props.attributes.iconColor }} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
+								</span>
+									<span className="k2-hb-inspector-popuptext" id="myPopup" hidden={ true }>
+
+								<div>
+									<ColorPicker
+										color={ props.attributes.textColor }
+										onChangeComplete={ onChangeiconColor }
+									/>
+									<TextControl
+										onChange={ ( value ) => {
+											props.setAttributes( { iconColor: value } )
+										} }
+										value={ props.attributes.iconColor }
+									/>
+								</div>
+
+							</span>
+						</div>
+					</PanelRow>
 				</PanelBody>
 			)
 		}
+
+		var imageStylingMenu = null;
+		if(props.attributes.headingType == 'iconHeading' && props.attributes.iconType == 'image'){
+			imageStylingMenu = (
+				<PanelBody title={'Picture Settings'}>
+					{/** pic upload pic size*/}
+					<MediaUpload
+						onSelect = {onImageSelect}
+						type = {'images'}
+						value = {props.attributes.imageurl}
+						render={ ({open}) => {
+							return ( 
+								<div style={{backgroundImage: 'url("' +props.attributes.imageurl + '")'}} className={'k2-hb-image-select-control'}>
+										<i className="fa fa-plus-circle" onClick={open}></i>
+								</div>
+							)
+						}}
+					/>
+					<RangeControl
+						label= "Image Width"
+						value={ props.attributes.imagewidth }
+						onChange={ (value)=>{props.setAttributes({imagewidth:value})} }
+						min={ 1 }
+						max={ 10 }
+						step ={0.1}
+					/>
+					<RangeControl
+						label= "Image height"
+						value={ props.attributes.imageheight }
+						onChange={ (value)=>{props.setAttributes({imageheight:value})} }
+						min={ 1 }
+						max={ 10 }
+						step ={0.1}
+					/>
+				</PanelBody>
+			)
+		}
+
 		const tagOptions = [
 			{ label: 'p', value: 'p' },
 			{ label: 'h1', value: 'h1'},
@@ -170,11 +309,31 @@ registerBlockType( 'k2/heading-block', {
 			{ label: 'h6', value: 'h6'},
 		];
 
+		var iconParentStyle = {
+			justifyContent: props.attributes.textAlignment,
+			backgroundColor: props.attributes.backGroundColor
+		};
+		var imageStyling = {
+			minHeight: props.attributes.imageheight + 'em',
+			width: props.attributes.imagewidth + 'em'
+		}
+
 		var iconStruct = null;
 		if(props.attributes.headingType == 'iconHeading'){
-			iconStruct = (<div className='k2-hb-icon-container'>
-
-			</div>)
+			if(props.attributes.iconType == 'icon'){
+				iconStruct = (
+					<div style = {iconParentStyle} className='k2-hb-icon-container'>
+						<i style={{color:props.attributes.iconColor, fontSize:props.attributes.iconSize+"em"}} className={props.attributes.iconClass}></i>
+					</div>
+				)
+			}
+			else if (props.attributes.iconType == 'image'){
+				iconStruct = (
+					<div style = {iconParentStyle} className='k2-hb-icon-container'>
+						<img src={props.attributes.imageurl} style={imageStyling}></img>
+					</div>
+				)
+			}
 		}
 
 		var textStyling = {
@@ -183,6 +342,7 @@ registerBlockType( 'k2/heading-block', {
 			fontFamily: props.attributes.textFontFamily,
 			fontWeight: props.attributes.textFontWeight,
 			fontStyle: props.attributes.textFontStyle,
+			borderWidth: props.attributes.borderWidth+"px"
 		}
 
 		var borderClass = "";
@@ -207,6 +367,7 @@ registerBlockType( 'k2/heading-block', {
 		}
 
 		var lineColor = null;
+		var lineWidth = null;
 		if(props.attributes.borderStyle == 'left' || props.attributes.borderStyle == 'under1' || props.attributes.borderStyle == 'under2' ){
 			lineColor = (<PanelRow>
 				<p><strong>Line color</strong></p>
@@ -231,7 +392,34 @@ registerBlockType( 'k2/heading-block', {
 					</span>
 				</div>
 			</PanelRow>)
-		}	
+			lineWidth = (
+				<RangeControl
+					label= "Line thickness"
+					value={ props.attributes.borderWidth }
+					onChange={ (value)=>{props.setAttributes({borderWidth:value})} }
+					min={ 1 }
+					max={ 20 }
+					step ={1}
+				/>
+			)
+		}
+
+		var iconTypeSelector = null;
+		if(props.attributes.headingType == 'iconHeading'){
+			iconTypeSelector = (
+				<SelectControl
+						label="Icon Type"
+						value={props.attributes.iconType}
+						options={[
+							{ label: 'Icon', value: 'icon' },
+							{ label: 'Image', value: 'image'}
+						]}
+						onChange={(value)=>{
+							props.setAttributes({iconType:value})
+						}}
+					/>
+			)
+		}
 
 		return ([
 			<InspectorControls>
@@ -247,6 +435,7 @@ registerBlockType( 'k2/heading-block', {
 							props.setAttributes({headingType:value})
 						}}
 					/>
+					{iconTypeSelector}
 					<SelectControl
 						label="Tag"
 						value={props.attributes.headingTag}
@@ -375,8 +564,10 @@ registerBlockType( 'k2/heading-block', {
 						}}
 					/>
 					{lineColor}
+					{lineWidth}
 				</PanelBody>
-				{iconStyling}
+				{iconStylingMenu}
+				{imageStylingMenu}
 
 
 				
@@ -406,6 +597,7 @@ registerBlockType( 'k2/heading-block', {
 			fontFamily: props.attributes.textFontFamily,
 			fontWeight: props.attributes.textFontWeight,
 			fontStyle: props.attributes.textFontStyle,
+			borderWidth: props.attributes.borderWidth+"px"
 		}
 
 		var borderClass = "";
@@ -429,14 +621,30 @@ registerBlockType( 'k2/heading-block', {
 			parentStyle.borderBottom = "1px solid #9E9E9E";
 		}
 
-
+		var imageStyling = {
+			minHeight: props.attributes.imageheight + 'em',
+			width: props.attributes.imagewidth + 'em'
+		}
+		var iconParentStyle = {
+			justifyContent: props.attributes.textAlignment,
+			backgroundColor: props.attributes.backGroundColor
+		};
 		var iconStruct = null;
 		if(props.attributes.headingType == 'iconHeading'){
-			iconStruct = (
-				<div className='k2-hb-icon-container'>
-
-				</div>
-			)
+			if(props.attributes.iconType == 'icon'){
+				iconStruct = (
+					<div style = {iconParentStyle} className='k2-hb-icon-container'>
+						<i style={{color:props.attributes.iconColor, fontSize:props.attributes.iconSize+"em"}} className={props.attributes.iconClass}></i>
+					</div>
+				)
+			}
+			else if (props.attributes.iconType == 'image'){
+				iconStruct = (
+					<div style = {iconParentStyle} className='k2-hb-icon-container'>
+						<img src={props.attributes.imageurl} style={imageStyling}></img>
+					</div>
+				)
+			}
 		}
 		return (
 			<div className={'k2-hb-parent-container'}>

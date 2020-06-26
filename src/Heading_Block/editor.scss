@@ -147,3 +147,18 @@ h6,p {
   display: none;
 }
 
+.k2-hb-image-select-control {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.k2-hb-image-select-control i {
+  font-size:48px;
+  color: #ddd;
+
+}
+

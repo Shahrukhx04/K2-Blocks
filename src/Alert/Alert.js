@@ -373,19 +373,22 @@ registerBlockType( 'k2/alert-block', {
 
 
 		function onChangeAlertIconActive(value) {
+			if (value.target.tagName === 'SPAN') {
 
-			var MainDiv = document.getElementById("k2-ib-icon-list-wrapper-id");
-			var Spans = MainDiv.getElementsByTagName('span');
-			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('k2-ib-active')){
-					Spans[i].className = Spans[i].className.replace('k2-ib-active','')
+				console.log( value.target.tagName )
+				var MainDiv = document.getElementById( "k2-ib-icon-list-wrapper-id" );
+				var Spans = MainDiv.getElementsByTagName( 'span' );
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].className.includes( 'k2-ib-active' )) {
+						Spans[i].className = Spans[i].className.replace( 'k2-ib-active', '' )
+					}
 				}
+				setAttributes( {
+					AlertBoxIconType: value.target.className
+				} )
+				console.log( value.target.className )
+				value.target.className = value.target.className + ' k2-ib-active'
 			}
-			setAttributes({
-				AlertBoxIconType: value.target.className
-			})
-			console.log(value.target.className)
-			value.target.className = value.target.className + ' k2-ib-active'
 		}
 
 
@@ -864,7 +867,7 @@ registerBlockType( 'k2/alert-block', {
 		}
 
 		const SubWidgetStyling = {
-			width: '100%',
+			width: attributes.AlertBoxWidth + 'rem'
 		}
 
 		return <div  style={WidgetContainerStyling} className={'k2-ib-widget-container'}>

@@ -425,6 +425,9 @@ registerBlockType( 'k2/call-to-action-block', {
 				CTAOverlayColorBlue: NewColor['rgb'].b,
 
 				CTAOverlayColorAlpha: NewColor['rgb'].a,
+
+
+
 				InspectorControlCallToActionOverlayColor: 'rgba('+NewColor.rgb.r+','+NewColor.rgb.g+','+NewColor.rgb.b+','+NewColor.rgb.a+')',
 				CallToActionOverlayColor: 'inset 0 0 0 100vh rgba(' +
 					NewColor['rgb'].r + ',' +

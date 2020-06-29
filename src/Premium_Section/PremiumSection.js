@@ -128,7 +128,7 @@ registerBlockType( 'k2/premium-section', {
 				},
 				IconPosition: this.props.attributes.IconPosition,
 				OverlayPosition: 'LeftToRight'
-				
+
 			}
 
 			this.FetchPostsRestApi()
@@ -221,19 +221,21 @@ registerBlockType( 'k2/premium-section', {
 		}
 		onChangeAlertIconActive(value) {
 
-			var MainDiv = document.getElementById("k2-ps-icon-list-wrapper-id");
-			var Spans = MainDiv.getElementsByTagName('span');
-			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('k2-ps-active')){
-					Spans[i].className = Spans[i].className.replace('k2-ps-active','')
-				}
-			}
-			this.props.setAttributes({
-				TriggerButtonIcon: value.target.className
-			})
-			console.log(value.target.className)
-			value.target.className = value.target.className + ' k2-ps-active'
+			if (value.target.tagName === 'SPAN') {
 
+				var MainDiv = document.getElementById( "k2-ps-icon-list-wrapper-id" );
+				var Spans = MainDiv.getElementsByTagName( 'span' );
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].className.includes( 'k2-ps-active' )) {
+						Spans[i].className = Spans[i].className.replace( 'k2-ps-active', '' )
+					}
+				}
+				this.props.setAttributes( {
+					TriggerButtonIcon: value.target.className
+				} )
+				console.log( value.target.className )
+				value.target.className = value.target.className + ' k2-ps-active'
+			}
 		}
 
 

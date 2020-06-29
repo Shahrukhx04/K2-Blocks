@@ -144,7 +144,7 @@ registerBlockType( 'k2/heading-block', {
 				textColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'}
 			);
 		}
-		
+
 		function onChangeBackgroundColor(value){
 			props.setAttributes( {
 				backGroundColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'}
@@ -161,7 +161,7 @@ registerBlockType( 'k2/heading-block', {
 			props.setAttributes( {
 			iconColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'});
 		}
-			
+
 		//helper for color popup
 		function myFunction(value) {
 			var ParentDiv = value.target.parentNode
@@ -193,18 +193,21 @@ registerBlockType( 'k2/heading-block', {
 		//helper icon slector
 		function onChangeIconActive(value) {
 
-			var MainDiv = document.getElementById("k2-ib-icon-list-wrapper-id");
-			var Spans = MainDiv.getElementsByTagName('span');
-			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('k2-ib-active')){
-					Spans[i].className = Spans[i].className.replace('k2-ib-active','')
+			if (value.target.tagName === 'SPAN') {
+
+				var MainDiv = document.getElementById( "k2-ib-icon-list-wrapper-id" );
+				var Spans = MainDiv.getElementsByTagName( 'span' );
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].className.includes( 'k2-ib-active' )) {
+						Spans[i].className = Spans[i].className.replace( 'k2-ib-active', '' )
+					}
 				}
+				props.setAttributes( {
+					iconClass: value.target.className
+				} )
+				console.log( value.target.className )
+				value.target.className = value.target.className + ' k2-ib-active'
 			}
-			props.setAttributes({
-				iconClass: value.target.className
-			})
-			console.log(value.target.className)
-			value.target.className = value.target.className + ' k2-ib-active'
 		}
 
 		function onImageSelect(value){
@@ -272,7 +275,7 @@ registerBlockType( 'k2/heading-block', {
 						type = {'images'}
 						value = {props.attributes.imageurl}
 						render={ ({open}) => {
-							return ( 
+							return (
 								<div style={{backgroundImage: 'url("' +props.attributes.imageurl + '")'}} className={'k2-hb-image-select-control'}>
 										<i className="fa fa-plus-circle" onClick={open}></i>
 								</div>
@@ -338,7 +341,7 @@ registerBlockType( 'k2/heading-block', {
 
 		var textStyling = {
 			fontSize: props.attributes.textSize+'em',
-			color: props.attributes.textColor, 
+			color: props.attributes.textColor,
 			fontFamily: props.attributes.textFontFamily,
 			fontWeight: props.attributes.textFontWeight,
 			fontStyle: props.attributes.textFontStyle,
@@ -443,7 +446,7 @@ registerBlockType( 'k2/heading-block', {
 						onChange={(value)=>{
 							props.setAttributes({headingTag:value})
 						}}
-					/>	
+					/>
 				</PanelBody>
 				<PanelBody title={'Text Styling'}>
 					<RangeControl
@@ -570,7 +573,7 @@ registerBlockType( 'k2/heading-block', {
 				{imageStylingMenu}
 
 
-				
+
 			</InspectorControls>
 			,
 			<div className={'k2-hb-parent-container'}>
@@ -593,7 +596,7 @@ registerBlockType( 'k2/heading-block', {
 	save: function(props) {
 		var textStyling = {
 			fontSize: props.attributes.textSize+'em',
-			color: props.attributes.textColor, 
+			color: props.attributes.textColor,
 			fontFamily: props.attributes.textFontFamily,
 			fontWeight: props.attributes.textFontWeight,
 			fontStyle: props.attributes.textFontStyle,

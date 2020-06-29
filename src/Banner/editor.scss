@@ -1,0 +1,78 @@
+
+.components-color-picker__inputs-wrapper{
+  display: none;
+}
+.k2-AB-image-select-control {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.k2-AB-image-select-control i {
+  font-size:48px;
+  color: #ddd;
+
+}
+
+.k2-AB-inspector-control-classic-position{
+  display: inline-flex;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.k2-AB-inspector-control-classic-position-single{
+  flex-basis: 50%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+.k2-AB-alignment-icon {
+  font-size: 15px;
+  padding: 0.8em;
+}
+
+
+.k2-AB-active{
+  color: orange;
+  background-color: #FED8B1;
+}
+
+
+
+.k2-AB-popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.k2-AB-popup .k2-AB-popup-text {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid rgba(25, 149, 173, 1);
+}
+
+.k2-AB-dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey;
+}

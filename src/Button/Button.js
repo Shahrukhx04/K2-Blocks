@@ -475,10 +475,6 @@ registerBlockType( 'k2/classic-button', {
 			{label: 'aeroplane' ,value: 'fa fa-envelope-o'}
 			]
 
-
-
-
-
 		return 	<div className="Outer" style={parentStyle}>
 			<button style={AnimatedButtonStyling} className="gradient-button gradient-button-1">
 				<i className={attributes.AlertBoxIconType}></i>

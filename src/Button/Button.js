@@ -11,14 +11,10 @@ import { GLOBAL_ICONS} from '../Global_Icons'
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
-	AlignmentToolbar
 	// For attribute sources
 } = wp.blocks;
 const {
-	RichText,
 	InspectorControls,
-	ColorPalette,
-	PanelColorSettings
 } = wp.editor;
 
 const {
@@ -26,7 +22,6 @@ const {
 	RangeControl,
 	SelectControl,
 	CheckboxControl,
-	Panel,
 	PanelRow,
 	ColorPicker,
 	TextControl

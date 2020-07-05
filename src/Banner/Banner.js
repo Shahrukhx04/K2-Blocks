@@ -3,20 +3,16 @@
 import './editor.scss';
 import './style.scss';
 import { GLOBAL_FONTS } from '../Global_Fonts';
-import { GLOBAL_ICONS} from '../Global_Icons'
 
 
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
-	AlignmentToolbar
 	// For attribute sources
 } = wp.blocks;
 const {
 	RichText,
 	InspectorControls,
-	ColorPalette,
-	PanelColorSettings,
 	MediaUpload
 } = wp.editor;
 
@@ -24,10 +20,8 @@ const {
 	PanelBody,
 	RangeControl,
 	SelectControl,
-	Panel,
 	PanelRow,
 	ColorPicker,
-	TextControl
 } = wp.components;
 
 var bannericon = (

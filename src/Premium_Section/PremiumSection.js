@@ -8,7 +8,6 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 
 const {
 	InspectorControls,
-	ColorPalette,
 } = wp.editor;
 
 const {

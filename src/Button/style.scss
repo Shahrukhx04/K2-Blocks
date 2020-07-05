@@ -2,29 +2,42 @@
 	margin-right: 10px;
 }
 
+
+.Outer
+{
+	display: flex;
+}
 .gradient-button {
 
-	margin: 10px;
+	//margin: 10px;
 	font-family: "poppins",  Gadget, sans-serif;
 	font-size: 15px;
 	font-weight: normal;
 	padding: 15px;
 	transition: 0.5s;
 	background-size: 200% auto;
-	color: #ffffff;
+	color: #00BCD4;
+	//border: 2px solid black;
 	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	cursor: pointer;
-	display: inline-block;
 }
 .gradient-button:hover {
 
 	margin: 8px 10px 12px;
+	transform: scale(1.05);
 }
 
-.gradient-button-1 {background-image: linear-gradient(to right, #db0066 0%, #ff0076 51%, #ff0076 100%)}
+.gradient-button-1 {
+
+}
 .gradient-button-1:hover {
 
-	background-image: linear-gradient(to right, #00BCD4 0%, #00BCD4 51%, #00BCD4 100%);
-	box-shadow: 0 0 10px #00BCD4, 0 0 40px #00BCD4, 0 0 80px #00BCD4;
+	transition-delay: 0.05s;
+}
+
+
+
+.gradient-button-1:hover {
+
 	transition-delay: 0.05s;
 }

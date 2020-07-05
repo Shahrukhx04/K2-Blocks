@@ -450,8 +450,11 @@ div.k2-ib-box {
 .fa {
   margin-right: 10px; }
 
+.Outer {
+  display: -ms-flexbox;
+  display: flex; }
+
 .gradient-button {
-  margin: 10px;
   font-family: "poppins",  Gadget, sans-serif;
   font-size: 15px;
   font-weight: normal;
@@ -460,29 +463,24 @@ div.k2-ib-box {
   -o-transition: 0.5s;
   transition: 0.5s;
   background-size: 200% auto;
-  color: #ffffff;
+  color: #00BCD4;
   -webkit-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   -o-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  cursor: pointer;
-  display: inline-block; }
+  cursor: pointer; }
 
 .gradient-button:hover {
-  margin: 8px 10px 12px; }
-
-.gradient-button-1 {
-  background-image: -webkit-gradient(linear, left top, right top, from(#db0066), color-stop(51%, #ff0076), to(#ff0076));
-  background-image: -webkit-linear-gradient(left, #db0066 0%, #ff0076 51%, #ff0076 100%);
-  background-image: -o-linear-gradient(left, #db0066 0%, #ff0076 51%, #ff0076 100%);
-  background-image: linear-gradient(to right, #db0066 0%, #ff0076 51%, #ff0076 100%); }
+  margin: 8px 10px 12px;
+  -webkit-transform: scale(1.05);
+      -ms-transform: scale(1.05);
+          transform: scale(1.05); }
 
 .gradient-button-1:hover {
-  background-image: -webkit-gradient(linear, left top, right top, from(#00BCD4), color-stop(51%, #00BCD4), to(#00BCD4));
-  background-image: -webkit-linear-gradient(left, #00BCD4 0%, #00BCD4 51%, #00BCD4 100%);
-  background-image: -o-linear-gradient(left, #00BCD4 0%, #00BCD4 51%, #00BCD4 100%);
-  background-image: linear-gradient(to right, #00BCD4 0%, #00BCD4 51%, #00BCD4 100%);
-  -webkit-box-shadow: 0 0 10px #00BCD4, 0 0 40px #00BCD4, 0 0 80px #00BCD4;
-          box-shadow: 0 0 10px #00BCD4, 0 0 40px #00BCD4, 0 0 80px #00BCD4;
+  -webkit-transition-delay: 0.05s;
+       -o-transition-delay: 0.05s;
+          transition-delay: 0.05s; }
+
+.gradient-button-1:hover {
   -webkit-transition-delay: 0.05s;
        -o-transition-delay: 0.05s;
           transition-delay: 0.05s; }

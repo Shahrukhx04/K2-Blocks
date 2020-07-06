@@ -193,18 +193,21 @@ registerBlockType( 'k2/classic-button', {
 
 		function onChangeAlertIconActive(value) {
 
-			var MainDiv = document.getElementById("k2-ib-icon-list-wrapper-id");
-			var Spans = MainDiv.getElementsByTagName('span');
-			for (var i = 0; i < Spans.length; i++) {
-				if (Spans[i].className.includes('k2-ib-active')){
-					Spans[i].className = Spans[i].className.replace('k2-ib-active','')
+			if (value.target.tagName === 'SPAN') {
+
+				var MainDiv = document.getElementById( "k2-CB-icon-list-wrapper-id" );
+				var Spans = MainDiv.getElementsByTagName( 'span' );
+				for (var i = 0; i < Spans.length; i++) {
+					if (Spans[i].className.includes( 'k2-CB-active' )) {
+						Spans[i].className = Spans[i].className.replace( 'k2-CB-active', '' )
+					}
 				}
+				setAttributes( {
+					AlertBoxIconType: value.target.className
+				} )
+				console.log( value.target.className )
+				value.target.className = value.target.className + ' k2-CB-active'
 			}
-			setAttributes({
-				AlertBoxIconType: value.target.className
-			})
-			console.log(value.target.className)
-			value.target.className = value.target.className + ' k2-ib-active'
 		}
 
 
@@ -216,11 +219,11 @@ registerBlockType( 'k2/classic-button', {
 				var MainDiv = ParentDiv.parentNode
 				var Spans = MainDiv.getElementsByTagName('div');
 				for (var i = 0; i < Spans.length; i++) {
-					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-ib-active')){
-						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-ib-active','')
+					if (Spans[i].getElementsByTagName('span')[0].className.includes('k2-CB-active')){
+						Spans[i].getElementsByTagName('span')[0].className = Spans[i].getElementsByTagName('span')[0].className.replace('k2-CB-active','')
 					}
 				}
-				value.target.className = value.target.className + ' k2-ib-active'
+				value.target.className = value.target.className + ' k2-CB-active'
 
 			}
 
@@ -245,28 +248,26 @@ registerBlockType( 'k2/classic-button', {
 
 		return [
 			<InspectorControls>
-
-
-				<div className={'k2-ib-icon-list-wrapper'}>
-					<div>
-						<label><strong>Select Icon</strong></label>
+				<PanelBody>
+					<div className={'k2-CB-icon-list-wrapper'}>
+						<div>
+							<label><strong>Select Icon</strong></label>
+						</div>
+						<div id='k2-CB-icon-list-wrapper-id' className={'k2-CB-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
+							{GLOBAL_ICONS.map((value, index) => {
+								return <span className={'fa '+value}></span>
+							})}
+						</div>
 					</div>
-					<div id='k2-ib-icon-list-wrapper-id' className={'k2-ib-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
-						{GLOBAL_ICONS.map((value, index) => {
-							return <span className={'fa '+value}></span>
-						})}
-					</div>
-				</div>
 
-				<SelectControl
-					label="Heading Font"
-					value={attributes.textFontFamily}
-					options={GLOBAL_FONTS}
-					onChange={(value)=>{setAttributes({textFontFamily:value})}}
-				/>
+					<SelectControl
+						label="Heading Font"
+						value={attributes.textFontFamily}
+						options={GLOBAL_FONTS}
+						onChange={(value)=>{setAttributes({textFontFamily:value})}}
+					/>
 
-
-
+				</PanelBody>
 
 				<PanelBody title={'Button Customization'}>
 					<RangeControl
@@ -315,16 +316,16 @@ registerBlockType( 'k2/classic-button', {
 						<div style={{paddingBottom: '2%'}}>
 							<label><strong>Alignment</strong></label>
 						</div>
-						<div id = {'AlignmentIconsParent'} className={'k2-hb-inspector-control-alignment'} onClick={onChangeAlignmentIconChange}>
+						<div id = {'AlignmentIconsParent'} className={'k2-CB-inspector-control-alignment'} onClick={onChangeAlignmentIconChange}>
 
-							<div className={'k2-hb-inspector-control-alignment-single'}  onClick={() => {setAttributes({textAlignment:'flex-start'})}}>
-								<span className="fa fa-align-left k2-hb-alignment-icon-style" ></span>
+							<div className={'k2-CB-inspector-control-alignment-single'}  onClick={() => {setAttributes({textAlignment:'flex-start'})}}>
+								<span className="fa fa-align-left k2-CB-alignment-icon-style" ></span>
 							</div>
-							<div className={'k2-hb-inspector-control-alignment-single'} onClick={() => {setAttributes({textAlignment:'center'})}}>
-								<span className="fa fa-align-center k2-hb-alignment-icon-style k2-hb-active"></span>
+							<div className={'k2-CB-inspector-control-alignment-single'} onClick={() => {setAttributes({textAlignment:'center'})}}>
+								<span className="fa fa-align-center k2-CB-alignment-icon-style k2-CB-active"></span>
 							</div>
-							<div className={'k2-hb-inspector-control-alignment-single'} onClick={() => {setAttributes({textAlignment:'flex-end'})}}>
-								<span className="fa fa-align-right k2-hb-alignment-icon-style"></span>
+							<div className={'k2-CB-inspector-control-alignment-single'} onClick={() => {setAttributes({textAlignment:'flex-end'})}}>
+								<span className="fa fa-align-right k2-CB-alignment-icon-style"></span>
 							</div>
 						</div>
 					</PanelRow>
@@ -346,26 +347,25 @@ registerBlockType( 'k2/classic-button', {
 
 					<PanelRow>
 						<p><strong>Button color</strong></p>
-						<div className="k2-hb-inspector-popup">
-                            <span style={{backgroundColor:attributes.ButtonColor }} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
-                                </span>
-							<span className="k2-hb-inspector-popuptext" id="myPopup" hidden={ true }>
+						<div className="k2-CB-popup">
+							<span style={{backgroundColor: attributes.ButtonColor}} className={ 'k2-CB-dot' } onClick={ myFunction }>
+							</span>
+							<span className="k2-CB-popup-text"  hidden={ true }>
 
-                                <div>
-                                    <ColorPicker
+								<div>
+									<ColorPicker
 										color={ attributes.textColor }
 										onChangeComplete={ onChangeButtonColor }
 									/>
-                                    <TextControl
+									<TextControl
 										onChange={ ( value ) => {
 											setAttributes( { ButtonColor: value } )
-
 										} }
-										value={ attributes.ButtonColor }
+										value={ attributes.ButtonColor}
 									/>
-                                </div>
+								</div>
 
-                            </span>
+							</span>
 						</div>
 					</PanelRow>
 
@@ -377,32 +377,30 @@ registerBlockType( 'k2/classic-button', {
 				<PanelBody>
 
 
-
-
 					<PanelRow>
 						<p><strong>Text color</strong></p>
-						<div className="k2-hb-inspector-popup">
-                            <span style={{backgroundColor:attributes.TextColor }} className={ 'k2-counter-inspector-dot' } onClick={ myFunction }>
-                                </span>
-							<span className="k2-hb-inspector-popuptext" id="myPopup" hidden={ true }>
+						<div className="k2-CB-popup">
+							<span style={{backgroundColor: attributes.TextColor}} className={ 'k2-CB-dot' } onClick={ myFunction }>
+							</span>
+							<span className="k2-CB-popup-text"  hidden={ true }>
 
-                                <div>
-                                    <ColorPicker
+								<div>
+									<ColorPicker
 										color={ attributes.textColor }
 										onChangeComplete={ onChangeTextColor }
 									/>
-                                    <TextControl
+									<TextControl
 										onChange={ ( value ) => {
 											setAttributes( { TextColor: value } )
-
 										} }
-										value={ attributes.TextColor }
+										value={ attributes.TextColor}
 									/>
-                                </div>
+								</div>
 
-                            </span>
+							</span>
 						</div>
 					</PanelRow>
+					
 
 
 					<CheckboxControl

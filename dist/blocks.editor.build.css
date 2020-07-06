@@ -549,6 +549,96 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.k2-CB-inspector-control-alignment {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.k2-CB-inspector-control-alignment-single {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  cursor: pointer; }
+
+.k2-CB-alignment-icon-style {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.k2-CB-icon-list-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 1em;
+  margin-bottom: 2em; }
+
+.k2-CB-icon-list-sub-wrapper {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-top: 1em;
+  padding-bottom: 2em;
+  max-height: 120px;
+  overflow: auto; }
+
+.k2-CB-icon-list-sub-wrapper span {
+  font-size: 15px;
+  padding: 0.8em; }
+
+.k2-CB-icon-list-sub-wrapper span:hover {
+  color: orange;
+  background-color: #FED8B1;
+  cursor: pointer; }
+
+.k2-CB-active {
+  color: orange;
+  background-color: #FED8B1; }
+
+.k2-CB-popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* The actual popup */
+.k2-CB-popup .k2-CB-popup-text {
+  width: 230px;
+  background-color: white;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px 10px 0;
+  position: absolute;
+  z-index: 100;
+  bottom: 125%;
+  right: 50%;
+  border: 2px solid #1995ad; }
+
+.k2-CB-dot {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  display: inline-block;
+  padding-top: 2em;
+  border: 1px solid grey; }
+
+.components-color-picker__inputs-wrapper {
+  display: none; }
 /**
  * #.# Common SCSS
  *

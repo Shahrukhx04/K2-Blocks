@@ -51,7 +51,7 @@ const {
  * @return {?WPBlock}          The Progress_Bar_Block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-buttonBlockIcon=(
+var buttonBlockIcon=(
 	<svg width={800} height={800} viewBox="0 0 800 800">
       <image
         x={161}
@@ -281,11 +281,11 @@ registerBlockType( 'k2/classic-button', {
 			<InspectorControls>
 
 
-				<div className={'k2-hb-icon-list-wrapper'}>
+				<div className={'k2-CB-icon-list-wrapper'}>
 					<div>
 						<label><strong>Select Icon</strong></label>
 					</div>
-					<div id='k2-hb-icon-list-wrapper-id' className={'k2-hb-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
+					<div id='k2-CB-icon-list-wrapper-id' className={'k2-CB-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
 						{GLOBAL_ICONS.map((value, index) => {
 							return <span className={'fa '+value}></span>
 						})}

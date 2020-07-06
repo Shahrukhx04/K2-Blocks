@@ -11,10 +11,14 @@ import { GLOBAL_ICONS} from '../Global_Icons'
 
 const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType,
+	AlignmentToolbar
 	// For attribute sources
 } = wp.blocks;
 const {
+	RichText,
 	InspectorControls,
+	ColorPalette,
+	PanelColorSettings
 } = wp.editor;
 
 const {
@@ -22,6 +26,7 @@ const {
 	RangeControl,
 	SelectControl,
 	CheckboxControl,
+	Panel,
 	PanelRow,
 	ColorPicker,
 	TextControl
@@ -46,13 +51,25 @@ const {
  * @return {?WPBlock}          The Progress_Bar_Block, if it has been successfully
  *                             registered; otherwise `undefined`.
  */
-
-
+buttonBlockIcon=(
+	<svg width={800} height={800} viewBox="0 0 800 800">
+      <image
+        x={161}
+        y={343}
+        width={477}
+        height={111}
+        xlinkHref="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAd0AAABvCAMAAACeluqWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAY1BMVEU2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGo2yGoAAAAcFDiVAAAAH3RSTlMABlam3/nz11VR21IDiVTj5Ftcq6zg+PLZB4qTlFP6t2bvfgAAAAFiS0dEILNrPYAAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfkBwYBERMA73gBAAABnUlEQVR42u3Wa07CABBF4amA1toWCsUHKu5/l1I0rIDJJCfnW8FNzp8bsWgeVuvNjxgen1ZtEzfPXfUg3Vn38t+2H6qnKMHQX+sal2lY4o7VK5RkvByqbfUIJdk1MVVvUJp9HKonKM0cx+oJSnOM1+oJSrOJ6gVKZF0y65JZl8y6ZNYlsy6ZdcmsS2ZdMuuSWZfMumTWJbMumXXJrEtmXTLrklmXzLpk1iWzLpl1yaxLZl0y65JZl8y6ZNYlsy6ZdcmsS2ZdMuuSWZfMumTWJbMumXXJrEtmXTLrklmXzLpk1iWzLpl1yaxLZl0y65JZl8y6ZNYlsy6ZdcmsS2ZdMuuSWZfMumTWJbMumXXJrEtmXTLrklmXzLpk1iWzLpl1yaxLZl0y65JZl8y6ZNYlsy6ZdcmsS2ZdMuuSWZfMumTWJbMumXXJrEtmXTLrksVb9QKl2cR79QSlOcaheoLSzDFVT1CafTTb6g1KsvuIaKtHKEkbF6fqFUpxWuJG/1m9Qwm++vjz3VVP0Z11Y9w007w+Vw/SnZzX89Rcu/4CtlcBl9E+D6EAAAAASUVORK5CYII="
+      />
+      <path fill="#fff" stroke="#040404" d="M322 390h156v17H322z" />
+    </svg>
+)
 
 registerBlockType( 'k2/classic-button', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-Progress_Bar_Block.
 	title: __( 'Classic Button' ), // Block title.
-	icon: 'smiley' ,
+	icon: {
+		src: buttonBlockIcon
+	} ,
 	category: 'k2-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
 		__( 'Classic Button' ),
@@ -74,6 +91,10 @@ registerBlockType( 'k2/classic-button', {
 		AnimatedButtonText: {
 			type: 'string',
 			default: 'Animated Button'
+		},
+		AnimatedButtonLink: {
+			type: 'string',
+			default: 'https://www.k2blocks.com'
 		},
 		AnimatedLetterSpacing: {
 			type: 'number',
@@ -184,6 +205,16 @@ registerBlockType( 'k2/classic-button', {
 			})
 		}
 
+
+		function onChangeButtonLink(NewLink) {
+			setAttributes({
+				AnimatedButtonLink: NewLink
+			})
+		}
+
+
+
+
 		function onChangeButtonLetterSpacing(NewLetterSpacing) {
 			setAttributes({
 				AnimatedLetterSpacing: NewLetterSpacing
@@ -248,17 +279,18 @@ registerBlockType( 'k2/classic-button', {
 
 		return [
 			<InspectorControls>
-				<PanelBody>
-					<div className={'k2-CB-icon-list-wrapper'}>
-						<div>
-							<label><strong>Select Icon</strong></label>
-						</div>
-						<div id='k2-CB-icon-list-wrapper-id' className={'k2-CB-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
-							{GLOBAL_ICONS.map((value, index) => {
-								return <span className={'fa '+value}></span>
-							})}
-						</div>
+
+
+				<div className={'k2-hb-icon-list-wrapper'}>
+					<div>
+						<label><strong>Select Icon</strong></label>
 					</div>
+					<div id='k2-hb-icon-list-wrapper-id' className={'k2-hb-icon-list-sub-wrapper'}  onClickCapture={onChangeAlertIconActive}>
+						{GLOBAL_ICONS.map((value, index) => {
+							return <span className={'fa '+value}></span>
+						})}
+					</div>
+				</div>
 
 					<SelectControl
 						label="Heading Font"
@@ -266,8 +298,6 @@ registerBlockType( 'k2/classic-button', {
 						options={GLOBAL_FONTS}
 						onChange={(value)=>{setAttributes({textFontFamily:value})}}
 					/>
-
-				</PanelBody>
 
 				<PanelBody title={'Button Customization'}>
 					<RangeControl
@@ -287,16 +317,18 @@ registerBlockType( 'k2/classic-button', {
 						step ={.5}
 					/>
 
-
 					<TextControl
+						label={<strong> Button Text </strong>}
 						onChange={onChangeButtonAnimatedText }
 						value={ attributes.AnimatedButtonText}
 					/>
 
 
-
-
-
+					<TextControl
+						label={<strong> Button Link </strong>}
+						onChange={onChangeButtonLink }
+						value={ attributes.AnimatedButtonLink}
+					/>
 
 
 					<RangeControl
@@ -459,7 +491,9 @@ registerBlockType( 'k2/classic-button', {
 
 		var parentStyle = {justifyContent: attributes.textAlignment
 		};
+		var link = attributes.AnimatedButtonLink
 
+		var sup = "parent.open('" + link + "')"
 
 		const IconList = [
 			{label: 'Rocket' , value: 'fa fa-rocket'},
@@ -468,7 +502,9 @@ registerBlockType( 'k2/classic-button', {
 			{label: 'aeroplane' ,value: 'fa fa-envelope-o'}
 			]
 
-		return 	<div className="Outer" style={parentStyle}>
+
+
+		return 	<div className="Outer" onClick={sup} style={parentStyle}>
 			<button style={AnimatedButtonStyling} className="gradient-button gradient-button-1">
 				<i className={attributes.AlertBoxIconType}></i>
 				{

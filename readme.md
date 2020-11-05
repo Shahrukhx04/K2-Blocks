@@ -17,4 +17,3 @@ Below you will find some information on how to run scripts.
 - It's a one-way street, `eject` and you have to maintain everything yourself.
 - You don't normally have to `eject` a project because by ejecting you lose the connection with `create-guten-block` and from there onwards you have to update and maintain all the dependencies on your own.
 
-Shahrukh Pushing

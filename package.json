@@ -10,7 +10,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "cgb-scripts": "1.23.0",
+    "cgb-scripts": "^1.23.0",
     "react-fontawesome": "^1.7.1"
   }
 }

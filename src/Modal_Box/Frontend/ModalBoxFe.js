@@ -1,8 +1,6 @@
 jQuery(document).ready(function( $ ) {
     $('.k2-modal-container').each(function (index) {
-        console.log("found box container")
         var modal = $(this).children(".k2-modal");
-
         var dataType = $(this).attr('data-type');
         if (dataType==='button') {
             // Get the button that opens the modal
@@ -14,15 +12,13 @@ jQuery(document).ready(function( $ ) {
         }
         else if (dataType === 'time'){
             var time = $(this).attr('data-time');
-            console.log(time);
-            console.log("hello")
             setTimeout(function(){
                 modal[0].style.display = "block";
               }, time);
         }
         
         var span = modal.children(".k2-modal-content").children(".k2-modal-close")[0];
-        console.log(span)
+
 
         // When the user clicks on "close", close the modal
         span.onclick = function() {
@@ -35,5 +31,10 @@ jQuery(document).ready(function( $ ) {
                 modal[0].style.display = "none";
             }
         }
+        $(document).keydown(function(event) { 
+            if (event.keyCode == 27) { 
+              $(modal).hide();
+            }
+          });
     });
 });

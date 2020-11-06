@@ -71,7 +71,7 @@ registerBlockType( 'k2/call-to-action-block', {
 		},
 		CTAHeadingText: {
 			type: 'string',
-			default: 'Classic Call To Action'
+			default: 'Shahrukh Call To Action'
 		},
 		CTAParagraphText: {
 			type: 'string',
@@ -901,7 +901,6 @@ registerBlockType( 'k2/call-to-action-block', {
 					{
 						(attributes.CTAisHeadingEnabled === true)?<div>
 
-
 							<PanelRow>
 								<p><strong>Color</strong></p>
 								<div className="k2-cta-popup">
@@ -1486,7 +1485,6 @@ registerBlockType( 'k2/call-to-action-block', {
 			{
 				(attributes.LayoutDesign == 'Classic')?
 					<div  style={BoxedContainerStyling} className={'k2-cta-boxed-container'}>
-
 						<div style={ClassicParentContainer} className={'k2-cta-classic-parent-container'}>
 							<div style={CTATextAlignment} className={'k2-cta-classic-text-container'}>
 								{

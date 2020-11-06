@@ -178,8 +178,8 @@ registerBlockType( 'k2/classic-button', {
 				ButtonColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'});
 		}
 		function onChangeTextColor(value){
-			console.log("Yes")
-			console.log(value)
+			// console.log("Yes")
+			// console.log(value)
 			setAttributes( {
 				TextColor:'rgba('+value.rgb.r+','+value.rgb.g+','+value.rgb.b+','+value.rgb.a+')'});
 		}
@@ -432,7 +432,7 @@ registerBlockType( 'k2/classic-button', {
 							</span>
 						</div>
 					</PanelRow>
-					
+
 
 
 					<CheckboxControl
@@ -482,15 +482,9 @@ registerBlockType( 'k2/classic-button', {
 			color: attributes.TextColor,
 			fontFamily: attributes.textFontFamily,
 			boxShadow: (attributes.BlockBackgroundShadow)?"0 0 10px " + attributes.ButtonColor + " , 0 0 40px " +  attributes.ButtonColor + ", 0 0 80px " + attributes.ButtonColor:''
-
-
-
 		}
 
-
-
-		var parentStyle = {justifyContent: attributes.textAlignment
-		};
+		var parentStyle = {justifyContent: attributes.textAlignment };
 		var link = attributes.AnimatedButtonLink
 
 		var sup = "parent.open('" + link + "')"

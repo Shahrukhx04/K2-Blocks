@@ -1,4 +1,5 @@
 export const GLOBAL_FONTS = [
+	{label : 'Default', value: 'inherit'},
 	{label: 'Arial', value: 'Arial, sans-serif'},
 	{label: 'Helvatica', value: 'Helvetica, sans-serif'},
 	{label: 'Gill Sans', value: 'Gill Sans, sans-serif'},

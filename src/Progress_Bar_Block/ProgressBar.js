@@ -406,7 +406,14 @@ registerBlockType( 'k2/progressbar-block', {
 		}
 
 
+
 		function myFunction(value) {
+
+			var oferts = document.querySelectorAll(".k2-pg-popup-text .components-color-picker__inputs-wrapper");
+			for (var i=0; i<oferts.length; i++){
+				oferts[i].style.display = 'none';
+			}
+
 			var ParentDiv = value.target.parentNode
 			var PopupDiv = ParentDiv.getElementsByTagName('span')
 			if (PopupDiv[1].hidden  === true){
@@ -414,6 +421,7 @@ registerBlockType( 'k2/progressbar-block', {
 			} else if (PopupDiv[1].hidden  === false){
 				PopupDiv[1].hidden  = true
 			}
+
 		}
 		return ([
 
@@ -486,6 +494,7 @@ registerBlockType( 'k2/progressbar-block', {
 													<ColorPicker
 														color={ attributes.titleColor }
 														onChangeComplete={ onTitleColorChange }
+														disableAlpha
 													/>
 													<TextControl
 														onChange={ ( value ) => {

@@ -42,9 +42,9 @@ const layoutSectionIcon = (
  *                             registered; otherwise `undefined`.
  */
 
-registerBlockType( 'k2/my-block' /**TODO: Be sure to change this!!! */, { 
+registerBlockType( 'k2/k2-section' /**TODO: Be sure to change this!!! */, {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: 'MyBlock', //TODO: visible name of block
+	title: 'Section', //TODO: visible name of block
 	icon: {
 		src: layoutSectionIcon,
 	},
@@ -55,7 +55,7 @@ registerBlockType( 'k2/my-block' /**TODO: Be sure to change this!!! */, {
 	},
 
 	edit: function(props) {
-			
+
 		/**Functions */
 		/*********************************************************** */
 
@@ -91,7 +91,7 @@ registerBlockType( 'k2/my-block' /**TODO: Be sure to change this!!! */, {
 		/**Styles and other variables */
 		/********************************************************** */
 
-		//your variables here	
+		//your variables here
 
 		return (
 			<div className={'k2-ls-parent-container'}>

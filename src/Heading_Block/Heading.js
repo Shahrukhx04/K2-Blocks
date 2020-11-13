@@ -170,6 +170,12 @@ registerBlockType( 'k2/heading-block', {
 
 		//helper for color popup
 		function myFunction(value) {
+
+			var oferts = document.querySelectorAll(".k2-hb-inspector-popuptext .components-color-picker__inputs-wrapper");
+			for (var i=0; i<oferts.length; i++){
+				oferts[i].style.display = 'none';
+			}
+
 			var ParentDiv = value.target.parentNode
 			var PopupDiv = ParentDiv.getElementsByTagName('span')
 			if (PopupDiv[1].hidden  === true){

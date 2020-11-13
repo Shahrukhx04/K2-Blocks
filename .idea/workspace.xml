@@ -10,31 +10,6 @@
       <change beforePath="$PROJECT_DIR$/dist/blocks.build.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.build.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.editor.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.editor.build.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/blocks.style.build.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/blocks.style.build.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alert/Alert.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/Alert.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Alert/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Alert/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banner/Banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banner/Banner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banner/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banner/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Button/Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button/Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Button/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Button/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/Call_To_Action.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Call_To_Action/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Counter_Block/Counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Counter_Block/Counter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Counter_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Counter_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Editor-Controls-Component/Color-Picker-Component/Color-Picker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Editor-Controls-Component/Color-Picker-Component/Color-Picker.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Heading_Block/Heading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heading_Block/Heading.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Heading_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Heading_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/ImageScroll.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Image_Scroll/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Layout_Section/Section.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout_Section/Section.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modal_Box/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modal_Box/Modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modal_Box/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modal_Box/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/PremiumSection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Premium_Section/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Premium_Section/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/ProgressBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Progress_Bar_Block/editor.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Timer_Block/Timer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timer_Block/Timer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Timer_Block/editor.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Timer_Block/editor.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/blocks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/blocks.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +68,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="C:\Bitnami\wordpress-5.4-0\apps\wordpress\htdocs\wp-content\plugins\K2-Blocks\src" />
     </key>
   </component>
@@ -155,6 +131,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605248359627">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1605248359627" />
     <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1605244515883">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

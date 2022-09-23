@@ -5,7 +5,7 @@
  * Description: Blocks for the gutenberg editor
  * Author: PookiDevs
  * Author URI: https://pookidevs.com/
- * Version: 1.0.5
+ * Version: 1.0.7
  * License: GPL2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.txt
  *
